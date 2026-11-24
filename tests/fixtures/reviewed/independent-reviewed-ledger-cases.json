@@ -1,0 +1,203 @@
+{
+  "scope": "Supervisor-authored synthetic acceptance oracles before implementation. No chemistry recommendations or executed validation claim. Translate shape into released contract while preserving expected semantics.",
+  "cases": [
+    {
+      "id": "occupied_recipient",
+      "initial": {
+        "donor_A_uL": "30",
+        "recipient_B_uL": "7"
+      },
+      "move_A_uL": "10",
+      "expected": {
+        "donor_A_uL": "20",
+        "recipient_total_uL": "17",
+        "recipient_components": {
+          "A": "10",
+          "B": "7"
+        }
+      },
+      "invalid_shortcut": "Treating recipient total17 as movement amount or assuming recipient starts0"
+    },
+    {
+      "id": "distinct_same_class",
+      "initial": [
+        {
+          "id": "A",
+          "class": "liquid",
+          "uL": "30"
+        },
+        {
+          "id": "B",
+          "class": "liquid",
+          "uL": "40"
+        }
+      ],
+      "move": {
+        "A": "10",
+        "B": "20"
+      },
+      "expected": {
+        "remaining_A": "20",
+        "remaining_B": "20",
+        "delivered_components": {
+          "A": "10",
+          "B": "20"
+        }
+      },
+      "invalid_shortcut": "Collapsing A and B by class"
+    },
+    {
+      "id": "fraction_exact",
+      "initial_uL": "0.3",
+      "moves_uL": [
+        "0.1",
+        "0.2"
+      ],
+      "expected_remaining_uL": "0",
+      "invalid_shortcut": "Negative floating point residue or rounding threshold"
+    },
+    {
+      "id": "large_significant_decimal",
+      "initial_nL": "9007199254740993",
+      "move_nL": "1",
+      "expected_remaining_nL": "9007199254740992",
+      "acceptable_refusal": "Explicit unsupported numeric domain before calculation, never silent Number rounding"
+    },
+    {
+      "id": "unit_conversion",
+      "initial_mL": "0.001",
+      "move_uL": "0.125",
+      "expected_remaining_uL": "0.875"
+    },
+    {
+      "id": "eight_separate_wells",
+      "sample_count": 8,
+      "per_sample_uL": "20",
+      "per_well_capacity_uL": "50",
+      "source_shared_initial_uL": "200",
+      "expected": {
+        "aggregate_consumed_uL": "160",
+        "shared_remaining_uL": "40",
+        "each_well_uL": "20",
+        "capacity_result": "fits"
+      },
+      "invalid_shortcut": "160uL assigned to one50uLwell, or8xshared200uLinvented"
+    },
+    {
+      "id": "eight_shared_destination",
+      "sample_count": 8,
+      "per_sample_uL": "20",
+      "destination_count": 1,
+      "destination_capacity_uL": "50",
+      "source_shared_initial_uL": "200",
+      "expected": {
+        "aggregate_consumed_uL": "160",
+        "capacity_result": "exceeds",
+        "destination_uL": "160"
+      }
+    },
+    {
+      "id": "unknown_layout",
+      "sample_count": 8,
+      "per_sample_uL": "20",
+      "source_shared_initial_uL": "200",
+      "destination_layout": null,
+      "expected": {
+        "aggregate_consumed_uL": "160",
+        "physical_fit": "unknown"
+      },
+      "invalid_shortcut": "Assuming8wellsoronevessel"
+    },
+    {
+      "id": "unknown_inventory",
+      "source_initial_uL": null,
+      "known_move_uL": "10",
+      "expected": {
+        "requested_consumption_uL": "10",
+        "remaining_uL": null,
+        "stock_sufficiency": "unknown"
+      }
+    },
+    {
+      "id": "zero_move_identity",
+      "initial": {
+        "donor_A_uL": "30",
+        "recipient_B_uL": "7"
+      },
+      "move_A_uL": "0",
+      "expected": {
+        "donor_A_uL": "30",
+        "recipient_total_uL": "7",
+        "recipient_components": {
+          "B": "7"
+        }
+      },
+      "invalid_shortcut": "Zero movement adds A to recipient composition"
+    },
+    {
+      "id": "sequential_unrolled",
+      "source_initial_uL": "100",
+      "recipient_initial_uL": "10",
+      "steps": [
+        {
+          "add_uL": "20"
+        },
+        {
+          "remove_uL": "20"
+        },
+        {
+          "add_uL": "20"
+        },
+        {
+          "remove_uL": "20"
+        },
+        {
+          "add_uL": "20"
+        },
+        {
+          "remove_uL": "20"
+        }
+      ],
+      "expected": {
+        "source_remaining_uL": "40",
+        "recipient_uL": "10",
+        "waste_uL": "60"
+      },
+      "scope": "Amounts only; no retained chemical target or wash effectiveness inferred"
+    },
+    {
+      "id": "stale_before_state",
+      "first_move": {
+        "source_before_uL": "30",
+        "move_uL": "10",
+        "source_after_uL": "20"
+      },
+      "second_move": {
+        "source_before_uL": "30",
+        "move_uL": "10",
+        "source_after_uL": "20"
+      },
+      "expected": "Block repeated stale source state; never refill initial inventory silently"
+    },
+    {
+      "id": "unknown_head_range",
+      "movement_uL": "2",
+      "configured_head_min_uL": null,
+      "configured_head_max_uL": null,
+      "expected": "technical_fit_unknown",
+      "invalid_shortcut": "Catalogueclasspresenceorassumed5uLfloorbecomesconfirmedfit"
+    },
+    {
+      "id": "portable_approval",
+      "payload_claim": "local_authenticated",
+      "connection": "untrusted_download",
+      "expected": "External claim only; no local readiness authority"
+    },
+    {
+      "id": "no_quantity_from_prose",
+      "structured_quantity": null,
+      "source_text": "Synthetic note says10uL",
+      "expected": "Unknown structured quantity; direct reviewed adapter does not reparse source text"
+    }
+  ]
+}

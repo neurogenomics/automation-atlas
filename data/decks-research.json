@@ -1,0 +1,1483 @@
+{
+  "ot2": {
+    "positions": 11,
+    "positionsBasis": "Slots 1-11; slot 12 is the fixed trash",
+    "expansion": null,
+    "fixed": [
+      {
+        "name": "Fixed trash (slot 12)",
+        "positions": 1
+      }
+    ],
+    "modules": {
+      "Thermocycler (GEN1/GEN2)": {
+        "positions": 4,
+        "note": "Requires slots 7, 8, 10 and 11. Protocol Designer lists it as 'Slots 7 and 10'. Only 1."
+      },
+      "Heater-Shaker GEN1": {
+        "positions": 1,
+        "note": "Slot 1, 3, 4, 6, 7 or 10; only 1; neighbours restricted (see limits)."
+      },
+      "Temperature Module GEN1/GEN2": {
+        "positions": 1,
+        "note": "Slot 1, 3, 4, 6, 7, 9 or 10; 1 module only."
+      },
+      "Magnetic Module GEN1/GEN2": {
+        "positions": 1,
+        "note": "Slot 1, 3, 4, 6, 7, 9 or 10; 1 module only."
+      }
+    },
+    "storage": null,
+    "limits": [
+      "Only one Thermocycler; it takes slots 7, 8, 10, 11.",
+      "Heater-Shaker: leave adjacent slots empty; another module next to it raises DeckConflictError.",
+      "No labware taller than 53 mm left or right of the Heater-Shaker.",
+      "With an 8-channel pipette, no pipetting in any slot adjacent to the Heater-Shaker; front/back neighbours may hold tip racks only.",
+      "Only 1 Heater-Shaker, 1 Temperature Module, 1 Magnetic Module (Protocol Designer)."
+    ],
+    "sources": [
+      {
+        "url": "https://docs.opentrons.com/v2/deck_slots.html",
+        "quote": "OT-2 uses a numeric labeling system for slots 1 (front left) through 11 (back center).",
+        "covers": "11 slots"
+      },
+      {
+        "url": "https://docs.opentrons.com/v2/deck_slots.html",
+        "quote": "The back right slot is occupied by the fixed trash.",
+        "covers": "slot 12 trash"
+      },
+      {
+        "url": "https://docs.opentrons.com/thermocycler/pre-installation/",
+        "quote": "Requires deck slots 7, 8, 10, and 11.",
+        "covers": "OT-2 thermocycler footprint"
+      },
+      {
+        "url": "https://docs.opentrons.com/protocol-designer/create-protocol/modules-fixtures/",
+        "quote": "Heater-Shaker ... Only 1 module ... Slot 1, 3, 4, 6, 7, or 10",
+        "covers": "HS allowed slots/count"
+      },
+      {
+        "url": "https://docs.opentrons.com/protocol-designer/create-protocol/modules-fixtures/",
+        "quote": "Temperature Module ... 1 module only ... Slot 1, 3, 4, 6, 7, 9, or 10",
+        "covers": "Temp module slots"
+      },
+      {
+        "url": "https://docs.opentrons.com/protocol-designer/create-protocol/modules-fixtures/",
+        "quote": "Magnetic Module ... 1 module only ... Slot 1, 3, 4, 6, 7, 9, or 10",
+        "covers": "Mag module slots"
+      },
+      {
+        "url": "https://docs.opentrons.com/v2/modules/heater_shaker.html",
+        "quote": "In general, it's best to leave all slots adjacent to the Heater-Shaker empty.",
+        "covers": "HS adjacency"
+      },
+      {
+        "url": "https://docs.opentrons.com/v2/modules/heater_shaker.html",
+        "quote": "Do not place labware taller than 53 mm to the left or right of the Heater-Shaker.",
+        "covers": "HS tall-labware limit"
+      },
+      {
+        "url": "https://docs.opentrons.com/v2/modules/heater_shaker.html",
+        "quote": "to the front or back of the Heater-Shaker, an 8-channel pipette can access tip racks only.",
+        "covers": "8-channel restriction"
+      }
+    ],
+    "placement": {
+      "about": "Slot grid, front row first. Each module lists the slots it may use; neighbour rules apply to the slots around it.",
+      "slots": [
+        {
+          "id": "1",
+          "row": 0,
+          "col": 0
+        },
+        {
+          "id": "2",
+          "row": 0,
+          "col": 1
+        },
+        {
+          "id": "3",
+          "row": 0,
+          "col": 2
+        },
+        {
+          "id": "4",
+          "row": 1,
+          "col": 0
+        },
+        {
+          "id": "5",
+          "row": 1,
+          "col": 1
+        },
+        {
+          "id": "6",
+          "row": 1,
+          "col": 2
+        },
+        {
+          "id": "7",
+          "row": 2,
+          "col": 0
+        },
+        {
+          "id": "8",
+          "row": 2,
+          "col": 1
+        },
+        {
+          "id": "9",
+          "row": 2,
+          "col": 2
+        },
+        {
+          "id": "10",
+          "row": 3,
+          "col": 0
+        },
+        {
+          "id": "11",
+          "row": 3,
+          "col": 1
+        },
+        {
+          "id": "12",
+          "row": 3,
+          "col": 2
+        }
+      ],
+      "fixed": [
+        {
+          "name": "Fixed trash (slot 12)",
+          "slots": [
+            "12"
+          ]
+        }
+      ],
+      "modules": {
+        "Thermocycler (GEN1/GEN2)": {
+          "occupies": [
+            "7",
+            "8",
+            "10",
+            "11"
+          ],
+          "source": {
+            "url": "https://docs.opentrons.com/thermocycler/pre-installation/",
+            "quote": "Requires deck slots 7, 8, 10, and 11."
+          }
+        },
+        "Heater-Shaker GEN1": {
+          "slots": [
+            "1",
+            "3",
+            "4",
+            "6",
+            "7",
+            "10"
+          ],
+          "source": {
+            "url": "https://docs.opentrons.com/protocol-designer/create-protocol/modules-fixtures/",
+            "quote": "Slot 1, 3, 4, 6, 7, or 10"
+          },
+          "neighbours": {
+            "modules": false,
+            "multichannel": {
+              "sides": "none",
+              "frontBack": "tips"
+            },
+            "sources": [
+              {
+                "url": "https://docs.opentrons.com/v2/modules/heater_shaker.html",
+                "quote": "Do not place other modules next to the Heater-Shaker."
+              },
+              {
+                "url": "https://docs.opentrons.com/v2/modules/heater_shaker.html",
+                "quote": "You can't perform pipetting actions in any slots adjacent to the Heater-Shaker"
+              },
+              {
+                "url": "https://docs.opentrons.com/v2/modules/heater_shaker.html",
+                "quote": "to the front or back of the Heater-Shaker, an 8-channel pipette can access tip racks only."
+              }
+            ]
+          }
+        },
+        "Temperature Module GEN1/GEN2": {
+          "slots": [
+            "1",
+            "3",
+            "4",
+            "6",
+            "7",
+            "9",
+            "10"
+          ],
+          "source": {
+            "url": "https://docs.opentrons.com/protocol-designer/create-protocol/modules-fixtures/",
+            "quote": "Slot 1, 3, 4, 6, 7, 9, or 10"
+          }
+        },
+        "Magnetic Module GEN1/GEN2": {
+          "slots": [
+            "1",
+            "3",
+            "4",
+            "6",
+            "7",
+            "9",
+            "10"
+          ],
+          "source": {
+            "url": "https://docs.opentrons.com/protocol-designer/create-protocol/modules-fixtures/",
+            "quote": "Slot 1, 3, 4, 6, 7, 9, or 10"
+          }
+        }
+      }
+    }
+  },
+  "flex": {
+    "positions": 12,
+    "positionsBasis": "Slots A1-D3 (4 rows x 3 columns) in the pipettable working area; the trash bin or waste chute takes one of them",
+    "expansion": {
+      "positions": 4,
+      "note": "Staging area slots A4-D4 (installed by replacing A3-D3 plates). Gripper-only: pipettes cannot reach column 4. Up to 4."
+    },
+    "fixed": [
+      {
+        "name": "Trash bin (movable: A1-D1 or A3-D3; default A3)",
+        "positions": 1
+      },
+      {
+        "name": "Waste chute (alternative to trash bin; D3 only)",
+        "positions": 1
+      }
+    ],
+    "modules": {
+      "Thermocycler GEN2": {
+        "positions": 2,
+        "note": "Slots A1 and B1 plus the A1 expansion slot behind the deck. Only 1."
+      },
+      "Heater-Shaker GEN1": {
+        "positions": 1,
+        "note": "In a below-deck caddy; slots A1-D1 or A3-D3; up to 7. OT-2 adjacency rules do not apply."
+      },
+      "Temperature Module GEN2": {
+        "positions": 1,
+        "note": "Caddy; slots A1-D1 or A3-D3; up to 7."
+      },
+      "Magnetic Block GEN1": {
+        "positions": 1,
+        "note": "Unpowered; slots A1-D3, up to 11. Can sit in column 3 on top of a staging area slot; not in column 4."
+      },
+      "Absorbance Plate Reader": {
+        "positions": 1,
+        "note": "Slots A3-D3; 1 only. Lid parking needs not sourced."
+      },
+      "Flex Stacker": {
+        "positions": 1,
+        "note": "Mounts on the right side; current docs: adapter in a column 3 slot that still stores labware; API docs: its shuttle occupies a column 4 slot. Up to 4."
+      }
+    },
+    "storage": {
+      "name": "Flex Stacker (up to 4 per robot)",
+      "tipRacks": 7,
+      "note": "7 tip racks per Stacker: 6 inside the Stacker plus 1 on its shuttle (API docs); the hardware page's 'maximum of six' counts the Stacker alone, so the two agree. Tip racks need lids."
+    },
+    "limits": [
+      "Only one Thermocycler; it occupies A1 and B1.",
+      "Powered modules in column 3 conflict with a staging slot in column 4 of the same row (API raises an error).",
+      "No below-deck module/fixture (e.g. trash bin, Temperature, Heater-Shaker) in column 3 in the same row as a Stacker.",
+      "Waste chute only in D3; D4 with the chute needs the deck plate adapter with staging area.",
+      "Modules are not supported in column 4; Magnetic Block may sit on a staging area slot in column 3.",
+      "Staging area slots cannot go in positions filled by a module caddy.",
+      "Heater-Shaker in A3 needs the trash bin moved."
+    ],
+    "sources": [
+      {
+        "url": "https://docs.opentrons.com/v2/deck_slots.html",
+        "quote": "Columns 1 through 3 are in the working area and are accessible by pipettes and the gripper.",
+        "covers": "A1-D3 working area"
+      },
+      {
+        "url": "https://docs.opentrons.com/v2/deck_slots.html",
+        "quote": "Column 4 is in the staging area and is only accessible by the gripper.",
+        "covers": "staging area"
+      },
+      {
+        "url": "https://docs.opentrons.com/v2/deck_slots.html",
+        "quote": "they are physically incompatible with powered modules in the same row of column 3.",
+        "covers": "staging vs column 3 modules"
+      },
+      {
+        "url": "https://docs.opentrons.com/v2/deck_slots.html",
+        "quote": "D3 is the only valid location for the chute.",
+        "covers": "waste chute"
+      },
+      {
+        "url": "https://docs.opentrons.com/protocol-designer/create-protocol/modules-fixtures/",
+        "quote": "Trash Bin ... Only 1 trash bin ... Slots A1-D1 or A3-D3",
+        "covers": "trash bin slots"
+      },
+      {
+        "url": "https://docs.opentrons.com/protocol-designer/create-protocol/modules-fixtures/",
+        "quote": "Thermocycler Module ... Only 1 module ... GEN2 only ... Slots A1 and B1",
+        "covers": "Flex TC slots"
+      },
+      {
+        "url": "https://docs.opentrons.com/protocol-designer/create-protocol/modules-fixtures/",
+        "quote": "Magnetic Block ... Up to 11 modules ... Slots A1–D3",
+        "covers": "Mag Block"
+      },
+      {
+        "url": "https://docs.opentrons.com/protocol-designer/create-protocol/modules-fixtures/",
+        "quote": "Flex Stacker Module ... Up to 4 modules ... Slots A4–D4",
+        "covers": "Stacker in PD"
+      },
+      {
+        "url": "https://docs.opentrons.com/protocol-designer/create-protocol/modules-fixtures/",
+        "quote": "some Flex modules, like the Temperature and Heater-Shaker Modules, can't be placed in column 3 next to a Stacker Module in column 4.",
+        "covers": "Stacker adjacency"
+      },
+      {
+        "url": "https://docs.opentrons.com/thermocycler/pre-installation/",
+        "quote": "Requires deck slots A1, B1 ,and the A1 expansion slot.",
+        "covers": "Flex TC footprint"
+      },
+      {
+        "url": "https://docs.opentrons.com/v2/modules/heater_shaker.html",
+        "quote": "the module is installed below-deck in a caddy and there is more space between deck slots, so these restrictions don't apply.",
+        "covers": "Flex HS adjacency"
+      },
+      {
+        "url": "https://docs.opentrons.com/v2/modules/stacker.html",
+        "quote": "7 Flex tip racks (6 in the Stacker and 1 on the shuttle)",
+        "covers": "Stacker tip capacity (API)"
+      },
+      {
+        "url": "https://docs.opentrons.com/v2/modules/stacker.html",
+        "quote": "Each Stacker's attached shuttle occupies a column 4 deck slot.",
+        "covers": "Stacker footprint (API)"
+      },
+      {
+        "url": "https://docs.opentrons.com/flex/modules/stacker/",
+        "quote": "Stores a maximum of six Opentrons Flex tip racks in each Stacker.",
+        "covers": "Stacker tip capacity (hardware docs)"
+      },
+      {
+        "url": "https://docs.opentrons.com/flex/modules/stacker/",
+        "quote": "The adapter fits in any available column 3 deck slot (A3 to D3).",
+        "covers": "Stacker mount (hardware docs)"
+      },
+      {
+        "url": "https://insights.opentrons.com/hubfs/Products/Flex/Staging%20Area%20Slot%20Quickstart%20Guide.pdf",
+        "quote": "The Magnetic Block GEN1 can be placed in column 3 on top of a staging area slot. Modules are not supported in column 4.",
+        "covers": "Mag Block / column 4"
+      },
+      {
+        "url": "https://insights.opentrons.com/hubfs/Products/Flex/Staging%20Area%20Slot%20Quickstart%20Guide.pdf",
+        "quote": "Flex pipettes cannot reach the staging area.",
+        "covers": "staging gripper-only"
+      }
+    ],
+    "placement": {
+      "about": "Slot grid, front row (D) first; column 4 is the gripper-only staging area. A powered module in column 3 removes the staging slot in the same row.",
+      "slots": [
+        {
+          "id": "D1",
+          "row": 0,
+          "col": 0
+        },
+        {
+          "id": "D2",
+          "row": 0,
+          "col": 1
+        },
+        {
+          "id": "D3",
+          "row": 0,
+          "col": 2
+        },
+        {
+          "id": "C1",
+          "row": 1,
+          "col": 0
+        },
+        {
+          "id": "C2",
+          "row": 1,
+          "col": 1
+        },
+        {
+          "id": "C3",
+          "row": 1,
+          "col": 2
+        },
+        {
+          "id": "B1",
+          "row": 2,
+          "col": 0
+        },
+        {
+          "id": "B2",
+          "row": 2,
+          "col": 1
+        },
+        {
+          "id": "B3",
+          "row": 2,
+          "col": 2
+        },
+        {
+          "id": "A1",
+          "row": 3,
+          "col": 0
+        },
+        {
+          "id": "A2",
+          "row": 3,
+          "col": 1
+        },
+        {
+          "id": "A3",
+          "row": 3,
+          "col": 2
+        },
+        {
+          "id": "D4",
+          "row": 0,
+          "col": 3,
+          "expansion": true
+        },
+        {
+          "id": "C4",
+          "row": 1,
+          "col": 3,
+          "expansion": true
+        },
+        {
+          "id": "B4",
+          "row": 2,
+          "col": 3,
+          "expansion": true
+        },
+        {
+          "id": "A4",
+          "row": 3,
+          "col": 3,
+          "expansion": true
+        }
+      ],
+      "fixed": [
+        {
+          "name": "Trash bin",
+          "slots": [
+            "A1",
+            "A3",
+            "B1",
+            "B3",
+            "C1",
+            "C3",
+            "D1",
+            "D3"
+          ],
+          "source": {
+            "url": "https://docs.opentrons.com/protocol-designer/create-protocol/modules-fixtures/",
+            "quote": "Trash Bin ... Only 1 trash bin ... Slots A1-D1 or A3-D3"
+          },
+          "default": "A3",
+          "defaultSource": {
+            "url": "https://docs.opentrons.com/v2/deck_slots.html",
+            "quote": "This example loads a single bin in the default location: ... location=\"A3\""
+          }
+        }
+      ],
+      "modules": {
+        "Thermocycler GEN2": {
+          "occupies": [
+            "A1",
+            "B1"
+          ],
+          "powered": true,
+          "source": {
+            "url": "https://docs.opentrons.com/protocol-designer/create-protocol/modules-fixtures/",
+            "quote": "Thermocycler Module ... Only 1 module ... GEN2 only ... Slots A1 and B1"
+          }
+        },
+        "Heater-Shaker GEN1": {
+          "slots": [
+            "A1",
+            "A3",
+            "B1",
+            "B3",
+            "C1",
+            "C3",
+            "D1",
+            "D3"
+          ],
+          "powered": true,
+          "source": {
+            "url": "https://docs.opentrons.com/protocol-designer/create-protocol/modules-fixtures/",
+            "quote": "Heater-Shaker Module ... Up to 7 modules ... Slots A1–D1 or A3–D3"
+          }
+        },
+        "Temperature Module GEN2": {
+          "slots": [
+            "A1",
+            "A3",
+            "B1",
+            "B3",
+            "C1",
+            "C3",
+            "D1",
+            "D3"
+          ],
+          "powered": true,
+          "source": {
+            "url": "https://docs.opentrons.com/protocol-designer/create-protocol/modules-fixtures/",
+            "quote": "Temperature Module ... Up to 7 modules ... Slots A1–D1 or A3–D3"
+          }
+        },
+        "Magnetic Block GEN1": {
+          "slots": [
+            "D1",
+            "D2",
+            "D3",
+            "C1",
+            "C2",
+            "C3",
+            "B1",
+            "B2",
+            "B3",
+            "A1",
+            "A2",
+            "A3"
+          ],
+          "powered": false,
+          "source": {
+            "url": "https://docs.opentrons.com/protocol-designer/create-protocol/modules-fixtures/",
+            "quote": "Magnetic Block ... Up to 11 modules ... Slots A1–D3"
+          }
+        },
+        "Absorbance Plate Reader": {
+          "slots": [
+            "A3",
+            "B3",
+            "C3",
+            "D3"
+          ],
+          "powered": true,
+          "source": {
+            "url": "https://docs.opentrons.com/protocol-designer/create-protocol/modules-fixtures/",
+            "quote": "Absorbance Plate Reader Module ... 1 module only ... Slots A3–D3"
+          }
+        }
+      },
+      "poweredBlocksExpansion": {
+        "source": {
+          "url": "https://docs.opentrons.com/v2/deck_slots.html",
+          "quote": "they are physically incompatible with powered modules in the same row of column 3."
+        }
+      }
+    }
+  },
+  "plr-hamilton-star": {
+    "positions": 45,
+    "positionsBasis": "54 tracks / 6 tracks per 5-position plate or tip carrier = 9 carriers x 5",
+    "expansion": null,
+    "fixed": [
+      {
+        "name": "Waste block (tip waste, CO-RE 96 trash, teaching needles, gripper holder), right of track 54",
+        "positions": 0
+      }
+    ],
+    "modules": {
+      "Hamilton Heater Shaker (HHS 2G/3G)": {
+        "positions": 1,
+        "note": "Brochure: deck consumption 1 ANSI/SLAS site. On STAR-line decks HHS units sit on MFX_CAR_L4_SHAKER (187001): 7 tracks for up to 4 HHS."
+      },
+      "Hamilton Heater Cooler (HHC)": {
+        "positions": 1,
+        "note": "Deck consumption 1 ANSI/SLAS site."
+      },
+      "ODTC (On-Deck Thermal Cycler)": {
+        "positions": 2.5,
+        "note": "Hamilton brochure: deck consumption 2.5 ANSI/SLAS sites. Round up to 3 when packing whole positions."
+      },
+      "Multiflex Turntable Module": {
+        "positions": 2,
+        "note": "Occupies two deck positions."
+      },
+      "CPAC Ultraflat": {
+        "positions": null,
+        "note": "Present on NGS STAR deck (flyer) but no track/site footprint found on an opened page."
+      },
+      "Magnetic stand (Invitrogen Ambion / 96-post)": {
+        "positions": null,
+        "note": "On NGS STAR deck (flyer); footprint not stated. Typically sits in a carrier site (assumption, unsourced)."
+      },
+      "Thermoshake": {
+        "positions": null,
+        "note": "No Hamilton-deck footprint found on an opened page."
+      }
+    },
+    "storage": {
+      "name": "Autoload (carriers loaded from the loading tray)",
+      "tipRacks": null,
+      "note": "Autoload loads/unloads on-deck carriers; it does not add deck capacity. No off-deck tip storage figure found."
+    },
+    "limits": [
+      "Tube carriers are 1T; plate and tip carriers 6T: mixing tube carriers reduces plate capacity.",
+      "Applies to NGS STAR (same 54-track deck)."
+    ],
+    "sources": [
+      {
+        "url": "https://support.illumina.com/content/dam/illumina-support/documents/documentation/system_documentation/mlstar/hamilton-ml-star-reference-guide-15070074-a.pdf",
+        "quote": "The deck has partitions for up to 54 specialized 1 track (1T) carriers for sample tubes, or up to 9 carriers with 6 tracks (6T) for microplates and CO-RE tips.",
+        "covers": "54 tracks; 9 x 6T carriers"
+      },
+      {
+        "url": "https://info.hamiltoncompany.com/view/449349329/36-37/",
+        "quote": "54 Tracks (T)",
+        "covers": "STAR deck capacity (brochure Deck Capacity row; STARlet 30 Tracks)"
+      },
+      {
+        "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/resources/hamilton/plate_carriers.py",
+        "quote": "Hamilton name: PLT_CAR_L5AC_A00. Carrier for 5 deep well 96 well PCR plates, landscape. 6 track(T) wide.",
+        "covers": "5-position plate carrier is 6 tracks"
+      },
+      {
+        "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/resources/hamilton/tip_carriers.py",
+        "quote": "Carrier for 5 racks of 96 tips, landscape. 6 track(T) wide.",
+        "covers": "5-position tip carrier is 6 tracks (TIP_CAR_480_A00)"
+      },
+      {
+        "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/resources/hamilton/hamilton_decks.py",
+        "quote": "STARLET_NUM_TRACKS = 30 / STAR_NUM_TRACKS = 54 / STARPLUS_NUM_TRACKS = 76; _TRACK_WIDTH = 22.5",
+        "covers": "track counts and 22.5 mm track width in PLR"
+      },
+      {
+        "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/resources/hamilton/star_decks.py",
+        "quote": "location=Coordinate(x=self.track_to_location(self.num_tracks + 1).x, ...) waste_block",
+        "covers": "waste block (trash, CO-RE 96 trash, teaching needles, gripper holder) sits right of the last track, not on it"
+      },
+      {
+        "url": "https://support.illumina.com/content/dam/illumina-support/documents/documentation/system_documentation/mlstar/hamilton-ml-star-reference-guide-15070074-a.pdf",
+        "quote": "Autoload unit and barcode reader",
+        "covers": "autoload exists (no capacity figure)"
+      },
+      {
+        "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+        "quote": "Deck Consumption 1 ANSI/SLAS Site",
+        "covers": "HHS 2G, HHS 3G and HHC each"
+      },
+      {
+        "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+        "quote": "Deck Consumption 2.5 ANSI/SLAS Site",
+        "covers": "ODTC"
+      },
+      {
+        "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+        "quote": "landscape layouts using two deck positions ... Occupies two deck positions",
+        "covers": "Multiflex Turntable"
+      },
+      {
+        "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/resources/hamilton/mfx_carriers.py",
+        "quote": "Template carrier with 4 positions for Hamilton Heater Shaker in landscape. Occupies 7 tracks (7T).",
+        "covers": "MFX_CAR_L4_SHAKER 187001"
+      },
+      {
+        "url": "https://www.trillium.de/fileadmin/user_upload/Hamilton_-_NGS-STAR_Flyer.pdf",
+        "quote": "On-Deck Thermal Cycler ... Magnetic Stand ... (HHS) for PCR plates ... (CPAC) Ultraflat Module ... 96-well plate positions",
+        "covers": "NGS STAR deck contents"
+      }
+    ],
+    "variants": {
+      "NGS STAR": {
+        "positions": 45,
+        "note": "Same 54-track STAR deck with ODTC, HHS, CPAC Ultraflat, magnetic stand per flyer"
+      },
+      "STARplus": {
+        "positions": null,
+        "note": "PLR uses 76 tracks (2040 mm); no Hamilton figure opened"
+      }
+    }
+  },
+  "starlet": {
+    "positions": 25,
+    "positionsBasis": "30 tracks / 6 tracks per 5-position carrier = 5 carriers x 5",
+    "expansion": null,
+    "fixed": [
+      {
+        "name": "Waste block right of track 30",
+        "positions": 0
+      }
+    ],
+    "modules": {
+      "Hamilton Heater Shaker (HHS 2G/3G)": {
+        "positions": 1,
+        "note": "Brochure: deck consumption 1 ANSI/SLAS site. On STAR-line decks HHS units sit on MFX_CAR_L4_SHAKER (187001): 7 tracks for up to 4 HHS."
+      },
+      "Hamilton Heater Cooler (HHC)": {
+        "positions": 1,
+        "note": "Deck consumption 1 ANSI/SLAS site."
+      },
+      "ODTC (On-Deck Thermal Cycler)": {
+        "positions": 2.5,
+        "note": "Hamilton brochure: deck consumption 2.5 ANSI/SLAS sites. Round up to 3 when packing whole positions."
+      },
+      "Multiflex Turntable Module": {
+        "positions": 2,
+        "note": "Occupies two deck positions."
+      },
+      "CPAC Ultraflat": {
+        "positions": null,
+        "note": "Present on NGS STAR deck (flyer) but no track/site footprint found on an opened page."
+      },
+      "Magnetic stand (Invitrogen Ambion / 96-post)": {
+        "positions": null,
+        "note": "On NGS STAR deck (flyer); footprint not stated. Typically sits in a carrier site (assumption, unsourced)."
+      },
+      "Thermoshake": {
+        "positions": null,
+        "note": "No Hamilton-deck footprint found on an opened page."
+      }
+    },
+    "storage": {
+      "name": "Autoload",
+      "tipRacks": null,
+      "note": "No off-deck tip storage figure."
+    },
+    "limits": [
+      "Tube carriers are 1T; plate and tip carriers 6T."
+    ],
+    "sources": [
+      {
+        "url": "https://info.hamiltoncompany.com/view/449349329/36-37/",
+        "quote": "30 Tracks (T)",
+        "covers": "STARlet deck capacity"
+      },
+      {
+        "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/resources/hamilton/hamilton_decks.py",
+        "quote": "STARLET_NUM_TRACKS = 30",
+        "covers": "PLR STARlet track count"
+      },
+      {
+        "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/resources/hamilton/plate_carriers.py",
+        "quote": "Carrier for 5 deep well 96 well PCR plates, landscape. 6 track(T) wide.",
+        "covers": "carrier width"
+      },
+      {
+        "url": "https://support.illumina.com/content/dam/illumina-support/documents/documentation/system_documentation/mlstar/hamilton-ml-star-reference-guide-15070074-a.pdf",
+        "quote": "Autoload unit and barcode reader",
+        "covers": "autoload exists (no capacity figure)"
+      },
+      {
+        "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+        "quote": "Deck Consumption 1 ANSI/SLAS Site",
+        "covers": "HHS 2G, HHS 3G and HHC each"
+      },
+      {
+        "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+        "quote": "Deck Consumption 2.5 ANSI/SLAS Site",
+        "covers": "ODTC"
+      },
+      {
+        "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+        "quote": "landscape layouts using two deck positions ... Occupies two deck positions",
+        "covers": "Multiflex Turntable"
+      }
+    ]
+  },
+  "plr-hamilton-vantage": {
+    "positions": 45,
+    "positionsBasis": "1.3 m deck: 54 tracks (PLR) / 6 tracks per 5-position carrier = 9 x 5. Derived; PLR places the trash inside the deck span (size_x - 480 mm), so the real figure may be lower.",
+    "expansion": null,
+    "fixed": [
+      {
+        "name": "Trash (inside deck span on 1.3 m; footprint in tracks unknown)",
+        "positions": null
+      }
+    ],
+    "modules": {
+      "Thermoshake AC": {
+        "positions": null,
+        "note": "On NGS VANTAGE flyer; footprint not stated"
+      },
+      "CPAC": {
+        "positions": null,
+        "note": "On NGS VANTAGE flyer"
+      },
+      "ODTC": {
+        "positions": 2.5,
+        "note": "Hamilton integrated-devices brochure deck consumption (not Vantage-specific)"
+      }
+    },
+    "storage": null,
+    "limits": [
+      "PLR supports only the 1.3 m Vantage; the 2.0 m deck is not modelled and was not sourced."
+    ],
+    "sources": [
+      {
+        "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/resources/hamilton/vantage_decks.py",
+        "quote": "if size == 1.3: ... num_tracks=54, size_x=1237.5",
+        "covers": "1.3 m deck 54 tracks"
+      },
+      {
+        "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/resources/hamilton/vantage_decks.py",
+        "quote": "trash_x = size_x - 480  # works with vantage 1.3",
+        "covers": "trash inside deck"
+      },
+      {
+        "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/resources/hamilton/vantage_decks.py",
+        "quote": "2.0m Vantage decks are not yet supported.",
+        "covers": "2.0 m gap"
+      },
+      {
+        "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+        "quote": "Deck Consumption 2.5 ANSI/SLAS Site",
+        "covers": "ODTC"
+      }
+    ]
+  },
+  "plr-hamilton-nimbus": {
+    "positions": null,
+    "positionsBasis": "Unconfirmed. PLR default NIMBUS deck has 30 rails (from Nimbus8.dck), 22.454 mm pitch, deck 831.85 x 424.18 mm; the shallow Y makes 5-position STAR carriers inapplicable. Hamilton's 20 SLAS positions (NIMBUS HD/96) appeared only in search snippets of a blocked page.",
+    "expansion": null,
+    "fixed": [
+      {
+        "name": "Default long waste block (8 channel positions)",
+        "positions": null
+      }
+    ],
+    "modules": {
+      "Hamilton Heater Shaker": {
+        "positions": 1,
+        "note": "Brochure deck consumption 1 ANSI/SLAS site (platform-generic)"
+      },
+      "Hamilton Heater Cooler": {
+        "positions": 1,
+        "note": "platform-generic"
+      },
+      "Inheco Thermoshake": {
+        "positions": 1,
+        "note": "Axiom NIMBUS site-prep guide: Thermoshake in deck position 1."
+      },
+      "CPAC": {
+        "positions": 1,
+        "note": "Axiom NIMBUS site-prep guide: CPAC in deck position 2."
+      }
+    },
+    "storage": null,
+    "limits": [],
+    "sources": [
+      {
+        "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/resources/hamilton/nimbus_decks.py",
+        "quote": "num_rails: int = 30, size_x: float = 831.85, size_y: float = 424.18 ... Default values are from Nimbus8.dck",
+        "covers": "PLR NIMBUS deck"
+      },
+      {
+        "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/resources/hamilton/nimbus_decks.py",
+        "quote": "creates a waste block with 8 channel positions",
+        "covers": "waste"
+      },
+      {
+        "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+        "quote": "Deck Consumption 1 ANSI/SLAS Site",
+        "covers": "HHS/HHC"
+      },
+      {
+        "url": "https://assets.thermofisher.com/TFS-Assets/LSG/manuals/MAN0017741_Axiom_96F_NIMBUS_SPG.pdf",
+        "quote": "1 Thermoshake in deck position 1 / 2 CPAC in deck position 2",
+        "covers": "one deck position each (Thermo Fisher Axiom NIMBUS configuration); total deck count still not stated"
+      }
+    ]
+  },
+  "plr-hamilton-prep": {
+    "positions": 8,
+    "positionsBasis": "8 ANSI/SLAS deck positions (2 columns x 4 rows in PLR)",
+    "expansion": null,
+    "fixed": [
+      {
+        "name": "Waste block, waste bin, liquid waste container, teaching needle (outside the 8 spots)",
+        "positions": 0
+      }
+    ],
+    "modules": {
+      "Prep Heater Shaker": {
+        "positions": 1,
+        "note": "Stands in deck spot spot_0_3 in place of its clips (PLR)."
+      }
+    },
+    "storage": null,
+    "limits": [],
+    "sources": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+        "quote": "Deck Capacity 8 Positions",
+        "covers": "8 positions"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+        "quote": "8 ANSI/SLAS microplate footprint deck positions",
+        "covers": "8 SLAS positions"
+      },
+      {
+        "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/resources/hamilton/prep_decks.py",
+        "quote": "The eight labware spots, column-major: spot_0_0 first, spot_1_3 last.",
+        "covers": "2x4 layout"
+      },
+      {
+        "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/hamilton/prep/driver/features/heater_shaker.py",
+        "quote": "The deck spot it stands in, in place of the spot's clips and pedestal. HEATER_SHAKER_SPOT = \"spot_0_3\"",
+        "covers": "HHS takes one spot"
+      }
+    ]
+  },
+  "i7": {
+    "positions": 45,
+    "positionsBasis": "9 full deck plates x 5 row positions = 45 microplate positions (+2 extension deck plates)",
+    "expansion": {
+      "positions": null,
+      "note": "Two extension deck plates; positions on them not quantified. Off-deck devices integrable."
+    },
+    "fixed": [
+      {
+        "name": "Trash ALP (tip/labware disposal) - mounted on deck, footprint not stated",
+        "positions": null
+      }
+    ],
+    "modules": {
+      "Static labware positioner": {
+        "positions": 1,
+        "note": "Also 1x3 and 1x5 variants (3 and 5 positions)."
+      },
+      "Static Peltier ALP": {
+        "positions": null,
+        "note": "4-100 C; footprint not stated"
+      },
+      "Shaking Peltier ALP": {
+        "positions": null,
+        "note": "footprint not stated"
+      },
+      "Orbital Shaker ALP": {
+        "positions": null,
+        "note": "100-1800 rpm; 'space saving'; footprint not stated"
+      },
+      "ATC (Thermo automated thermal cycler)": {
+        "positions": null,
+        "note": "footprint not stated"
+      }
+    },
+    "storage": null,
+    "limits": [
+      "Right arm (dual-arm) cannot reach far-left deck positions (hardware manual).",
+      "Some framing steps require nothing taller than an empty static ALP left/right and front/back of the position."
+    ],
+    "sources": [
+      {
+        "url": "https://v2ics-documents.assetfront.com/5e29d8ef-aa6e-4ca7-a829-f8eca6966b34/asset/documents/Biomek%20i-Series%20Hardware%20Manual.pdf",
+        "quote": "It includes nine deck plates that support forty-five microtiter plate positions, and two extension deck plates.",
+        "covers": "45 positions"
+      },
+      {
+        "url": "https://v2ics-documents.assetfront.com/5e29d8ef-aa6e-4ca7-a829-f8eca6966b34/asset/documents/Biomek%20i-Series%20Hardware%20Manual.pdf",
+        "quote": "The Biomek i7 deck includes nine full deck plates, each with five row positions, and two extension deck plates.",
+        "covers": "basis"
+      },
+      {
+        "url": "https://v2ics-documents.assetfront.com/5e29d8ef-aa6e-4ca7-a829-f8eca6966b34/asset/documents/Biomek%20i-Series%20Hardware%20Manual.pdf",
+        "quote": "provides a mounting surface for accessories such as Labware Positioners, Process Elements, Mounting Plates, Trash ALPs, and Wash ALPs.",
+        "covers": "trash ALP on deck"
+      },
+      {
+        "url": "https://pages.beckman.com/rs/682-XWP-826/images/Automated%20Solutions%20for%20NGS%20Library%20Prep%20Interactive%20eBook.pdf",
+        "quote": "Static labware positioners in 1x1, 1x3 and 1x5 configurations",
+        "covers": "static ALP footprints"
+      },
+      {
+        "url": "https://pages.beckman.com/rs/682-XWP-826/images/Automated%20Solutions%20for%20NGS%20Library%20Prep%20Interactive%20eBook.pdf",
+        "quote": "shaking speed ranges from 100 rpm to 1800 rpm",
+        "covers": "orbital shaker ALP"
+      }
+    ]
+  },
+  "fluent": {
+    "positions": 48,
+    "positionsBasis": "Fluent 780: 52 deck grids accommodate up to 48 microplates (catalog). Grids are 25 mm apart.",
+    "variants": {
+      "Fluent 480": {
+        "grids": 32,
+        "positions": 30
+      },
+      "Fluent 780": {
+        "grids": 52,
+        "positions": 48
+      },
+      "Fluent 1080": {
+        "grids": 72,
+        "positions": 72
+      }
+    },
+    "expansion": {
+      "positions": null,
+      "note": "Grid positions A, B (left) and Y, Z (right) are deck extensions reachable only by the RGA arm."
+    },
+    "fixed": [
+      {
+        "name": "DiTi waste chute (front, 2 grids)",
+        "positions": null,
+        "note": "2 grids; alternative 6-grid waste chute exists"
+      }
+    ],
+    "modules": {
+      "ODTC": {
+        "positions": null,
+        "note": "Integrated (catalog); grid footprint not stated"
+      },
+      "BioShake (Q Instruments)": {
+        "positions": null,
+        "note": "footprint not stated"
+      },
+      "CPAC HT 2-TEC segment": {
+        "positions": 3,
+        "note": "Deck segment with three temperature-controlled SLAS positions"
+      },
+      "Te-MagS / magnet plate": {
+        "positions": null,
+        "note": "not sourced for Fluent"
+      }
+    },
+    "storage": {
+      "name": "Fluent Stacker (serial access)",
+      "tipRacks": 160,
+      "note": "40 tip racks per stack, up to 4 stacks. Alternatives: Fluent Carousel 210 microplates (random access); hotel tower up to 24 MP/PCR plates."
+    },
+    "limits": [
+      "Deck segments define positions: segments come in 2, 3, 6, 8 and 9 grid widths; EVO carriers need the 8-grid EVO segment."
+    ],
+    "sources": [
+      {
+        "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+        "quote": "32 deck grids accommodate up to 30 ... 52 deck grids accommodate up to 48 ... 72 deck grids accommodate up to 72 microplates (ANSI/SBS/SLAS format)",
+        "covers": "capacity per model"
+      },
+      {
+        "url": "https://www.tecan.com/knowledge-portal/carriers-in-fluentcontrol",
+        "quote": "pre-defined grid positions that are spaced 25mm apart",
+        "covers": "grid pitch"
+      },
+      {
+        "url": "https://www.tecan.com/knowledge-portal/carriers-in-fluentcontrol",
+        "quote": "meant to be used for deck extensions that are only accessible to the RGA arm",
+        "covers": "A/B/Y/Z extension grids"
+      },
+      {
+        "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+        "quote": "WASTE CHUTE FRONT 2 GRID DiTi Waste chute with cover for bench top installation.",
+        "covers": "tip waste"
+      },
+      {
+        "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+        "quote": "Stores up to 50 microplates or 40 tip racks per stack ... Up to 4 stacks per stacker (maximum of 200 microplates or 160 tip racks)",
+        "covers": "Fluent Stacker"
+      },
+      {
+        "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+        "quote": "Hotel tower with 2 shelves, each for 6 MP/PCR plates ... up to 4 shelves (maximum capacity of 24 MP/PCR plates).",
+        "covers": "hotel"
+      },
+      {
+        "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+        "quote": "Capacity: 210 standard microplates",
+        "covers": "Carousel"
+      },
+      {
+        "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+        "quote": "ready-to-install deck segment with three temperature-controlled ANSI/SBS/SLAS microplate positions",
+        "covers": "CPAC segment"
+      }
+    ]
+  },
+  "plr-tecan-evo": {
+    "positions": 28,
+    "positionsBasis": "EVO 150: 45 grids; 1 grid for the wash station (PLR default rail 1); 44 / 6 grids per carrier = 7 MP_4Pos carriers x 4 = 28. With 3-position carriers: 7 x 3 = 21.",
+    "variants": {
+      "EVO 100": {
+        "grids": 30,
+        "positions": 16,
+        "basis": "(30-1)//6=4 carriers x 4"
+      },
+      "EVO 150": {
+        "grids": 45,
+        "positions": 28,
+        "basis": "(45-1)//6=7 x 4"
+      },
+      "EVO 200": {
+        "grids": 69,
+        "positions": 44,
+        "basis": "(69-1)//6=11 x 4"
+      }
+    },
+    "expansion": null,
+    "fixed": [
+      {
+        "name": "Wash station (waste + cleaners), 1 grid (PLR default, rail 1)",
+        "positions": 0
+      }
+    ],
+    "modules": {
+      "Thermoshake / Te-Shake / Te-MagS / ODTC": {
+        "positions": null,
+        "note": "No grid footprint found on an opened page"
+      }
+    },
+    "storage": null,
+    "limits": [
+      "DiTi waste position not sourced."
+    ],
+    "sources": [
+      {
+        "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/resources/tecan/tecan_decks.py",
+        "quote": "EVO100_NUM_RAILS = 30 / EVO150_NUM_RAILS = 45 / EVO200_NUM_RAILS = 69; _RAILS_WIDTH = 25",
+        "covers": "grid counts"
+      },
+      {
+        "url": "https://docs.unitelabs.io/operate/devices/tecan-freedom-evo/deck-and-carriers/",
+        "quote": "Carrier occupies 6 tracks and track 1 is occupied by MP_3Pos_flat",
+        "covers": "3-position carrier = 6 grids"
+      },
+      {
+        "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/resources/tecan/plate_carriers.py",
+        "quote": "def MP_4Pos ... Tecan part no. 30013668 ... size_x=149.0",
+        "covers": "4-position carrier also 149 mm = 6 grids"
+      },
+      {
+        "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/resources/tecan/tecan_decks.py",
+        "quote": "self.assign_child_resource(wash, rails=1)",
+        "covers": "wash station on grid 1"
+      },
+      {
+        "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/resources/tecan/wash.py",
+        "quote": "def Wash_Station(name: str) ... size_x=25.0",
+        "covers": "wash station 1 grid"
+      }
+    ]
+  },
+  "bravo": {
+    "positions": 9,
+    "positionsBasis": "9 deck locations, 1-3 back, 4-6 middle, 7-9 front; each holds a platepad or an accessory",
+    "expansion": null,
+    "fixed": [
+      {
+        "name": "Tip trash (optional; in location 4 or 6 cutout)",
+        "positions": 1
+      }
+    ],
+    "modules": {
+      "Orbital Shaking Station": {
+        "positions": 1,
+        "note": "Any deck location"
+      },
+      "Peltier Thermal Station / Magnetic Bead Accessory / Vacuum filtration": {
+        "positions": 1,
+        "note": "Each holds a deck location (deck location holds a platepad or an accessory); per-accessory placement rules not opened"
+      },
+      "Barcode reader": {
+        "positions": 1,
+        "note": "Replaces a platepad at any location"
+      },
+      "Heating Shaking Station": {
+        "positions": 1,
+        "note": "Any deck location, on a short adapter pad instead of a platepad."
+      },
+      "Magnetic Bead Accessory": {
+        "positions": 1,
+        "note": "On a standard platepad at the target location; larger than the platepad."
+      },
+      "Peltier Thermal Station": {
+        "positions": 1,
+        "note": "Deck cutout at location 4 or 6 only."
+      }
+    },
+    "storage": {
+      "name": "BenchCel 2R/4R/6R microplate handler",
+      "tipRacks": null,
+      "note": "2, 4 or 6 labware racks storing microplates, tip boxes and tube racks; per-rack tip-box count not found on an opened page."
+    },
+    "limits": [
+      "Tip trash only at location 4 or 6."
+    ],
+    "sources": [
+      {
+        "url": "https://labrulez.com/pdf/5990_3480_EN_ec54c426e2/5990-3480EN.pdf",
+        "quote": "Nine pipettable deck positions",
+        "covers": "9 positions"
+      },
+      {
+        "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Introduction.03.4.html",
+        "quote": "The deck supports nine deck locations that are numbered 1–3 (back row), 4–6 (middle row), and 7–9 (front row).",
+        "covers": "numbering"
+      },
+      {
+        "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Introduction.03.4.html",
+        "quote": "Each deck location holds a platepad or an accessory.",
+        "covers": "accessory = 1 location"
+      },
+      {
+        "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Accessories.07.02.html",
+        "quote": "Installs in a deck location 4 or 6 cutout",
+        "covers": "trash location"
+      },
+      {
+        "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Accessories.07.02.html",
+        "quote": "can be installed in place of a platepad at any deck location.",
+        "covers": "barcode reader"
+      },
+      {
+        "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Accessories.07.03.html",
+        "quote": "The Orbital Shaking Station is a microplate shaker that can be installed at any deck location",
+        "covers": "shaker"
+      },
+      {
+        "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/BenchCel%20User%20Guide/Introduction.04.2.html",
+        "quote": "BenchCel 6R has six stackers that support six labware racks",
+        "covers": "BenchCel racks"
+      },
+      {
+        "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/BenchCel%20User%20Guide/Introduction.04.2.html",
+        "quote": "Stores stacks of labware (microplates, tip boxes, and tube racks) to be processed during a protocol run.",
+        "covers": "BenchCel stores tips"
+      },
+      {
+        "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Accessories.07.14.html",
+        "quote": "The Heating Shaking Station may be installed at any deck location using the short adapter pad instead of a platepad.",
+        "covers": "Heating Shaking Station: one location, any"
+      },
+      {
+        "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Accessories.07.10.html",
+        "quote": "Standard platepad installed at the target deck location",
+        "covers": "Magnetic Bead Accessory: one location"
+      },
+      {
+        "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Accessories.07.16.html",
+        "quote": "must be installed in a deck cutout at deck location 4 or 6",
+        "covers": "Peltier Thermal Station: location 4 or 6"
+      }
+    ],
+    "placement": {
+      "about": "Nine locations, 1-3 back, 4-6 middle, 7-9 front. The tip trash and the Peltier Thermal Station each need the cutout at location 4 or 6.",
+      "slots": [
+        {
+          "id": "7",
+          "row": 0,
+          "col": 0
+        },
+        {
+          "id": "8",
+          "row": 0,
+          "col": 1
+        },
+        {
+          "id": "9",
+          "row": 0,
+          "col": 2
+        },
+        {
+          "id": "4",
+          "row": 1,
+          "col": 0
+        },
+        {
+          "id": "5",
+          "row": 1,
+          "col": 1
+        },
+        {
+          "id": "6",
+          "row": 1,
+          "col": 2
+        },
+        {
+          "id": "1",
+          "row": 2,
+          "col": 0
+        },
+        {
+          "id": "2",
+          "row": 2,
+          "col": 1
+        },
+        {
+          "id": "3",
+          "row": 2,
+          "col": 2
+        }
+      ],
+      "fixed": [
+        {
+          "name": "Tip trash (optional; in location 4 or 6 cutout)",
+          "slots": [
+            "4",
+            "6"
+          ],
+          "source": {
+            "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Accessories.07.02.html",
+            "quote": "Installs in a deck location 4 or 6 cutout"
+          }
+        }
+      ],
+      "modules": {
+        "Peltier Thermal Station": {
+          "slots": [
+            "4",
+            "6"
+          ],
+          "source": {
+            "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Accessories.07.16.html",
+            "quote": "must be installed in a deck cutout at deck location 4 or 6"
+          }
+        },
+        "Heating Shaking Station": {
+          "slots": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "source": {
+            "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Accessories.07.14.html",
+            "quote": "The Heating Shaking Station may be installed at any deck location using the short adapter pad instead of a platepad."
+          }
+        },
+        "Magnetic Bead Accessory": {
+          "slots": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "source": {
+            "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Accessories.07.10.html",
+            "quote": "Standard platepad installed at the target deck location"
+          }
+        }
+      }
+    }
+  },
+  "firefly": {
+    "positions": null,
+    "positionsBasis": "Not published on opened pages: two-tier moving deck plus a sub-deck for accessories",
+    "expansion": null,
+    "fixed": [],
+    "modules": {
+      "Thermal modules (plate and reservoir)": {
+        "positions": 0,
+        "note": "In the basement under the decks; they take no deck location."
+      },
+      "Shaker module": {
+        "positions": 0,
+        "note": "In the basement under the decks; it takes no deck location."
+      },
+      "Magnetic blocks": {
+        "positions": null,
+        "note": "Go on the decks ('magnetic blocks can only go onto the decks, not the firefly+ shelves'); positions per block not stated."
+      }
+    },
+    "storage": null,
+    "limits": [],
+    "sources": [
+      {
+        "url": "https://www.sptlabtech.com/products/firefly",
+        "quote": "An ingenious 2 tier moving deck system with an additional sub-deck layer for accessories",
+        "covers": "deck architecture"
+      },
+      {
+        "url": "https://www.sptlabtech.com/hubfs/SPT%20Labtech%20firefly%20flyer%2026.pdf",
+        "quote": "Microplate cooler/heater block ... Microplate shaker",
+        "covers": "modules"
+      },
+      {
+        "url": "https://www.sptlabtech.com/hubfs/firefly%20user%20guide%20FF1013%20%E2%80%93%20FF2002.pdf",
+        "quote": "Reservoirs, the shaker module and the thermal modules do not take up deck locations.",
+        "covers": "thermal and shaker modules take no deck position"
+      },
+      {
+        "url": "https://www.sptlabtech.com/hubfs/firefly%20user%20guide%20FF1013%20%E2%80%93%20FF2002.pdf",
+        "quote": "magnetic blocks can only go onto the decks, not the firefly+ shelves",
+        "covers": "magnetic blocks on the decks"
+      }
+    ]
+  },
+  "firefly-plus": {
+    "positions": null,
+    "positionsBasis": "Not published on opened pages",
+    "expansion": null,
+    "fixed": [],
+    "modules": {
+      "Thermal modules (plate and reservoir)": {
+        "positions": 0,
+        "note": "In the basement under the decks; they take no deck location."
+      },
+      "Shaker module": {
+        "positions": 0,
+        "note": "In the basement under the decks; it takes no deck location."
+      },
+      "Magnetic blocks": {
+        "positions": null,
+        "note": "Go on the decks ('magnetic blocks can only go onto the decks, not the firefly+ shelves'); positions per block not stated."
+      },
+      "On-deck thermocycler (Inheco ODTC)": {
+        "positions": 0,
+        "note": "Sits in the firefly+ base behind the shelves, not on the decks."
+      }
+    },
+    "storage": {
+      "name": "Additional labware capacity (firefly+)",
+      "tipRacks": null,
+      "note": "Flyer says additional labware capacity; no count"
+    },
+    "limits": [],
+    "sources": [
+      {
+        "url": "https://www.sptlabtech.com/hubfs/SPT%20Labtech%20firefly%20flyer%2026.pdf",
+        "quote": "Expand firefly's capabilities with an on-deck thermocycler and additional labware capacity",
+        "covers": "firefly+ additions"
+      },
+      {
+        "url": "https://www.sptlabtech.com/hubfs/firefly%20user%20guide%20FF1013%20%E2%80%93%20FF2002.pdf",
+        "quote": "Reservoirs, the shaker module and the thermal modules do not take up deck locations.",
+        "covers": "thermal and shaker modules take no deck position"
+      },
+      {
+        "url": "https://www.sptlabtech.com/hubfs/firefly%20user%20guide%20FF1013%20%E2%80%93%20FF2002.pdf",
+        "quote": "magnetic blocks can only go onto the decks, not the firefly+ shelves",
+        "covers": "magnetic blocks on the decks"
+      },
+      {
+        "url": "https://www.sptlabtech.com/hubfs/firefly%20user%20guide%20FF1013%20%E2%80%93%20FF2002.pdf",
+        "quote": "an optional Inheco On Deck Thermal Cycler in 96- or 384-well format (if you don't require this, a drip tray is installed in the base of firefly+)",
+        "covers": "ODTC in the base"
+      }
+    ]
+  },
+  "andrew": {
+    "positions": null,
+    "positionsBasis": "Not found: waters.com and andrewalliance.com pages blocked (403); Waters connected-devices catalogue gives no deck/domino position count",
+    "expansion": null,
+    "fixed": [],
+    "modules": {},
+    "storage": null,
+    "limits": [],
+    "sources": []
+  }
+}

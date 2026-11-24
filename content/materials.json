@@ -1,0 +1,240 @@
+{
+ "about": "Classes of material a protocol moves, and the handling each needs (issue #61). Patterns are case-insensitive regular expressions over generic laboratory words; never name a protocol, product or lab. 'categories' match Labstep resource categories. A property's basis says where the rule comes from: 'lab evidence' is from this lab's own runs, 'general practice' is standard laboratory practice not yet measured here.",
+ "properties": {
+  "adheres": {
+   "label": "Sticks to plastic",
+   "requires": [
+    "low-retention tips",
+    "low-binding plates or tubes"
+   ],
+   "why": "Material left on tip and well walls is lost from the sample."
+  },
+  "settles": {
+   "label": "Settles out of suspension",
+   "requires": [
+    "resuspend before aspirating",
+    "agitate or mix during long holds"
+   ],
+   "why": "A settled suspension is aspirated unevenly and binds poorly."
+  },
+  "keepCold": {
+   "label": "Must be kept cold",
+   "requires": [
+    "cold position (about 4 °C) from preparation until use"
+   ],
+   "why": "Activity or integrity is lost at room temperature."
+  },
+  "viscous": {
+   "label": "Viscous",
+   "requires": [
+    "slow aspirate and dispense (viscous liquid class)"
+   ],
+   "why": "Fast pipetting under- or over-delivers and leaves droplets."
+  },
+  "volatile": {
+   "label": "Volatile",
+   "requires": [
+    "short open time",
+    "no pre-wetting; dispense promptly"
+   ],
+   "why": "Evaporation changes concentration and vapour makes tips drip."
+  },
+  "shearSensitive": {
+   "label": "Damaged by harsh mixing",
+   "requires": [
+    "gentle mixing (low speed or slow pipetting)"
+   ],
+   "why": "Harsh mixing breaks cells or nuclei."
+  }
+ },
+ "classes": {
+  "cells": {
+   "label": "Cells or nuclei",
+   "patterns": [
+    "\\bcells?\\b",
+    "\\bnuclei\\b"
+   ],
+   "categories": [
+    "Cells",
+    "Cell lines"
+   ],
+   "persists": true,
+   "properties": {
+    "adheres": "lab evidence",
+    "settles": "general practice",
+    "shearSensitive": "general practice"
+   }
+  },
+  "magnetic-beads": {
+   "label": "Magnetic or affinity beads",
+   "patterns": [
+    "\\bbeads?\\b",
+    "\\bspri\\b"
+   ],
+   "categories": [
+    "Beads"
+   ],
+   "persists": true,
+   "properties": {
+    "adheres": "lab evidence",
+    "settles": "lab evidence"
+   }
+  },
+  "nucleic-acid": {
+   "label": "DNA or RNA in the sample",
+   "patterns": [
+    "\\b[gc]?dna\\b",
+    "\\brna\\b",
+    "\\blibrar(?:y|ies)\\b",
+    "\\beluat(?:e|ed)\\b",
+    "\\bproduct\\b"
+   ],
+   "categories": [],
+   "persists": true,
+   "properties": {
+    "adheres": "general practice"
+   }
+  },
+  "enzyme": {
+   "label": "Enzyme or master mix",
+   "patterns": [
+    "polymerase",
+    "transposase",
+    "\\btn5\\b",
+    "\\bdnase\\b",
+    "\\brnase\\b",
+    "rtase",
+    "reverse transcriptase",
+    "\\bligase\\b",
+    "\\benzymes?\\b",
+    "inhibitor",
+    "master ?mix",
+    "\\bmm\\b"
+   ],
+   "categories": [
+    "Enzymes",
+    "Tn5"
+   ],
+   "properties": {
+    "keepCold": "general practice",
+    "viscous": "general practice"
+   }
+  },
+  "antibody": {
+   "label": "Antibody",
+   "patterns": [
+    "antibod(?:y|ies)"
+   ],
+   "categories": [
+    "Antibodies"
+   ],
+   "properties": {
+    "keepCold": "general practice",
+    "adheres": "general practice"
+   }
+  },
+  "chaotrope": {
+   "label": "Chaotropic lysis agent",
+   "patterns": [
+    "guanidin",
+    "\\bguhcl\\b"
+   ],
+   "categories": [],
+   "lyses": true,
+   "properties": {
+    "viscous": "general practice"
+   }
+  },
+  "ethanol": {
+   "label": "Ethanol",
+   "patterns": [
+    "ethanol",
+    "\\betoh\\b"
+   ],
+   "categories": [],
+   "properties": {
+    "volatile": "general practice"
+   }
+  },
+  "oligo": {
+   "label": "Oligo, primer, index or nucleotides",
+   "patterns": [
+    "\\bindex(?:es)?\\b",
+    "\\boligos?\\b",
+    "\\bprimers?\\b",
+    "hexamers?",
+    "\\b[dn]?ntps?\\b"
+   ],
+   "categories": [
+    "i5 indexes",
+    "i7 indexes",
+    "Oligos",
+    "Primers"
+   ],
+   "properties": {
+    "keepCold": "general practice"
+   }
+  },
+  "reagent-mix": {
+   "label": "Reagent mix (contents not stated)",
+   "patterns": [
+    "\\b(?!and\\b|then\\b|to\\b|gently\\b|briefly\\b|well\\b|by\\b)[a-z0-9-]+ mix(?:es)?\\b(?! (?:by|well|gently|thoroughly|and))"
+   ],
+   "categories": [],
+   "properties": {}
+  },
+  "capsules": {
+   "label": "Hydrogel or semi-permeable capsules",
+   "patterns": [
+    "\\bcapsules?\\b",
+    "\\bspcs?\\b"
+   ],
+   "categories": [],
+   "persists": true,
+   "properties": {}
+  },
+  "buffer": {
+   "label": "Buffer, water or other reagent",
+   "patterns": [
+    "buffer",
+    "\\bwater\\b",
+    "\\bh2o\\b",
+    "solution",
+    "\\bwash buffer\\b",
+    "\\bwb[0-9-]*\\b",
+    "\\breagent\\b",
+    "\\bedta\\b",
+    "\\bstandards?\\b"
+   ],
+   "categories": [
+    "Stock solutions",
+    "Buffers"
+   ],
+   "properties": {}
+  }
+ },
+ "transfer": "\\b(?:supernatant|eluat(?:e|ed)|eluted [a-z]+|samples?|product|library|dna|rna|pooled)\\b(?:[^.]|\\.(?=\\d)){0,30}?\\b(?:in)?to (?:a |the |each )?(?:new|fresh|clean|prepared|pcr|appropriate)\\b|\\btransfer [0-9.]+ ?[µuμ]l (?:of )?(?:the )?(?:supernatant|eluat|eluted|purified|pcr|amplified|sample)|\\bpool (?:the )?(?:samples|columns|wells)",
+ "agitation": {
+  "rotate": "\\brotat(?:e|ing|or)\\b|\\bnutat",
+  "shake": "\\bshak(?:e|ing|er)\\b|thermomixer|orbital",
+  "vortex": "\\bvortex",
+  "invert": "\\binvert",
+  "flick": "\\bflick"
+ },
+ "onMagnet": "\\bon (?:the )?magnet|\\bmagnet(?:ic)? (?:stand|rack)\\b|collect (?:the )?(?:beads|cells)",
+ "offMagnet": "\\boff (?:the )?magnet",
+ "removal": "\\bremove\\b|\\bdiscard\\b|\\baspirat|\\bdrain\\b",
+ "addition": "\\badd\\b|\\badding\\b|\\bresuspend|\\bwash\\b|\\badjust\\b|\\bdilute\\b|\\btransfer\\b|\\bdispense\\b|\\bpurify\\b",
+ "mixHere": "\\bmix\\b|\\bresuspend|pipett(?:e|ing) up and down",
+ "keepCold": "\\bon ice\\b|ice[- ]cold|\\bkeep [^.]{0,40}\\b(?:cold|on ice|at 4)|\\bat 4 ?°? ?c\\b|\\bthaw[^.]*on ice",
+ "contactBelowUl": 10,
+ "sampleSpecific": "\\brespective\\b|\\bcorresponding\\b|\\bindex(?:es)?\\b|\\bbarcode",
+ "addedPart": "^(.*?)\\b(?:directly |each )?(?:in)?to (?:the |each |a |every )?(?:[0-9.]+ ?[µuμ]l )?",
+ "sampleHold": "\\b(?:place|store|keep|leave|put)\\b(?: the)?(?: (?:sample|samples|tube|tubes|plate|reaction|reactions))?(?: (?:on ice|at 4))|\\bstore (?:at 4|on ice|cold)",
+ "tips": {
+  "reuse": "\\bsame (?:set of )?tips?\\b|without changing (?:the )?tips?",
+  "fresh": "\\b(?:fresh|new) (?:set of )?(?:cut )?(?:lr |low[- ]retention |wide[- ]bore )?tips?\\b|\\bchange (?:the )?tips?\\b",
+  "lowRetention": "\\blr tips?\\b|\\bcut lr\\b|low[- ]retention|low[- ]bind(?:ing)? tips?",
+  "wideBore": "\\bcut (?:lr )?tips?\\b|wide[- ]bore"
+ }
+}

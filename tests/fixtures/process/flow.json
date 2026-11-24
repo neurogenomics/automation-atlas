@@ -1,0 +1,15 @@
+{
+  "schema": "lab-automation-planner/process-advisory-input/1",
+  "binding": {"case_id": "ideal-flow-exact-rational", "revision": "r1", "evidence": "synthetic-declaration"},
+  "sources": [{"id": "synthetic-declaration", "kind": "declared_case", "version": "r1", "url": null}, {"id": "flow-role", "kind": "public_role", "version": "oracle-2026-11-12", "url": "https://www.imperial.ac.uk/rapid-online-analysis-of-reactions/capabilities/continuous-flow-platforms/"}],
+  "costs": {"currency": "GBP", "items": [{"id": "fixed", "value": "10", "evidence": "synthetic-declaration"}, {"id": "provider", "value": null, "evidence": "synthetic-declaration"}]},
+  "process": {
+    "kind": "flow",
+    "hold_up": {"dimension": "volume", "value": "2", "unit": "mL"},
+    "flow_rate": {"dimension": "rate", "value": "7", "unit": "mL/min"},
+    "routing": {"feed_id": "inert-feed", "stream_id": "ideal-stream", "collection_id": "collection", "inlet_id": "inlet", "outlet_id": "outlet", "evidence": "synthetic-declaration", "inline_observation": {"data_id": "inline-data", "source_stream_id": "ideal-stream", "evidence": "synthetic-declaration"}},
+    "thresholds_s": ["17.14", "17.15"],
+    "control": "once_through_steady_state",
+    "evidence": "synthetic-declaration"
+  }
+}

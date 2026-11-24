@@ -1,0 +1,52 @@
+ALTER TABLE registry_revisions ADD COLUMN service text;
+--> statement-breakpoint
+ALTER TABLE registry_assessments ADD COLUMN match_input text;
+--> statement-breakpoint
+CREATE TRIGGER registry_assessment_no_update BEFORE UPDATE ON registry_assessments
+BEGIN
+  SELECT RAISE(ABORT, 'Registry assessments are immutable');
+END;
+--> statement-breakpoint
+DROP VIEW registry_record_links;
+--> statement-breakpoint
+-- D1 limits the terms in each compound SELECT. Group link families separately.
+CREATE VIEW registry_record_links (org_id, record_id, revision_id, linked_id, linked_revision_id, edge) AS
+WITH
+  direct_links (org_id, record_id, revision_id, linked_id, linked_revision_id, edge) AS (
+    SELECT org_id, record_id, revision_id,
+      json_extract(wire, '$.record.installation.record_id'),
+      json_extract(wire, '$.record.installation.revision_id'), 'installation'
+      FROM registry_revisions WHERE json_extract(wire, '$.record.record_type') = 'configuration'
+    UNION ALL
+    SELECT org_id, record_id, revision_id,
+      json_extract(wire, '$.record.target.record_id'), json_extract(wire, '$.record.target.revision_id'), 'target'
+      FROM registry_revisions WHERE json_extract(wire, '$.record.record_type') IN ('assertion','access_claim','availability_claim')
+  ),
+  assertion_links (org_id, record_id, revision_id, linked_id, linked_revision_id, edge) AS (
+    SELECT r.org_id, r.record_id, r.revision_id, json_extract(j.value, '$.record_id'), json_extract(j.value, '$.revision_id'), 'assertion'
+      FROM registry_revisions r, json_each(r.wire, '$.record.related_assertions') j
+      WHERE json_extract(r.wire, '$.record.record_type') = 'assertion'
+    UNION ALL
+    SELECT r.org_id, r.record_id, r.revision_id, json_extract(j.value, '$.record_id'), json_extract(j.value, '$.revision_id'), 'assertion'
+      FROM registry_revisions r, json_each(r.wire, '$.record.supporting_assertions') j
+      WHERE json_extract(r.wire, '$.record.record_type') IN ('access_claim','availability_claim')
+  ),
+  offer_links (org_id, record_id, revision_id, linked_id, linked_revision_id, edge) AS (
+    SELECT r.org_id, r.record_id, r.revision_id, json_extract(j.value, '$.record_id'), json_extract(j.value, '$.revision_id'), 'installation'
+      FROM registry_revisions r, json_each(r.wire, '$.record.backing_installations') j
+      WHERE json_extract(r.wire, '$.record.record_type') = 'offer' AND j.type = 'object'
+    UNION ALL
+    SELECT r.org_id, r.record_id, r.revision_id, json_extract(j.value, '$.record_id'), json_extract(j.value, '$.revision_id'), 'configuration'
+      FROM registry_revisions r, json_each(r.wire, '$.record.backing_configurations') j
+      WHERE json_extract(r.wire, '$.record.record_type') = 'offer' AND j.type = 'object'
+    UNION ALL
+    SELECT org_id, record_id, revision_id, json_extract(wire, '$.record.access_policy.facility_default.source.native_id'),
+      json_extract(wire, '$.record.access_policy.facility_default.source.version'), 'facility_default'
+      FROM registry_revisions WHERE json_extract(wire, '$.record.record_type') = 'offer'
+        AND json_extract(wire, '$.record.access_policy.facility_default.source.namespace') = 'planner:registry_offer'
+  )
+  SELECT org_id, record_id, revision_id, linked_id, linked_revision_id, edge FROM direct_links
+  UNION ALL
+  SELECT org_id, record_id, revision_id, linked_id, linked_revision_id, edge FROM assertion_links
+  UNION ALL
+  SELECT org_id, record_id, revision_id, linked_id, linked_revision_id, edge FROM offer_links;

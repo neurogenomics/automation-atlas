@@ -1,0 +1,1922 @@
+{
+ "version": "2026-11-05",
+ "about": "Channel independence per head and programming route per liquid handler (#82), built by scripts/build-channels.mjs from data/handler-channels-research.json. mode: independent (own Z, variable spacing, a volume per channel), fixed (one block at a fixed pitch), fixed-partial (a block that can pick up fewer tips), null = not found. Every value cites its source; null means not found, never assumed. PyLabRobot support is not here: it comes from the pinned registry (lib/equipment.js).",
+ "pylabrobotStatuses": {
+  "supported": "PyLabRobot “Full”: comprehensive support (≥90% of capabilities), with documentation.",
+  "partial": "PyLabRobot “Mostly” or “Basic”: core or most functionality in pylabrobot:main, some commands missing.",
+  "community": "PyLabRobot “WIP”: contributed driver work in progress, awaiting hardware verification.",
+  "none": "No driver in the pinned PyLabRobot registry."
+ },
+ "pylabrobotStatusSource": {
+  "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/docs/user_guide/machines.md",
+  "quote": "Full — comprehensive support (≥90% of capabilities), with documentation."
+ },
+ "handlers": {
+  "flex": {
+   "heads": {
+    "flex-1ch-50": {
+     "mode": "independent",
+     "independentZ": null,
+     "variableSpacing": null,
+     "perChannelVolume": null,
+     "perChannelTips": null,
+     "partialPickup": null,
+     "source": {
+      "url": "https://docs.opentrons.com/python-api/pipettes/partial-tip-pickup/",
+      "quote": "Partial column pickup is available on 8-channel pipettes only."
+     },
+     "note": "Single-channel pipette: channel independence is trivial; per-channel fields not applicable (null). Flex has two mounts; no source checked on whether two pipettes move simultaneously."
+    },
+    "flex-1ch-1000": {
+     "mode": "independent",
+     "independentZ": null,
+     "variableSpacing": null,
+     "perChannelVolume": null,
+     "perChannelTips": null,
+     "partialPickup": null,
+     "source": {
+      "url": "https://docs.opentrons.com/python-api/pipettes/partial-tip-pickup/",
+      "quote": "Partial column pickup is available on 8-channel pipettes only."
+     },
+     "note": "Single-channel pipette: channel independence is trivial; per-channel fields not applicable (null). Flex has two mounts; no source checked on whether two pipettes move simultaneously."
+    },
+    "flex-8ch-50": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": false,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "single (front or back nozzle) and partial column (2-7 tips) layouts via configure_nozzle_layout() from API 2.20"
+     },
+     "source": {
+      "url": "https://docs.opentrons.com/python-api/pipettes/partial-tip-pickup/",
+      "quote": "Flex 8-Channel Pipettes Single, partial column 2.20 OT-2 Multi-Channel Pipettes Single, partial column 2.20",
+      "document": "table row text"
+     },
+     "note": "One motor: all channels aspirate/dispense together (perChannelVolume false). Fixed pitch is implied by the one-motor design and the docs' column-alignment examples; no explicit pitch figure quoted. perChannelTips false = subsets only via nozzle layout, not per-channel selection.",
+     "extraSources": [
+      {
+       "url": "https://docs.opentrons.com/python-api/pipettes/characteristics/",
+       "quote": "because each multi-channel pipette has only one motor, they always aspirate and dispense on all channels simultaneously."
+      },
+      {
+       "url": "https://docs.opentrons.com/python-api/pipettes/partial-tip-pickup/",
+       "quote": "Partial column pickup is available on 8-channel pipettes only. Partial columns contain 2 to 7 consecutive tips in a single column."
+      }
+     ]
+    },
+    "flex-8ch-1000": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": false,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "single (front or back nozzle) and partial column (2-7 tips) layouts via configure_nozzle_layout() from API 2.20"
+     },
+     "source": {
+      "url": "https://docs.opentrons.com/python-api/pipettes/partial-tip-pickup/",
+      "quote": "Flex 8-Channel Pipettes Single, partial column 2.20 OT-2 Multi-Channel Pipettes Single, partial column 2.20",
+      "document": "table row text"
+     },
+     "note": "One motor: all channels aspirate/dispense together (perChannelVolume false). Fixed pitch is implied by the one-motor design and the docs' column-alignment examples; no explicit pitch figure quoted. perChannelTips false = subsets only via nozzle layout, not per-channel selection.",
+     "extraSources": [
+      {
+       "url": "https://docs.opentrons.com/python-api/pipettes/characteristics/",
+       "quote": "because each multi-channel pipette has only one motor, they always aspirate and dispense on all channels simultaneously."
+      },
+      {
+       "url": "https://docs.opentrons.com/python-api/pipettes/partial-tip-pickup/",
+       "quote": "Partial column pickup is available on 8-channel pipettes only. Partial columns contain 2 to 7 consecutive tips in a single column."
+      }
+     ]
+    },
+    "flex-96-200": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": false,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "column layout from API 2.16; single and row layouts from API 2.20 (rack on deck, not adapter, per content/pipettes.json)"
+     },
+     "source": {
+      "url": "https://docs.opentrons.com/python-api/pipettes/partial-tip-pickup/",
+      "quote": "Flex 96-Channel Pipette Column 2.16 Flex 96-Channel Pipette Single, row 2.20",
+      "document": "table row text"
+     },
+     "note": "perChannelVolume false from the one-motor statement for multi-channel pipettes (page context is 8-ch examples; applied to 96-ch). perChannelTips false = layouts only.",
+     "extraSources": [
+      {
+       "url": "https://docs.opentrons.com/python-api/pipettes/characteristics/",
+       "quote": "because each multi-channel pipette has only one motor, they always aspirate and dispense on all channels simultaneously."
+      }
+     ]
+    },
+    "flex-96-1000": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": false,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "column layout from API 2.16; single and row layouts from API 2.20 (rack on deck, not adapter, per content/pipettes.json)"
+     },
+     "source": {
+      "url": "https://docs.opentrons.com/python-api/pipettes/partial-tip-pickup/",
+      "quote": "Flex 96-Channel Pipette Column 2.16 Flex 96-Channel Pipette Single, row 2.20",
+      "document": "table row text"
+     },
+     "note": "perChannelVolume false from the one-motor statement for multi-channel pipettes (page context is 8-ch examples; applied to 96-ch). perChannelTips false = layouts only.",
+     "extraSources": [
+      {
+       "url": "https://docs.opentrons.com/python-api/pipettes/characteristics/",
+       "quote": "because each multi-channel pipette has only one motor, they always aspirate and dispense on all channels simultaneously."
+      }
+     ]
+    },
+    "flex-96-200-col": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": false,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "column layout from API 2.16; single and row layouts from API 2.20 (rack on deck, not adapter, per content/pipettes.json)"
+     },
+     "source": {
+      "url": "https://docs.opentrons.com/python-api/pipettes/partial-tip-pickup/",
+      "quote": "Flex 96-Channel Pipette Column 2.16 Flex 96-Channel Pipette Single, row 2.20",
+      "document": "table row text"
+     },
+     "note": "perChannelVolume false from the one-motor statement for multi-channel pipettes (page context is 8-ch examples; applied to 96-ch). perChannelTips false = layouts only.",
+     "extraSources": [
+      {
+       "url": "https://docs.opentrons.com/python-api/pipettes/characteristics/",
+       "quote": "because each multi-channel pipette has only one motor, they always aspirate and dispense on all channels simultaneously."
+      }
+     ]
+    },
+    "flex-96-1000-col": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": false,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "column layout from API 2.16; single and row layouts from API 2.20 (rack on deck, not adapter, per content/pipettes.json)"
+     },
+     "source": {
+      "url": "https://docs.opentrons.com/python-api/pipettes/partial-tip-pickup/",
+      "quote": "Flex 96-Channel Pipette Column 2.16 Flex 96-Channel Pipette Single, row 2.20",
+      "document": "table row text"
+     },
+     "note": "perChannelVolume false from the one-motor statement for multi-channel pipettes (page context is 8-ch examples; applied to 96-ch). perChannelTips false = layouts only.",
+     "extraSources": [
+      {
+       "url": "https://docs.opentrons.com/python-api/pipettes/characteristics/",
+       "quote": "because each multi-channel pipette has only one motor, they always aspirate and dispense on all channels simultaneously."
+      }
+     ]
+    }
+   },
+   "software": {
+    "vendorSoftware": "Opentrons App + Protocol Designer (Python Protocol API)",
+    "noCode": {
+     "supported": true,
+     "name": "Opentrons Protocol Designer",
+     "kind": "web-based visual editor (drag-and-drop)",
+     "source": {
+      "url": "https://docs.opentrons.com/protocol-designer/",
+      "quote": "Protocol Designer is a no-code, web-based tool for developing protocols that run on Opentrons robots, including the Flex and the OT-2."
+     }
+    },
+    "openApi": {
+     "supported": true,
+     "kind": "Opentrons Python Protocol API, Apache-2.0",
+     "open": true,
+     "source": {
+      "url": "https://docs.opentrons.com/python-api/",
+      "quote": "Python protocols can control Opentrons Flex and OT-2 robots, their pipettes, and optional hardware modules."
+     },
+     "note": "Licence: https://github.com/Opentrons/opentrons/blob/edge/LICENSE is Apache License 2.0 (checked). Also usable via PyLabRobot."
+    }
+   }
+  },
+  "ot2": {
+   "heads": {
+    "p20-1": {
+     "mode": "independent",
+     "independentZ": null,
+     "variableSpacing": null,
+     "perChannelVolume": null,
+     "perChannelTips": null,
+     "partialPickup": null,
+     "source": {
+      "url": "https://docs.opentrons.com/python-api/pipettes/partial-tip-pickup/",
+      "quote": "Partial column pickup is available on 8-channel pipettes only."
+     },
+     "note": "Single-channel GEN2 pipette: independence trivial; per-channel fields n/a."
+    },
+    "p300-1": {
+     "mode": "independent",
+     "independentZ": null,
+     "variableSpacing": null,
+     "perChannelVolume": null,
+     "perChannelTips": null,
+     "partialPickup": null,
+     "source": {
+      "url": "https://docs.opentrons.com/python-api/pipettes/partial-tip-pickup/",
+      "quote": "Partial column pickup is available on 8-channel pipettes only."
+     },
+     "note": "Single-channel GEN2 pipette: independence trivial; per-channel fields n/a."
+    },
+    "p1000-1": {
+     "mode": "independent",
+     "independentZ": null,
+     "variableSpacing": null,
+     "perChannelVolume": null,
+     "perChannelTips": null,
+     "partialPickup": null,
+     "source": {
+      "url": "https://docs.opentrons.com/python-api/pipettes/partial-tip-pickup/",
+      "quote": "Partial column pickup is available on 8-channel pipettes only."
+     },
+     "note": "Single-channel GEN2 pipette: independence trivial; per-channel fields n/a."
+    },
+    "p20-8": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": false,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "single and partial column layouts from API 2.20 (OT-2 Multi-Channel Pipettes row of the Opentrons table)"
+     },
+     "source": {
+      "url": "https://docs.opentrons.com/python-api/pipettes/partial-tip-pickup/",
+      "quote": "Flex 8-Channel Pipettes Single, partial column 2.20 OT-2 Multi-Channel Pipettes Single, partial column 2.20",
+      "document": "table row text"
+     },
+     "note": "CORRECTION to brief: Opentrons docs DO list OT-2 multi-channel pipettes for single and partial-column pickup (min API 2.20); not Flex-only. One motor so no per-channel volumes.",
+     "extraSources": [
+      {
+       "url": "https://docs.opentrons.com/python-api/pipettes/characteristics/",
+       "quote": "because each multi-channel pipette has only one motor, they always aspirate and dispense on all channels simultaneously."
+      },
+      {
+       "url": "https://docs.opentrons.com/python-api/pipettes/partial-tip-pickup/",
+       "quote": "Partial column pickup is available on 8-channel pipettes only. Partial columns contain 2 to 7 consecutive tips in a single column."
+      }
+     ]
+    },
+    "p300-8": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": false,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "single and partial column layouts from API 2.20 (OT-2 Multi-Channel Pipettes row of the Opentrons table)"
+     },
+     "source": {
+      "url": "https://docs.opentrons.com/python-api/pipettes/partial-tip-pickup/",
+      "quote": "Flex 8-Channel Pipettes Single, partial column 2.20 OT-2 Multi-Channel Pipettes Single, partial column 2.20",
+      "document": "table row text"
+     },
+     "note": "CORRECTION to brief: Opentrons docs DO list OT-2 multi-channel pipettes for single and partial-column pickup (min API 2.20); not Flex-only. One motor so no per-channel volumes.",
+     "extraSources": [
+      {
+       "url": "https://docs.opentrons.com/python-api/pipettes/characteristics/",
+       "quote": "because each multi-channel pipette has only one motor, they always aspirate and dispense on all channels simultaneously."
+      },
+      {
+       "url": "https://docs.opentrons.com/python-api/pipettes/partial-tip-pickup/",
+       "quote": "Partial column pickup is available on 8-channel pipettes only. Partial columns contain 2 to 7 consecutive tips in a single column."
+      }
+     ]
+    }
+   },
+   "software": {
+    "vendorSoftware": "Opentrons App + Protocol Designer (Python Protocol API)",
+    "noCode": {
+     "supported": true,
+     "name": "Opentrons Protocol Designer",
+     "kind": "web-based visual editor (drag-and-drop)",
+     "source": {
+      "url": "https://docs.opentrons.com/protocol-designer/",
+      "quote": "Protocol Designer is a no-code, web-based tool for developing protocols that run on Opentrons robots, including the Flex and the OT-2."
+     }
+    },
+    "openApi": {
+     "supported": true,
+     "kind": "Opentrons Python Protocol API, Apache-2.0",
+     "open": true,
+     "source": {
+      "url": "https://docs.opentrons.com/python-api/",
+      "quote": "Python protocols can control Opentrons Flex and OT-2 robots, their pipettes, and optional hardware modules."
+     },
+     "note": "Licence: https://github.com/Opentrons/opentrons/blob/edge/LICENSE is Apache License 2.0 (checked). Also usable via PyLabRobot."
+    }
+   }
+  },
+  "plr-hamilton-star": {
+   "heads": {
+    "1000ul-channels": {
+     "mode": "independent",
+     "independentZ": true,
+     "variableSpacing": {
+      "supported": true,
+      "minMm": 9,
+      "maxMm": null
+     },
+     "perChannelVolume": true,
+     "perChannelTips": true,
+     "partialPickup": null,
+     "source": {
+      "url": "https://www.ld.ru/catalog/images/hamilton/MR-0805-03_STAR_LINE_web.pdf",
+      "quote": "The Dynamic Positioning System (DPS) of the STAR line moves each pipetting channel independently on the Y-axis, as well on the Z-axis.",
+      "document": "Hamilton MICROLAB STAR Line brochure MR-0805-03 (distributor-hosted copy, ld.ru)"
+     },
+     "note": "Max spacing not found. perChannelVolume: Hamilton STAR page cites \"variable volume samples\" under DPS; PyLabRobot API takes one volume per channel. perChannelTips from PLR use_channels on pick_up_tips. partialPickup n/a (independent channels).",
+     "extraSources": [
+      {
+       "url": "https://www.contractsfinder.service.gov.uk/Notice/Attachment/2ae11761-ce3b-4bf3-b7b4-0ad8ae71c13c",
+       "quote": "The minimum distance between two 1000µl pipetting channels is 9mm and between two 5ml pipetting it is 18mm on this arm.",
+       "document": "Hamilton Sales & Service UK quotation (STAR), published on UK Contracts Finder"
+      },
+      {
+       "url": "https://www.hamiltoncompany.com/microlab-star",
+       "quote": "Unlike fixed channels with equidistant spreading, DPS offers efficient yet flexible liquid handling for cherry picking, non-uniform and variable volume samples"
+      },
+      {
+       "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/legacy/liquid_handling/liquid_handler.py",
+       "quote": "vols: A list of volumes to aspirate, one for each channel.",
+       "document": "PyLabRobot LiquidHandler.aspirate docstring (MIT)"
+      },
+      {
+       "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/legacy/liquid_handling/liquid_handler.py",
+       "quote": "use_channels: List of channels to use. Index from front to back.",
+       "document": "PyLabRobot LiquidHandler.pick_up_tips docstring (MIT)"
+      }
+     ]
+    },
+    "5ml-channels": {
+     "mode": "independent",
+     "independentZ": true,
+     "variableSpacing": {
+      "supported": true,
+      "minMm": 18,
+      "maxMm": null
+     },
+     "perChannelVolume": true,
+     "perChannelTips": true,
+     "partialPickup": null,
+     "source": {
+      "url": "https://www.contractsfinder.service.gov.uk/Notice/Attachment/2ae11761-ce3b-4bf3-b7b4-0ad8ae71c13c",
+      "quote": "The minimum distance between two 1000µl pipetting channels is 9mm and between two 5ml pipetting it is 18mm on this arm.",
+      "document": "Hamilton Sales & Service UK quotation (STAR), published on UK Contracts Finder"
+     },
+     "note": "Minimum 18 mm between two 5 ml channels (Hamilton quotation). Independence from STAR-line DPS statement (covers each pipetting channel); max spacing not found. perChannelVolume/Tips via PLR generic API, not 5 ml-specific.",
+     "extraSources": [
+      {
+       "url": "https://www.ld.ru/catalog/images/hamilton/MR-0805-03_STAR_LINE_web.pdf",
+       "quote": "The Dynamic Positioning System (DPS) of the STAR line moves each pipetting channel independently on the Y-axis, as well on the Z-axis.",
+       "document": "Hamilton MICROLAB STAR Line brochure MR-0805-03 (distributor-hosted copy, ld.ru)"
+      },
+      {
+       "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/legacy/liquid_handling/liquid_handler.py",
+       "quote": "vols: A list of volumes to aspirate, one for each channel.",
+       "document": "PyLabRobot LiquidHandler.aspirate docstring (MIT)"
+      }
+     ]
+    },
+    "core-96": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "single tip, row or column via the 96-Well Tip Adapter (part 182040) intermediate position; adapter listed for 10 and 300 µL tips"
+     },
+     "source": {
+      "url": "https://www.hamiltoncompany.com/product-specs/182040",
+      "quote": "Intermediate position used to pick up a single tip, row, or column using the CO-RE 96 Multi-Probe Head (MPH).",
+      "document": "Hamilton 96-Well Tip Adapter spec sheet; Platform Compatibility: Microlab STAR, STAR V, VANTAGE"
+     },
+     "note": "perChannelVolume not stated in sources checked (null). Partial pickup needs the adapter; not shown for 50/1000 µL tips."
+    },
+    "core-384": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "column-, row-wise and user patterns incl. single tips (CO-RE 384 redesign, 2009); 384 STP head: one column, row or tip"
+     },
+     "source": {
+      "url": "https://www.selectscience.net/article/new-conductive-and-stackable-disposable-tips-in-the-384-format-at-biotechnica-2009",
+      "quote": "The CO-RE 384 probe head itself has been redesigned to offer not only column- and row-wise tip pickup, but also any user required pattern",
+      "document": "Hamilton press release reproduced on SelectScience (2009)"
+     },
+     "note": "perChannelVolume not stated (null). Sources are Hamilton press releases via SelectScience/BioSpace.",
+     "extraSources": [
+      {
+       "url": "https://www.biospace.com/hamilton-robotics-release-384-stp-multichannel-head-and-rocket-tips-enable-96-to-1536-well-pipetting-with-one-arm",
+       "quote": "The Shifted Tip Pickup technology enables this new head to pick up one column, one row or just one tip without changing heads",
+       "document": "Hamilton press release on BioSpace (384 STP head for STAR)"
+      }
+     ]
+    }
+   },
+   "software": {
+    "vendorSoftware": "Hamilton VENUS",
+    "noCode": {
+     "supported": true,
+     "name": "VENUS Method Editor / Action Editor",
+     "kind": "drag-and-drop",
+     "source": {
+      "url": "https://www.hamiltoncompany.com/microlab-star",
+      "quote": "VENUS Software offers intuitive drag-and-drop programming, including Power Steps for frequently used pipetting tasks."
+     },
+     "extraSources": [
+      {
+       "url": "https://www.ld.ru/catalog/images/hamilton/MR-0805-03_STAR_LINE_web.pdf",
+       "quote": "The Action Editor offers you a very intuitive user interface that holds all possible actions (pipetting, transport, incubation) in a toolbox for simple drag&drop programming."
+      }
+     ]
+    },
+    "openApi": {
+     "supported": true,
+     "kind": "PyLabRobot (Python, MIT, third-party firmware-level driver); vendor route is VENUS/HSL (licensed)",
+     "open": true,
+     "source": {
+      "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/README.md",
+      "quote": "We currently support Hamilton STAR, Hamilton Vantage, Tecan Freedom EVO, and Opentrons OT-2 robots"
+     },
+     "note": "PyLabRobot README; MIT licence checked. Hamilton's own scripting (HSL inside VENUS) needs a VENUS licence; no public Hamilton API documentation found. README warns firmware-driver use is at own risk re warranty."
+    }
+   }
+  },
+  "starlet": {
+   "heads": {
+    "1000ul-channels": {
+     "mode": "independent",
+     "independentZ": true,
+     "variableSpacing": {
+      "supported": true,
+      "minMm": 9,
+      "maxMm": null
+     },
+     "perChannelVolume": true,
+     "perChannelTips": true,
+     "partialPickup": null,
+     "source": {
+      "url": "https://www.ld.ru/catalog/images/hamilton/MR-0805-03_STAR_LINE_web.pdf",
+      "quote": "The Dynamic Positioning System (DPS) of the STAR line moves each pipetting channel independently on the Y-axis, as well on the Z-axis.",
+      "document": "Hamilton MICROLAB STAR Line brochure MR-0805-03 (distributor-hosted copy, ld.ru)"
+     },
+     "note": "Copied from plr-hamilton-star (STARlet uses the same STAR-line channels/heads; STAR-line brochure covers STARlet). Max spacing not found. perChannelVolume: Hamilton STAR page cites \"variable volume samples\" under DPS; PyLabRobot API takes one volume per channel. perChannelTips from PLR use_channels on pick_up_tips. partialPickup n/a (independent channels).",
+     "extraSources": [
+      {
+       "url": "https://www.contractsfinder.service.gov.uk/Notice/Attachment/2ae11761-ce3b-4bf3-b7b4-0ad8ae71c13c",
+       "quote": "The minimum distance between two 1000µl pipetting channels is 9mm and between two 5ml pipetting it is 18mm on this arm.",
+       "document": "Hamilton Sales & Service UK quotation (STAR), published on UK Contracts Finder"
+      },
+      {
+       "url": "https://www.hamiltoncompany.com/microlab-star",
+       "quote": "Unlike fixed channels with equidistant spreading, DPS offers efficient yet flexible liquid handling for cherry picking, non-uniform and variable volume samples"
+      },
+      {
+       "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/legacy/liquid_handling/liquid_handler.py",
+       "quote": "vols: A list of volumes to aspirate, one for each channel.",
+       "document": "PyLabRobot LiquidHandler.aspirate docstring (MIT)"
+      },
+      {
+       "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/legacy/liquid_handling/liquid_handler.py",
+       "quote": "use_channels: List of channels to use. Index from front to back.",
+       "document": "PyLabRobot LiquidHandler.pick_up_tips docstring (MIT)"
+      }
+     ]
+    },
+    "5ml-channels": {
+     "mode": "independent",
+     "independentZ": true,
+     "variableSpacing": {
+      "supported": true,
+      "minMm": 18,
+      "maxMm": null
+     },
+     "perChannelVolume": true,
+     "perChannelTips": true,
+     "partialPickup": null,
+     "source": {
+      "url": "https://www.contractsfinder.service.gov.uk/Notice/Attachment/2ae11761-ce3b-4bf3-b7b4-0ad8ae71c13c",
+      "quote": "The minimum distance between two 1000µl pipetting channels is 9mm and between two 5ml pipetting it is 18mm on this arm.",
+      "document": "Hamilton Sales & Service UK quotation (STAR), published on UK Contracts Finder"
+     },
+     "note": "Copied from plr-hamilton-star (STARlet uses the same STAR-line channels/heads; STAR-line brochure covers STARlet). Minimum 18 mm between two 5 ml channels (Hamilton quotation). Independence from STAR-line DPS statement (covers each pipetting channel); max spacing not found. perChannelVolume/Tips via PLR generic API, not 5 ml-specific.",
+     "extraSources": [
+      {
+       "url": "https://www.ld.ru/catalog/images/hamilton/MR-0805-03_STAR_LINE_web.pdf",
+       "quote": "The Dynamic Positioning System (DPS) of the STAR line moves each pipetting channel independently on the Y-axis, as well on the Z-axis.",
+       "document": "Hamilton MICROLAB STAR Line brochure MR-0805-03 (distributor-hosted copy, ld.ru)"
+      },
+      {
+       "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/legacy/liquid_handling/liquid_handler.py",
+       "quote": "vols: A list of volumes to aspirate, one for each channel.",
+       "document": "PyLabRobot LiquidHandler.aspirate docstring (MIT)"
+      }
+     ]
+    },
+    "core-96": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "single tip, row or column via the 96-Well Tip Adapter (part 182040) intermediate position; adapter listed for 10 and 300 µL tips"
+     },
+     "source": {
+      "url": "https://www.hamiltoncompany.com/product-specs/182040",
+      "quote": "Intermediate position used to pick up a single tip, row, or column using the CO-RE 96 Multi-Probe Head (MPH).",
+      "document": "Hamilton 96-Well Tip Adapter spec sheet; Platform Compatibility: Microlab STAR, STAR V, VANTAGE"
+     },
+     "note": "Copied from plr-hamilton-star (STARlet uses the same STAR-line channels/heads; STAR-line brochure covers STARlet). perChannelVolume not stated in sources checked (null). Partial pickup needs the adapter; not shown for 50/1000 µL tips."
+    },
+    "core-384": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "column-, row-wise and user patterns incl. single tips (CO-RE 384 redesign, 2009); 384 STP head: one column, row or tip"
+     },
+     "source": {
+      "url": "https://www.selectscience.net/article/new-conductive-and-stackable-disposable-tips-in-the-384-format-at-biotechnica-2009",
+      "quote": "The CO-RE 384 probe head itself has been redesigned to offer not only column- and row-wise tip pickup, but also any user required pattern",
+      "document": "Hamilton press release reproduced on SelectScience (2009)"
+     },
+     "note": "Copied from plr-hamilton-star (STARlet uses the same STAR-line channels/heads; STAR-line brochure covers STARlet). perChannelVolume not stated (null). Sources are Hamilton press releases via SelectScience/BioSpace.",
+     "extraSources": [
+      {
+       "url": "https://www.biospace.com/hamilton-robotics-release-384-stp-multichannel-head-and-rocket-tips-enable-96-to-1536-well-pipetting-with-one-arm",
+       "quote": "The Shifted Tip Pickup technology enables this new head to pick up one column, one row or just one tip without changing heads",
+       "document": "Hamilton press release on BioSpace (384 STP head for STAR)"
+      }
+     ]
+    }
+   },
+   "software": {
+    "vendorSoftware": "Hamilton VENUS",
+    "noCode": {
+     "supported": true,
+     "name": "VENUS Method Editor / Action Editor",
+     "kind": "drag-and-drop",
+     "source": {
+      "url": "https://www.hamiltoncompany.com/microlab-star",
+      "quote": "VENUS Software offers intuitive drag-and-drop programming, including Power Steps for frequently used pipetting tasks."
+     },
+     "extraSources": [
+      {
+       "url": "https://www.ld.ru/catalog/images/hamilton/MR-0805-03_STAR_LINE_web.pdf",
+       "quote": "The Action Editor offers you a very intuitive user interface that holds all possible actions (pipetting, transport, incubation) in a toolbox for simple drag&drop programming."
+      }
+     ]
+    },
+    "openApi": {
+     "supported": true,
+     "kind": "PyLabRobot (Python, MIT, third-party firmware-level driver); vendor route is VENUS/HSL (licensed)",
+     "open": true,
+     "source": {
+      "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/README.md",
+      "quote": "We currently support Hamilton STAR, Hamilton Vantage, Tecan Freedom EVO, and Opentrons OT-2 robots"
+     },
+     "note": "PyLabRobot README; MIT licence checked. Hamilton's own scripting (HSL inside VENUS) needs a VENUS licence; no public Hamilton API documentation found. README warns firmware-driver use is at own risk re warranty."
+    },
+    "note": "Copied from plr-hamilton-star (same VENUS software and PLR STAR backend)."
+   }
+  },
+  "plr-hamilton-vantage": {
+   "heads": {
+    "1000ul-channels": {
+     "mode": "independent",
+     "independentZ": null,
+     "variableSpacing": {
+      "supported": true,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": true,
+     "perChannelTips": true,
+     "partialPickup": null,
+     "source": {
+      "url": "https://www.hamiltoncompany.com/microlab-vantage",
+      "quote": "Unlike fixed channels with equidistant spreading, DPS offers efficient yet flexible liquid handling for cherry picking, non-uniform and variable volume samples",
+      "document": "Hamilton Microlab VANTAGE product page, Dynamic Positioning System (DPS) section (retrieved 2026-11-06, #102)"
+     },
+     "note": "Hamilton states channel independence and non-uniform spacing for the VANTAGE channels (DPS), not per channel type. Per-channel volumes and tips also from the PyLabRobot Vantage firmware command (per-channel Y positions, volumes and a tip pattern). independentZ and min/max spacing not stated by Hamilton (null).",
+     "extraSources": [
+      {
+       "url": "https://www.hamiltoncompany.com/microlab-vantage",
+       "quote": "Opt for 1 mL, 5 mL, or MagPip Channels (16, 8, 8 respectively) or select the CO-RE 96 Probe Head or the 384 Multi-Probe Head."
+      },
+      {
+       "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/legacy/liquid_handling/backends/hamilton/vantage_backend.py",
+       "quote": "tip_pattern: Tip pattern (channels involved). [0 = not involved, 1 = involved].",
+       "document": "PyLabRobot Vantage backend pip_aspirate docstring; same command takes y_position: List[int] and aspiration_volume: Optional[List[int]] per channel"
+      }
+     ]
+    },
+    "5ml-channels": {
+     "mode": "independent",
+     "independentZ": null,
+     "variableSpacing": {
+      "supported": true,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": true,
+     "perChannelTips": true,
+     "partialPickup": null,
+     "source": {
+      "url": "https://www.hamiltoncompany.com/microlab-vantage",
+      "quote": "Unlike fixed channels with equidistant spreading, DPS offers efficient yet flexible liquid handling for cherry picking, non-uniform and variable volume samples",
+      "document": "Hamilton Microlab VANTAGE product page, Dynamic Positioning System (DPS) section (retrieved 2026-11-06, #102)"
+     },
+     "note": "Hamilton states channel independence and non-uniform spacing for the VANTAGE channels (DPS), not per channel type (applied to the 5 mL channels too). Per-channel volumes and tips also from the PyLabRobot Vantage firmware command (per-channel Y positions, volumes and a tip pattern). independentZ and min/max spacing not stated by Hamilton (null).",
+     "extraSources": [
+      {
+       "url": "https://www.hamiltoncompany.com/microlab-vantage",
+       "quote": "Opt for 1 mL, 5 mL, or MagPip Channels (16, 8, 8 respectively) or select the CO-RE 96 Probe Head or the 384 Multi-Probe Head."
+      },
+      {
+       "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/legacy/liquid_handling/backends/hamilton/vantage_backend.py",
+       "quote": "tip_pattern: Tip pattern (channels involved). [0 = not involved, 1 = involved].",
+       "document": "PyLabRobot Vantage backend pip_aspirate docstring; same command takes y_position: List[int] and aspiration_volume: Optional[List[int]] per channel"
+      }
+     ]
+    },
+    "magpip": {
+     "mode": null,
+     "independentZ": null,
+     "variableSpacing": null,
+     "perChannelVolume": null,
+     "perChannelTips": null,
+     "partialPickup": null,
+     "source": {
+      "url": "https://www.hamiltoncompany.com/microlab-vantage",
+      "quote": "Opt for 1 mL, 5 mL, or MagPip Channels (16, 8, 8 respectively)"
+     },
+     "note": "Mode not recorded: no source states how MagPip channels move. Mode assumed \"independent\" only because Hamilton lists MagPip as a channel option alongside the independent 1/5 mL channels; no source found on MagPip Z/spacing/per-channel behaviour. MagPip brochure (conferenceharvester.com) checked: no statement. Treat all fields as unknown."
+    },
+    "core-96": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "single tip, row or column via the 96-Well Tip Adapter (part 182040) intermediate position; adapter listed for 10 and 300 µL tips"
+     },
+     "source": {
+      "url": "https://www.hamiltoncompany.com/product-specs/182040",
+      "quote": "Intermediate position used to pick up a single tip, row, or column using the CO-RE 96 Multi-Probe Head (MPH).",
+      "document": "Hamilton 96-Well Tip Adapter spec sheet; Platform Compatibility: Microlab STAR, STAR V, VANTAGE"
+     },
+     "note": "96-Well Tip Adapter spec sheet lists Microlab VANTAGE compatibility. perChannelVolume not stated in sources checked (null). Partial pickup needs the adapter; not shown for 50/1000 µL tips."
+    },
+    "core-384": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "column-, row-wise and user patterns incl. single tips (CO-RE 384 redesign, 2009); 384 STP head: one column, row or tip"
+     },
+     "source": {
+      "url": "https://www.selectscience.net/article/new-conductive-and-stackable-disposable-tips-in-the-384-format-at-biotechnica-2009",
+      "quote": "The CO-RE 384 probe head itself has been redesigned to offer not only column- and row-wise tip pickup, but also any user required pattern",
+      "document": "Hamilton press release reproduced on SelectScience (2009)"
+     },
+     "note": "Sources describe the STAR CO-RE 384/384 STP heads; Vantage lists a 384 Multi-Probe Head but partial pickup not confirmed for Vantage specifically. perChannelVolume not stated (null). Sources are Hamilton press releases via SelectScience/BioSpace.",
+     "extraSources": [
+      {
+       "url": "https://www.biospace.com/hamilton-robotics-release-384-stp-multichannel-head-and-rocket-tips-enable-96-to-1536-well-pipetting-with-one-arm",
+       "quote": "The Shifted Tip Pickup technology enables this new head to pick up one column, one row or just one tip without changing heads",
+       "document": "Hamilton press release on BioSpace (384 STP head for STAR)"
+      }
+     ]
+    }
+   },
+   "software": {
+    "vendorSoftware": "Hamilton VENUS",
+    "noCode": {
+     "supported": true,
+     "name": "VENUS Method Editor",
+     "kind": "drag-and-drop",
+     "source": {
+      "url": "https://www.hamiltoncompany.com/microlab-vantage",
+      "quote": "VENUS software controls the VANTAGE liquid handling system, integrates peripheral devices, and offers drag-and-drop method programming."
+     }
+    },
+    "openApi": {
+     "supported": true,
+     "kind": "PyLabRobot (Python, MIT, third-party firmware-level driver); vendor route is VENUS/HSL (licensed)",
+     "open": true,
+     "source": {
+      "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/README.md",
+      "quote": "We currently support Hamilton STAR, Hamilton Vantage, Tecan Freedom EVO, and Opentrons OT-2 robots"
+     },
+     "note": "PyLabRobot (MIT). Vendor HSL/VENUS licensed. Hamilton 2015 press release: Vantage runs existing STAR methods."
+    }
+   }
+  },
+  "plr-hamilton-nimbus": {
+   "heads": {
+    "1000ul-channels": {
+     "mode": "independent",
+     "independentZ": true,
+     "variableSpacing": {
+      "supported": true,
+      "minMm": 9,
+      "maxMm": null
+     },
+     "perChannelVolume": true,
+     "perChannelTips": true,
+     "partialPickup": null,
+     "source": {
+      "url": "https://www.hamiltoncompany.com/microlab-nimbus",
+      "quote": "NIMBUS HD (High Density): Up to 8 independent CO-RE pipette channels feature independent Y and Z axes movements"
+     },
+     "note": "Min 9 mm from NIMBUS8 press release (\"variable y-axis spanning\"); max not found. perChannelVolume from PLR Nimbus firmware command taking a per-channel volume list; perChannelTips from PLR use_channels.",
+     "extraSources": [
+      {
+       "url": "https://instrumentbusinessoutlook.com/press-release/hamilton-robotics-launches-new-options-for-the-microlab-nimbus-enabling-faster-pipetting-and-higher-throughput/",
+       "quote": "The new system features up to eight independent pipetting channels and a new design with 9 mm center-to-center channel spacing.",
+       "document": "Hamilton NIMBUS8 press release reproduced by Instrument Business Outlook"
+      },
+      {
+       "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/legacy/liquid_handling/backends/hamilton/nimbus_backend.py",
+       "quote": "aspirate_volume: List[int],",
+       "document": "PyLabRobot Nimbus backend firmware command signature (per-channel list)"
+      },
+      {
+       "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/legacy/liquid_handling/liquid_handler.py",
+       "quote": "use_channels: List of channels to use. Index from front to back.",
+       "document": "PyLabRobot LiquidHandler.pick_up_tips docstring (MIT)"
+      }
+     ]
+    },
+    "core-96": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "individual well, column, row and whole plate formats (NIMBUS96)"
+     },
+     "source": {
+      "url": "https://www.hamiltoncompany.com/microlab-nimbus",
+      "quote": "NIMBUS96: High-speed CO-RE 96 Probe Head works with 96- and 384-well plates in individual well, column row, and whole plate formats from 1–1000 µL"
+     },
+     "note": "Page does not say whether partial formats are by partial tip pickup or plate offset; treat detail as \"formats supported\"."
+    },
+    "core-384": {
+     "mode": null,
+     "independentZ": null,
+     "variableSpacing": null,
+     "perChannelVolume": null,
+     "perChannelTips": null,
+     "partialPickup": null,
+     "source": {
+      "url": "https://www.hamiltoncompany.com/microlab-nimbus",
+      "quote": "up to 4 CO-RE Channels, the CO-RE 96 Probe Head, or up to 8 CO-RE Channels."
+     },
+     "note": "Mode not recorded. No CO-RE 384 head option found for Nimbus on Hamilton's Nimbus page (options listed: 4 channels, CO-RE 96 head, 8 channels). Check whether this head entry should exist for Nimbus."
+    }
+   },
+   "software": {
+    "vendorSoftware": "Hamilton VENUS (VENUS 6)",
+    "noCode": {
+     "supported": true,
+     "name": "VENUS Method Editor",
+     "kind": "drag-and-drop",
+     "source": {
+      "url": "https://www.hamiltoncompany.com/microlab-nimbus",
+      "quote": "With an intuitive Method Editor and drag-and-drop programming, users can quickly build methods."
+     }
+    },
+    "openApi": {
+     "supported": true,
+     "kind": "PyLabRobot (Python, MIT, third-party firmware-level driver); vendor route is VENUS/HSL (licensed)",
+     "open": true,
+     "source": {
+      "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/legacy/liquid_handling/backends/hamilton/nimbus_backend.py",
+      "quote": "aspirate_volume: List[int],"
+     },
+     "note": "PyLabRobot has a Nimbus backend (file exists in repo; README support list does not name Nimbus). MIT. Vendor VENUS licensed."
+    }
+   }
+  },
+  "plr-hamilton-prep": {
+   "heads": {
+    "2ch": {
+     "mode": "independent",
+     "independentZ": true,
+     "variableSpacing": {
+      "supported": true,
+      "minMm": 9,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": null,
+     "partialPickup": null,
+     "source": {
+      "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+      "quote": "This configuration features two Hamilton CO-RE II channels. Channels can move independently and are compatible with a wide range of Hamilton CO-RE II tips.",
+      "document": "Hamilton Microlab Prep brochure (Shopify CDN copy)"
+     },
+     "note": "independentZ: PLR Prep driver addresses each channel's own Z axis (\"zaxis: the channel's Z axis\"). Min 9 mm from PLR firmware Y windows; max not found. perChannelVolume/perChannelTips not confirmed for Prep (null). Note current Hamilton page markets up to four Fluid Motion channels (newer variant).",
+     "extraSources": [
+      {
+       "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/hamilton/prep/driver/features/pipettes.py",
+       "quote": "385 mm and front -9 to 376 mm on both PRPAA1087 (V1.2.2) and PRPBD1394 (V3.0.20), 9 mm at either end.",
+       "document": "PyLabRobot Prep driver _min_spacing_between docstring"
+      }
+     ]
+    },
+    "8mph": {
+     "mode": "fixed",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": false,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": false,
+      "detail": "all 8 probes pick up and drop together (PLR driver)"
+     },
+     "source": {
+      "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+      "quote": "This configuration features a set of eight Hamilton CO-RE II channels that operate together",
+      "document": "Hamilton Microlab Prep brochure"
+     },
+     "note": "No partial pickup per PyLabRobot driver; PickupTips has a tipMask but PLR says it is for service tooling and partial engagement drops tips.",
+     "extraSources": [
+      {
+       "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/hamilton/prep/driver/features/head8.py",
+       "quote": "The 8MPH is a ganged head: a single X/Y/Z gantry and a single dispenser piston drive all 8 probes together.",
+       "document": "PyLabRobot Prep head8 module docstring"
+      }
+     ]
+    }
+   },
+   "software": {
+    "vendorSoftware": "Microlab Prep on-instrument touchscreen software",
+    "noCode": {
+     "supported": true,
+     "name": "Microlab Prep touchscreen software",
+     "kind": "wizard (touchscreen GUI)",
+     "source": {
+      "url": "https://www.hamiltoncompany.com/microlab-prep",
+      "quote": "The system features a touchscreen with a graphical user interface that can design and run protocols with only a few taps."
+     }
+    },
+    "openApi": {
+     "supported": true,
+     "kind": "PyLabRobot Prep driver (Python, MIT, third-party); no vendor API found",
+     "open": true,
+     "source": {
+      "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/hamilton/prep/driver/features/head8.py",
+      "quote": "Head8 — 8MPH head for the Hamilton Prep."
+     },
+     "note": "No Hamilton-published API for Prep found."
+    }
+   }
+  },
+  "i7": {
+   "heads": {
+    "span8": {
+     "mode": "independent",
+     "independentZ": true,
+     "variableSpacing": {
+      "supported": true,
+      "minMm": 9,
+      "maxMm": 50
+     },
+     "perChannelVolume": true,
+     "perChannelTips": null,
+     "partialPickup": null,
+     "source": {
+      "url": "https://v2ics-documents.assetfront.com/57842b34-f68a-4ccb-84b3-c0cb0bfafd8b/asset/documents/Biomek%20i-Series%20Hardware%20Manual.pdf",
+      "quote": "move independently in the Z axis (up and down), pipette independently in the D (dispense)-axis, and span from 9 mm to 50 mm",
+      "document": "Beckman Coulter, Biomek i-Series Hardware Reference Manual, PN B54474AB (October 2017), Span-8 Pod section (copy hosted by an equipment-asset service) (retrieved 2026-11-06, #102)"
+     },
+     "note": "Span is variable but always equidistant: the manual says \"The span between the eight probes is always equidistant\" and \"For applications requiring non-equidistant probe spacing, contact us.\" perChannelVolume from independent D-axis pipetting. Per-channel tips not stated (null).",
+     "extraSources": [
+      {
+       "url": "https://www.beckman.com/liquid-handlers/biomek-i7",
+       "quote": "Independent Span-8 probe calibration 8 channel liquid-level sensing"
+      },
+      {
+       "url": "https://manufacturingchemist.com/eight-channels-give-more-flexibility-to-pipetting-32317",
+       "quote": "Each channel has independent volume control, up and down motion and liquid level sensing.",
+       "document": "Manufacturing Chemist 2001 item on Biomek FX Span-8 (older FX Span-8, superseded as primary source)"
+      }
+     ]
+    },
+    "mc96-300": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "by column (8 tips) or by row (12 tips), \"Selective Tip\" pipetting"
+     },
+     "source": {
+      "url": "https://www.beckman.jp/resources/videos/products/biomek-i-series-96-multichannel-selective-tip-pipetting-row-column",
+      "quote": "This video highlights using the 96 Multichannel to pipette by column using 8 tips or by row using 12 tips"
+     },
+     "note": "Video description does not say which 96 head (300 or 1200 µL); applied to both. Single-tip pickup not confirmed."
+    },
+    "mc96-1200": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "by column (8 tips) or by row (12 tips), \"Selective Tip\" pipetting"
+     },
+     "source": {
+      "url": "https://www.beckman.jp/resources/videos/products/biomek-i-series-96-multichannel-selective-tip-pipetting-row-column",
+      "quote": "This video highlights using the 96 Multichannel to pipette by column using 8 tips or by row using 12 tips"
+     },
+     "note": "Video description does not say which 96 head (300 or 1200 µL); applied to both. Single-tip pickup not confirmed."
+    },
+    "mc384": {
+     "mode": "fixed",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": null,
+     "partialPickup": null,
+     "source": {
+      "url": "https://store.beckman.com/ko/p/b87579?countryCode=KR",
+      "quote": "0.5 μL - 60 μL Multichannel-384 Head",
+      "document": "existing source from content/pipettes.json"
+     },
+     "note": "Partial pickup for the 384 head not found (null). mode \"fixed\" from it being a multichannel head; no independence claimed anywhere."
+    }
+   },
+   "software": {
+    "vendorSoftware": "Biomek Software (Biomek 5)",
+    "noCode": {
+     "supported": true,
+     "name": "Biomek Software method editor",
+     "kind": "icon-based visual editor",
+     "source": {
+      "url": "https://www.beckman.com/liquid-handlers/software/biomek",
+      "quote": "Intuitive, icon-based user interface makes method setup & workflow maintenance easy"
+     }
+    },
+    "openApi": {
+     "supported": true,
+     "kind": "Biomek Software REST API + JSON workflow import/export",
+     "open": false,
+     "source": {
+      "url": "https://www.beckman.com/liquid-handlers/software/biomek",
+      "quote": "REST API integration with orchestration and enterprise software JSON import/export for workflow sharing and portability"
+     },
+     "note": "Vendor feature of licensed Biomek Software; no public API documentation found. No PyLabRobot backend for Biomek in the repo tree checked."
+    }
+   }
+  },
+  "fluent": {
+   "heads": {
+    "afca": {
+     "mode": "independent",
+     "independentZ": true,
+     "variableSpacing": {
+      "supported": true,
+      "minMm": 9,
+      "maxMm": 38
+     },
+     "perChannelVolume": true,
+     "perChannelTips": true,
+     "partialPickup": null,
+     "source": {
+      "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+      "quote": "channels with independent vertical movement (Z-axis) for liquid detection, and automatic spacing between channels of 9 mm - 38 mm",
+      "document": "Tecan Fluent Product Catalog 402731"
+     },
+     "note": "perChannelVolume from Transfer Individual Volumes (different volumes, tip selection); same-pass behaviour not stated explicitly. perChannelTips from tip on/off selection.",
+     "extraSources": [
+      {
+       "url": "https://www.tecan.com/hubfs/Knowledgebase/Manuals/Fluent%20Control/FluentControl%203.4%20Manual.pdf",
+       "quote": "The Transfer Individual Volumes command can be used to transfer different volumes from one labware to another.",
+       "document": "FluentControl Application Software Manual 399935 V2.4 §11.2.5"
+      },
+      {
+       "url": "https://www.tecan.com/hubfs/Knowledgebase/Manuals/Fluent%20Control/FluentControl%203.4%20Manual.pdf",
+       "quote": "If you do not click a tip, FluentControl uses all tips by default. To turn off or turn on a tip, click on it.",
+       "document": "FluentControl manual, Transfer Individual Volumes tip selection"
+      }
+     ]
+    },
+    "lfca": {
+     "mode": "independent",
+     "independentZ": true,
+     "variableSpacing": {
+      "supported": true,
+      "minMm": 9,
+      "maxMm": 38
+     },
+     "perChannelVolume": true,
+     "perChannelTips": true,
+     "partialPickup": null,
+     "source": {
+      "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+      "quote": "The L-FCA has 8 channels with independent vertical movement (Z-axis) for liquid detection, and automatic spacing between channels of 9-38 mm",
+      "document": "Tecan Fluent Product Catalog 402731"
+     },
+     "note": "perChannelVolume from Transfer Individual Volumes; same-pass behaviour not stated explicitly.",
+     "extraSources": [
+      {
+       "url": "https://www.tecan.com/hubfs/Knowledgebase/Manuals/Fluent%20Control/FluentControl%203.4%20Manual.pdf",
+       "quote": "The Transfer Individual Volumes command can be used to transfer different volumes from one labware to another.",
+       "document": "FluentControl Application Software Manual 399935 V2.4 §11.2.5"
+      },
+      {
+       "url": "https://www.tecan.com/hubfs/Knowledgebase/Manuals/Fluent%20Control/FluentControl%203.4%20Manual.pdf",
+       "quote": "If you do not click a tip, FluentControl uses all tips by default. To turn off or turn on a tip, click on it.",
+       "document": "FluentControl manual, Transfer Individual Volumes tip selection"
+      }
+     ]
+    },
+    "mca96": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "partial tip sets incl. a single tip (LLD works \"even if only one tip is picked up\")"
+     },
+     "source": {
+      "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+      "quote": "Capacitive liquid level detection is possible at any tip position, even if only one tip is picked up."
+     },
+     "note": "Partial pickup inferred from the LLD statement; which layouts (row/column/single) are allowed not detailed."
+    },
+    "mca384": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "row- or column-wise DiTi picking with the ADAPTER 1:1 COMBO 384 (30032060); not with plain 1:1 384 adapter"
+     },
+     "source": {
+      "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+      "quote": "Row- or column-wise DiTi picking possible.",
+      "document": "Fluent catalog, MCA 384 ADAPTER 1:1 COMBO 384 entry"
+     },
+     "note": "Depends on adapter fitted."
+    }
+   },
+   "software": {
+    "vendorSoftware": "FluentControl",
+    "noCode": {
+     "supported": true,
+     "name": "FluentControl",
+     "kind": "drag-and-drop",
+     "source": {
+      "url": "https://lifesciences.tecan.com/fluent-laboratory-automation-workstation?p=tab--4",
+      "quote": "Simple drag and drop commands to create powerful protocols"
+     }
+    },
+    "openApi": {
+     "supported": true,
+     "kind": "FluentControl API (external apps/scripts control FluentControl); SiLA 2 wrappers exist (third-party)",
+     "open": false,
+     "source": {
+      "url": "https://www.tecan.com/hubfs/Knowledgebase/Manuals/Fluent%20Control/FluentControl%203.4%20Manual.pdf",
+      "quote": "The FluentControl API allows external applications and scripts to control FluentControl."
+     },
+     "note": "Documented in the FluentControl manual but runs against licensed FluentControl; no PyLabRobot Fluent backend in repo tree. A GitLab SiLA2 wrapper with Python client exists (maintainer/endorsement unverified)."
+    }
+   }
+  },
+  "plr-tecan-evo": {
+   "heads": {
+    "liquid-liha": {
+     "mode": "independent",
+     "independentZ": true,
+     "variableSpacing": {
+      "supported": true,
+      "minMm": 9,
+      "maxMm": 38
+     },
+     "perChannelVolume": true,
+     "perChannelTips": true,
+     "partialPickup": null,
+     "source": {
+      "url": "https://www.richmondscientific.com/wp-content/uploads/2023/06/Product-specifications-Tecan-Freedom-EVO-2-150-Base-2111000042.pdf",
+      "quote": "independent Z movement; Handling arm (Liquid LiHa) Y-tip spacing on 4- and 8-tip arm – automatically 9 to 38 mm between tips",
+      "document": "Tecan Freedom EVO 2 150 product specifications (distributor-hosted, Richmond Scientific)"
+     },
+     "note": "2-tip arm: 9 to 418 mm. perChannelVolume: PLR EVO backend computes a per-channel aspirate move from each op's volume; Tecan brochure says individual channel control. perChannelTips from PLR use_channels.",
+     "extraSources": [
+      {
+       "url": "https://www.testmart.com/webdata/mfr_pdfs/TECAN/EVO.pdf",
+       "quote": "Individual channel control on all systems enables applications such as hit picking or access to irregularly shaped reagent vessels.",
+       "document": "Tecan Freedom EVO brochure (testmart-hosted copy)"
+      },
+      {
+       "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/legacy/liquid_handling/backends/tecan/EVO_backend.py",
+       "quote": "ys: absolute y spacing in 1/10 mm, must be between 90 and 380",
+       "document": "PyLabRobot EVO backend LiHa docstring"
+      },
+      {
+       "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/legacy/liquid_handling/liquid_handler.py",
+       "quote": "use_channels: List of channels to use. Index from front to back.",
+       "document": "PyLabRobot LiquidHandler.pick_up_tips docstring (MIT)"
+      }
+     ]
+    },
+    "air-liha": {
+     "mode": "independent",
+     "independentZ": true,
+     "variableSpacing": {
+      "supported": true,
+      "minMm": 9,
+      "maxMm": 38
+     },
+     "perChannelVolume": null,
+     "perChannelTips": null,
+     "partialPickup": null,
+     "source": {
+      "url": "https://www.richmondscientific.com/wp-content/uploads/2023/06/Product-specifications-Tecan-Freedom-EVO-2-150-Base-2111000042.pdf",
+      "quote": "4 or 8 pipetting channels; independent Z movement; Handling arm (Air LiHa) Y-tip spacing automatically 9 to 38 mm between tips",
+      "document": "Tecan Freedom EVO 2 150 product specifications"
+     },
+     "note": "perChannelVolume/Tips not confirmed for Air LiHa (null); PyLabRobot EVO backend targets the LiHa generally, air LiHa support not checked."
+    },
+    "mca96": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "one row or column at a time (8- or 12-channel mode)"
+     },
+     "source": {
+      "url": "https://www.tecan.com/customer-news/tecan-s-freedom-evo-now-comes-with-a-multichannel-arm-option-2276",
+      "quote": "can also operate as an 8 or 12 channel head as required, pipetting into one row or column at a time",
+      "document": "Tecan customer news, 12 July 2006: Freedom EVO MultiChannel Arm option (retrieved 2026-11-06, #102)"
+     },
+     "note": "Tecan states row/column operation (2006 launch news); how tips are loaded for it is not stated. Conflict: UniteLabs SDK docs say their driver has no partial-tip support for MCA96 (driver limitation, not hardware). PLR EVO backend has pick_up_tips96 (full rack only checked).",
+     "extraSources": [
+      {
+       "url": "https://www.bostonind.com/tecan-freedom-evo-configuration-guide-100-150-200",
+       "quote": "The MCA 96 head offers flexibility by functioning as an 8- or 12-channel pipette, selectively using a single row or column of disposable tips.",
+       "document": "Boston Industries (reseller) EVO configuration guide — NOT a Tecan document"
+      }
+     ]
+    },
+    "mca384": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "4×96 from a 384 box; single rows of 24 or columns of 16; 8/12-channel modes"
+     },
+     "source": {
+      "url": "https://www.selectscience.net/article/tecan-s-multichannel-arm-less-than-sup-greater-than-tm-less-than-sup-greater-than-384-automated-384-and-96-channel-pipetting-for-high-throughput-liquid-handling",
+      "quote": "It can even mount single rows of 24 or columns of 16 tips, utilizing all the tips in a single box",
+      "document": "Tecan MCA 384 article on SelectScience"
+     },
+     "note": "Article is Tecan product text on SelectScience; adapter-dependent."
+    }
+   },
+   "software": {
+    "vendorSoftware": "Freedom EVOware",
+    "noCode": {
+     "supported": true,
+     "name": "Freedom EVOware",
+     "kind": "drag-and-drop + pipetting wizards",
+     "source": {
+      "url": "https://www.testmart.com/webdata/mfr_pdfs/TECAN/EVO.pdf",
+      "quote": "Tecan’s Freedom EVOware® software guides users, at any skill level, in making protocols, via drag and drop, icon-driven implementation screens.",
+      "document": "Tecan Freedom EVO brochure (testmart copy)"
+     }
+    },
+    "openApi": {
+     "supported": true,
+     "kind": "PyLabRobot EVOBackend (Python, MIT, third-party); vendor: Freedom EVOware API (licensed)",
+     "open": true,
+     "source": {
+      "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/README.md",
+      "quote": "We currently support Hamilton STAR, Hamilton Vantage, Tecan Freedom EVO, and Opentrons OT-2 robots"
+     },
+     "extraSources": [
+      {
+       "url": "https://www.tecan.com/hubfs/Tecan_Journal/200601/Tecan_Journal_01_2006_More_power_to_your_workstation_with_Freedom_EVOware.pdf",
+       "quote": "The Application Programming Interface (API) enhancements give programmers the freedom to control Freedom EVOware remotely",
+       "document": "Tecan Journal 01/2006"
+      }
+     ],
+     "note": "\"open\" refers to PyLabRobot. EVOware API itself requires EVOware. Tecan says Freedom EVO sales ended 31 Dec 2025 (search result, not re-verified)."
+    }
+   }
+  },
+  "bravo": {
+   "heads": {
+    "96lt": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "Set Head Mode: full/partial rows or columns or a single corner barrel (Series III head; tip box stripper pins must be retracted for partial)"
+     },
+     "source": {
+      "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/VWorks%20User%20Guide/08_LiquidHandling.11.23.html",
+      "quote": "The first or last partial column or row of pipette channels • Multiple partial columns or rows of pipette channels • A single pipette barrel",
+      "document": "VWorks User Guide, Set Head Mode (Bravo)"
+     },
+     "note": "perChannelVolume not stated (null).",
+     "extraSources": [
+      {
+       "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Introduction.03.6.html",
+       "quote": "can dispense fluid into all the wells in a microplate simultaneously or into a single column, single row, or single well"
+      }
+     ]
+    },
+    "96st": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "Set Head Mode: full/partial rows or columns or a single corner barrel (Series III head; tip box stripper pins must be retracted for partial)"
+     },
+     "source": {
+      "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/VWorks%20User%20Guide/08_LiquidHandling.11.23.html",
+      "quote": "The first or last partial column or row of pipette channels • Multiple partial columns or rows of pipette channels • A single pipette barrel",
+      "document": "VWorks User Guide, Set Head Mode (Bravo)"
+     },
+     "note": "perChannelVolume not stated (null).",
+     "extraSources": [
+      {
+       "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Introduction.03.6.html",
+       "quote": "can dispense fluid into all the wells in a microplate simultaneously or into a single column, single row, or single well"
+      }
+     ]
+    },
+    "384st": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "Set Head Mode: full/partial rows or columns or a single corner barrel (Series III head; tip box stripper pins must be retracted for partial)"
+     },
+     "source": {
+      "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/VWorks%20User%20Guide/08_LiquidHandling.11.23.html",
+      "quote": "The first or last partial column or row of pipette channels • Multiple partial columns or rows of pipette channels • A single pipette barrel",
+      "document": "VWorks User Guide, Set Head Mode (Bravo)"
+     },
+     "note": "perChannelVolume not stated (null).",
+     "extraSources": [
+      {
+       "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Introduction.03.6.html",
+       "quote": "can dispense fluid into all the wells in a microplate simultaneously or into a single column, single row, or single well"
+      }
+     ]
+    }
+   },
+   "software": {
+    "vendorSoftware": "VWorks",
+    "noCode": {
+     "supported": true,
+     "name": "VWorks protocol editor",
+     "kind": "drag-and-drop task list",
+     "source": {
+      "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/VWorks%20User%20Guide/02_CreateProtocolBasic.04.16.html",
+      "quote": "Alternatively, drag a task from the Available Tasks area into the Protocol area."
+     }
+    },
+    "openApi": {
+     "supported": true,
+     "kind": "VWorks JavaScript scripting + VWorks4 ActiveX control",
+     "open": false,
+     "source": {
+      "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/VWorks%20User%20Guide/03_CreateProtocolAdv.05.04.html",
+      "quote": "This topic explains how to use JavaScript in the VWorks software ."
+     },
+     "note": "Scripting runs inside licensed VWorks; ActiveX control listed in the VWorks guide index (page content not retrieved). No PyLabRobot Bravo backend found."
+    }
+   }
+  },
+  "firefly": {
+   "heads": {
+    "firefly-col8": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "column of 8 strip tips (96 format) or 16 (384 format); one or more columns"
+     },
+     "source": {
+      "url": "https://www.sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+      "quote": "384 and 96 tips for full plates, or columns of 16 (384 format) and 8 (96 format) strip tips, for working with partial plates"
+     },
+     "note": "Same single pipetting head as the array; column mode = strip tips. perChannelVolume not stated (null).",
+     "extraSources": [
+      {
+       "url": "https://www.sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+       "quote": "You can use one or more columns of 96 or 384 tips."
+      }
+     ]
+    },
+    "firefly-array96": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "head also takes columns of strip tips instead of a full array"
+     },
+     "source": {
+      "url": "https://www.sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+      "quote": "384 and 96 tips for full plates, or columns of 16 (384 format) and 8 (96 format) strip tips, for working with partial plates"
+     },
+     "note": "perChannelVolume not stated (null)."
+    }
+   },
+   "software": {
+    "vendorSoftware": "firefly software",
+    "noCode": {
+     "supported": true,
+     "name": "firefly software",
+     "kind": "visual editor",
+     "source": {
+      "url": "https://www.sptlabtech.com/news/spt-labtech-launches-firefly-for-ldt",
+      "quote": "Protocols can be built using the intuitive and visual user interface, with no coding knowledge required."
+     }
+    },
+    "openApi": {
+     "supported": null,
+     "kind": null,
+     "open": null,
+     "source": null,
+     "note": "No public API/SDK found for firefly. User guide says protocols are linear (no conditional branching)."
+    }
+   }
+  },
+  "firefly-plus": {
+   "heads": {
+    "firefly-plus-col8": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "column of 8 strip tips (96 format) or 16 (384 format); one or more columns"
+     },
+     "source": {
+      "url": "https://www.sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+      "quote": "384 and 96 tips for full plates, or columns of 16 (384 format) and 8 (96 format) strip tips, for working with partial plates"
+     },
+     "note": "Sources are the firefly user guide; assumed to apply to firefly+ (same head). Same single pipetting head as the array; column mode = strip tips. perChannelVolume not stated (null).",
+     "extraSources": [
+      {
+       "url": "https://www.sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+       "quote": "You can use one or more columns of 96 or 384 tips."
+      }
+     ]
+    },
+    "firefly-plus-array96": {
+     "mode": "fixed-partial",
+     "independentZ": false,
+     "variableSpacing": {
+      "supported": false,
+      "minMm": null,
+      "maxMm": null
+     },
+     "perChannelVolume": null,
+     "perChannelTips": false,
+     "partialPickup": {
+      "supported": true,
+      "detail": "head also takes columns of strip tips instead of a full array"
+     },
+     "source": {
+      "url": "https://www.sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+      "quote": "384 and 96 tips for full plates, or columns of 16 (384 format) and 8 (96 format) strip tips, for working with partial plates"
+     },
+     "note": "Sources are the firefly user guide; assumed to apply to firefly+ (same head). perChannelVolume not stated (null)."
+    }
+   },
+   "software": {
+    "vendorSoftware": "firefly software",
+    "noCode": {
+     "supported": true,
+     "name": "firefly software",
+     "kind": "visual editor",
+     "source": {
+      "url": "https://www.sptlabtech.com/news/spt-labtech-launches-firefly-for-ldt",
+      "quote": "Protocols can be built using the intuitive and visual user interface, with no coding knowledge required."
+     }
+    },
+    "openApi": {
+     "supported": null,
+     "kind": null,
+     "open": null,
+     "source": null,
+     "note": "No public API/SDK found for firefly. User guide says protocols are linear (no conditional branching)."
+    },
+    "note": "firefly+ software assumed same as firefly (source is the firefly for LDT release)."
+   }
+  },
+  "andrew": {
+   "heads": {
+    "aa-1-ch-10": {
+     "mode": "independent",
+     "independentZ": null,
+     "variableSpacing": null,
+     "perChannelVolume": null,
+     "perChannelTips": null,
+     "partialPickup": null,
+     "source": {
+      "url": "https://support.waters.com/KB_Inst/Other/WKB122208_What_Pipettors_and_Pipet_Tips_Are_Supported_on_Andrew",
+      "quote": "Only Pipettes manufactured by Sartorius that say Waters on them are supported for use on Andrew+ and Pipette+.",
+      "document": "existing source from content/pipettes.json"
+     },
+     "note": "Applies to aa-1-ch-*. Single-channel electronic pipette; independence trivial, per-channel fields n/a."
+    },
+    "aa-1-ch-120": {
+     "mode": "independent",
+     "independentZ": null,
+     "variableSpacing": null,
+     "perChannelVolume": null,
+     "perChannelTips": null,
+     "partialPickup": null,
+     "source": {
+      "url": "https://support.waters.com/KB_Inst/Other/WKB122208_What_Pipettors_and_Pipet_Tips_Are_Supported_on_Andrew",
+      "quote": "Only Pipettes manufactured by Sartorius that say Waters on them are supported for use on Andrew+ and Pipette+.",
+      "document": "existing source from content/pipettes.json"
+     },
+     "note": "Applies to aa-1-ch-*. Single-channel electronic pipette; independence trivial, per-channel fields n/a."
+    },
+    "aa-1-ch-300": {
+     "mode": "independent",
+     "independentZ": null,
+     "variableSpacing": null,
+     "perChannelVolume": null,
+     "perChannelTips": null,
+     "partialPickup": null,
+     "source": {
+      "url": "https://support.waters.com/KB_Inst/Other/WKB122208_What_Pipettors_and_Pipet_Tips_Are_Supported_on_Andrew",
+      "quote": "Only Pipettes manufactured by Sartorius that say Waters on them are supported for use on Andrew+ and Pipette+.",
+      "document": "existing source from content/pipettes.json"
+     },
+     "note": "Applies to aa-1-ch-*. Single-channel electronic pipette; independence trivial, per-channel fields n/a."
+    },
+    "aa-1-ch-1000": {
+     "mode": "independent",
+     "independentZ": null,
+     "variableSpacing": null,
+     "perChannelVolume": null,
+     "perChannelTips": null,
+     "partialPickup": null,
+     "source": {
+      "url": "https://support.waters.com/KB_Inst/Other/WKB122208_What_Pipettors_and_Pipet_Tips_Are_Supported_on_Andrew",
+      "quote": "Only Pipettes manufactured by Sartorius that say Waters on them are supported for use on Andrew+ and Pipette+.",
+      "document": "existing source from content/pipettes.json"
+     },
+     "note": "Applies to aa-1-ch-*. Single-channel electronic pipette; independence trivial, per-channel fields n/a."
+    },
+    "aa-1-ch-5000": {
+     "mode": "independent",
+     "independentZ": null,
+     "variableSpacing": null,
+     "perChannelVolume": null,
+     "perChannelTips": null,
+     "partialPickup": null,
+     "source": {
+      "url": "https://support.waters.com/KB_Inst/Other/WKB122208_What_Pipettors_and_Pipet_Tips_Are_Supported_on_Andrew",
+      "quote": "Only Pipettes manufactured by Sartorius that say Waters on them are supported for use on Andrew+ and Pipette+.",
+      "document": "existing source from content/pipettes.json"
+     },
+     "note": "Applies to aa-1-ch-*. Single-channel electronic pipette; independence trivial, per-channel fields n/a."
+    },
+    "aa-1-ch-10000": {
+     "mode": "independent",
+     "independentZ": null,
+     "variableSpacing": null,
+     "perChannelVolume": null,
+     "perChannelTips": null,
+     "partialPickup": null,
+     "source": {
+      "url": "https://support.waters.com/KB_Inst/Other/WKB122208_What_Pipettors_and_Pipet_Tips_Are_Supported_on_Andrew",
+      "quote": "Only Pipettes manufactured by Sartorius that say Waters on them are supported for use on Andrew+ and Pipette+.",
+      "document": "existing source from content/pipettes.json"
+     },
+     "note": "Applies to aa-1-ch-*. Single-channel electronic pipette; independence trivial, per-channel fields n/a."
+    },
+    "aa-8-ch-10": {
+     "mode": null,
+     "independentZ": null,
+     "variableSpacing": null,
+     "perChannelVolume": null,
+     "perChannelTips": null,
+     "partialPickup": null,
+     "source": {
+      "url": "https://www.waters.com/nextgen/en/shop/liquid-handling/186009607-8-channel-andrew-alliance-pipette-10-300--l.html",
+      "quote": "Andrew Alliance Bluetooth Electronic 8-channel Pipettes provide accurate and precise pipetting for use with Andrew+ the pipetting robot",
+      "document": "Waters product page 186009607"
+     },
+     "note": "Mode not recorded: fixed pitch is likely for a handheld multichannel but no source states it. Applies to aa-8-ch-*. Page says \"Based on the Sartorius Picus Pipette\" (handheld multichannel). Fixed pitch / single piston NOT stated; mode \"fixed\" is an inference from the handheld multichannel design. Partial tip loading on Andrew+ not found (null)."
+    },
+    "aa-8-ch-120": {
+     "mode": null,
+     "independentZ": null,
+     "variableSpacing": null,
+     "perChannelVolume": null,
+     "perChannelTips": null,
+     "partialPickup": null,
+     "source": {
+      "url": "https://www.waters.com/nextgen/en/shop/liquid-handling/186009607-8-channel-andrew-alliance-pipette-10-300--l.html",
+      "quote": "Andrew Alliance Bluetooth Electronic 8-channel Pipettes provide accurate and precise pipetting for use with Andrew+ the pipetting robot",
+      "document": "Waters product page 186009607"
+     },
+     "note": "Mode not recorded: fixed pitch is likely for a handheld multichannel but no source states it. Applies to aa-8-ch-*. Page says \"Based on the Sartorius Picus Pipette\" (handheld multichannel). Fixed pitch / single piston NOT stated; mode \"fixed\" is an inference from the handheld multichannel design. Partial tip loading on Andrew+ not found (null)."
+    },
+    "aa-8-ch-300": {
+     "mode": null,
+     "independentZ": null,
+     "variableSpacing": null,
+     "perChannelVolume": null,
+     "perChannelTips": null,
+     "partialPickup": null,
+     "source": {
+      "url": "https://www.waters.com/nextgen/en/shop/liquid-handling/186009607-8-channel-andrew-alliance-pipette-10-300--l.html",
+      "quote": "Andrew Alliance Bluetooth Electronic 8-channel Pipettes provide accurate and precise pipetting for use with Andrew+ the pipetting robot",
+      "document": "Waters product page 186009607"
+     },
+     "note": "Mode not recorded: fixed pitch is likely for a handheld multichannel but no source states it. Applies to aa-8-ch-*. Page says \"Based on the Sartorius Picus Pipette\" (handheld multichannel). Fixed pitch / single piston NOT stated; mode \"fixed\" is an inference from the handheld multichannel design. Partial tip loading on Andrew+ not found (null)."
+    },
+    "aa-8-ch-1200": {
+     "mode": null,
+     "independentZ": null,
+     "variableSpacing": null,
+     "perChannelVolume": null,
+     "perChannelTips": null,
+     "partialPickup": null,
+     "source": {
+      "url": "https://www.waters.com/nextgen/en/shop/liquid-handling/186009607-8-channel-andrew-alliance-pipette-10-300--l.html",
+      "quote": "Andrew Alliance Bluetooth Electronic 8-channel Pipettes provide accurate and precise pipetting for use with Andrew+ the pipetting robot",
+      "document": "Waters product page 186009607"
+     },
+     "note": "Mode not recorded: fixed pitch is likely for a handheld multichannel but no source states it. Applies to aa-8-ch-*. Page says \"Based on the Sartorius Picus Pipette\" (handheld multichannel). Fixed pitch / single piston NOT stated; mode \"fixed\" is an inference from the handheld multichannel design. Partial tip loading on Andrew+ not found (null)."
+    }
+   },
+   "software": {
+    "vendorSoftware": "OneLab",
+    "noCode": {
+     "supported": true,
+     "name": "OneLab",
+     "kind": "drag-and-drop (browser-based)",
+     "source": {
+      "url": "https://www.waters.com/nextgen/us/en/products/laboratory-automation-and-equipment/lab-automation-software.html",
+      "quote": "Build liquid handling methods visually using OneLab's graphical editor. Drag steps, define volumes, assign labware, set parameters"
+     }
+    },
+    "openApi": {
+     "supported": null,
+     "kind": null,
+     "open": null,
+     "source": {
+      "url": "https://www.waters.com/nextgen/us/en/products/laboratory-automation-and-equipment/lab-automation-software.html",
+      "quote": "No scripting."
+     },
+     "note": "No public API/SDK found; Waters markets OneLab as no-scripting. Protocol library is described as open-source, but that is methods, not an API."
+    }
+   }
+  },
+  "beckman-biomek-i5": {
+   "heads": {},
+   "note": "Added with the widened catalogue (#167). No head definitions in content/pipettes.json yet, so channel modes are not recorded; the catalogue record gives the published channel description.",
+   "software": {
+    "vendorSoftware": "Biomek Software V6",
+    "noCode": {
+     "supported": null,
+     "note": "No no-code editor statement found on the fetched manufacturer pages (checked 2026-11-09)."
+    },
+    "openApi": {
+     "supported": true,
+     "kind": "Biomek Software REST API",
+     "open": false,
+     "source": {
+      "url": "https://www.beckman.com/liquid-handlers/biomek-i7/features",
+      "quote": "REST API enables external software control"
+     }
+    }
+   }
+  },
+  "tecan-veya": {
+   "heads": {},
+   "note": "Added with the widened catalogue (#167). No head definitions in content/pipettes.json yet, so channel modes are not recorded; the catalogue record gives the published channel description.",
+   "software": {
+    "vendorSoftware": "vControl",
+    "noCode": {
+     "supported": null,
+     "note": "No no-code editor statement found on the fetched manufacturer pages (checked 2026-11-09)."
+    },
+    "openApi": {
+     "supported": null,
+     "note": "No API statement found on the fetched manufacturer pages (checked 2026-11-09)."
+    }
+   }
+  },
+  "dynamic-devices-lynx": {
+   "heads": {},
+   "note": "Added with the widened catalogue (#167). No head definitions in content/pipettes.json yet, so channel modes are not recorded; the catalogue record gives the published channel description.",
+   "software": {
+    "vendorSoftware": "Method Manager 4.0",
+    "noCode": {
+     "supported": null,
+     "note": "No no-code editor statement found on the fetched manufacturer pages (checked 2026-11-09)."
+    },
+    "openApi": {
+     "supported": true,
+     "kind": "Method Manager API",
+     "open": false,
+     "source": {
+      "url": "https://dynamicdevices.com/method-manager-4-0/",
+      "quote": "API pathway for communication with third-party devices"
+     }
+    }
+   }
+  },
+  "revvity-sciclone-g3-ngsx-iq": {
+   "heads": {},
+   "note": "Added with the widened catalogue (#167). No head definitions in content/pipettes.json yet, so channel modes are not recorded; the catalogue record gives the published channel description.",
+   "software": {
+    "vendorSoftware": "Not named in the fetched Revvity catalogue",
+    "noCode": {
+     "supported": null,
+     "note": "No no-code editor statement found on the fetched manufacturer pages (checked 2026-11-09)."
+    },
+    "openApi": {
+     "supported": null,
+     "note": "No API statement found on the fetched manufacturer pages (checked 2026-11-09)."
+    }
+   }
+  },
+  "eppendorf-epmotion-5075": {
+   "heads": {},
+   "note": "Added with the widened catalogue (#167). No head definitions in content/pipettes.json yet, so channel modes are not recorded; the catalogue record gives the published channel description.",
+   "software": {
+    "vendorSoftware": "epBlue",
+    "noCode": {
+     "supported": null,
+     "note": "No no-code editor statement found on the fetched manufacturer pages (checked 2026-11-09)."
+    },
+    "openApi": {
+     "supported": null,
+     "note": "No API statement found on the fetched manufacturer pages (checked 2026-11-09)."
+    }
+   }
+  },
+  "mgi-mgisp-960": {
+   "heads": {},
+   "note": "Added with the widened catalogue (#167). No head definitions in content/pipettes.json yet, so channel modes are not recorded; the catalogue record gives the published channel description.",
+   "software": {
+    "vendorSoftware": "Not named in the fetched MGI sources",
+    "noCode": {
+     "supported": null,
+     "note": "No no-code editor statement found on the fetched manufacturer pages (checked 2026-11-09)."
+    },
+    "openApi": {
+     "supported": null,
+     "note": "No API statement found on the fetched manufacturer pages (checked 2026-11-09)."
+    }
+   }
+  },
+  "analytik-jena-cybio-felix": {
+   "heads": {},
+   "note": "Added with the widened catalogue (#167). No head definitions in content/pipettes.json yet, so channel modes are not recorded; the catalogue record gives the published channel description.",
+   "software": {
+    "vendorSoftware": "CyBio Composer",
+    "noCode": {
+     "supported": null,
+     "note": "No no-code editor statement found on the fetched manufacturer pages (checked 2026-11-09)."
+    },
+    "openApi": {
+     "supported": null,
+     "note": "No API statement found on the fetched manufacturer pages (checked 2026-11-09)."
+    }
+   }
+  },
+  "integra-assist-plus": {
+   "heads": {},
+   "note": "Added with the widened catalogue (#167). No head definitions in content/pipettes.json yet, so channel modes are not recorded; the catalogue record gives the published channel description.",
+   "software": {
+    "vendorSoftware": "VIALAB",
+    "noCode": {
+     "supported": null,
+     "note": "No no-code editor statement found on the fetched manufacturer pages (checked 2026-11-09)."
+    },
+    "openApi": {
+     "supported": null,
+     "note": "No API statement found on the fetched manufacturer pages (checked 2026-11-09)."
+    }
+   }
+  },
+  "formulatrix-fast": {
+   "heads": {},
+   "note": "Added with the widened catalogue (#167). No head definitions in content/pipettes.json yet, so channel modes are not recorded; the catalogue record gives the published channel description.",
+   "software": {
+    "vendorSoftware": "F.A.S.T. browser-based software",
+    "noCode": {
+     "supported": null,
+     "note": "No no-code editor statement found on the fetched manufacturer pages (checked 2026-11-09)."
+    },
+    "openApi": {
+     "supported": true,
+     "kind": "Network API",
+     "open": false,
+     "source": {
+      "url": "https://formulatrix.com/liquid-handling-systems/fast-liquid-handler/",
+      "quote": "provides a network API, enabling seamless integration with third-party automation platforms"
+     }
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,1421 @@
+{
+  "version": "2026-11-06.3",
+  "about": "PyLabRobot script skeletons (#99). Everything instrument-specific for lib/pylabrobot-export.js: the Python call shapes for each PyLabRobot API style (dialect), and for each handler its deck layout, labware and which head object (and its PyLabRobot class) runs which planner head. Every PyLabRobot name the skeleton calls is listed in 'api' with the file and line that defines it at 'commit'; scripts/check-pylabrobot-api.mjs re-finds each one at a commit (and --write updates the lines), and tests fail if a generated script calls a name not listed here. Resource factories come only from content/pylabrobot-labware.json at the same commit. Each handler's 'simulator' names the PyLabRobot simulation backend that lib/pylabrobot-export.js uses with {simulate: true}, and 'simulation' holds the lines a simulated script adds (tracking on, pauses and waits logged, each step reported); scripts/simulate-pylabrobot.mjs runs those scripts in CI (#103). A clean simulated run shows the deck, labware, tips and volumes fit PyLabRobot's model, not that the wet-lab method works.",
+  "commit": "7779f506d12755f5f274b4c5cab4d095f4fccb62",
+  "pin": {
+    "file": "content/registry.js",
+    "line": 9
+  },
+  "api": [
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": null,
+      "name": "LiquidHandler",
+      "kind": "class",
+      "file": "pylabrobot/legacy/liquid_handling/liquid_handler.py",
+      "line": 341,
+      "import": "pylabrobot.legacy.liquid_handling"
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "LiquidHandler",
+      "name": "setup",
+      "kind": "def",
+      "file": "pylabrobot/legacy/liquid_handling/liquid_handler.py",
+      "line": 408
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "Machine",
+      "name": "stop",
+      "kind": "def",
+      "file": "pylabrobot/legacy/machines/machine.py",
+      "line": 92
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "LiquidHandler",
+      "name": "pick_up_tips",
+      "kind": "def",
+      "file": "pylabrobot/legacy/liquid_handling/liquid_handler.py",
+      "line": 660
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "LiquidHandler",
+      "name": "aspirate",
+      "kind": "def",
+      "file": "pylabrobot/legacy/liquid_handling/liquid_handler.py",
+      "line": 1124
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "LiquidHandler",
+      "name": "dispense",
+      "kind": "def",
+      "file": "pylabrobot/legacy/liquid_handling/liquid_handler.py",
+      "line": 1316
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "LiquidHandler",
+      "name": "discard_tips",
+      "kind": "def",
+      "file": "pylabrobot/legacy/liquid_handling/liquid_handler.py",
+      "line": 1028
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "LiquidHandler",
+      "name": "pick_up_tips96",
+      "kind": "def",
+      "file": "pylabrobot/legacy/liquid_handling/liquid_handler.py",
+      "line": 1694
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "LiquidHandler",
+      "name": "aspirate96",
+      "kind": "def",
+      "file": "pylabrobot/legacy/liquid_handling/liquid_handler.py",
+      "line": 1949
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "LiquidHandler",
+      "name": "dispense96",
+      "kind": "def",
+      "file": "pylabrobot/legacy/liquid_handling/liquid_handler.py",
+      "line": 2105
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "LiquidHandler",
+      "name": "discard_tips96",
+      "kind": "def",
+      "file": "pylabrobot/legacy/liquid_handling/liquid_handler.py",
+      "line": 1907
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": null,
+      "name": "STARBackend",
+      "kind": "class",
+      "file": "pylabrobot/legacy/liquid_handling/backends/hamilton/STAR_backend.py",
+      "line": 640,
+      "import": "pylabrobot.legacy.liquid_handling.backends"
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": null,
+      "name": "STARLetDeck",
+      "kind": "def",
+      "file": "pylabrobot/resources/hamilton/star_decks.py",
+      "line": 209,
+      "import": "pylabrobot.resources.hamilton.star_decks"
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": null,
+      "name": "STARDeck",
+      "kind": "def",
+      "file": "pylabrobot/resources/hamilton/star_decks.py",
+      "line": 237,
+      "import": "pylabrobot.resources.hamilton.star_decks"
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "HamiltonDeck",
+      "name": "assign_child_resource",
+      "kind": "def",
+      "file": "pylabrobot/resources/hamilton/hamilton_decks.py",
+      "line": 529
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "Carrier",
+      "name": "__setitem__",
+      "kind": "def",
+      "file": "pylabrobot/resources/carrier.py",
+      "line": 99,
+      "syntax": "carrier[site] = resource"
+    },
+    {
+      "dialects": [
+        "liquid-handler",
+        "head-objects"
+      ],
+      "owner": "ItemizedResource",
+      "name": "get_item",
+      "kind": "def",
+      "file": "pylabrobot/resources/itemized_resource.py",
+      "line": 181
+    },
+    {
+      "dialects": [
+        "liquid-handler",
+        "head-objects"
+      ],
+      "owner": "ItemizedResource",
+      "name": "get_all_items",
+      "kind": "def",
+      "file": "pylabrobot/resources/itemized_resource.py",
+      "line": 451
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": null,
+      "name": "Flex",
+      "kind": "class",
+      "file": "pylabrobot/opentrons/flex/flex.py",
+      "line": 110,
+      "import": "pylabrobot.opentrons"
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "Flex",
+      "name": "setup",
+      "kind": "def",
+      "file": "pylabrobot/opentrons/flex/flex.py",
+      "line": 261
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "Flex",
+      "name": "stop",
+      "kind": "def",
+      "file": "pylabrobot/opentrons/flex/flex.py",
+      "line": 422
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "Flex",
+      "name": "left",
+      "kind": "attr",
+      "file": "pylabrobot/opentrons/flex/flex.py",
+      "line": 192
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "Flex",
+      "name": "right",
+      "kind": "attr",
+      "file": "pylabrobot/opentrons/flex/flex.py",
+      "line": 193
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "Flex",
+      "name": "head96",
+      "kind": "attr",
+      "file": "pylabrobot/opentrons/flex/flex.py",
+      "line": 194
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": null,
+      "name": "FlexDeck",
+      "kind": "class",
+      "file": "pylabrobot/resources/opentrons/flex_deck.py",
+      "line": 72,
+      "import": "pylabrobot.resources.opentrons"
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "FlexDeck",
+      "name": "assign_child_at_slot",
+      "kind": "def",
+      "file": "pylabrobot/resources/opentrons/flex_deck.py",
+      "line": 207
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "FlexDeck",
+      "name": "get_trash_area",
+      "kind": "def",
+      "file": "pylabrobot/resources/opentrons/flex_deck.py",
+      "line": 243
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "FlexDeck",
+      "name": "get_trash_area96",
+      "kind": "def",
+      "file": "pylabrobot/resources/opentrons/flex_deck.py",
+      "line": 250
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "FlexHead1",
+      "name": "pick_up_tips",
+      "kind": "def",
+      "file": "pylabrobot/opentrons/flex/flex_head.py",
+      "line": 1190
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "FlexHead1",
+      "name": "aspirate",
+      "kind": "def",
+      "file": "pylabrobot/opentrons/flex/flex_head.py",
+      "line": 1285
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "FlexHead1",
+      "name": "dispense",
+      "kind": "def",
+      "file": "pylabrobot/opentrons/flex/flex_head.py",
+      "line": 1310
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "FlexHead1",
+      "name": "discard_tips",
+      "kind": "def",
+      "file": "pylabrobot/opentrons/flex/flex_head.py",
+      "line": 1280
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "FlexHead8",
+      "name": "pick_up_tips",
+      "kind": "def",
+      "file": "pylabrobot/opentrons/flex/flex_head.py",
+      "line": 1488
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "FlexHead8",
+      "name": "aspirate",
+      "kind": "def",
+      "file": "pylabrobot/opentrons/flex/flex_head.py",
+      "line": 1850
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "FlexHead8",
+      "name": "dispense",
+      "kind": "def",
+      "file": "pylabrobot/opentrons/flex/flex_head.py",
+      "line": 2139
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "FlexHead8",
+      "name": "mix",
+      "kind": "def",
+      "file": "pylabrobot/opentrons/flex/flex_head.py",
+      "line": 2074
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "FlexHead8",
+      "name": "discard_tips",
+      "kind": "def",
+      "file": "pylabrobot/opentrons/flex/flex_head.py",
+      "line": 1820
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "FlexHead96",
+      "name": "pick_up_tips",
+      "kind": "def",
+      "file": "pylabrobot/opentrons/flex/flex_head.py",
+      "line": 2769
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "FlexHead96",
+      "name": "aspirate",
+      "kind": "def",
+      "file": "pylabrobot/opentrons/flex/flex_head.py",
+      "line": 2879
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "FlexHead96",
+      "name": "dispense",
+      "kind": "def",
+      "file": "pylabrobot/opentrons/flex/flex_head.py",
+      "line": 2921
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "FlexHead96",
+      "name": "discard_tips",
+      "kind": "def",
+      "file": "pylabrobot/opentrons/flex/flex_head.py",
+      "line": 2874
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "LiquidHandler",
+      "name": "move_plate",
+      "kind": "def",
+      "file": "pylabrobot/legacy/liquid_handling/liquid_handler.py",
+      "line": 2704
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "STARBackend",
+      "name": "pick_up_resource",
+      "kind": "def",
+      "file": "pylabrobot/legacy/liquid_handling/backends/hamilton/STAR_backend.py",
+      "line": 3860,
+      "syntax": "move_plate(..., use_arm=\"core\") selects the CO-RE gripper",
+      "with": "use_arm="
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "Carrier",
+      "name": "__getitem__",
+      "kind": "def",
+      "file": "pylabrobot/resources/carrier.py",
+      "line": 95,
+      "syntax": "carrier[site]",
+      "with": "_carrier\"\\]\\[\\d+\\]"
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": null,
+      "name": "InhecoTECControlBox",
+      "kind": "class",
+      "file": "pylabrobot/inheco/control_box.py",
+      "line": 7,
+      "import": "pylabrobot.inheco"
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "InhecoTECControlBox",
+      "name": "setup",
+      "kind": "def",
+      "file": "pylabrobot/inheco/control_box.py",
+      "line": 21,
+      "with": "InhecoTECControlBox\\("
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "InhecoTECControlBox",
+      "name": "stop",
+      "kind": "def",
+      "file": "pylabrobot/inheco/control_box.py",
+      "line": 27,
+      "with": "InhecoTECControlBox\\("
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": null,
+      "name": "inheco_thermoshake",
+      "kind": "def",
+      "file": "pylabrobot/inheco/thermoshake.py",
+      "line": 107,
+      "import": "pylabrobot.inheco"
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "InhecoThermoShake",
+      "name": "start_shaking",
+      "kind": "def",
+      "file": "pylabrobot/inheco/thermoshake.py",
+      "line": 67
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "InhecoThermoShake",
+      "name": "stop_shaking",
+      "kind": "def",
+      "file": "pylabrobot/inheco/thermoshake.py",
+      "line": 47
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "InhecoTemperatureController",
+      "name": "set_temperature",
+      "kind": "def",
+      "file": "pylabrobot/inheco/temperature_controller.py",
+      "line": 21
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "Flex",
+      "name": "gripper",
+      "kind": "attr",
+      "file": "pylabrobot/opentrons/flex/flex.py",
+      "line": 195
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "FlexGripper",
+      "name": "move_labware",
+      "kind": "def",
+      "file": "pylabrobot/opentrons/flex/flex_gripper.py",
+      "line": 76
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": null,
+      "name": "STARChatterboxBackend",
+      "kind": "class",
+      "file": "pylabrobot/legacy/liquid_handling/backends/hamilton/STAR_chatterbox.py",
+      "line": 73,
+      "import": "pylabrobot.legacy.liquid_handling.backends.hamilton.STAR_chatterbox"
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": null,
+      "name": "make_api",
+      "kind": "def",
+      "file": "pylabrobot/opentrons/flex/tests/mock_utils.py",
+      "line": 29,
+      "import": "pylabrobot.opentrons.flex.tests.mock_utils"
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": null,
+      "name": "make_flex",
+      "kind": "def",
+      "file": "pylabrobot/opentrons/flex/tests/mock_utils.py",
+      "line": 75,
+      "import": "pylabrobot.opentrons.flex.tests.mock_utils"
+    },
+    {
+      "dialects": [
+        "liquid-handler",
+        "head-objects"
+      ],
+      "owner": null,
+      "name": "set_tip_tracking",
+      "kind": "def",
+      "file": "pylabrobot/resources/tip_tracking.py",
+      "line": 8,
+      "import": "pylabrobot.resources"
+    },
+    {
+      "dialects": [
+        "liquid-handler",
+        "head-objects"
+      ],
+      "owner": null,
+      "name": "set_volume_tracking",
+      "kind": "def",
+      "file": "pylabrobot/resources/volume_tracker.py",
+      "line": 17,
+      "import": "pylabrobot.resources"
+    },
+    {
+      "dialects": [
+        "liquid-handler",
+        "head-objects"
+      ],
+      "owner": "VolumeTracker",
+      "name": "set_volume",
+      "kind": "def",
+      "file": "pylabrobot/resources/volume_tracker.py",
+      "line": 69
+    },
+    {
+      "dialects": [
+        "liquid-handler",
+        "head-objects"
+      ],
+      "owner": "Container",
+      "name": "tracker",
+      "kind": "attr",
+      "file": "pylabrobot/resources/container.py",
+      "line": 87
+    },
+    {
+      "dialects": [
+        "liquid-handler",
+        "head-objects"
+      ],
+      "owner": "Container",
+      "name": "max_volume",
+      "kind": "attr",
+      "file": "pylabrobot/resources/container.py",
+      "line": 86
+    },
+    {
+      "dialects": [
+        "liquid-handler",
+        "head-objects"
+      ],
+      "owner": "TipRack",
+      "name": "fill",
+      "kind": "def",
+      "file": "pylabrobot/resources/tip_rack.py",
+      "line": 450
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "PlateAdapter",
+      "name": "assign_child_resource",
+      "kind": "def",
+      "file": "pylabrobot/resources/plate_adapter.py",
+      "line": 169
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "FlexHead8",
+      "name": "aspirate_container",
+      "kind": "def",
+      "file": "pylabrobot/opentrons/flex/flex_head.py",
+      "line": 2287
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "FlexHead8",
+      "name": "dispense_container",
+      "kind": "def",
+      "file": "pylabrobot/opentrons/flex/flex_head.py",
+      "line": 2322
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "Resource",
+      "name": "unassign",
+      "kind": "def",
+      "file": "pylabrobot/resources/resource.py",
+      "line": 733
+    },
+    {
+      "dialects": [
+        "liquid-handler"
+      ],
+      "owner": "Resource",
+      "name": "assign_child_resource",
+      "kind": "def",
+      "file": "pylabrobot/resources/resource.py",
+      "line": 458
+    },
+    {
+      "dialects": [
+        "head-objects"
+      ],
+      "owner": "FlexDeck",
+      "name": "get_slot",
+      "kind": "def",
+      "file": "pylabrobot/resources/opentrons/flex_deck.py",
+      "line": 231
+    },
+    {
+      "dialects": [
+        "liquid-handler",
+        "head-objects"
+      ],
+      "owner": "VolumeTracker",
+      "name": "get_used_volume",
+      "kind": "def",
+      "file": "pylabrobot/resources/volume_tracker.py",
+      "line": 91
+    }
+  ],
+  "dialects": {
+    "liquid-handler": {
+      "label": "PyLabRobot LiquidHandler (v0 API)",
+      "robot": [
+        "robot = LiquidHandler(backend={backend}(), deck=deck)"
+      ],
+      "setup": "await robot.setup()",
+      "stop": "await robot.stop()",
+      "deck": {
+        "create": "deck = {deck}()",
+        "carrier": "{var} = {factory}(name=\"{var}\")",
+        "place": "{carrier}[{site}] = {res}",
+        "assign": "deck.assign_child_resource({carrier}, rails={rails})",
+        "adapt": "{adapter}.assign_child_resource({res})"
+      },
+      "trash": [],
+      "trash96": [],
+      "styles": {
+        "channels": {
+          "loop": [
+            "for start in range(0, SAMPLES, {n}):",
+            "    wells = lw[\"plate\"].get_all_items()[start:start + {n}]",
+            "    use = list(range(len(wells)))"
+          ],
+          "pickup": "await {head}.pick_up_tips(next_tips(lw, {size}, len(wells)), use_channels=use)",
+          "aspirate": "await {head}.aspirate({src}, vols={vols}, use_channels=use)",
+          "dispense": "await {head}.dispense({dst}, vols={vols}, use_channels=use)",
+          "discard": "await {head}.discard_tips(use_channels=use)",
+          "vols": "[{volume}] * len(wells)",
+          "irregular": {
+            "vols": "per_well[start:start + len(wells)]"
+          },
+          "targets": {
+            "plate": "wells",
+            "reagent": "[lw[{reservoir}].get_item({k})] * len(wells)",
+            "waste": "[lw[\"waste\"].get_item(0)] * len(wells)",
+            "dest": "lw[\"dest\"].get_all_items()[start:start + len(wells)]"
+          },
+          "draw": {
+            "source": "lw[{reservoir}].get_item({k})"
+          },
+          "dump": {
+            "target": "lw[\"waste\"].get_item(0)"
+          },
+          "group": "start // {n}"
+        },
+        "plate": {
+          "loop": [],
+          "pickup": "await {head}.pick_up_tips96(next_rack(lw, {size}))",
+          "aspirate": "await {head}.aspirate96({src}, volume={volume})",
+          "dispense": "await {head}.dispense96({dst}, volume={volume})",
+          "discard": "await {head}.discard_tips96()",
+          "targets": {
+            "plate": "lw[\"plate\"]",
+            "reagent": "lw[{trough}]",
+            "waste": "lw[\"waste\"]",
+            "dest": "lw[\"dest\"]"
+          },
+          "draw": {
+            "source": "lw[{trough}].get_item(0)"
+          },
+          "dump": {
+            "target": "lw[\"waste\"].get_item(0)"
+          },
+          "group": "0"
+        }
+      },
+      "put": [
+        "async def put(robot, lw, res, to):",
+        "    \"\"\"A person moves a plate: the deck model follows it. to is a carrier site or holder, or None (off the deck).\"\"\"",
+        "    if res.parent is not None:",
+        "        res.unassign()",
+        "    if to is not None:",
+        "        to.assign_child_resource(res)"
+      ]
+    },
+    "head-objects": {
+      "label": "PyLabRobot device with head objects (v1 API)",
+      "robot": [
+        "robot = {backend}(host=ROBOT_HOST, deck=deck)"
+      ],
+      "setup": "await robot.setup()",
+      "stop": "await robot.stop()",
+      "constants": [
+        "ROBOT_HOST = \"robot.local\"  # TODO: the robot's hostname or IP address"
+      ],
+      "deck": {
+        "create": "deck = {deck}()",
+        "slot": "deck.assign_child_at_slot({res}, \"{slot}\")"
+      },
+      "trash": [
+        "lw[\"trash\"] = deck.get_trash_area()"
+      ],
+      "trash96": [
+        "lw[\"trash96\"] = deck.get_trash_area96()"
+      ],
+      "styles": {
+        "columns": {
+          "loop": [
+            "for col in range(COLUMNS):",
+            "    rack, tip_col = next_column(lw, {size})"
+          ],
+          "pickup": "await {head}.pick_up_tips(rack, column=tip_col)",
+          "aspirate": "await {head}.aspirate({src}, volume={volume})",
+          "dispense": "await {head}.dispense({dst}, volume={volume})",
+          "mix": "await {head}.mix(lw[\"plate\"], volume={volume}, repetitions=3, column=col)",
+          "discard": "await {head}.discard_tips(lw[\"trash\"])",
+          "targets": {
+            "plate": "lw[\"plate\"], column=col",
+            "reagent": "lw[{reservoir}].get_item({k})",
+            "waste": "lw[\"waste\"].get_item(0)",
+            "dest": "lw[\"dest\"], column=col"
+          },
+          "containerTargets": [
+            "reagent",
+            "waste"
+          ],
+          "aspirateContainer": "await {head}.aspirate_container({src}, volume={volume})",
+          "dispenseContainer": "await {head}.dispense_container({dst}, volume={volume})",
+          "draw": {
+            "source": "lw[{reservoir}].get_item({k})"
+          },
+          "dump": {
+            "target": "lw[\"waste\"].get_item(0)"
+          },
+          "group": "col"
+        },
+        "nozzle": {
+          "loop": [
+            "for i in range(SAMPLES):",
+            "    well = lw[\"plate\"].get_all_items()[i]"
+          ],
+          "pickup": "await {head}.pick_up_tips(next_tips(lw, {size}, 1)[0], use_channels=[7])",
+          "aspirate": "await {head}.aspirate({src}, volume={volume}, use_channels=[7])",
+          "dispense": "await {head}.dispense({dst}, volume={volume}, use_channels=[7])",
+          "discard": "await {head}.discard_tips(lw[\"trash\"])",
+          "irregular": {
+            "volume": "per_well[i]"
+          },
+          "check": "One tip on the back nozzle (use_channels=[7]) as in PyLabRobot's Flex hello-world notebook; confirm the nozzle layout for this labware.",
+          "targets": {
+            "plate": "well",
+            "reagent": "lw[{reservoir}].get_item({k})",
+            "waste": "lw[\"waste\"].get_item(0)",
+            "dest": "lw[\"dest\"].get_all_items()[i]"
+          },
+          "draw": {
+            "source": "lw[{reservoir}].get_item({k})"
+          },
+          "dump": {
+            "target": "lw[\"waste\"].get_item(0)"
+          },
+          "group": "i"
+        },
+        "single": {
+          "loop": [
+            "for i in range(SAMPLES):",
+            "    well = lw[\"plate\"].get_all_items()[i]"
+          ],
+          "pickup": "await {head}.pick_up_tips(next_tips(lw, {size}, 1)[0])",
+          "aspirate": "await {head}.aspirate({src}, volume={volume})",
+          "dispense": "await {head}.dispense({dst}, volume={volume})",
+          "discard": "await {head}.discard_tips(lw[\"trash\"])",
+          "irregular": {
+            "volume": "per_well[i]"
+          },
+          "targets": {
+            "plate": "well",
+            "reagent": "lw[{reservoir}].get_item({k})",
+            "waste": "lw[\"waste\"].get_item(0)",
+            "dest": "lw[\"dest\"].get_all_items()[i]"
+          },
+          "draw": {
+            "source": "lw[{reservoir}].get_item({k})"
+          },
+          "dump": {
+            "target": "lw[\"waste\"].get_item(0)"
+          },
+          "group": "i"
+        },
+        "plate": {
+          "loop": [],
+          "pickup": "await {head}.pick_up_tips(next_rack(lw, {size}))",
+          "aspirate": "await {head}.aspirate({src}, volume={volume})",
+          "dispense": "await {head}.dispense({dst}, volume={volume})",
+          "discard": "await {head}.discard_tips(lw[\"trash96\"])",
+          "targets": {
+            "plate": "lw[\"plate\"]",
+            "reagent": "lw[{trough}].get_item(0)",
+            "waste": "lw[\"waste\"].get_item(0)",
+            "dest": "lw[\"dest\"]"
+          },
+          "draw": {
+            "source": "lw[{trough}].get_item(0)"
+          },
+          "dump": {
+            "target": "lw[\"waste\"].get_item(0)"
+          },
+          "group": "0"
+        }
+      },
+      "put": [
+        "async def put(robot, lw, res, to):",
+        "    \"\"\"A person moves a plate. The Flex driver binds labware to one slot per run, so the deck model keeps",
+        "    the plate in that slot while it is off the deck; a return to another slot goes through the gripper.\"\"\"",
+        "    if to is not None and lw[\"deck\"].get_slot(res) != to:",
+        "        await robot.gripper.move_labware(res, to)"
+      ],
+      "putCheck": "PyLabRobot's Flex driver at the pinned commit binds labware to one deck slot per run (pylabrobot/opentrons/labware.py, LabwareRegistry.load), so a plate a person returns to a different slot is moved there by the gripper in this skeleton: check that a person can put it back where it was."
+    }
+  },
+  "handlers": {
+    "starlet": {
+      "dialect": "liquid-handler",
+      "deck": "STARLetDeck",
+      "layout": "carriers",
+      "tracks": {
+        "count": 30,
+        "widthMm": 22.5,
+        "source": {
+          "file": "pylabrobot/resources/hamilton/hamilton_decks.py",
+          "line": 20,
+          "quote": "STARLET_NUM_TRACKS = 30; _TRACK_WIDTH = 22.5  # space between rails (mm)",
+          "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/resources/hamilton/hamilton_decks.py#L20"
+        },
+        "rule": "A resource placed at track t covers tracks t to t + ceil(width / 22.5) - 1, and must end within the last track (PyLabRobot HamiltonDeck.assign_child_resource, hamilton_decks.py#L621: \"does not fit at track\")."
+      },
+      "carrierTypes": [
+        {
+          "var": "tip_carrier",
+          "factory": "hamilton_tip_carrier_L5",
+          "holds": "tips"
+        },
+        {
+          "var": "plate_carrier",
+          "factory": "hamilton_plate_carrier_L5_ac",
+          "holds": "skirted"
+        },
+        {
+          "var": "pcr_carrier",
+          "factory": "PLT_CAR_L5PCR",
+          "holds": "non-skirted",
+          "adapter": "Hamilton_96_adapter_182531"
+        }
+      ],
+      "layoutCheck": "The deck layout is solved from geometry (lib/deck-layout.js): carriers are packed from track 1 by width (6 tracks for a 135 mm carrier), unskirted PCR plates and the module sites they move to sit in Hamilton 182531 inserts on a 182070 carrier, reagents and waste on a plate carrier, and as many reservoirs as the reagents need and the deck has room for. Check it against your instrument: autoload, the CO-RE gripper's reach and anything else already on the deck.",
+      "heads": {
+        "1000ul-channels": {
+          "expr": "robot"
+        },
+        "core-96": {
+          "expr": "robot"
+        }
+      },
+      "tipRacks": {
+        "10": "hamilton_96_tiprack_10uL_filter",
+        "50": "hamilton_96_tiprack_50uL_filter",
+        "300": "hamilton_96_tiprack_300uL_filter",
+        "1000": "hamilton_96_tiprack_1000uL_filter"
+      },
+      "reservoirs": [
+        "agenbio_4_troughplate_75mL_Vb",
+        "nest_12_troughplate_15000uL_Vb"
+      ],
+      "trough": "nest_1_troughplate_195000uL_Vb",
+      "waste": "nest_1_troughplate_195000uL_Vb",
+      "move": "await robot.move_plate(lw[\"plate\"], {to}, use_arm=\"core\")",
+      "moveCheck": "Plate moves use the CO-RE gripper (use_arm=\"core\", STARBackend.pick_up_resource); check grip height and direction for your plate.",
+      "modules": {
+        "Magnetic Stand": {
+          "site": true,
+          "basis": "placeholder",
+          "check": "Magnetic Stand: stands in as a plate-carrier site because PyLabRobot has no resource for it at the pinned commit; replace the site with the stand's own holder and height.",
+          "passive": "magnetic-separation",
+          "passiveNote": "a magnet stand has no motor or heater: the plate sitting on it is the separation"
+        },
+        "Hamilton Heater Cooler (HHC)": {
+          "site": true,
+          "basis": "placeholder",
+          "check": "Hamilton Heater Cooler (HHC): stands in as a plate-carrier site; PyLabRobot has no HHC resource or driver at the pinned commit, so its temperature steps stay TODO."
+        },
+        "On-Deck Thermal Cycler (ODTC)": {
+          "site": true,
+          "basis": "placeholder",
+          "check": "On-Deck Thermal Cycler (ODTC): stands in as a plate-carrier site, but the ODTC takes 2.5 ANSI/SLAS sites (content/decks.json); the pinned registry lists no Python API for it, so thermocycling steps stay TODO."
+        },
+        "Inheco Thermoshake": {
+          "var": "thermoshake",
+          "create": [
+            "lw[\"control_box\"] = InhecoTECControlBox()",
+            "lw[\"thermoshake\"] = inheco_thermoshake(name=\"thermoshake\", control_box=lw[\"control_box\"], index=1)"
+          ],
+          "assign": "deck.assign_child_resource(lw[\"thermoshake\"], rails={track})",
+          "target": "lw[\"thermoshake\"]",
+          "setup": [
+            "await lw[\"control_box\"].setup()"
+          ],
+          "stop": [
+            "await lw[\"control_box\"].stop()"
+          ],
+          "basis": "placeholder",
+          "check": "Inheco Thermoshake: its track comes from the solved layout (147 mm wide, 7 tracks); control-box index=1 is a placeholder: use its index on the TEC control box. PyLabRobot builds only the classic Thermoshake (7100146); the AC and RM factories raise NotImplementedError at the pinned commit.",
+          "driver": "plr-inheco-thermoshake",
+          "ops": {
+            "shaking": {
+              "start": [
+                "await lw[\"thermoshake\"].start_shaking(speed=shake_speed())"
+              ],
+              "temperature": "await lw[\"thermoshake\"].set_temperature({t})",
+              "leave": [
+                "await lw[\"thermoshake\"].stop_shaking()"
+              ]
+            }
+          },
+          "constants": [
+            "SHAKE_RPM = None  # TODO: the protocol states no shaking speed; the Thermoshake driver takes 60-2000 rpm",
+            "",
+            "",
+            "def shake_speed():",
+            "    if SHAKE_RPM is None:",
+            "        raise RuntimeError(\"Set SHAKE_RPM: the protocol states no shaking speed\")",
+            "    return SHAKE_RPM"
+          ],
+          "constantsCheck": "SHAKE_RPM is unset: the protocol states no shaking speed, so the first shaking step stops with an error until you set it.",
+          "source": {
+            "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/inheco/thermoshake.py#L107",
+            "quote": "def inheco_thermoshake(name: str, control_box: InhecoTECControlBox, index: int) -> InhecoThermoShake"
+          },
+          "simulate": [
+            "# Simulation: PyLabRobot has no Inheco simulator at the pin; the control box's USB link and replies are stubbed, so its driver calls run but nothing checks the firmware's answers.",
+            "lw[\"control_box\"].io.setup = device_ok",
+            "lw[\"control_box\"].io.stop = device_ok",
+            "lw[\"control_box\"].send_command = device_ok"
+          ],
+          "simulateConstants": [
+            "SHAKE_RPM = 300  # Simulation only: a speed inside the driver's 60-2000 rpm range; the protocol states none"
+          ],
+          "widthMm": 147,
+          "widthSource": {
+            "file": "pylabrobot/inheco/thermoshake.py",
+            "line": 119,
+            "quote": "size_x=147,  # from spec",
+            "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/inheco/thermoshake.py#L119"
+          }
+        },
+        "Hamilton Heater Shaker (HHS)": {
+          "site": true,
+          "basis": "placeholder",
+          "check": "Hamilton Heater Shaker (HHS): a second shaker for temperatures the Thermoshake cannot reach (#144); stands in as a plate-carrier site, and its shaking and heating steps stay TODO."
+        }
+      },
+      "simulator": {
+        "label": "STARChatterboxBackend (PyLabRobot's simulated STAR, legacy API)",
+        "robot": [
+          "robot = LiquidHandler(backend=STARChatterboxBackend(num_channels={channels}), deck=deck)"
+        ]
+      }
+    },
+    "flex": {
+      "dialect": "head-objects",
+      "deck": "FlexDeck",
+      "layout": "slots",
+      "layoutCheck": "The deck layout is solved from the slot rules in content/decks.json (lib/deck-layout.js): modules and the trash bin where the maker allows (the trash in its default slot when that leaves as much room), then the plate, waste, reservoirs and tips in the pipettable slots, tips also in slots beside a module that hold tips only. Check it against your robot's deck configuration.",
+      "heads": {
+        "flex-1ch-50": {
+          "expr": "robot.left",
+          "check": "Assumes the 1-channel 50 µl pipette is on the left mount.",
+          "class": "FlexHead1",
+          "pipette": [
+            "p50_single_flex",
+            "left"
+          ]
+        },
+        "flex-1ch-1000": {
+          "expr": "robot.right",
+          "check": "Assumes the 1-channel 1000 µl pipette is on the right mount.",
+          "class": "FlexHead1",
+          "pipette": [
+            "p1000_single_flex",
+            "right"
+          ]
+        },
+        "flex-8ch-50": {
+          "expr": "robot.left",
+          "check": "Assumes the 8-channel 50 µl pipette is on the left mount.",
+          "class": "FlexHead8",
+          "pipette": [
+            "p50_multi_flex",
+            "left"
+          ]
+        },
+        "flex-8ch-1000": {
+          "expr": "robot.right",
+          "check": "Assumes the 8-channel 1000 µl pipette is on the right mount.",
+          "class": "FlexHead8",
+          "pipette": [
+            "p1000_multi_flex",
+            "right"
+          ]
+        },
+        "flex-96-200": {
+          "expr": "robot.head96",
+          "class": "FlexHead96",
+          "pipette": [
+            "p200_96",
+            "left"
+          ]
+        },
+        "flex-96-1000": {
+          "expr": "robot.head96",
+          "class": "FlexHead96",
+          "pipette": [
+            "p1000_96",
+            "left"
+          ]
+        }
+      },
+      "tipRacks": {
+        "50": "flex_96_filtertiprack_50ul",
+        "200": "flex_96_tiprack_200ul",
+        "1000": "flex_96_tiprack_1000ul"
+      },
+      "reservoirs": [
+        "agenbio_4_troughplate_75mL_Vb",
+        "nest_12_troughplate_15000uL_Vb"
+      ],
+      "trough": "nest_1_troughplate_195000uL_Vb",
+      "waste": "nest_1_troughplate_195000uL_Vb",
+      "move": "await robot.gripper.move_labware(lw[\"plate\"], {to})",
+      "moveCheck": "PyLabRobot's Flex driver at the pinned commit moves labware between deck slots and loads no modules, so a plate moved to a module's slot is placed as on the bare slot: check heights and the robot's deck configuration in a dry run.",
+      "stagingCheck": "Column 4 is in the staging area and is only accessible by the gripper (docs.opentrons.com/v2/deck_slots.html): move {k} in from {slot} with the gripper before pipetting from it.",
+      "modules": {
+        "Thermocycler": {
+          "basis": "source",
+          "source": {
+            "url": "https://docs.opentrons.com/protocol-designer/create-protocol/modules-fixtures/",
+            "quote": "Thermocycler Module ... Slots A1 and B1"
+          },
+          "check": "Thermocycler: the pinned registry lists no Python API for it, so thermocycling steps stay TODO; moves address slot {slot}."
+        },
+        "Heater-Shaker": {
+          "basis": "placeholder",
+          "source": {
+            "url": "https://docs.opentrons.com/protocol-designer/create-protocol/modules-fixtures/",
+            "quote": "Heater-Shaker Module: Slots A1–D1 or A3–D3"
+          },
+          "check": "Heater-Shaker in {slot} is the solved choice within its allowed slots (A1–D1 or A3–D3); the pinned registry lists no Python API for it, so shaking steps stay TODO."
+        },
+        "Temperature Module": {
+          "basis": "placeholder",
+          "source": {
+            "url": "https://docs.opentrons.com/protocol-designer/create-protocol/modules-fixtures/",
+            "quote": "Temperature Module: Slots A1–D1 or A3–D3"
+          },
+          "check": "Temperature Module in {slot} is the solved choice within its allowed slots (A1–D1 or A3–D3); the pinned registry lists no Python API for it, so temperature steps stay TODO."
+        },
+        "Magnetic Block": {
+          "basis": "placeholder",
+          "source": {
+            "url": "https://docs.opentrons.com/protocol-designer/create-protocol/modules-fixtures/",
+            "quote": "Magnetic Block ... Slots A1–D3"
+          },
+          "check": "Magnetic Block in {slot} is the solved choice within its allowed slots (A1–D3).",
+          "passive": "magnetic-separation",
+          "passiveNote": "the Magnetic Block is unpowered: the plate sitting on it is the separation"
+        }
+      },
+      "simulator": {
+        "label": "PyLabRobot's Flex test API mock (the real Flex driver, deck and head code with the robot-server replies stubbed; PyLabRobot has no Flex simulator at this commit)",
+        "robot": [
+          "robot = make_flex(api=make_api(pipettes=PIPETTES, gripper=True), deck=deck)"
+        ],
+        "pipettes": "(name, channels, min ul, max ul, mount) the mock reports as mounted"
+      }
+    },
+    "plr-hamilton-star": {
+      "dialect": "liquid-handler",
+      "deck": "STARDeck",
+      "layout": "carriers",
+      "tracks": {
+        "count": 54,
+        "widthMm": 22.5,
+        "source": {
+          "file": "pylabrobot/resources/hamilton/hamilton_decks.py",
+          "line": 21,
+          "quote": "STAR_NUM_TRACKS = 54; _TRACK_WIDTH = 22.5  # space between rails (mm)",
+          "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/resources/hamilton/hamilton_decks.py#L21"
+        },
+        "rule": "A resource placed at track t covers tracks t to t + ceil(width / 22.5) - 1, and must end within the last track (PyLabRobot HamiltonDeck.assign_child_resource, hamilton_decks.py#L621: \"does not fit at track\")."
+      },
+      "carrierTypes": [
+        {
+          "var": "tip_carrier",
+          "factory": "hamilton_tip_carrier_L5",
+          "holds": "tips"
+        },
+        {
+          "var": "plate_carrier",
+          "factory": "hamilton_plate_carrier_L5_ac",
+          "holds": "skirted"
+        },
+        {
+          "var": "pcr_carrier",
+          "factory": "PLT_CAR_L5PCR",
+          "holds": "non-skirted",
+          "adapter": "Hamilton_96_adapter_182531"
+        }
+      ],
+      "layoutCheck": "The deck layout is solved from geometry (lib/deck-layout.js): carriers are packed from track 1 by width (6 tracks for a 135 mm carrier), unskirted PCR plates and the module sites they move to sit in Hamilton 182531 inserts on a 182070 carrier, reagents and waste on a plate carrier, and as many reservoirs as the reagents need and the deck has room for. Check it against your instrument: autoload, the CO-RE gripper's reach and anything else already on the deck.",
+      "heads": {
+        "1000ul-channels": {
+          "expr": "robot"
+        },
+        "core-96": {
+          "expr": "robot"
+        }
+      },
+      "tipRacks": {
+        "10": "hamilton_96_tiprack_10uL_filter",
+        "50": "hamilton_96_tiprack_50uL_filter",
+        "300": "hamilton_96_tiprack_300uL_filter",
+        "1000": "hamilton_96_tiprack_1000uL_filter"
+      },
+      "reservoirs": [
+        "agenbio_4_troughplate_75mL_Vb",
+        "nest_12_troughplate_15000uL_Vb"
+      ],
+      "trough": "nest_1_troughplate_195000uL_Vb",
+      "waste": "nest_1_troughplate_195000uL_Vb",
+      "move": "await robot.move_plate(lw[\"plate\"], {to})",
+      "moveCheck": "Plate moves use move_plate with the backend default arm (iSWAP); pass use_arm=\"core\" if this STAR moves plates with CO-RE gripper paddles.",
+      "modules": {
+        "Invitrogen Ambion Magnetic Stand": {
+          "site": true,
+          "basis": "placeholder",
+          "check": "Invitrogen Ambion Magnetic Stand: stands in as a plate-carrier site because PyLabRobot has no resource for it at the pinned commit; replace the site with the stand's own holder and height.",
+          "passive": "magnetic-separation",
+          "passiveNote": "a magnet stand has no motor or heater: the plate sitting on it is the separation"
+        },
+        "Hamilton Heater Cooler (HHC)": {
+          "site": true,
+          "basis": "placeholder",
+          "check": "Hamilton Heater Cooler (HHC): stands in as a plate-carrier site; PyLabRobot has no HHC resource or driver at the pinned commit, so its temperature steps stay TODO."
+        },
+        "On-Deck Thermal Cycler (ODTC)": {
+          "site": true,
+          "basis": "placeholder",
+          "check": "On-Deck Thermal Cycler (ODTC): stands in as a plate-carrier site, but the ODTC takes 2.5 ANSI/SLAS sites (content/decks.json); the pinned registry lists no Python API for it, so thermocycling steps stay TODO."
+        },
+        "Inheco Thermoshake": {
+          "var": "thermoshake",
+          "create": [
+            "lw[\"control_box\"] = InhecoTECControlBox()",
+            "lw[\"thermoshake\"] = inheco_thermoshake(name=\"thermoshake\", control_box=lw[\"control_box\"], index=1)"
+          ],
+          "assign": "deck.assign_child_resource(lw[\"thermoshake\"], rails={track})",
+          "target": "lw[\"thermoshake\"]",
+          "setup": [
+            "await lw[\"control_box\"].setup()"
+          ],
+          "stop": [
+            "await lw[\"control_box\"].stop()"
+          ],
+          "basis": "placeholder",
+          "check": "Inheco Thermoshake: its track comes from the solved layout (147 mm wide, 7 tracks); control-box index=1 is a placeholder: use its index on the TEC control box. PyLabRobot builds only the classic Thermoshake (7100146); the AC and RM factories raise NotImplementedError at the pinned commit.",
+          "driver": "plr-inheco-thermoshake",
+          "ops": {
+            "shaking": {
+              "start": [
+                "await lw[\"thermoshake\"].start_shaking(speed=shake_speed())"
+              ],
+              "temperature": "await lw[\"thermoshake\"].set_temperature({t})",
+              "leave": [
+                "await lw[\"thermoshake\"].stop_shaking()"
+              ]
+            }
+          },
+          "constants": [
+            "SHAKE_RPM = None  # TODO: the protocol states no shaking speed; the Thermoshake driver takes 60-2000 rpm",
+            "",
+            "",
+            "def shake_speed():",
+            "    if SHAKE_RPM is None:",
+            "        raise RuntimeError(\"Set SHAKE_RPM: the protocol states no shaking speed\")",
+            "    return SHAKE_RPM"
+          ],
+          "constantsCheck": "SHAKE_RPM is unset: the protocol states no shaking speed, so the first shaking step stops with an error until you set it.",
+          "source": {
+            "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/inheco/thermoshake.py#L107",
+            "quote": "def inheco_thermoshake(name: str, control_box: InhecoTECControlBox, index: int) -> InhecoThermoShake"
+          },
+          "simulate": [
+            "# Simulation: PyLabRobot has no Inheco simulator at the pin; the control box's USB link and replies are stubbed, so its driver calls run but nothing checks the firmware's answers.",
+            "lw[\"control_box\"].io.setup = device_ok",
+            "lw[\"control_box\"].io.stop = device_ok",
+            "lw[\"control_box\"].send_command = device_ok"
+          ],
+          "simulateConstants": [
+            "SHAKE_RPM = 300  # Simulation only: a speed inside the driver's 60-2000 rpm range; the protocol states none"
+          ],
+          "widthMm": 147,
+          "widthSource": {
+            "file": "pylabrobot/inheco/thermoshake.py",
+            "line": 119,
+            "quote": "size_x=147,  # from spec",
+            "url": "https://github.com/PyLabRobot/pylabrobot/blob/7779f506d12755f5f274b4c5cab4d095f4fccb62/pylabrobot/inheco/thermoshake.py#L119"
+          }
+        },
+        "Hamilton Heater Shaker 2G (HHS)": {
+          "site": true,
+          "basis": "placeholder",
+          "check": "Hamilton Heater Shaker 2G (HHS): a second shaker for temperatures the Thermoshake cannot reach (#144); stands in as a plate-carrier site, and its shaking and heating steps stay TODO."
+        }
+      },
+      "simulator": {
+        "label": "STARChatterboxBackend (PyLabRobot's simulated STAR, legacy API)",
+        "robot": [
+          "robot = LiquidHandler(backend=STARChatterboxBackend(num_channels={channels}), deck=deck)"
+        ]
+      }
+    }
+  },
+  "simulation": {
+    "imports": [
+      "set_tip_tracking(",
+      "set_volume_tracking("
+    ],
+    "helpers": [
+      "set_tip_tracking(True)",
+      "set_volume_tracking(True)",
+      "",
+      "",
+      "def pause(message):",
+      "    \"\"\"Simulation: log what a person would do and carry on.\"\"\"",
+      "    print(f\"@@plr-pause {message}\", flush=True)",
+      "",
+      "",
+      "def skip_wait(seconds):",
+      "    \"\"\"Simulation: log the wait instead of waiting.\"\"\"",
+      "    print(f\"@@plr-wait {seconds}\", flush=True)",
+      "",
+      "",
+      "TOLERANCE_UL = 0.01  # differential check (#124): most a tracker may differ from the planner's ledger",
+      "",
+      "",
+      "def check_volumes(name, lw, expect):",
+      "    \"\"\"Simulation: compare PyLabRobot's volume trackers with the planner's ledger after a step (#124).\"\"\"",
+      "    plate_ul, dest_ul, vessels = expect",
+      "    wrong = []",
+      "    for key, ul in ((\"plate\", plate_ul), (\"dest\", dest_ul)):",
+      "        if key not in lw:",
+      "            continue",
+      "        for well in lw[key].get_all_items()[:SAMPLES]:",
+      "            got = well.tracker.get_used_volume()",
+      "            if abs(got - ul) > TOLERANCE_UL:",
+      "                wrong.append(f\"{key} {well.name}: PyLabRobot {got:.4f} ul, planner {ul} ul\")",
+      "                break",
+      "    for key, i, ul in vessels:",
+      "        well = lw[key].get_item(i)",
+      "        got = well.tracker.get_used_volume()",
+      "        if abs(got - ul) > TOLERANCE_UL:",
+      "            wrong.append(f\"{well.name}: PyLabRobot {got:.4f} ul, planner {ul} ul\")",
+      "    if wrong:",
+      "        print(f\"@@plr-mismatch {name} \" + \"; \".join(wrong), flush=True)",
+      "        raise AssertionError(f\"{name}: PyLabRobot and the planner's ledger disagree: \" + \"; \".join(wrong))",
+      "    print(f\"@@plr-checked {name}\", flush=True)",
+      "",
+      "",
+      "async def run_step(name, fn, robot, lw, expect=None):",
+      "    \"\"\"Simulation: report each protocol step as it starts and ends, and check its volumes against the ledger.\"\"\"",
+      "    print(f\"@@plr-step-start {name}\", flush=True)",
+      "    await fn(robot, lw)",
+      "    if expect is not None:",
+      "        check_volumes(name, lw, expect)",
+      "    print(f\"@@plr-step-done {name}\", flush=True)",
+      "",
+      "",
+      "async def device_ok(*args, **kwargs):",
+      "    \"\"\"Simulation: a module command with no PyLabRobot simulator succeeds and is logged.\"\"\"",
+      "    print(f\"@@plr-device {args}\", flush=True)",
+      "    return \"\""
+    ],
+    "deck": [
+      "# Simulation: reagent sources start full, so volume tracking checks what the plan moves.",
+      "for name in ({sources},):",
+      "    for well in lw[name].get_all_items():",
+      "        well.tracker.set_volume(well.max_volume)"
+    ],
+    "refill": "well.tracker.set_volume(well.max_volume)",
+    "empty": "well.tracker.set_volume(0)"
+  }
+}

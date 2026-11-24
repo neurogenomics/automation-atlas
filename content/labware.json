@@ -1,0 +1,126 @@
+{
+  "version": "2026-11-04.2",
+  "about": "Generic labware a workflow can be run in (issue #53). Nothing here names a product. 'maxUl' is the nominal capacity of one well or tube for the labware class, not a working volume: confirm it for the exact product. 'format' is how the engine counts work (once per plate, or once per tube). 'mentions' are words in protocol text that name a different kind of container; when a protocol uses them, the Decide page asks whether running it in this labware is a method change. No catalogue record says which decks or modules accept which labware, so every fit is a question for the instrument owner. 'pylabrobot' says which PyLabRobot resource definitions (content/pylabrobot-labware.json) are instances of each type, by geometry: resource types, well count, bottom types, plate height and PyLabRobot's brim-to-bottom well volume (geometric, larger than the working volume).",
+  "basis": "nominal capacity for the labware class; confirm for the exact product",
+  "labware": {
+    "plate-96-pcr": {
+      "label": "96-well PCR plate",
+      "format": "plate",
+      "wells": 96,
+      "maxUl": 200,
+      "mentions": "\\btubes?\\b|\\beppendorfs?\\b|\\bfalcons?\\b",
+      "pylabrobot": {
+        "types": [
+          "Plate",
+          "TecanPlate"
+        ],
+        "wells": 96,
+        "bottoms": [
+          "V"
+        ],
+        "maxHeightMm": 24.5,
+        "maxWellUl": 450
+      }
+    },
+    "plate-96-deep": {
+      "label": "96-well deep-well plate (2 ml)",
+      "format": "plate",
+      "wells": 96,
+      "maxUl": 2000,
+      "mentions": "\\btubes?\\b|\\beppendorfs?\\b|\\bfalcons?\\b",
+      "pylabrobot": {
+        "types": [
+          "Plate",
+          "TecanPlate"
+        ],
+        "wells": 96,
+        "minHeightMm": 26,
+        "minWellUl": 500
+      }
+    },
+    "plate-384-pcr": {
+      "label": "384-well PCR plate",
+      "format": "plate",
+      "wells": 384,
+      "maxUl": 40,
+      "mentions": "\\btubes?\\b|\\beppendorfs?\\b|\\bfalcons?\\b",
+      "pylabrobot": {
+        "types": [
+          "Plate",
+          "TecanPlate"
+        ],
+        "wells": 384,
+        "bottoms": [
+          "V"
+        ],
+        "maxHeightMm": 12.5
+      }
+    },
+    "tube-pcr": {
+      "label": "0.2 ml PCR tubes or strips",
+      "format": "tube",
+      "wells": 1,
+      "maxUl": 200,
+      "mentions": "\\b(?:96|384)-?well\\b|\\bwells?\\b|\\bplates?\\b(?! ?reader)",
+      "pylabrobot": {
+        "types": [
+          "TubeRack"
+        ],
+        "wells": 96,
+        "name": "pcr_strip|pcr_tube"
+      }
+    },
+    "tube-1.5": {
+      "label": "1.5 ml tubes",
+      "format": "tube",
+      "wells": 1,
+      "maxUl": 1500,
+      "mentions": "\\b(?:96|384)-?well\\b|\\bwells?\\b|\\bplates?\\b(?! ?reader)",
+      "pylabrobot": {
+        "types": [
+          "Tube",
+          "TubeRack"
+        ],
+        "name": "(?<![0-9])1_5_?ml|1point5ml|(?<![0-9])1500u?l"
+      }
+    }
+  },
+  "legacy": {
+    "plate": "plate-96-pcr",
+    "tube": "tube-1.5"
+  },
+  "physical": {
+    "about": "Physical-state ledger (#120): the containers a run fills, draws from and empties, and the rules the ledger applies, for handlers with no PyLabRobot deck recorded in content/pylabrobot-export.json (those use their PyLabRobot resources' capacities). Generic classes, assumed: confirm against the reservoirs you use.",
+    "homeId": "deck",
+    "tubeRackWells": 96,
+    "mixFraction": 0.8,
+    "channelFit": {
+      "pitchMm": 9,
+      "edgeMm": 4.5,
+      "basis": "Independent channels are spread at least 9 mm apart and kept clear of the cavity walls. Edge clearance fitted to PyLabRobot at the pinned commit, which takes 8 channels into a 72 mm trough but not a 71.2 mm one (#111). Fixed blocks are not checked: their spacing is built for the reservoirs they use."
+    },
+    "containers": {
+      "reservoir": {
+        "label": "12-column reservoir",
+        "wells": 12,
+        "capacityUl": 15000,
+        "lengthMm": null,
+        "basis": "assumed: a 12-column reservoir of 15 ml per column, as in PyLabRobot's NEST definitions"
+      },
+      "trough": {
+        "label": "single-well reservoir",
+        "wells": 1,
+        "capacityUl": 195000,
+        "lengthMm": null,
+        "basis": "assumed: a single-well reservoir of 195 ml, as in PyLabRobot's NEST definitions"
+      },
+      "waste": {
+        "label": "liquid waste reservoir",
+        "wells": 1,
+        "capacityUl": 195000,
+        "lengthMm": null,
+        "basis": "assumed: a single-well reservoir of 195 ml used for liquid waste"
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Automation Atlas</title>
+<meta name="description" content="Import any laboratory protocol, describe the instruments you can use, and see what automation would take off a person's hands.">
+<link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="decide.css"></head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+<aside class="sidebar">
+  <a class="brand" href="#decide">Automation <strong>Atlas</strong></a>
+  <nav aria-label="Pages" id="navigation">
+    <a href="#reviewed" data-view="reviewed">Reviewed assessment</a>
+    <a href="#decide" data-view="decide">Decide what to automate</a>
+    <a href="#protocols" data-view="protocols">Protocols</a>
+    <a href="#registry" data-view="registry">Registry</a>
+    <a href="#equipment" data-view="equipment">Your equipment</a>
+    <a href="#catalogue" data-view="catalogue">Instrument catalogue</a>
+    <a href="#lab" data-view="lab">Lab and reviews</a>
+  </nav>
+  <div class="foot"><div id="account" class="account"></div><button id="export">Export profile</button><button id="import">Import profile</button><input type="file" id="import-file" accept=".json" hidden></div>
+</aside>
+<main id="main" tabindex="-1"><div id="view"></div></main>
+</div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

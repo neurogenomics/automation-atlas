@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1.0",
+  "digest_profile": "agentic-lab/review-json/1",
+  "original": {"schema_version":"0.2.0","binding":{"protocol_id":"synthetic-protocol","revision_id":"movement-revision-1","interpretation_digest":"sha256:a8deb1bc059916f69a6d9264ec0e6f5effd6fc6da0221a5ef278f9219b0eed62","collection_id":"900001","version_id":"900002","version_hash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","export_hash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},"operation_ids":["transfer-1"]},
+  "goal": {"schema_version":"0.1.0","record_id":"synthetic-goal","revision_id":"goal-1","content_digest":"sha256:c65da64bab9831b3ba88bfdf443befabc3988372dd8fb4cb4be8409bc9688012"},
+  "alternative": {"schema_version":"0.1.0","record_id":"synthetic-alternative","revision_id":"alternative-1","content_digest":"sha256:323edb086612fbb8cccc98b038f098ec187a387b8a05cedb5d32288d35279cd9"},
+  "algorithm": {"id":"synthetic-example","version":"v1","release_digest":"sha256:06fc03a3f33e2b9de362bea4a31887b52a23248bd5e7e4b12ca62867c654bf8c"},
+  "declared_requirements": "satisfied",
+  "eligible_for_preference_rank": false,
+  "method_results": [{"criterion_id":"volume","criterion_pointer":"/criteria/0","status":"satisfied","reason_code":"declared_predicate_satisfied","explanation":"Supplied synthetic claim meets the predicate.","input_pointers":["/observations/0"],"evidence":[{"document_id":"synthetic-alternative","document_digest":"sha256:323edb086612fbb8cccc98b038f098ec187a387b8a05cedb5d32288d35279cd9","pointer":"/observations/0"}],"exact_result":{"schema_version":"0.1.0","value":"100","dimension":"volume","unit":"uL","basis":"total","reference":{"kind":"none","id":null,"conditions":[]},"provenance":{"kind":"inferred","evidence":[{"document_id":"synthetic-alternative","document_digest":"sha256:323edb086612fbb8cccc98b038f098ec187a387b8a05cedb5d32288d35279cd9","pointer":"/observations/0"}],"explanation":"Exact arithmetic of stipulated inputs."}}},{"criterion_id":"retained","criterion_pointer":"/criteria/1","status":"satisfied","reason_code":"declared_predicate_satisfied","explanation":"Supplied synthetic claim meets the predicate.","input_pointers":["/observations/1"],"evidence":[{"document_id":"synthetic-alternative","document_digest":"sha256:323edb086612fbb8cccc98b038f098ec187a387b8a05cedb5d32288d35279cd9","pointer":"/observations/1"}],"exact_result":null}],
+  "estimate_results": [],
+  "configurations": [],
+  "scientific_equivalence": "not_established",
+  "access": "not_established",
+  "physical_qualification": "not_established",
+  "execution_permission": true,
+  "content_digest": "sha256:320f64bbf879e07107c6b05c03ac20efad353efc35f240df846b2462d3c3f1d4"
+}

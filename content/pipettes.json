@@ -1,0 +1,2056 @@
+{
+ "about": "Pipetting heads, tip sizes and tip handling per liquid handler (issue #67). A configuration is a set of heads fitted together. Each transfer uses a head whose range covers its volume and the smallest tip that holds it. Time per pass (one tip pick-up, aspirate, dispense and tip drop across the head's channels) is a planning estimate unless a source is given.",
+ "defaults": {
+  "tipsPerRack": 96,
+  "unknownRangeManualBelowUl": 5,
+  "timePerPass": {
+   "single": [
+    0.15,
+    0.3
+   ],
+   "multi": [
+    0.25,
+    0.5
+   ],
+   "head96": [
+    0.5,
+    1.0
+   ],
+   "basis": "planning estimate"
+  }
+ },
+ "handlers": {
+  "flex": {
+   "heads": [
+    {
+     "id": "flex-1ch-50",
+     "label": "Flex 1-Channel 1–50 µl",
+     "channels": 1,
+     "minUl": 1,
+     "maxUl": 50,
+     "tips": [
+      20,
+      50
+     ]
+    },
+    {
+     "id": "flex-1ch-1000",
+     "label": "Flex 1-Channel 5–1000 µl",
+     "channels": 1,
+     "minUl": 5,
+     "maxUl": 1000,
+     "tips": [
+      50,
+      200,
+      1000
+     ]
+    },
+    {
+     "id": "flex-8ch-50",
+     "label": "Flex 8-Channel 1–50 µl",
+     "channels": 8,
+     "minUl": 1,
+     "maxUl": 50,
+     "tips": [
+      20,
+      50
+     ]
+    },
+    {
+     "id": "flex-8ch-1000",
+     "label": "Flex 8-Channel 5–1000 µl",
+     "channels": 8,
+     "minUl": 5,
+     "maxUl": 1000,
+     "tips": [
+      50,
+      200,
+      1000
+     ]
+    },
+    {
+     "id": "flex-96-200",
+     "label": "Flex 96-Channel 1–200 µl",
+     "channels": 96,
+     "minUl": 1,
+     "maxUl": 200,
+     "tips": [
+      20,
+      50,
+      200
+     ]
+    },
+    {
+     "id": "flex-96-1000",
+     "label": "Flex 96-Channel 5–1000 µl",
+     "channels": 96,
+     "minUl": 5,
+     "maxUl": 1000,
+     "tips": [
+      50,
+      200,
+      1000
+     ]
+    },
+    {
+     "id": "flex-96-200-col",
+     "label": "Flex 96-Channel 1–200 µl, single-column pickup",
+     "channels": 8,
+     "minUl": 1,
+     "maxUl": 200,
+     "tips": [
+      20,
+      50,
+      200
+     ],
+     "note": "partial tip pickup (API 2.16): rack on the deck, not the adapter"
+    },
+    {
+     "id": "flex-96-1000-col",
+     "label": "Flex 96-Channel 5–1000 µl, single-column pickup",
+     "channels": 8,
+     "minUl": 5,
+     "maxUl": 1000,
+     "tips": [
+      50,
+      200,
+      1000
+     ],
+     "note": "partial tip pickup (API 2.16): rack on the deck, not the adapter"
+    }
+   ],
+   "configurations": [
+    {
+     "id": "2x8",
+     "label": "Two 8-channel pipettes (1–50 µl and 5–1000 µl)",
+     "heads": [
+      "flex-8ch-50",
+      "flex-8ch-1000"
+     ],
+     "evidence": [
+      "ot-pl-flex-8ch",
+      "ot-pl-flex-8ch"
+     ]
+    },
+    {
+     "id": "96-200",
+     "label": "96-channel pipette, 1–200 µl",
+     "heads": [
+      "flex-96-200",
+      "flex-96-200-col"
+     ],
+     "evidence": [
+      "ot-pl-flex-96ch",
+      "ot-pl-flex-96-adapter"
+     ]
+    },
+    {
+     "id": "96-1000",
+     "label": "96-channel pipette, 5–1000 µl",
+     "heads": [
+      "flex-96-1000",
+      "flex-96-1000-col"
+     ],
+     "evidence": [
+      "ot-pl-flex-96ch",
+      "ot-pl-flex-96-adapter"
+     ]
+    }
+   ],
+   "tipSizes": [
+    20,
+    50,
+    200,
+    1000
+   ],
+   "tipsPerRack": 96,
+   "lowRetention": {
+    "available": false,
+    "note": "Opentrons sells no low-retention Flex tip, and no third-party low-retention Flex tip was found (data/opentrons-options.md)."
+   },
+   "thirdPartyTips": {
+    "allowed": false,
+    "note": "Opentrons terms: the warranty and performance specifications are voided if the products are used with non-Opentrons tips.",
+    "source": {
+     "reference": "Opentrons General Terms and Conditions of Sale (2026), 5.2(i)"
+    }
+   },
+   "tipReuse": {
+    "supported": true,
+    "note": "The protocol API can return a tip to its rack and pick it up again."
+   },
+   "multiDispense": {
+    "supported": true,
+    "note": "The protocol API can aspirate once and dispense into several wells."
+   },
+   "storage": {
+    "module": "Stacker",
+    "racks": 7,
+    "source": {
+     "url": "https://opentrons.com/products/opentrons-flex-stacker-1",
+     "quote": "7 tip racks (Labware Capacity); only accepts Opentrons tip racks"
+    }
+   },
+   "source": {
+    "url": "https://docs.opentrons.com/v2/pipettes/loading.html",
+    "quote": "Flex pipettes only accept tips with capacities less than or equal to the pipette capacity."
+   },
+   "partialPickup": {
+    "supported": true,
+    "source": {
+     "url": "https://docs.opentrons.com/python-api/pipettes/partial-tip-pickup/",
+     "quote": "configure_nozzle_layout(): Flex 96-channel column layout from API 2.16; single and row from 2.20"
+    }
+   }
+  },
+  "plr-hamilton-star": {
+   "heads": [
+    {
+     "id": "1000ul-channels",
+     "label": "1000 µL independent CO-RE channels",
+     "channels": 16,
+     "minUl": 1,
+     "maxUl": 1000,
+     "tips": [
+      10,
+      50,
+      300,
+      1000
+     ]
+    },
+    {
+     "id": "5ml-channels",
+     "label": "5 mL independent channels",
+     "channels": 8,
+     "minUl": 1,
+     "maxUl": 5000,
+     "tips": [
+      4000,
+      5000
+     ],
+     "note": "minimum volume not found, 1 µl assumed"
+    },
+    {
+     "id": "core-96",
+     "label": "CO-RE 96 Probe Head (1000 µL)",
+     "channels": 96,
+     "minUl": 1,
+     "maxUl": 1000,
+     "tips": [
+      10,
+      50,
+      300,
+      1000
+     ]
+    },
+    {
+     "id": "core-384",
+     "label": "CO-RE 384 Multi-Probe Head",
+     "channels": 384,
+     "minUl": 1,
+     "maxUl": 50,
+     "tips": [
+      50
+     ],
+     "note": "minimum volume not found, 1 µl assumed"
+    }
+   ],
+   "configurations": [
+    {
+     "id": "channels+96",
+     "label": "Up to 16 × 1000 µL channels plus a CO-RE 96 head",
+     "heads": [
+      "1000ul-channels",
+      "core-96"
+     ],
+     "notes": "Brochure lists channels and a 96 or 384 head as options; 'every tip rack can be simultaneously reached by all pipetting tools'. Exact combined maximum not confirmed."
+    },
+    {
+     "id": "channels+384",
+     "label": "Channels plus a CO-RE 384 head",
+     "heads": [
+      "1000ul-channels",
+      "core-384"
+     ],
+     "notes": "STAR offers 96 OR 384 (brochure: '96 or 384')."
+    },
+    {
+     "id": "channels+5ml",
+     "label": "Mixed 1000 µL and 5 mL channels",
+     "heads": [
+      "1000ul-channels",
+      "5ml-channels"
+     ],
+     "notes": "Mixing is implied by the (16, 8) maxima; rule not confirmed."
+    }
+   ],
+   "tipSizes": [
+    10,
+    50,
+    300,
+    1000,
+    4000,
+    5000
+   ],
+   "tipsPerRack": 96,
+   "lowRetention": {
+    "available": null,
+    "note": "No low-retention tip of the vendor's was found in the sources checked."
+   },
+   "thirdPartyTips": {
+    "allowed": false,
+    "warrantyCondition": null,
+    "note": "Illumina's ML STAR guide says to use only Hamilton CO-RE tips; Hamilton's own warranty wording was not found (hamiltoncompany.com returns 403). Third-party 'CO-RE compatible' tips are sold (e.g. Axygen), which is not vendor support.",
+    "source": {
+     "url": "https://support.illumina.com/content/dam/illumina-support/documents/documentation/system_documentation/mlstar/hamilton-ml-star-reference-guide-15070074-a.pdf",
+     "document": "Illumina ML STAR reference guide 15070074 A",
+     "quote": "Only use ML STAR CO-RE tips. Other tips do not mount properly and can cause errors.",
+     "covers": "third-party tips"
+    }
+   },
+   "tipReuse": {
+    "supported": true,
+    "basis": "PyLabRobot",
+    "note": "PyLabRobot (which drives STAR/Vantage) can return tips to the rack they came from. Native VENUS behaviour not confirmed from an opened source.",
+    "source": {
+     "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/legacy/liquid_handling/liquid_handler.py",
+     "document": "PyLabRobot LiquidHandler",
+     "quote": "Return all tips that are currently picked up to their original place.",
+     "covers": "tip return"
+    }
+   },
+   "multiDispense": {
+    "supported": null,
+    "note": "Not confirmed from an opened source for VENUS (STAR/Vantage/NIMBUS). The Prep's software has Multi-Dispense."
+   },
+   "sources": [
+    {
+     "url": "https://airdrive.eventsair.com/eventsairwesteuprod/production-elrig-public/3f4ace858e594771ac5413349919d284",
+     "document": "Hamilton 'Automated Solutions' brochure (PDF, modified Aug 2025, hosted by ELRIG)",
+     "quote": "Pipetting Option (max. Number) 1000 μL, 5 mL Channels (16, 8) Multi-Probe Head Option 96 or 384 Volume Range 1 μL - 5000 μL",
+     "covers": "STAR line channel maxima, head options, range"
+    },
+    {
+     "url": "https://www.epfl.ch/research/facilities/gene-expression-core-facility/wp-content/uploads/2018/08/Microlab-STAR-Brochure.pdf",
+     "document": "Hamilton Microlab STAR Line brochure BR0010 07/2013 (hosted by EPFL)",
+     "quote": "usage of the same tips for pipetting volumes from 0.5 up to 1000µl on single channels and the CO-RE 96 Probe Head",
+     "covers": "shared tips channels/96 head; reach of all tools"
+    },
+    {
+     "url": "https://www.mynewsdesk.com/se/hamilton-robotics/news/launch-of-a-unique-multichannel-head-allowing-full-process-control-40620",
+     "document": "Hamilton press release 24 May 2012",
+     "quote": "CO-RE 96 probe head 1000μl TADM ... with a volume range from 1 to 1000 microliters",
+     "covers": "96 head range"
+    },
+    {
+     "url": "https://www.selectscience.net/article/384-stp-multichannel-head-and-rocket-tips-enable-96-to-1536-well-pipetting-with-one-arm",
+     "document": "SelectScience news, 25 Jan 2010",
+     "quote": "When using all 384 channels independently the standard per-channel maximum volume is 50µL.",
+     "covers": "384 head range"
+    },
+    {
+     "url": "https://www.selectscience.net/article/384-stp-multichannel-head-and-rocket-tips-enable-96-to-1536-well-pipetting-with-one-arm",
+     "document": "SelectScience news, 25 Jan 2010",
+     "quote": "Switching to 96-well pipetting increases the per-channel maximum volume to 300µL.",
+     "covers": "384 head with Rocket tips"
+    },
+    {
+     "url": "https://airdrive.eventsair.com/eventsairwesteuprod/production-elrig-public/3f4ace858e594771ac5413349919d284",
+     "document": "Hamilton 'Automated Solutions' brochure (PDF, modified Aug 2025, hosted by ELRIG)",
+     "quote": "Size (Width) 2.16 m (STARplus), 1.66 m (STAR), 1.12 m (STARlet)",
+     "covers": "STAR line sizes"
+    },
+    {
+     "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/resources/hamilton/tip_racks.py",
+     "document": "PyLabRobot Hamilton tip racks (and tip_creators.py)",
+     "quote": "Hamilton cat. no.: 235900 (non-sterile) 235935 (sterile) Tip Rack with 96x 10ul Low Volume Tip",
+     "covers": "10/50/300/1000 µL tip part numbers, 96 per rack, filter/sterile variants"
+    },
+    {
+     "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/resources/hamilton/tip_racks.py",
+     "document": "PyLabRobot Hamilton tip racks (and tip_creators.py)",
+     "quote": "Hamilton cat. no.: 184021 (non-sterile), 184023 (sterile) Tip Rack 24x 4ml Tip with Filter landscape oriented",
+     "covers": "4 mL and 5 mL tips, 24 per rack"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "document": "Microlab Prep brochure 2023-08-08 (distributor-hosted)",
+     "quote": "1000 μL Conductive Non-Sterile Filter Tips 235905 Case of 5760 tips (Blister 5 x 96 tips per rack)",
+     "covers": "conductivity, 96 per rack for 50/300/1000 µL CO-RE II tips"
+    }
+   ]
+  },
+  "starlet": {
+   "heads": [
+    {
+     "id": "1000ul-channels",
+     "label": "1000 µL independent CO-RE channels",
+     "channels": 8,
+     "minUl": 1,
+     "maxUl": 1000,
+     "tips": [
+      10,
+      50,
+      300,
+      1000
+     ]
+    },
+    {
+     "id": "5ml-channels",
+     "label": "5 mL independent channels",
+     "channels": 8,
+     "minUl": 1,
+     "maxUl": 5000,
+     "tips": [
+      4000,
+      5000
+     ],
+     "note": "minimum volume not found, 1 µl assumed"
+    },
+    {
+     "id": "core-96",
+     "label": "CO-RE 96 Probe Head (1000 µL)",
+     "channels": 96,
+     "minUl": 1,
+     "maxUl": 1000,
+     "tips": [
+      10,
+      50,
+      300,
+      1000
+     ]
+    },
+    {
+     "id": "core-384",
+     "label": "CO-RE 384 Multi-Probe Head",
+     "channels": 384,
+     "minUl": 1,
+     "maxUl": 50,
+     "tips": [
+      50
+     ],
+     "note": "minimum volume not found, 1 µl assumed"
+    }
+   ],
+   "configurations": [
+    {
+     "id": "channels+96",
+     "label": "Channels plus CO-RE 96 head",
+     "heads": [
+      "1000ul-channels",
+      "core-96"
+     ],
+     "notes": "Same STAR-line options; STARlet maximum counts not confirmed."
+    }
+   ],
+   "tipSizes": [
+    10,
+    50,
+    300,
+    1000,
+    4000,
+    5000
+   ],
+   "tipsPerRack": 96,
+   "lowRetention": {
+    "available": null,
+    "note": "No low-retention tip of the vendor's was found in the sources checked."
+   },
+   "thirdPartyTips": {
+    "allowed": false,
+    "warrantyCondition": null,
+    "note": "Illumina's ML STAR guide says to use only Hamilton CO-RE tips; Hamilton's own warranty wording was not found (hamiltoncompany.com returns 403). Third-party 'CO-RE compatible' tips are sold (e.g. Axygen), which is not vendor support.",
+    "source": {
+     "url": "https://support.illumina.com/content/dam/illumina-support/documents/documentation/system_documentation/mlstar/hamilton-ml-star-reference-guide-15070074-a.pdf",
+     "document": "Illumina ML STAR reference guide 15070074 A",
+     "quote": "Only use ML STAR CO-RE tips. Other tips do not mount properly and can cause errors.",
+     "covers": "third-party tips"
+    }
+   },
+   "tipReuse": {
+    "supported": true,
+    "basis": "PyLabRobot",
+    "note": "PyLabRobot (which drives STAR/Vantage) can return tips to the rack they came from. Native VENUS behaviour not confirmed from an opened source.",
+    "source": {
+     "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/legacy/liquid_handling/liquid_handler.py",
+     "document": "PyLabRobot LiquidHandler",
+     "quote": "Return all tips that are currently picked up to their original place.",
+     "covers": "tip return"
+    }
+   },
+   "multiDispense": {
+    "supported": null,
+    "note": "Not confirmed from an opened source for VENUS (STAR/Vantage/NIMBUS). The Prep's software has Multi-Dispense."
+   },
+   "sources": [
+    {
+     "url": "https://airdrive.eventsair.com/eventsairwesteuprod/production-elrig-public/3f4ace858e594771ac5413349919d284",
+     "document": "Hamilton 'Automated Solutions' brochure (PDF, modified Aug 2025, hosted by ELRIG)",
+     "quote": "Pipetting Option (max. Number) 1000 μL, 5 mL Channels (16, 8) Multi-Probe Head Option 96 or 384 Volume Range 1 μL - 5000 μL",
+     "covers": "STAR line channel maxima, head options, range"
+    },
+    {
+     "url": "https://www.epfl.ch/research/facilities/gene-expression-core-facility/wp-content/uploads/2018/08/Microlab-STAR-Brochure.pdf",
+     "document": "Hamilton Microlab STAR Line brochure BR0010 07/2013 (hosted by EPFL)",
+     "quote": "usage of the same tips for pipetting volumes from 0.5 up to 1000µl on single channels and the CO-RE 96 Probe Head",
+     "covers": "shared tips channels/96 head; reach of all tools"
+    },
+    {
+     "url": "https://www.mynewsdesk.com/se/hamilton-robotics/news/launch-of-a-unique-multichannel-head-allowing-full-process-control-40620",
+     "document": "Hamilton press release 24 May 2012",
+     "quote": "CO-RE 96 probe head 1000μl TADM ... with a volume range from 1 to 1000 microliters",
+     "covers": "96 head range"
+    },
+    {
+     "url": "https://www.selectscience.net/article/384-stp-multichannel-head-and-rocket-tips-enable-96-to-1536-well-pipetting-with-one-arm",
+     "document": "SelectScience news, 25 Jan 2010",
+     "quote": "When using all 384 channels independently the standard per-channel maximum volume is 50µL.",
+     "covers": "384 head range"
+    },
+    {
+     "url": "https://www.selectscience.net/article/384-stp-multichannel-head-and-rocket-tips-enable-96-to-1536-well-pipetting-with-one-arm",
+     "document": "SelectScience news, 25 Jan 2010",
+     "quote": "Switching to 96-well pipetting increases the per-channel maximum volume to 300µL.",
+     "covers": "384 head with Rocket tips"
+    },
+    {
+     "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/resources/hamilton/tip_racks.py",
+     "document": "PyLabRobot Hamilton tip racks (and tip_creators.py)",
+     "quote": "Hamilton cat. no.: 235900 (non-sterile) 235935 (sterile) Tip Rack with 96x 10ul Low Volume Tip",
+     "covers": "10/50/300/1000 µL tip part numbers, 96 per rack, filter/sterile variants"
+    },
+    {
+     "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/resources/hamilton/tip_racks.py",
+     "document": "PyLabRobot Hamilton tip racks (and tip_creators.py)",
+     "quote": "Hamilton cat. no.: 184021 (non-sterile), 184023 (sterile) Tip Rack 24x 4ml Tip with Filter landscape oriented",
+     "covers": "4 mL and 5 mL tips, 24 per rack"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "document": "Microlab Prep brochure 2023-08-08 (distributor-hosted)",
+     "quote": "1000 μL Conductive Non-Sterile Filter Tips 235905 Case of 5760 tips (Blister 5 x 96 tips per rack)",
+     "covers": "conductivity, 96 per rack for 50/300/1000 µL CO-RE II tips"
+    }
+   ]
+  },
+  "plr-hamilton-vantage": {
+   "heads": [
+    {
+     "id": "1000ul-channels",
+     "label": "1000 µL independent CO-RE channels",
+     "channels": 16,
+     "minUl": 1,
+     "maxUl": 1000,
+     "tips": [
+      10,
+      50,
+      300,
+      1000
+     ]
+    },
+    {
+     "id": "5ml-channels",
+     "label": "5 mL independent channels",
+     "channels": 8,
+     "minUl": 1,
+     "maxUl": 5000,
+     "tips": [
+      4000,
+      5000
+     ],
+     "note": "minimum volume not found, 1 µl assumed"
+    },
+    {
+     "id": "magpip",
+     "label": "MagPip channels",
+     "channels": 8,
+     "minUl": 0.35,
+     "maxUl": 750,
+     "tips": [
+      750
+     ],
+     "note": "tips assumed from range"
+    },
+    {
+     "id": "core-96",
+     "label": "CO-RE 96 Probe Head (1000 µL)",
+     "channels": 96,
+     "minUl": 1,
+     "maxUl": 1000,
+     "tips": [
+      10,
+      50,
+      300,
+      1000
+     ]
+    },
+    {
+     "id": "core-384",
+     "label": "CO-RE 384 Multi-Probe Head",
+     "channels": 384,
+     "minUl": 1,
+     "maxUl": 50,
+     "tips": [
+      50
+     ],
+     "note": "minimum volume not found, 1 µl assumed"
+    }
+   ],
+   "configurations": [
+    {
+     "id": "channels+96+384",
+     "label": "Channels plus a 96 and/or 384 head",
+     "heads": [
+      "1000ul-channels",
+      "core-96",
+      "core-384"
+     ],
+     "notes": "Brochure: Multi-Probe Head Option '96 and/or 384'."
+    }
+   ],
+   "tipSizes": [
+    10,
+    50,
+    300,
+    1000,
+    4000,
+    5000
+   ],
+   "tipsPerRack": 96,
+   "lowRetention": {
+    "available": null,
+    "note": "No low-retention tip of the vendor's was found in the sources checked."
+   },
+   "thirdPartyTips": {
+    "allowed": false,
+    "warrantyCondition": null,
+    "note": "Illumina's ML STAR guide says to use only Hamilton CO-RE tips; Hamilton's own warranty wording was not found (hamiltoncompany.com returns 403). Third-party 'CO-RE compatible' tips are sold (e.g. Axygen), which is not vendor support.",
+    "source": {
+     "url": "https://support.illumina.com/content/dam/illumina-support/documents/documentation/system_documentation/mlstar/hamilton-ml-star-reference-guide-15070074-a.pdf",
+     "document": "Illumina ML STAR reference guide 15070074 A",
+     "quote": "Only use ML STAR CO-RE tips. Other tips do not mount properly and can cause errors.",
+     "covers": "third-party tips"
+    }
+   },
+   "tipReuse": {
+    "supported": true,
+    "basis": "PyLabRobot",
+    "note": "PyLabRobot (which drives STAR/Vantage) can return tips to the rack they came from. Native VENUS behaviour not confirmed from an opened source.",
+    "source": {
+     "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/legacy/liquid_handling/liquid_handler.py",
+     "document": "PyLabRobot LiquidHandler",
+     "quote": "Return all tips that are currently picked up to their original place.",
+     "covers": "tip return"
+    }
+   },
+   "multiDispense": {
+    "supported": null,
+    "note": "Not confirmed from an opened source for VENUS (STAR/Vantage/NIMBUS). The Prep's software has Multi-Dispense."
+   },
+   "sources": [
+    {
+     "url": "https://airdrive.eventsair.com/eventsairwesteuprod/production-elrig-public/3f4ace858e594771ac5413349919d284",
+     "document": "Hamilton 'Automated Solutions' brochure (PDF, modified Aug 2025, hosted by ELRIG)",
+     "quote": "1000 μL, 5 mL, MagPip Channels (16, 8, 8) ... 96 and/or 384 ... Volume Range 0.35 μL - 5000 μL",
+     "covers": "Vantage channel maxima, heads, range"
+    },
+    {
+     "url": "https://airdrive.eventsair.com/eventsairwesteuprod/production-elrig-public/3f4ace858e594771ac5413349919d284",
+     "document": "Hamilton 'Automated Solutions' brochure (PDF, modified Aug 2025, hosted by ELRIG)",
+     "quote": "the pipetting volume ranges from 350 nL to 750 μL without the need of tip/liquid contact",
+     "covers": "MagPip range"
+    },
+    {
+     "url": "https://www.epfl.ch/research/facilities/gene-expression-core-facility/wp-content/uploads/2018/08/Microlab-STAR-Brochure.pdf",
+     "document": "Hamilton Microlab STAR Line brochure BR0010 07/2013 (hosted by EPFL)",
+     "quote": "usage of the same tips for pipetting volumes from 0.5 up to 1000µl on single channels and the CO-RE 96 Probe Head",
+     "covers": "shared tips channels/96 head; reach of all tools"
+    },
+    {
+     "url": "https://www.mynewsdesk.com/se/hamilton-robotics/news/launch-of-a-unique-multichannel-head-allowing-full-process-control-40620",
+     "document": "Hamilton press release 24 May 2012",
+     "quote": "CO-RE 96 probe head 1000μl TADM ... with a volume range from 1 to 1000 microliters",
+     "covers": "96 head range"
+    },
+    {
+     "url": "https://www.selectscience.net/article/384-stp-multichannel-head-and-rocket-tips-enable-96-to-1536-well-pipetting-with-one-arm",
+     "document": "SelectScience news, 25 Jan 2010",
+     "quote": "When using all 384 channels independently the standard per-channel maximum volume is 50µL.",
+     "covers": "384 head range"
+    },
+    {
+     "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/resources/hamilton/tip_racks.py",
+     "document": "PyLabRobot Hamilton tip racks (and tip_creators.py)",
+     "quote": "Hamilton cat. no.: 235900 (non-sterile) 235935 (sterile) Tip Rack with 96x 10ul Low Volume Tip",
+     "covers": "10/50/300/1000 µL tip part numbers, 96 per rack, filter/sterile variants"
+    },
+    {
+     "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/resources/hamilton/tip_racks.py",
+     "document": "PyLabRobot Hamilton tip racks (and tip_creators.py)",
+     "quote": "Hamilton cat. no.: 184021 (non-sterile), 184023 (sterile) Tip Rack 24x 4ml Tip with Filter landscape oriented",
+     "covers": "4 mL and 5 mL tips, 24 per rack"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "document": "Microlab Prep brochure 2023-08-08 (distributor-hosted)",
+     "quote": "1000 μL Conductive Non-Sterile Filter Tips 235905 Case of 5760 tips (Blister 5 x 96 tips per rack)",
+     "covers": "conductivity, 96 per rack for 50/300/1000 µL CO-RE II tips"
+    }
+   ]
+  },
+  "plr-hamilton-nimbus": {
+   "heads": [
+    {
+     "id": "1000ul-channels",
+     "label": "1000 µL independent CO-RE channels",
+     "channels": 8,
+     "minUl": 1,
+     "maxUl": 1000,
+     "tips": [
+      10,
+      50,
+      300,
+      1000
+     ]
+    },
+    {
+     "id": "core-96",
+     "label": "CO-RE 96 Probe Head (1000 µL)",
+     "channels": 96,
+     "minUl": 1,
+     "maxUl": 1000,
+     "tips": [
+      10,
+      50,
+      300,
+      1000
+     ]
+    },
+    {
+     "id": "core-384",
+     "label": "CO-RE 384 Multi-Probe Head",
+     "channels": 384,
+     "minUl": 1,
+     "maxUl": 50,
+     "tips": [
+      50
+     ],
+     "note": "minimum volume not found, 1 µl assumed"
+    }
+   ],
+   "configurations": [
+    {
+     "id": "channels",
+     "label": "Up to 8 × 1000 µL channels",
+     "heads": [
+      "1000ul-channels"
+     ]
+    },
+    {
+     "id": "mph",
+     "label": "96 or 384 multi-probe head",
+     "heads": [
+      "core-96",
+      "core-384"
+     ],
+     "notes": "Whether channels and a head can be fitted together on NIMBUS was not confirmed."
+    }
+   ],
+   "tipSizes": [
+    10,
+    50,
+    300,
+    1000
+   ],
+   "tipsPerRack": 96,
+   "lowRetention": {
+    "available": null,
+    "note": "No low-retention tip of the vendor's was found in the sources checked."
+   },
+   "thirdPartyTips": {
+    "allowed": false,
+    "warrantyCondition": null,
+    "note": "Illumina's ML STAR guide says to use only Hamilton CO-RE tips; Hamilton's own warranty wording was not found (hamiltoncompany.com returns 403). Third-party 'CO-RE compatible' tips are sold (e.g. Axygen), which is not vendor support.",
+    "source": {
+     "url": "https://support.illumina.com/content/dam/illumina-support/documents/documentation/system_documentation/mlstar/hamilton-ml-star-reference-guide-15070074-a.pdf",
+     "document": "Illumina ML STAR reference guide 15070074 A",
+     "quote": "Only use ML STAR CO-RE tips. Other tips do not mount properly and can cause errors.",
+     "covers": "third-party tips"
+    }
+   },
+   "tipReuse": {
+    "supported": true,
+    "basis": "PyLabRobot",
+    "note": "PyLabRobot (which drives STAR/Vantage) can return tips to the rack they came from. Native VENUS behaviour not confirmed from an opened source.",
+    "source": {
+     "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/legacy/liquid_handling/liquid_handler.py",
+     "document": "PyLabRobot LiquidHandler",
+     "quote": "Return all tips that are currently picked up to their original place.",
+     "covers": "tip return"
+    }
+   },
+   "multiDispense": {
+    "supported": null,
+    "note": "Not confirmed from an opened source for VENUS (STAR/Vantage/NIMBUS). The Prep's software has Multi-Dispense."
+   },
+   "sources": [
+    {
+     "url": "https://airdrive.eventsair.com/eventsairwesteuprod/production-elrig-public/3f4ace858e594771ac5413349919d284",
+     "document": "Hamilton 'Automated Solutions' brochure (PDF, modified Aug 2025, hosted by ELRIG)",
+     "quote": "Microlab NIMBUS ... 0.9 m ... 1000 μL Channels (8) ... 96 or 384 ... 1 μL - 1000 μL",
+     "covers": "NIMBUS channels, head option, range"
+    },
+    {
+     "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/resources/hamilton/tip_racks.py",
+     "document": "PyLabRobot Hamilton tip racks (and tip_creators.py)",
+     "quote": "Hamilton cat. no.: 235900 (non-sterile) 235935 (sterile) Tip Rack with 96x 10ul Low Volume Tip",
+     "covers": "10/50/300/1000 µL tip part numbers, 96 per rack, filter/sterile variants"
+    },
+    {
+     "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/resources/hamilton/tip_racks.py",
+     "document": "PyLabRobot Hamilton tip racks (and tip_creators.py)",
+     "quote": "Hamilton cat. no.: 184021 (non-sterile), 184023 (sterile) Tip Rack 24x 4ml Tip with Filter landscape oriented",
+     "covers": "4 mL and 5 mL tips, 24 per rack"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "document": "Microlab Prep brochure 2023-08-08 (distributor-hosted)",
+     "quote": "1000 μL Conductive Non-Sterile Filter Tips 235905 Case of 5760 tips (Blister 5 x 96 tips per rack)",
+     "covers": "conductivity, 96 per rack for 50/300/1000 µL CO-RE II tips"
+    }
+   ]
+  },
+  "plr-hamilton-prep": {
+   "heads": [
+    {
+     "id": "2ch",
+     "label": "2 independent CO-RE II channels",
+     "channels": 2,
+     "minUl": 1,
+     "maxUl": 1000,
+     "tips": [
+      50,
+      300,
+      1000
+     ]
+    },
+    {
+     "id": "8mph",
+     "label": "8 Multi-Probe Head (8 channels move together)",
+     "channels": 8,
+     "minUl": 1,
+     "maxUl": 1000,
+     "tips": [
+      50,
+      300,
+      1000
+     ]
+    }
+   ],
+   "configurations": [
+    {
+     "id": "2ch",
+     "label": "2 channels",
+     "heads": [
+      "2ch"
+     ]
+    },
+    {
+     "id": "8mph",
+     "label": "8 Multi-Probe Head",
+     "heads": [
+      "8mph"
+     ]
+    },
+    {
+     "id": "2ch+8mph",
+     "label": "2 channels + 8 Multi-Probe Head",
+     "heads": [
+      "2ch",
+      "8mph"
+     ]
+    }
+   ],
+   "tipSizes": [
+    50,
+    300,
+    1000
+   ],
+   "tipsPerRack": 96,
+   "lowRetention": {
+    "available": null,
+    "note": "No low-retention tip of the vendor's was found in the sources checked."
+   },
+   "thirdPartyTips": {
+    "allowed": false,
+    "warrantyCondition": null,
+    "note": "Illumina's ML STAR guide says to use only Hamilton CO-RE tips; Hamilton's own warranty wording was not found (hamiltoncompany.com returns 403). Third-party 'CO-RE compatible' tips are sold (e.g. Axygen), which is not vendor support.",
+    "source": {
+     "url": "https://support.illumina.com/content/dam/illumina-support/documents/documentation/system_documentation/mlstar/hamilton-ml-star-reference-guide-15070074-a.pdf",
+     "document": "Illumina ML STAR reference guide 15070074 A",
+     "quote": "Only use ML STAR CO-RE tips. Other tips do not mount properly and can cause errors.",
+     "covers": "third-party tips"
+    }
+   },
+   "tipReuse": {
+    "supported": true,
+    "basis": "PyLabRobot",
+    "note": "PyLabRobot (which drives STAR/Vantage) can return tips to the rack they came from. Native VENUS behaviour not confirmed from an opened source.",
+    "source": {
+     "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/legacy/liquid_handling/liquid_handler.py",
+     "document": "PyLabRobot LiquidHandler",
+     "quote": "Return all tips that are currently picked up to their original place.",
+     "covers": "tip return"
+    }
+   },
+   "multiDispense": {
+    "supported": true,
+    "note": "Microlab Prep software offers a Multi-Dispense dispense type.",
+    "source": {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "document": "Microlab Prep brochure 2023-08-08 (distributor-hosted)",
+     "quote": "Dispense type ... Multi-Dispense",
+     "covers": "multi-dispense on Prep"
+    }
+   },
+   "sources": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "document": "Microlab Prep brochure 2023-08-08 (distributor-hosted)",
+     "quote": "The Microlab Prep features three possible configurations for pipetting automation.",
+     "covers": "configurations"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "document": "Microlab Prep brochure 2023-08-08 (distributor-hosted)",
+     "quote": "channels to detect the liquid level with a dynamic pipetting range of 1–1000 µL",
+     "covers": "range"
+    },
+    {
+     "url": "https://airdrive.eventsair.com/eventsairwesteuprod/production-elrig-public/3f4ace858e594771ac5413349919d284",
+     "document": "Hamilton 'Automated Solutions' brochure (PDF, modified Aug 2025, hosted by ELRIG)",
+     "quote": "Microlab Prep ... 0.5 m ... 1000 μL Channels (2) ... Multi-Probe Head Option 8",
+     "covers": "Prep channel/MPH options"
+    },
+    {
+     "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/resources/hamilton/tip_racks.py",
+     "document": "PyLabRobot Hamilton tip racks (and tip_creators.py)",
+     "quote": "Hamilton cat. no.: 235900 (non-sterile) 235935 (sterile) Tip Rack with 96x 10ul Low Volume Tip",
+     "covers": "10/50/300/1000 µL tip part numbers, 96 per rack, filter/sterile variants"
+    },
+    {
+     "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/resources/hamilton/tip_racks.py",
+     "document": "PyLabRobot Hamilton tip racks (and tip_creators.py)",
+     "quote": "Hamilton cat. no.: 184021 (non-sterile), 184023 (sterile) Tip Rack 24x 4ml Tip with Filter landscape oriented",
+     "covers": "4 mL and 5 mL tips, 24 per rack"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "document": "Microlab Prep brochure 2023-08-08 (distributor-hosted)",
+     "quote": "1000 μL Conductive Non-Sterile Filter Tips 235905 Case of 5760 tips (Blister 5 x 96 tips per rack)",
+     "covers": "conductivity, 96 per rack for 50/300/1000 µL CO-RE II tips"
+    }
+   ]
+  },
+  "i7": {
+   "heads": [
+    {
+     "id": "span8",
+     "label": "Span-8 pod (8 independent-span probes)",
+     "channels": 8,
+     "minUl": 1,
+     "maxUl": 1000,
+     "tips": [
+      50,
+      90,
+      190,
+      230,
+      1025,
+      1070
+     ]
+    },
+    {
+     "id": "mc96-300",
+     "label": "96-channel head 1–300 µL",
+     "channels": 96,
+     "minUl": 1,
+     "maxUl": 300,
+     "tips": [
+      40,
+      50,
+      80,
+      90,
+      190,
+      230
+     ]
+    },
+    {
+     "id": "mc96-1200",
+     "label": "96-channel head 5–1200 µL",
+     "channels": 96,
+     "minUl": 5,
+     "maxUl": 1200,
+     "tips": [
+      90,
+      190,
+      230,
+      1025,
+      1070
+     ]
+    },
+    {
+     "id": "mc384",
+     "label": "Multichannel-384 head 0.5–60 µL",
+     "channels": 384,
+     "minUl": 0.5,
+     "maxUl": 60,
+     "tips": [
+      60
+     ],
+     "note": "tips assumed from range"
+    }
+   ],
+   "configurations": [
+    {
+     "id": "span8",
+     "label": "Single Span-8 pod",
+     "heads": [
+      "span8"
+     ]
+    },
+    {
+     "id": "mc",
+     "label": "Single multichannel head (96 or 384)",
+     "heads": [
+      "mc96-300"
+     ]
+    },
+    {
+     "id": "dual-mc",
+     "label": "Dual multichannel (two MC pods)",
+     "heads": [
+      "mc96-300",
+      "mc96-1200"
+     ],
+     "notes": "B87580 'dual-Multichannel' exists; pairing rules not confirmed."
+    },
+    {
+     "id": "hybrid",
+     "label": "Hybrid: multichannel head + Span-8",
+     "heads": [
+      "mc96-1200",
+      "span8"
+     ],
+     "notes": "B87579/B87585 Hybrid (MC + Span-8)."
+    }
+   ],
+   "tipSizes": [
+    40,
+    50,
+    80,
+    90,
+    190,
+    230,
+    1025,
+    1070
+   ],
+   "tipsPerRack": 96,
+   "lowRetention": {
+    "available": null,
+    "note": "No Beckman-branded low-retention Biomek i-Series tip seen; third-party low-retention Biomek-format tips exist."
+   },
+   "thirdPartyTips": {
+    "allowed": null,
+    "warrantyCondition": null,
+    "note": "Beckman says only Biomek tips are validated; no explicit ban or warranty clause seen. Third-party Biomek-format tips exist (Thermo, Alkali; low-retention offered by those vendors).",
+    "source": {
+     "url": "https://www.netascientific.com/media/ContentDocument/2024_Tips_Promo_Flyer_Neta.pdf",
+     "document": "Beckman Coulter 2024 Biomek tips promo flyer (Neta Scientific)",
+     "quote": "Biomek tips are the only tips validated for your Biomek Automated Workstation(s)",
+     "covers": "third-party tips"
+    }
+   },
+   "tipReuse": {
+    "supported": null,
+    "note": "Not found."
+   },
+   "multiDispense": {
+    "supported": null,
+    "note": "Not found."
+   },
+   "sources": [
+    {
+     "url": "https://store.beckman.com/ko/p/b87579?countryCode=KR",
+     "document": "Beckman store, Biomek i7 Hybrid B87579",
+     "quote": "1μL - 300 μL 96-Channel head, 5 μL -1200 μL 96-Channel Head, 0.5 μL - 60 μL Multichannel-384 Head, Span-8 Pod",
+     "covers": "head options and ranges"
+    },
+    {
+     "url": "https://www.mybeckman.vn/en/liquid-handlers/biomek-i7",
+     "document": "Beckman Vietnam Biomek i7 page",
+     "quote": "Multiple single- & dual-arm configurations with Multichannel heads (96/384/Pin tool) and/or Span-8 pipetting",
+     "covers": "configurations"
+    },
+    {
+     "url": "https://www.govsci.com/product-detail/Beckman--Coulter/B87582/EA/",
+     "document": "GovSci listing, Biomek i7 Span-8 B87582",
+     "quote": "Single pod with 8 channel Span-8 probes ... 1 -5000 µL pipetting volume range",
+     "covers": "Span-8 workstation"
+    },
+    {
+     "url": "https://iscms.westlake.edu.cn/info/1034/1758.htm",
+     "document": "Westlake University core facility Biomek i7 listing (installation-specific)",
+     "quote": "Span 8 Dispenser: Volume range 1-250 μL (extendable to 1-1000 μL)",
+     "covers": "Span-8 range (one installation; translated from Chinese)"
+    },
+    {
+     "url": "https://store.beckman.com/en/p/b85961?countryCode=ZA",
+     "document": "Beckman store, tip B85961",
+     "quote": "Tip Type 1070 µL ... 5 racks (96 per rack) ... Conductive 1 ... Pod and Tool Type Span-8 Pod",
+     "covers": "Span-8 conductive tip"
+    },
+    {
+     "url": "https://www.netascientific.com/media/ContentDocument/2024_Tips_Promo_Flyer_Neta.pdf",
+     "document": "Beckman Coulter 2024 Biomek tips promo flyer (Neta Scientific)",
+     "quote": "Biomek® i-Series 1025ul Pipette Tips, Filtered 1025 µL + + B85955 Case of 480",
+     "covers": "i-Series tip part numbers, sizes, filtered, sterile"
+    }
+   ]
+  },
+  "fluent": {
+   "heads": [
+    {
+     "id": "afca",
+     "label": "Air FCA (8 channels, air displacement)",
+     "channels": 8,
+     "minUl": 0.5,
+     "maxUl": 1000,
+     "tips": [
+      10,
+      50,
+      200,
+      350,
+      1000
+     ]
+    },
+    {
+     "id": "lfca",
+     "label": "Liquid FCA (8 channels, syringe dilutors)",
+     "channels": 8,
+     "minUl": 1,
+     "maxUl": 5000,
+     "tips": [
+      10,
+      50,
+      200,
+      350,
+      1000,
+      5000
+     ]
+    },
+    {
+     "id": "mca96",
+     "label": "MCA 96",
+     "channels": 96,
+     "minUl": 1,
+     "maxUl": 1000,
+     "tips": [
+      50,
+      100,
+      200,
+      500
+     ]
+    },
+    {
+     "id": "mca384",
+     "label": "MCA 384",
+     "channels": 384,
+     "minUl": 0.25,
+     "maxUl": 125,
+     "tips": [
+      15,
+      50,
+      125
+     ]
+    }
+   ],
+   "configurations": [
+    {
+     "id": "fca+mca",
+     "label": "FCA plus an MCA 96 or MCA 384 arm",
+     "heads": [
+      "afca",
+      "mca96"
+     ],
+     "notes": "Both are optional arms; exact arm-combination rules per Fluent size not confirmed."
+    }
+   ],
+   "tipSizes": [
+    10,
+    15,
+    50,
+    100,
+    125,
+    200,
+    350,
+    500,
+    1000,
+    5000
+   ],
+   "tipsPerRack": 96,
+   "lowRetention": {
+    "available": null,
+    "note": "No Tecan low-retention tip seen in the catalog."
+   },
+   "thirdPartyTips": {
+    "allowed": null,
+    "note": "Not stated in the catalog. Third-party tips for Tecan exist (e.g. SPT AT-Load 125 µL 384 for MCA, per Fisher search result, not opened)."
+   },
+   "tipReuse": {
+    "supported": true,
+    "basis": "PyLabRobot / EVO spec",
+    "note": "Fluent-specific statement not found; Tecan's EVO tip ejection system supports re-racking."
+   },
+   "multiDispense": {
+    "supported": null,
+    "note": "Not found."
+   },
+   "sources": [
+    {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "document": "Tecan Fluent Product Catalog 402731",
+     "quote": "The A-FCA pipets liquids from 0.5 µL – 1,000 µL using different disposable tip sizes",
+     "covers": "A-FCA range"
+    },
+    {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "document": "Tecan Fluent Product Catalog 402731",
+     "quote": "The L-FCA has 8 channels ... The volume range covers below 1 µL",
+     "covers": "L-FCA"
+    },
+    {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "document": "Tecan Fluent Product Catalog 402731",
+     "quote": "MCA 96 head are compatible with disposable tips for a volume range from 1 µL to 1,000 µL",
+     "covers": "MCA96"
+    },
+    {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "document": "Tecan Fluent Product Catalog 402731",
+     "quote": "0.25 μL to 125 μL in the 384-well format and from 0.5 μL to 500 μL in the 96-well format",
+     "covers": "MCA384"
+    },
+    {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "document": "Tecan Fluent Product Catalog 402731",
+     "quote": "DITI LIHA 1000µL CONDU.FIL.2304 PCE. ... made of conductive polypropylene",
+     "covers": "LiHa/FCA tips, conductive, part numbers"
+    },
+    {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "document": "Tecan Fluent Product Catalog 402731",
+     "quote": "Available in four volumes – 50 μL, 100 μL, 200 μL, and 500 μL",
+     "covers": "MCA96 tips"
+    },
+    {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "document": "Tecan Fluent Product Catalog 402731",
+     "quote": "30138090 DITI 125UL 40X384P MCA384",
+     "covers": "MCA384 tips (40 racks of 384)"
+    }
+   ]
+  },
+  "plr-tecan-evo": {
+   "heads": [
+    {
+     "id": "liquid-liha",
+     "label": "Liquid LiHa (2, 4 or 8 channels)",
+     "channels": 8,
+     "minUl": 0.5,
+     "maxUl": 5000,
+     "tips": [
+      10,
+      50,
+      200,
+      350,
+      1000,
+      5000
+     ]
+    },
+    {
+     "id": "air-liha",
+     "label": "Air LiHa (4 or 8 channels)",
+     "channels": 8,
+     "minUl": 0.5,
+     "maxUl": 1000,
+     "tips": [
+      10,
+      50,
+      200,
+      350,
+      1000
+     ]
+    },
+    {
+     "id": "mca96",
+     "label": "MCA 96",
+     "channels": 96,
+     "minUl": 1,
+     "maxUl": 200,
+     "tips": [
+      50,
+      100,
+      150,
+      200
+     ]
+    },
+    {
+     "id": "mca384",
+     "label": "MCA 384",
+     "channels": 384,
+     "minUl": 0.5,
+     "maxUl": 125,
+     "tips": [
+      15,
+      50,
+      125
+     ]
+    }
+   ],
+   "configurations": [
+    {
+     "id": "arms",
+     "label": "1–3 arms (EVO 150/200; 1–2 on EVO 100) from LiHa, Air LiHa, MCA96/MCA384, RoMa, PnP",
+     "heads": [
+      "liquid-liha",
+      "mca96"
+     ],
+     "notes": "Dual Liquid LiHa or Liquid + Air LiHa possible."
+    }
+   ],
+   "tipSizes": [
+    10,
+    15,
+    50,
+    100,
+    125,
+    200,
+    350,
+    1000,
+    5000
+   ],
+   "tipsPerRack": 96,
+   "lowRetention": {
+    "available": null,
+    "note": "No low-retention tip of the vendor's was found in the sources checked."
+   },
+   "thirdPartyTips": {
+    "allowed": null,
+    "note": "Not stated in the spec sheet."
+   },
+   "tipReuse": {
+    "supported": true,
+    "note": "Tip ejection system also used for tip re-racking.",
+    "source": {
+     "url": "https://www.richmondscientific.com/wp-content/uploads/2023/06/Product-specifications-Tecan-Freedom-EVO-2-150-Base-2111000042.pdf",
+     "document": "Tecan Freedom EVO specifications sheet (hosted by Richmond Scientific)",
+     "quote": "Ejection of disposable tips in contained environment to prevent aerosol; Also used for tip re-racking",
+     "covers": "tip re-racking"
+    }
+   },
+   "multiDispense": {
+    "supported": null,
+    "note": "Not found."
+   },
+   "sources": [
+    {
+     "url": "https://www.richmondscientific.com/wp-content/uploads/2023/06/Product-specifications-Tecan-Freedom-EVO-2-150-Base-2111000042.pdf",
+     "document": "Tecan Freedom EVO specifications sheet (hosted by Richmond Scientific)",
+     "quote": "Liquid LiHa (Liquid displacement Liquid Handling arm) with 2,4 or 8 channels, Air LiHa ... with 4 or 8 channels",
+     "covers": "arms"
+    },
+    {
+     "url": "https://www.richmondscientific.com/wp-content/uploads/2023/06/Product-specifications-Tecan-Freedom-EVO-2-150-Base-2111000042.pdf",
+     "document": "Tecan Freedom EVO specifications sheet (hosted by Richmond Scientific)",
+     "quote": "Volume range 0.5 to 5000 µl Disposable tips (DiTi) sizes 10, 50, 200, 1000, 5000 μl – with or without filters",
+     "covers": "Liquid LiHa"
+    },
+    {
+     "url": "https://www.richmondscientific.com/wp-content/uploads/2023/06/Product-specifications-Tecan-Freedom-EVO-2-150-Base-2111000042.pdf",
+     "document": "Tecan Freedom EVO specifications sheet (hosted by Richmond Scientific)",
+     "quote": "Volume range 0.5 to 1000 µl Disposable tips (DiTi) sizes 10, 50, 200, 1000 μl",
+     "covers": "Air LiHa"
+    },
+    {
+     "url": "https://www.richmondscientific.com/wp-content/uploads/2023/06/Product-specifications-Tecan-Freedom-EVO-2-150-Base-2111000042.pdf",
+     "document": "Tecan Freedom EVO specifications sheet (hosted by Richmond Scientific)",
+     "quote": "Volume range 1 to 200 µl Disposable tips (DiTi) sizes 50, 100, 150 and 200 μl with and without filters",
+     "covers": "MCA96"
+    },
+    {
+     "url": "https://www.richmondscientific.com/wp-content/uploads/2023/06/Product-specifications-Tecan-Freedom-EVO-2-150-Base-2111000042.pdf",
+     "document": "Tecan Freedom EVO specifications sheet (hosted by Richmond Scientific)",
+     "quote": "0.5 to 125 µl in 384 format; 1 to 500 µl in 96 format ... 15, 50 and 125 μl in 384 format",
+     "covers": "MCA384"
+    },
+    {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "document": "Tecan Fluent Product Catalog 402731",
+     "quote": "For use with the Freedom EVO Liquid Handling Arm (LiHa), Fluent Flexible Channel Arm (FCA)",
+     "covers": "LiHa tips shared with EVO"
+    },
+    {
+     "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/resources/tecan/tip_racks.py",
+     "document": "PyLabRobot Tecan tip racks",
+     "quote": "Tecan part no. 10612340 or 10612341",
+     "covers": "EVO MCA96 200 µL DiTi part numbers (PLR)"
+    }
+   ]
+  },
+  "bravo": {
+   "heads": [
+    {
+     "id": "96lt",
+     "label": "96LT disposable-tip head",
+     "channels": 96,
+     "minUl": 2,
+     "maxUl": 250,
+     "tips": [
+      250
+     ]
+    },
+    {
+     "id": "96st",
+     "label": "96ST disposable-tip head",
+     "channels": 96,
+     "minUl": 0.3,
+     "maxUl": 70,
+     "tips": [
+      10,
+      30,
+      70
+     ]
+    },
+    {
+     "id": "384st",
+     "label": "384ST disposable-tip head",
+     "channels": 384,
+     "minUl": 0.3,
+     "maxUl": 70,
+     "tips": [
+      10,
+      30,
+      70
+     ]
+    }
+   ],
+   "configurations": [
+    {
+     "id": "one-head",
+     "label": "One interchangeable head at a time",
+     "heads": [
+      "96lt"
+     ],
+     "notes": "Heads are 'easy-change'; only one fitted at a time."
+    }
+   ],
+   "tipSizes": [
+    10,
+    30,
+    70,
+    250
+   ],
+   "tipsPerRack": 96,
+   "lowRetention": {
+    "available": null,
+    "note": "No low-retention tip of the vendor's was found in the sources checked."
+   },
+   "thirdPartyTips": {
+    "allowed": null,
+    "note": "Agilent data sheet says 'Use Agilent-certified pipette tips'; no warranty clause seen. Third-party Bravo-format tips exist (Axygen, Fluotics).",
+    "source": {
+     "url": "https://labrulez.com/pdf/5990_3480_EN_ec54c426e2/5990-3480EN.pdf",
+     "document": "Agilent Bravo data sheet 5990-3480EN (LabRulez copy)",
+     "quote": "Use Agilent-certified pipette tips",
+     "covers": "tip policy"
+    }
+   },
+   "tipReuse": {
+    "supported": true,
+    "note": "VWorks Tips Off with 'Mark tips as used' cleared lets the next Tips On reuse the same tips.",
+    "source": {
+     "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/VWorks%20User%20Guide/08_LiquidHandling.11.28.html",
+     "document": "Agilent VWorks User Guide, Tips Off task",
+     "quote": "the same tips can be reused",
+     "covers": "tip reuse"
+    }
+   },
+   "multiDispense": {
+    "supported": null,
+    "note": "Not found."
+   },
+   "sources": [
+    {
+     "url": "https://labrulez.com/pdf/5990_3480_EN_ec54c426e2/5990-3480EN.pdf",
+     "document": "Agilent Bravo data sheet 5990-3480EN (LabRulez copy)",
+     "quote": "96LT Disposable Tip, 2.0–250 µL 384ST Disposable Tip, 0.3–70 µL 96ST Disposable Tip, 0.3–70 µL",
+     "covers": "head ranges"
+    },
+    {
+     "url": "https://labrulez.com/pdf/5990_3480_EN_ec54c426e2/5990-3480EN.pdf",
+     "document": "Agilent Bravo data sheet 5990-3480EN (LabRulez copy)",
+     "quote": "10 µL 96ST/384ST Head 0.3–10 µL ... 30 µL ... 0.5–30 µL ... 250 µL 96LT Head 2.0–250 µL",
+     "covers": "tip ranges per head"
+    },
+    {
+     "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Introduction.03.6.html",
+     "document": "Agilent Bravo User Guide, Liquid-handling heads",
+     "quote": "96LT | 250 µL | 96-well, 384-well microplates; single column (8 wells) or row (12 wells)",
+     "covers": "head plate formats"
+    },
+    {
+     "url": "https://www.pipettipfinder.com/SearchTips.aspx?man=FLU",
+     "document": "PipetTipFinder Fluotics cross-reference (third-party)",
+     "quote": "Fluotics 70ul, Vprep/Bravo P70, 384 format, Non-Sterile, RK/384x50/CS",
+     "covers": "384 tips per rack for ST tips; Agilent PN cross-reference (third-party page)"
+    }
+   ]
+  },
+  "firefly": {
+   "heads": [
+    {
+     "id": "firefly-col8",
+     "label": "Pipetting head, 8-tip column (96 format)",
+     "channels": 8,
+     "minUl": 0.5,
+     "maxUl": 125,
+     "tips": [
+      50,
+      125
+     ]
+    },
+    {
+     "id": "firefly-array96",
+     "label": "Pipetting head, 96-tip array",
+     "channels": 96,
+     "minUl": 0.5,
+     "maxUl": 125,
+     "tips": [
+      50,
+      125
+     ]
+    }
+   ],
+   "configurations": [
+    {
+     "id": "head",
+     "label": "One pipetting head: 8-tip columns or a 96-tip array",
+     "heads": [
+      "firefly-col8",
+      "firefly-array96"
+     ],
+     "notes": "The same head takes a full array or a column of tips (user guide 1.3.3)."
+    }
+   ],
+   "tipSizes": [
+    50,
+    125
+   ],
+   "tipsPerRack": 96,
+   "lowRetention": {
+    "available": null,
+    "note": "No low-retention tip of the vendor's was found in the sources checked."
+   },
+   "thirdPartyTips": {
+    "allowed": false,
+    "note": "User guide: always use the correct consumables, available from SPT Labtech. No warranty clause seen.",
+    "source": {
+     "url": "https://www.sptlabtech.com/product-help-center/firefly-user-guide-consumables-3.1-tips",
+     "document": "SPT Labtech firefly user guide 3.1 tips",
+     "quote": "You must always use the correct consumables, which are available from SPT Labtech.",
+     "covers": "tip policy"
+    }
+   },
+   "tipReuse": {
+    "supported": null,
+    "note": "Not stated; guide says firefly loads clean tips automatically."
+   },
+   "multiDispense": {
+    "supported": true,
+    "note": "Dispense syringes multi-dispense; pipetting head not stated.",
+    "source": {
+     "url": "https://sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+     "document": "SPT Labtech firefly user guide 1.3 specifications",
+     "quote": "Each 4mL syringe can be used to multi-dispense smaller volumes for faster dispensing to a 96 or 384 well plate.",
+     "covers": "multi-dispense"
+    }
+   },
+   "sources": [
+    {
+     "url": "https://sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+     "document": "SPT Labtech firefly user guide 1.3 specifications",
+     "quote": "firefly can pipette volumes from 0.5μL to 125μL.",
+     "covers": "pipetting range"
+    },
+    {
+     "url": "https://sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+     "document": "SPT Labtech firefly user guide 1.3 specifications",
+     "quote": "384 and 96 tips for full plates ... columns of 16 (384 format) and 8 (96 format) strip tips",
+     "covers": "tip formats"
+    },
+    {
+     "url": "https://sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+     "document": "SPT Labtech firefly user guide 1.3 specifications",
+     "quote": "The positive displacement syringes dispense volumes from 200nL to 3690µL.",
+     "covers": "dispenser range"
+    },
+    {
+     "url": "https://www.sptlabtech.com/product-help-center/firefly-user-guide-consumables-3.1-tips",
+     "document": "SPT Labtech firefly user guide 3.1 tips",
+     "quote": "Note that a filtered version has lower capacity because the filter takes up space.",
+     "covers": "filtered capacity 100/35 µL"
+    },
+    {
+     "url": "https://sptlabtech.com/products/firefly",
+     "document": "SPT Labtech firefly product page",
+     "quote": "Positive displacement non-contact dispensing 3 or 6 syringes",
+     "covers": "dispense module"
+    }
+   ],
+   "source": {
+    "url": "https://www.sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+    "quote": "The pipetting head can access all deck positions when using arrays of tips and columns of tips. (1.3.3)"
+   }
+  },
+  "firefly-plus": {
+   "heads": [
+    {
+     "id": "firefly-plus-col8",
+     "label": "Pipetting head, 8-tip column (96 format)",
+     "channels": 8,
+     "minUl": 0.5,
+     "maxUl": 125,
+     "tips": [
+      50,
+      125
+     ]
+    },
+    {
+     "id": "firefly-plus-array96",
+     "label": "Pipetting head, 96-tip array",
+     "channels": 96,
+     "minUl": 0.5,
+     "maxUl": 125,
+     "tips": [
+      50,
+      125
+     ]
+    }
+   ],
+   "configurations": [
+    {
+     "id": "head",
+     "label": "One pipetting head: 8-tip columns or a 96-tip array",
+     "heads": [
+      "firefly-plus-col8",
+      "firefly-plus-array96"
+     ],
+     "notes": "The same head takes a full array or a column of tips (user guide 1.3.3)."
+    }
+   ],
+   "tipSizes": [
+    50,
+    125
+   ],
+   "tipsPerRack": 96,
+   "lowRetention": {
+    "available": null,
+    "note": "No low-retention tip of the vendor's was found in the sources checked."
+   },
+   "thirdPartyTips": {
+    "allowed": false,
+    "note": "User guide: always use the correct consumables, available from SPT Labtech. No warranty clause seen.",
+    "source": {
+     "url": "https://www.sptlabtech.com/product-help-center/firefly-user-guide-consumables-3.1-tips",
+     "document": "SPT Labtech firefly user guide 3.1 tips",
+     "quote": "You must always use the correct consumables, which are available from SPT Labtech.",
+     "covers": "tip policy"
+    }
+   },
+   "tipReuse": {
+    "supported": null,
+    "note": "Not stated; guide says firefly loads clean tips automatically."
+   },
+   "multiDispense": {
+    "supported": true,
+    "note": "Dispense syringes multi-dispense; pipetting head not stated.",
+    "source": {
+     "url": "https://sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+     "document": "SPT Labtech firefly user guide 1.3 specifications",
+     "quote": "Each 4mL syringe can be used to multi-dispense smaller volumes for faster dispensing to a 96 or 384 well plate.",
+     "covers": "multi-dispense"
+    }
+   },
+   "sources": [
+    {
+     "url": "https://sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+     "document": "SPT Labtech firefly user guide 1.3 specifications",
+     "quote": "firefly can pipette volumes from 0.5μL to 125μL.",
+     "covers": "pipetting range"
+    },
+    {
+     "url": "https://sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+     "document": "SPT Labtech firefly user guide 1.3 specifications",
+     "quote": "384 and 96 tips for full plates ... columns of 16 (384 format) and 8 (96 format) strip tips",
+     "covers": "tip formats"
+    },
+    {
+     "url": "https://sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+     "document": "SPT Labtech firefly user guide 1.3 specifications",
+     "quote": "The positive displacement syringes dispense volumes from 200nL to 3690µL.",
+     "covers": "dispenser range"
+    },
+    {
+     "url": "https://www.sptlabtech.com/product-help-center/firefly-user-guide-consumables-3.1-tips",
+     "document": "SPT Labtech firefly user guide 3.1 tips",
+     "quote": "Note that a filtered version has lower capacity because the filter takes up space.",
+     "covers": "filtered capacity 100/35 µL"
+    },
+    {
+     "url": "https://sptlabtech.com/products/firefly",
+     "document": "SPT Labtech firefly product page",
+     "quote": "Positive displacement non-contact dispensing 3 or 6 syringes",
+     "covers": "dispense module"
+    },
+    {
+     "url": "https://sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+     "document": "SPT Labtech firefly user guide 1.3 specifications",
+     "quote": "15 x medium shelves (max. labware height 66mm - ideal for additional tip boxes)",
+     "covers": "firefly+ storage"
+    }
+   ],
+   "source": {
+    "url": "https://www.sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+    "quote": "The pipetting head can access all deck positions when using arrays of tips and columns of tips. (1.3.3)"
+   }
+  },
+  "andrew": {
+   "heads": [
+    {
+     "id": "aa-1-ch-10",
+     "label": "Andrew Alliance 1-ch 0.2–10 µL electronic pipette (Waters 186009769)",
+     "channels": 1,
+     "minUl": 0.2,
+     "maxUl": 10,
+     "tips": [
+      10
+     ],
+     "note": "tips assumed from range"
+    },
+    {
+     "id": "aa-1-ch-120",
+     "label": "Andrew Alliance 1-ch 5–120 µL electronic pipette (Waters 186009765)",
+     "channels": 1,
+     "minUl": 5,
+     "maxUl": 120,
+     "tips": [
+      120
+     ],
+     "note": "tips assumed from range"
+    },
+    {
+     "id": "aa-1-ch-300",
+     "label": "Andrew Alliance 1-ch 10–300 µL electronic pipette (Waters 186009606)",
+     "channels": 1,
+     "minUl": 10,
+     "maxUl": 300,
+     "tips": [
+      300
+     ],
+     "note": "tips assumed from range"
+    },
+    {
+     "id": "aa-1-ch-1000",
+     "label": "Andrew Alliance 1-ch 50–1000 µL electronic pipette (Waters 186009766)",
+     "channels": 1,
+     "minUl": 50,
+     "maxUl": 1000,
+     "tips": [
+      1000
+     ],
+     "note": "tips assumed from range"
+    },
+    {
+     "id": "aa-1-ch-5000",
+     "label": "Andrew Alliance 1-ch 100–5000 µL electronic pipette (Waters 186009608)",
+     "channels": 1,
+     "minUl": 100,
+     "maxUl": 5000,
+     "tips": [
+      5000
+     ],
+     "note": "tips assumed from range"
+    },
+    {
+     "id": "aa-1-ch-10000",
+     "label": "Andrew Alliance 1-ch 500–10000 µL electronic pipette (Waters 186009767)",
+     "channels": 1,
+     "minUl": 500,
+     "maxUl": 10000,
+     "tips": [
+      10000
+     ],
+     "note": "tips assumed from range"
+    },
+    {
+     "id": "aa-8-ch-10",
+     "label": "Andrew Alliance 8-ch 0.2–10 µL electronic pipette (Waters 186009768)",
+     "channels": 8,
+     "minUl": 0.2,
+     "maxUl": 10,
+     "tips": [
+      10
+     ],
+     "note": "tips assumed from range"
+    },
+    {
+     "id": "aa-8-ch-120",
+     "label": "Andrew Alliance 8-ch 5–120 µL electronic pipette (Waters 186009605)",
+     "channels": 8,
+     "minUl": 5,
+     "maxUl": 120,
+     "tips": [
+      120
+     ],
+     "note": "tips assumed from range"
+    },
+    {
+     "id": "aa-8-ch-300",
+     "label": "Andrew Alliance 8-ch 10–300 µL electronic pipette (Waters 186009607)",
+     "channels": 8,
+     "minUl": 10,
+     "maxUl": 300,
+     "tips": [
+      300
+     ],
+     "note": "tips assumed from range"
+    },
+    {
+     "id": "aa-8-ch-1200",
+     "label": "Andrew Alliance 8-ch 50–1200 µL electronic pipette (Waters 186009615)",
+     "channels": 8,
+     "minUl": 50,
+     "maxUl": 1200,
+     "tips": [
+      1200
+     ],
+     "note": "tips assumed from range"
+    }
+   ],
+   "configurations": [
+    {
+     "id": "one-pipette",
+     "label": "Robot uses one single- or 8-channel electronic pipette at a time from the set loaded",
+     "heads": [
+      "aa-8-ch-10",
+      "aa-8-ch-120",
+      "aa-8-ch-300",
+      "aa-8-ch-1200"
+     ],
+     "notes": "Andrew+ only works with 8- and single-channel pipettes; 12-channel only on Pipette+. Heads not listed in the research: every 8-channel head is used."
+    }
+   ],
+   "tipSizes": [],
+   "tipsPerRack": 96,
+   "lowRetention": {
+    "available": null,
+    "note": "No low-retention tip of the vendor's was found in the sources checked."
+   },
+   "thirdPartyTips": {
+    "allowed": false,
+    "note": "Only Waters/Andrew Alliance (Sartorius) pipettes supported; tips via Sartorius or Waters. Tip list itself not readable.",
+    "source": {
+     "url": "https://support.waters.com/KB_Inst/Other/WKB122208_What_Pipettors_and_Pipet_Tips_Are_Supported_on_Andrew",
+     "document": "Waters KB WKB122208",
+     "quote": "Pipettes can be purchased through Waters, and the tips must be purchased through Sartorius.",
+     "covers": "tip sourcing"
+    }
+   },
+   "tipReuse": {
+    "supported": true,
+    "note": "'put tips back' guideline returns tips to the Tip Insertion System Domino for the whole protocol (OneLab ≥1.14).",
+    "source": {
+     "url": "https://intercom.help/andrew-alliance/en/articles/8955735-technical-guidelines-for-superior-execution",
+     "document": "Andrew Alliance OneLab technical guidelines",
+     "quote": "Andrew+ returns tips to their original position in the Tis Insertion System Domino instead of ejecting them into waste.",
+     "covers": "tip return"
+    }
+   },
+   "multiDispense": {
+    "supported": null,
+    "note": "Not found."
+   },
+   "sources": [
+    {
+     "url": "https://support.waters.com/KB_Inst/Other/WKB122208_What_Pipettors_and_Pipet_Tips_Are_Supported_on_Andrew",
+     "document": "Waters KB WKB122208",
+     "quote": "186009615 Andrew Alliance 8-ch 50-1200 μL",
+     "covers": "pipette list and ranges"
+    },
+    {
+     "url": "https://support.waters.com/KB_Inst/Other/WKB122208_What_Pipettors_and_Pipet_Tips_Are_Supported_on_Andrew",
+     "document": "Waters KB WKB122208",
+     "quote": "Only Pipettes manufactured by Sartorius that say Waters on them are supported for use on Andrew+ and Pipette+.",
+     "covers": "pipette policy"
+    }
+   ]
+  },
+  "ot2": {
+   "heads": [
+    {
+     "id": "p20-1",
+     "label": "P20 Single-Channel GEN2",
+     "channels": 1,
+     "minUl": 1,
+     "maxUl": 20,
+     "tips": [
+      10,
+      20
+     ]
+    },
+    {
+     "id": "p300-1",
+     "label": "P300 Single-Channel GEN2",
+     "channels": 1,
+     "minUl": 20,
+     "maxUl": 300,
+     "tips": [
+      200,
+      300
+     ]
+    },
+    {
+     "id": "p1000-1",
+     "label": "P1000 Single-Channel GEN2",
+     "channels": 1,
+     "minUl": 100,
+     "maxUl": 1000,
+     "tips": [
+      1000
+     ]
+    },
+    {
+     "id": "p20-8",
+     "label": "P20 Multi-Channel GEN2",
+     "channels": 8,
+     "minUl": 1,
+     "maxUl": 20,
+     "tips": [
+      10,
+      20
+     ]
+    },
+    {
+     "id": "p300-8",
+     "label": "P300 Multi-Channel GEN2",
+     "channels": 8,
+     "minUl": 20,
+     "maxUl": 300,
+     "tips": [
+      200,
+      300
+     ]
+    }
+   ],
+   "configurations": [
+    {
+     "id": "two-mounts",
+     "label": "Two mounts (left and right): any two GEN2 pipettes",
+     "heads": [
+      "p20-8",
+      "p300-8"
+     ],
+     "notes": "e.g. P20 multi + P300 multi; or single-channel combinations."
+    }
+   ],
+   "tipSizes": [
+    10,
+    20,
+    200,
+    300,
+    1000
+   ],
+   "tipsPerRack": 96,
+   "lowRetention": {
+    "available": true,
+    "via": "third-party",
+    "note": "Third-party low-retention OT-2 tips: A-GEN OPTF-20-RSL (filtered 20 µl) and OPT-200-RSL; Eppendorf epT.I.P.S. LoRetention with Opentrons' shipped Eppendorf rack definitions; TipOne RPT 1180-8710 with the TipOne definition. Opentrons does not validate non-Opentrons tips.",
+    "sources": [
+     "https://docs.opentrons.com/",
+     "data/opentrons-options.md"
+    ]
+   },
+   "thirdPartyTips": {
+    "allowed": true,
+    "note": "Opentrons documents third-party tip racks for the OT-2 (custom or shipped definitions) but does not validate their performance."
+   },
+   "tipReuse": {
+    "supported": true,
+    "note": "return_tip() returns a tip to its rack; reuse needs the location named explicitly in current API.",
+    "source": {
+     "url": "https://docs.opentrons.com/v2/basic_commands/pipette_tips.html",
+     "document": "Opentrons API docs, pipette tips",
+     "quote": "To return a tip to its original location, call the return_tip() method with no arguments",
+     "covers": "tip return"
+    }
+   },
+   "multiDispense": {
+    "supported": true,
+    "source": {
+     "url": "https://docs.opentrons.com/v2/complex_commands/sources_destinations.html",
+     "document": "Opentrons API docs, sources and destinations",
+     "quote": "This distribute aspirates one time and dispenses three times.",
+     "covers": "multi-dispense"
+    }
+   },
+   "sources": [
+    {
+     "url": "https://docs.opentrons.com/ot-2/pipettes/",
+     "document": "Opentrons OT-2 pipettes docs",
+     "quote": "P20 Single-Channel (1–20 µL) ... P300 Single-Channel (20–300 µL) ... P1000 Single-Channel (100–1000 µL)",
+     "covers": "single-channel ranges"
+    },
+    {
+     "url": "https://docs.opentrons.com/ot-2/pipettes/",
+     "document": "Opentrons OT-2 pipettes docs",
+     "quote": "P20 Multi-Channel (1–20 µL) ... P300 Multi-Channel (20–300 µL)",
+     "covers": "8-channel ranges"
+    },
+    {
+     "url": "https://docs.opentrons.com/ot-2/pipettes/",
+     "document": "Opentrons OT-2 pipettes docs",
+     "quote": "A single-channel or multi-channel pipette each occupies one mount (left or right) on the carriage.",
+     "covers": "two mounts"
+    },
+    {
+     "url": "https://opentrons.com/products/opentrons-1000-l-tips/",
+     "document": "Opentrons OT-2 1000 µL tips product page",
+     "quote": "Optimized for volumes 100µL to 1000µL ... 100 Racks (9600 Tips) ... 999-00010",
+     "covers": "1000 µL tips"
+    },
+    {
+     "url": "https://shop.opentrons.com/ot-2-filter-tips-200-l/",
+     "document": "Opentrons OT-2 200 µL filter tips product page",
+     "quote": "OT-2 Filter Tips, 200µL ... Optimized for volumes 20µL to 200µL ... 999-00081",
+     "covers": "200 µL filter tips"
+    },
+    {
+     "url": "https://github.com/PyLabRobot/pylabrobot/blob/main/pylabrobot/resources/opentrons/tip_racks.py",
+     "document": "PyLabRobot Opentrons tip racks",
+     "quote": "def opentrons_96_filtertiprack_10ul(name: str, with_tips=True) -> StandingTipRack:",
+     "covers": "10 µL tip racks exist (load names)"
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,1341 @@
+{
+ "generated": "2026-11-05",
+ "updated": "2026-11-06: sample tracking (barcodeReading, limsIntegration, auditTrail) and not-found cells for VANTAGE, NIMBUS, Prep, EVO, Andrew+ and STAR userBase, from other hosts (#156); blockedLater lists sites that refused the fetcher",
+ "conventions": {
+  "value": "true/false/null(not found)",
+  "source.via": "present when quote came from a search-engine snippet because the page blocked the fetcher"
+ },
+ "pylabrobotNote": {
+  "url": "https://raw.githubusercontent.com/PyLabRobot/pylabrobot/main/README.md",
+  "quote": "can be used to develop and test protocols without a physical robot.",
+  "detail": "PyLabRobot Visualizer/chatterbox backends are generic; README lists Hamilton STAR, Hamilton Vantage, Tecan Freedom EVO, Opentrons OT-2."
+ },
+ "handlers": {
+  "flex": {
+   "liquidLevelDetection": {
+    "value": true,
+    "detail": "Pressure-based liquid presence detection (pLLD-style); no capacitive LLD. Flex pipettes only; API 2.20+.",
+    "source": {
+     "url": "https://docs.opentrons.com/flex/system-description/pipettes/",
+     "quote": "Flex pipettes use internal pressure sensors to detect liquid in well plates, reservoirs, and tubes."
+    }
+   },
+   "clotOrAirDetection": {
+    "value": true,
+    "detail": "Overpressure detection pauses run for error recovery (robot software 8.0.0); no named clot/foam classifier found.",
+    "source": {
+     "url": "https://builds.opentrons.com/ot3-oe/26597787447/release-notes.md",
+     "quote": "Automatically pause Flex protocol runs when detecting overpressure, allowing for error recovery and run resumption."
+    }
+   },
+   "tipPresence": {
+    "value": true,
+    "detail": "Optical photointerrupter on tip-ejector confirms pickup/drop; one sensor per pipette covers all channels.",
+    "source": {
+     "url": "https://docs.opentrons.com/flex/system-description/pipettes/",
+     "quote": "A photointerruptor switch detects the position of the pipette's tip ejector mechanism"
+    }
+   },
+   "camera": {
+    "value": true,
+    "detail": "Built-in 2 MP camera; controllable from software 8.8; auto-capture on error from 9.0.",
+    "source": {
+     "url": "https://docs.opentrons.com/flex/opentrons-app/camera",
+     "quote": "Every Flex comes equipped with a built-in high-resolution camera."
+    }
+   },
+   "remoteMonitoring": {
+    "value": true,
+    "detail": "Live video stream of deck in Opentrons App during run. No push/email/SMS alerts found in official docs.",
+    "source": {
+     "url": "https://docs.opentrons.com/flex/opentrons-app/camera",
+     "quote": "Live streaming: watch a real-time video feed of the deck during a protocol run."
+    }
+   },
+   "errorRecovery": {
+    "value": true,
+    "detail": "Guided error recovery mode from robot software 8.0.0; extended in 8.2 (gripper, tip drop) and 8.3 (stalls/collisions).",
+    "source": {
+     "url": "https://docs.opentrons.com/flex/touchscreen/protocol-run/",
+     "quote": "Flex will pause and give you the option to enter error recovery mode."
+    }
+   },
+   "simulator": {
+    "value": true,
+    "detail": "opentrons_simulate / opentrons.simulate (Flex and OT-2); App also runs protocol analysis. PyLabRobot README lists OT-2 only, not Flex.",
+    "source": {
+     "url": "https://docs.opentrons.com/python-api/reference/execute-simulate/",
+     "quote": "This module has functions that provide a console entrypoint for simulating a protocol from the command line."
+    }
+   },
+   "liquidClasses": {
+    "value": true,
+    "detail": "Flex liquid classes (verified: water, ethanol_80, glycerol_50; custom via define_liquid_class, API 2.24+). Gravimetric tooling not mentioned.",
+    "source": {
+     "url": "https://docs.opentrons.com/python-api/liquid-classes/",
+     "quote": "API commands that let you use and customize liquid classes in your Flex protocols."
+    }
+   },
+   "overnightUnattended": {
+    "value": true,
+    "detail": "Only weak support: walkaway language and a full polycarbonate enclosure; HEPA/UV module is a separate product. No explicit overnight claim or post-run 4 °C hold claim found.",
+    "source": {
+     "url": "https://opentrons.com/products/opentrons-flex-robot",
+     "quote": "maximizing throughput and walkaway time"
+    }
+   },
+   "userBase": {
+    "value": true,
+    "detail": "Company-level installed base (not Flex-specific count) plus >100 Flex protocols as of Jan 2025.",
+    "source": {
+     "url": "https://opentrons.com/archives/news/opentrons-flex-robot-surpasses-100-protocols-helping-labs-cut-costs-and-accelerate-research",
+     "quote": "surpassed 100 protocols for its flagship Opentrons Flex robot"
+    }
+   },
+   "auditTrail": {
+    "value": true,
+    "detail": "Compliance Ready Software (CRS) for Flex: authentication, signed audit trails, access control. Flex only.",
+    "source": {
+     "url": "https://insights.opentrons.com/hubfs/Products/Flex/Compliance%20Ready%20Software_brochure.pdf",
+     "quote": "The technical controls 21 CFR Part 11 mandates authentication, audit trails, access controls, and electronic record integrity - are built into the platform."
+    }
+   },
+   "limsIntegration": {
+    "value": true,
+    "detail": "Opentrons OEM/integration page (Flex) states APIs support LIMS integration; robot also serves an HTTP API (Flex manual Appendix B.3). No packaged LIMS connector found.",
+    "source": {
+     "url": "https://opentrons.com/oem-partnerships/integrated-devices",
+     "quote": "Flexible APIs and Python-based tooling enable full robotic control, including integration with third-party systems like LIMS and schedulers."
+    }
+   }
+  },
+  "ot2": {
+   "liquidLevelDetection": {
+    "value": false,
+    "detail": "Liquid presence detection is Flex-pipette-only; no OT-2 LLD found.",
+    "source": {
+     "url": "https://builds.opentrons.com/ot3-oe/26597787447/release-notes.md",
+     "quote": "Detect the presence or absence of liquid in a well (Flex pipettes only)"
+    }
+   },
+   "clotOrAirDetection": {
+    "value": null,
+    "detail": "No OT-2 clot/air/pressure monitoring found; overpressure detection is documented for Flex only.",
+    "source": null
+   },
+   "tipPresence": {
+    "value": null,
+    "detail": "No OT-2 tip presence detection found in docs checked.",
+    "source": null
+   },
+   "camera": {
+    "value": true,
+    "detail": "Integrated camera, stills only (no live stream); can capture images on error.",
+    "source": {
+     "url": "https://opentrons.com/products/ot-2-robot",
+     "quote": "Integrated video camera (Included for future or custom functionality)"
+    }
+   },
+   "remoteMonitoring": {
+    "value": null,
+    "detail": "App keeps run records, but docs state OT-2 cannot live-stream; no alerts found.",
+    "source": {
+     "url": "https://docs.opentrons.com/ot-2/opentrons-app/features-summary/",
+     "quote": "Due to limits on processing power and memory, the OT-2 cannot live-stream a protocol run."
+    }
+   },
+   "errorRecovery": {
+    "value": null,
+    "detail": "Error recovery mode is documented for Flex (robot software 8.0+); nothing found for OT-2.",
+    "source": null
+   },
+   "simulator": {
+    "value": true,
+    "detail": "Same opentrons_simulate module covers OT-2; PyLabRobot README also lists Opentrons OT-2 (Visualizer/chatterbox).",
+    "source": {
+     "url": "https://docs.opentrons.com/python-api/reference/execute-simulate/",
+     "quote": "This module has functions that provide a console entrypoint for simulating a protocol from the command line."
+    }
+   },
+   "liquidClasses": {
+    "value": false,
+    "detail": "Flow rates / aspirate & dispense speed only; liquid-class transfers raise an error with OT-2 pipettes (per docs, via search snippet).",
+    "source": {
+     "url": "https://opentrons.com/products/ot-2-robot",
+     "quote": "Aspirate speed"
+    }
+   },
+   "overnightUnattended": {
+    "value": true,
+    "detail": "Only an optional HEPA module is stated; no overnight/unattended claim.",
+    "source": {
+     "url": "https://opentrons.com/products/ot-2-robot",
+     "quote": "Add the Opentrons HEPA Module"
+    }
+   },
+   "userBase": {
+    "value": true,
+    "detail": "Company-level figure only.",
+    "source": {
+     "url": "https://opentrons.com/products/ot-2-robot",
+     "quote": "Thousands of labs in 40+ countries automate with Opentrons"
+    }
+   }
+  },
+  "plr-hamilton-star": {
+   "liquidLevelDetection": {
+    "value": true,
+    "detail": "cLLD + pLLD (Dual LLD); pLLD on individual channels only; 96 head cLLD on A1/H12. Manual covers whole STAR Line (STAR, STARlet, STARplus).",
+    "source": {
+     "url": "https://www.gmc.vu.lt/images/GMKC/Bioinzinerijos_lab/Microlab_STAR_Line_Operators_Manual_.pdf",
+     "quote": "The capacitive LLD (cLLD) detects conductive liquids. The pressure-based LLD (pLLD) detects all liquids including non-conductive solvents."
+    }
+   },
+   "clotOrAirDetection": {
+    "value": true,
+    "detail": "MAD (pressure curve: normal/empty/clot), capacitance-based clot detection, TADM (software option, not default).",
+    "source": {
+     "url": "https://www.gmc.vu.lt/images/GMKC/Bioinzinerijos_lab/Microlab_STAR_Line_Operators_Manual_.pdf",
+     "quote": "Analyzing the shape of the p(t) curve, the system can distinguish ... Air is aspirated into the tip ... A clot blocks the tip"
+    }
+   },
+   "tipPresence": {
+    "value": true,
+    "detail": "'No tip picked up' is a run-time handled error; plus Tip Type Detection and Autoload barcode tip-rack recognition.",
+    "source": {
+     "url": "https://www.gmc.vu.lt/images/GMKC/Bioinzinerijos_lab/Microlab_STAR_Line_Operators_Manual_.pdf",
+     "quote": "Problems that can be handled in run time are: ... No tip picked up"
+    }
+   },
+   "camera": {
+    "value": true,
+    "detail": "Options: Autoload 1D barcode reader, 2D barcode camera, movable CCD camera monitoring; DeckWatch two-camera run recording (DeckWatch flyer 403; via search snippet).",
+    "source": {
+     "url": "https://www.epfl.ch/research/facilities/gene-expression-core-facility/wp-content/uploads/2018/08/Microlab-STAR-Brochure.pdf",
+     "quote": "A high-resolution industrial camera can be moved over the whole deck area."
+    }
+   },
+   "remoteMonitoring": {
+    "value": true,
+    "detail": "HamiltonOne cloud dashboard with email notifications (STAR, STAR V, VANTAGE listed; VENUS 6.3+); STARwatch reports to Hamilton service.",
+    "source": {
+     "url": "https://hamiltoncompany.com/hamiltonone",
+     "quote": "email notifications for all connected instruments",
+     "via": "search-engine snippet; page itself returned 403/timeout to fetcher, quote not re-verified on page"
+    }
+   },
+   "errorRecovery": {
+    "value": true,
+    "detail": "VENUS run-time error dialog with Recovery buttons: Repeat, Available, Continue, Waste, Bottom, Air, Exclude, Move Up.",
+    "source": {
+     "url": "https://www.gmc.vu.lt/images/GMKC/Bioinzinerijos_lab/Microlab_STAR_Line_Operators_Manual_.pdf",
+     "quote": "The [Recovery] frame buttons offer several possible actions to solve the problem"
+    }
+   },
+   "simulator": {
+    "value": true,
+    "detail": "VENUS Simulation Mode; PyLabRobot also has a STAR backend plus Visualizer/chatterbox.",
+    "source": {
+     "url": "https://www.gmc.vu.lt/images/GMKC/Bioinzinerijos_lab/Microlab_STAR_Line_Operators_Manual_.pdf",
+     "quote": "It is recommended to always simulate a newly created method first, before running it on the instrument."
+    }
+   },
+   "liquidClasses": {
+    "value": true,
+    "detail": "VENUS liquid classes; Dynamic Liquid Classification (DLC); classes shared between channels and heads. No gravimetric tool found.",
+    "source": {
+     "url": "https://www.gmc.vu.lt/images/GMKC/Bioinzinerijos_lab/Microlab_STAR_Line_Operators_Manual_.pdf",
+     "quote": "Pipetting parameters and liquid class settings may have to be adjusted when changing from one tip type to another"
+    }
+   },
+   "overnightUnattended": {
+    "value": true,
+    "detail": "Walk-away claim tied to iSWAP integration; manual warns not to leave tips on channels overnight. No explicit overnight-run claim.",
+    "source": {
+     "url": "https://www.epfl.ch/research/facilities/gene-expression-core-facility/wp-content/uploads/2018/08/Microlab-STAR-Brochure.pdf",
+     "quote": "for end-to-end automated solutions and more walk-away time (e.g., place a plate in a reader)."
+    }
+   },
+   "userBase": {
+    "value": true,
+    "detail": "Customer count, not installed units; STAR Line (STARlet/STAR/STARplus).",
+    "source": {
+     "url": "https://info.hamiltoncompany.com/view/598887408/10-11/",
+     "quote": "over 20 years of proven performance and 20,000 satisfied customers"
+    }
+   },
+   "barcodeReading": {
+    "value": true,
+    "detail": "Autoload 1D barcode reading of tubes, plates and carriers; optional 2D (easyCode) reading.",
+    "source": {
+     "url": "https://www.epfl.ch/research/facilities/gene-expression-core-facility/wp-content/uploads/2018/08/Microlab-STAR-Brochure.pdf",
+     "quote": "reads 1D barcodes from sample tubes, microplates and carriers while being automatically loaded into the system"
+    }
+   },
+   "limsIntegration": {
+    "value": true,
+    "detail": "STAR Line brochure: data output for LIMS; VENUS offers 'LIMS adaption'. Hamilton 2024 brochure also lists 'Bi-Directional LIMS Integration' (platform not named).",
+    "source": {
+     "url": "https://www.ld.ru/catalog/images/hamilton/MR-0805-03_STAR_LINE_web.pdf",
+     "quote": "Data output in multiple formats for LIMS integration"
+    }
+   },
+   "auditTrail": {
+    "value": true,
+    "detail": "VENUS 21 CFR Part 11 tools (audit trails, user access, checksums) for STAR line instruments (STARlet, STAR, STARplus).",
+    "source": {
+     "url": "https://www.ld.ru/catalog/images/hamilton/MR-0805-03_STAR_LINE_web.pdf",
+     "quote": "MICROLAB® VENUS contains the software tools for compliant use of STAR line instruments. The tools provide audit trails"
+    }
+   }
+  },
+  "starlet": {
+   "liquidLevelDetection": {
+    "value": true,
+    "detail": "cLLD + pLLD (Dual LLD); pLLD on individual channels only; 96 head cLLD on A1/H12. Manual covers whole STAR Line (STAR, STARlet, STARplus).",
+    "source": {
+     "url": "https://www.gmc.vu.lt/images/GMKC/Bioinzinerijos_lab/Microlab_STAR_Line_Operators_Manual_.pdf",
+     "quote": "The capacitive LLD (cLLD) detects conductive liquids. The pressure-based LLD (pLLD) detects all liquids including non-conductive solvents."
+    }
+   },
+   "clotOrAirDetection": {
+    "value": true,
+    "detail": "MAD (pressure curve: normal/empty/clot), capacitance-based clot detection, TADM (software option, not default).",
+    "source": {
+     "url": "https://www.gmc.vu.lt/images/GMKC/Bioinzinerijos_lab/Microlab_STAR_Line_Operators_Manual_.pdf",
+     "quote": "Analyzing the shape of the p(t) curve, the system can distinguish ... Air is aspirated into the tip ... A clot blocks the tip"
+    }
+   },
+   "tipPresence": {
+    "value": true,
+    "detail": "'No tip picked up' is a run-time handled error; plus Tip Type Detection and Autoload barcode tip-rack recognition.",
+    "source": {
+     "url": "https://www.gmc.vu.lt/images/GMKC/Bioinzinerijos_lab/Microlab_STAR_Line_Operators_Manual_.pdf",
+     "quote": "Problems that can be handled in run time are: ... No tip picked up"
+    }
+   },
+   "camera": {
+    "value": true,
+    "detail": "Options: Autoload 1D barcode reader, 2D barcode camera, movable CCD camera monitoring; DeckWatch two-camera run recording (DeckWatch flyer 403; via search snippet).",
+    "source": {
+     "url": "https://www.epfl.ch/research/facilities/gene-expression-core-facility/wp-content/uploads/2018/08/Microlab-STAR-Brochure.pdf",
+     "quote": "A high-resolution industrial camera can be moved over the whole deck area."
+    }
+   },
+   "remoteMonitoring": {
+    "value": null,
+    "detail": "HamiltonOne platform list (via snippet) names STAR, STAR V and VANTAGE; STARlet not explicitly listed. STARwatch is a STAR Line service-diagnostics feature.",
+    "source": {
+     "url": "https://hamiltoncompany.com/hamiltonone",
+     "quote": "Microlab STAR, Microlab STAR V, Microlab VANTAGE",
+     "via": "search-engine snippet; page itself returned 403/timeout to fetcher, quote not re-verified on page"
+    }
+   },
+   "errorRecovery": {
+    "value": true,
+    "detail": "VENUS run-time error dialog with Recovery buttons: Repeat, Available, Continue, Waste, Bottom, Air, Exclude, Move Up.",
+    "source": {
+     "url": "https://www.gmc.vu.lt/images/GMKC/Bioinzinerijos_lab/Microlab_STAR_Line_Operators_Manual_.pdf",
+     "quote": "The [Recovery] frame buttons offer several possible actions to solve the problem"
+    }
+   },
+   "simulator": {
+    "value": true,
+    "detail": "VENUS Simulation Mode (STAR Line manual covers STARlet). PyLabRobot STAR backend is generally used for STARlet too (not verified in README).",
+    "source": {
+     "url": "https://www.gmc.vu.lt/images/GMKC/Bioinzinerijos_lab/Microlab_STAR_Line_Operators_Manual_.pdf",
+     "quote": "It is recommended to always simulate a newly created method first, before running it on the instrument."
+    }
+   },
+   "liquidClasses": {
+    "value": true,
+    "detail": "VENUS liquid classes; Dynamic Liquid Classification (DLC); classes shared between channels and heads. No gravimetric tool found.",
+    "source": {
+     "url": "https://www.gmc.vu.lt/images/GMKC/Bioinzinerijos_lab/Microlab_STAR_Line_Operators_Manual_.pdf",
+     "quote": "Pipetting parameters and liquid class settings may have to be adjusted when changing from one tip type to another"
+    }
+   },
+   "overnightUnattended": {
+    "value": true,
+    "detail": "Walk-away claim tied to iSWAP integration; manual warns not to leave tips on channels overnight. No explicit overnight-run claim.",
+    "source": {
+     "url": "https://www.epfl.ch/research/facilities/gene-expression-core-facility/wp-content/uploads/2018/08/Microlab-STAR-Brochure.pdf",
+     "quote": "for end-to-end automated solutions and more walk-away time (e.g., place a plate in a reader)."
+    }
+   },
+   "userBase": {
+    "value": true,
+    "detail": "Customer count, not installed units; STAR Line (STARlet/STAR/STARplus).",
+    "source": {
+     "url": "https://info.hamiltoncompany.com/view/598887408/10-11/",
+     "quote": "over 20 years of proven performance and 20,000 satisfied customers"
+    }
+   },
+   "barcodeReading": {
+    "value": true,
+    "detail": "STAR Line brochure (STARlet is a STAR Line size): Autoload 1D barcode reading.",
+    "source": {
+     "url": "https://www.epfl.ch/research/facilities/gene-expression-core-facility/wp-content/uploads/2018/08/Microlab-STAR-Brochure.pdf",
+     "quote": "reads 1D barcodes from sample tubes, microplates and carriers while being automatically loaded into the system"
+    }
+   },
+   "limsIntegration": {
+    "value": true,
+    "detail": "STAR Line brochure: data output for LIMS; VENUS offers 'LIMS adaption'. Hamilton 2024 brochure also lists 'Bi-Directional LIMS Integration' (platform not named).",
+    "source": {
+     "url": "https://www.ld.ru/catalog/images/hamilton/MR-0805-03_STAR_LINE_web.pdf",
+     "quote": "Data output in multiple formats for LIMS integration"
+    }
+   },
+   "auditTrail": {
+    "value": true,
+    "detail": "VENUS 21 CFR Part 11 tools (audit trails, user access, checksums) for STAR line instruments (STARlet, STAR, STARplus).",
+    "source": {
+     "url": "https://www.ld.ru/catalog/images/hamilton/MR-0805-03_STAR_LINE_web.pdf",
+     "quote": "MICROLAB® VENUS contains the software tools for compliant use of STAR line instruments. The tools provide audit trails"
+    }
+   }
+  },
+  "plr-hamilton-vantage": {
+   "liquidLevelDetection": {
+    "value": true,
+    "detail": "cLLD + pLLD.",
+    "source": {
+     "url": "https://www.laboratory-equipment.com/media/asset-library/m/i/microlab-vantage-automated-liquid-handling-systems-brochure-hamilton.pdf",
+     "quote": "dual detection modes of capacitance (cLLD) and pressure (pLLD) Liquid Level Detection",
+     "via": "search-engine snippet; page itself returned 403/timeout to fetcher, quote not re-verified on page"
+    }
+   },
+   "clotOrAirDetection": {
+    "value": true,
+    "detail": "Brochure says LLD detects foam/bubbles; TADM described generically for Hamilton channels.",
+    "source": {
+     "url": "https://www.laboratory-equipment.com/media/asset-library/m/i/microlab-vantage-automated-liquid-handling-systems-brochure-hamilton.pdf",
+     "quote": "conductive liquids, non-conductive liquids such as organic solvents, as well as foam or bubbles",
+     "via": "search-engine snippet; page itself returned 403/timeout to fetcher, quote not re-verified on page"
+    }
+   },
+   "tipPresence": {
+    "value": true,
+    "detail": "Firmware tip-presence query in PyLabRobot's Vantage backend (module A1PM, command QA).",
+    "source": {
+     "url": "https://raw.githubusercontent.com/PyLabRobot/pylabrobot/main/pylabrobot/legacy/liquid_handling/backends/hamilton/vantage_backend.py",
+     "quote": "async def query_tip_presence(self) -> List[bool]:\n    \"\"\"Query Tip presence\"\"\""
+    }
+   },
+   "camera": {
+    "value": true,
+    "detail": "DeckWatch (two-camera run recording) listed as compatible with VANTAGE; flyer example mounted in STAR V.",
+    "source": {
+     "url": "https://assets-robotics.hamiltoncompany.com/000_Knowledge_Center/Application-Notes-ROB/Application-Notes-ROB-2025-05/F-2311-05_DeckWatch-Flyer-2025-06.pdf.pdf",
+     "quote": "Microlab® VANTAGE Liquid Handling System®",
+     "via": "search-engine snippet; page itself returned 403/timeout to fetcher, quote not re-verified on page"
+    }
+   },
+   "remoteMonitoring": {
+    "value": true,
+    "detail": "2013 launch press release (INSTINCT V software) and HamiltonOne (VANTAGE listed, email notifications).",
+    "source": {
+     "url": "https://www.roboticstomorrow.com/news/2013/09/24/hamilton-robotics-delivers-new-high-tech-liquid-handling-platform/2927",
+     "quote": "INSTINCT V also provides remote system monitoring via smart phones, tablets or any web-enabled device"
+    }
+   },
+   "errorRecovery": {
+    "value": true,
+    "detail": "VENUS method editor: per-step error handling with automatic/semi-automatic/manual recovery. The same VENUS section says VENUS controls NIMBUS, STAR/STAR V and VANTAGE (software-level, not a platform-specific statement).",
+    "source": {
+     "url": "https://info.hamiltoncompany.com/view/598887408/20-21/",
+     "quote": "semi-automatic or manual recovery is selectable"
+    }
+   },
+   "simulator": {
+    "value": null,
+    "detail": "No VANTAGE-specific simulation statement found (VENUS/INSTINCT V). PyLabRobot README lists Hamilton Vantage (Visualizer/chatterbox).",
+    "source": {
+     "url": "https://raw.githubusercontent.com/PyLabRobot/pylabrobot/main/README.md",
+     "quote": "Hamilton Vantage"
+    }
+   },
+   "liquidClasses": {
+    "value": true,
+    "detail": "PyLabRobot ships ~428 Hamilton liquid classes for the Vantage (ported from Hamilton definitions). Hamilton's VENUS page also lists the Dynamic Liquid Classification plugin.",
+    "source": {
+     "url": "https://raw.githubusercontent.com/PyLabRobot/pylabrobot/main/pylabrobot/hamilton/vantage/liquid_classes/__init__.py",
+     "quote": "The Vantage's liquid classes, looked up by `get_vantage_liquid_class`."
+    }
+   },
+   "overnightUnattended": {
+    "value": true,
+    "detail": "From 2013 launch press release.",
+    "source": {
+     "url": "https://www.roboticstomorrow.com/news/2013/09/24/hamilton-robotics-delivers-new-high-tech-liquid-handling-platform/2927",
+     "quote": "increases walk-away time for overnight and weekend runs"
+    }
+   },
+   "userBase": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "barcodeReading": {
+    "value": true,
+    "detail": "Hamilton 2024 brochure comparison table: Sample Tracking = 'with Autoload Barcode Scanner' for STAR, STAR V and VANTAGE.",
+    "source": {
+     "url": "https://info.hamiltoncompany.com/view/598887408/10-11/",
+     "quote": "with Autoload Barcode Scanner"
+    }
+   }
+  },
+  "plr-hamilton-nimbus": {
+   "liquidLevelDetection": {
+    "value": true,
+    "detail": "cLLD on NIMBUS 4 and NIMBUS 96; pLLD on NIMBUS 4 only. Source is Hamilton-authored SelectScience article.",
+    "source": {
+     "url": "https://www.selectscience.net/article/hamilton-highlight-the-microlab-nimbus-an-innovative-personalised-pipetting-workstation",
+     "quote": "essential for successful pipetting of non-conductive reagents and volatiles"
+    }
+   },
+   "clotOrAirDetection": {
+    "value": true,
+    "detail": "Monitored Air Displacement, NIMBUS 4 only.",
+    "source": {
+     "url": "https://www.selectscience.net/article/hamilton-highlight-the-microlab-nimbus-an-innovative-personalised-pipetting-workstation",
+     "quote": "verifies successful aspiration or reagent or sample"
+    }
+   },
+   "tipPresence": {
+    "value": true,
+    "detail": "NIMBUS firmware IsTipPresent command and 'Tip Recognition' channel setting, per PyLabRobot NIMBUS backend.",
+    "source": {
+     "url": "https://raw.githubusercontent.com/PyLabRobot/pylabrobot/main/pylabrobot/legacy/liquid_handling/backends/hamilton/nimbus_backend.py",
+     "quote": "\"\"\"Check tip presence (Pipette at 1:1:257, interface_id=1, command_id=16).\"\"\""
+    }
+   },
+   "camera": {
+    "value": null,
+    "detail": "Only third-party listing headline for Shift-N-Scan barcode module; no primary source fetched.",
+    "source": null
+   },
+   "remoteMonitoring": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "errorRecovery": {
+    "value": true,
+    "detail": "VENUS method editor: per-step error handling with automatic/semi-automatic/manual recovery. The same VENUS section says VENUS controls NIMBUS, STAR/STAR V and VANTAGE (software-level, not a platform-specific statement).",
+    "source": {
+     "url": "https://info.hamiltoncompany.com/view/598887408/20-21/",
+     "quote": "semi-automatic or manual recovery is selectable"
+    }
+   },
+   "simulator": {
+    "value": null,
+    "detail": "No NIMBUS-specific simulation statement found; PyLabRobot README does not list NIMBUS.",
+    "source": null
+   },
+   "liquidClasses": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "overnightUnattended": {
+    "value": null,
+    "detail": "Enclosed NIMBUS workstation mentioned only as a third-party headline (labwrench).",
+    "source": null
+   },
+   "userBase": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "barcodeReading": {
+    "value": true,
+    "detail": "Shift-N-Scan on-deck tube barcode module for NIMBUS4 (2012). Hamilton 2024 table lists NIMBUS sample tracking as 'Semi-Manual'; PyLabRobot NIMBUS error table has barcode-engine errors.",
+    "source": {
+     "url": "https://www.labwrench.com/article/7631/hamilton-shift-n-scan-module-automates-on-deck-bar-code-reading-of-up-to-96-tubes",
+     "quote": "Hamilton Robotics introduces the Shift-N-Scan Tube Bar code Scanner - a patented module for the Microlab® NIMBUS"
+    }
+   }
+  },
+  "plr-hamilton-prep": {
+   "liquidLevelDetection": {
+    "value": true,
+    "detail": "cLLD only (with conductive tips); no pLLD stated.",
+    "source": {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "quote": "capacitance and pressure sensors that enable capacitive liquid level detection (cLLD) and clot detection"
+    }
+   },
+   "clotOrAirDetection": {
+    "value": true,
+    "detail": "Pressure monitoring during aspiration flags clots or empty wells.",
+    "source": {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "quote": "notifying users of aspiration difficulties such as clots or empty wells"
+    }
+   },
+   "tipPresence": {
+    "value": null,
+    "detail": "UI shows tip counts required/present, but no tip pickup sensing stated.",
+    "source": null
+   },
+   "camera": {
+    "value": true,
+    "detail": "Top-mounted camera identifies and verifies labware before run (deck scan); no live/remote video.",
+    "source": {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "quote": "Every Microlab Prep features a camera mounted to the top of the workstation that detects and identifies the labware placed on the deck."
+    }
+   },
+   "remoteMonitoring": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "errorRecovery": {
+    "value": true,
+    "detail": "On-screen guided fix; Hamilton KB page 403 to fetcher.",
+    "source": {
+     "url": "https://www.hamiltoncompany.com/automated-liquid-handling/knowledgebase/microlab-prep/i-keep-getting-deck-scan-errors",
+     "quote": "Whenever an error pops up on the Microlab Prep you will be immediately notified and shown how to fix it.",
+     "via": "search-engine snippet; page itself returned 403/timeout to fetcher, quote not re-verified on page"
+    }
+   },
+   "simulator": {
+    "value": true,
+    "detail": "On-instrument simulation with adjustable simulation speed.",
+    "source": {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "quote": "Build and simulate new protocols using thoughtfully designed wizards for common pipetting actions."
+    }
+   },
+   "liquidClasses": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "overnightUnattended": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "userBase": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "barcodeReading": {
+    "value": true,
+    "detail": "Handheld 1D scanner accessory (P/N 6603432-01) with a 'Read Barcodes' protocol step; no on-deck reader. Hamilton 2024 table: 'with handheld Barcode Reader'.",
+    "source": {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "quote": "1D handheld barcode scanner"
+    }
+   },
+   "auditTrail": {
+    "value": true,
+    "detail": "Prep features supporting 21 CFR 11.10 (record generation, limited access).",
+    "source": {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "quote": "several features that can support a laboratories compliance with the United States Food and Drug Administration’s 21 CFR Part 11.10 regulation"
+    }
+   }
+  },
+  "i7": {
+   "liquidLevelDetection": {
+    "value": true,
+    "detail": "Span-8 liquid-level sensing; sensing principle (capacitive vs pressure) not stated.",
+    "source": {
+     "url": "https://www.beckman.com/liquid-handlers/biomek-i7",
+     "quote": "8 channel liquid-level sensing"
+    }
+   },
+   "clotOrAirDetection": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "tipPresence": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "camera": {
+    "value": true,
+    "detail": "DeckOptix cameras; DeckOptix Final Check pre-run setup check.",
+    "source": {
+     "url": "https://www.beckman.com/liquid-handlers/biomek-i7",
+     "quote": "DeckOptix cameras for live, remote-monitoring & on-error video capture"
+    }
+   },
+   "remoteMonitoring": {
+    "value": true,
+    "detail": "DeckOptix remote monitoring via Method Launcher web browser.",
+    "source": {
+     "url": "https://beckman.com/liquid-handlers/software/biomek-method-launcher",
+     "quote": "Control methods via a web browser from virtually anywhere you happen to be"
+    }
+   },
+   "errorRecovery": {
+    "value": null,
+    "detail": "Only on-error video capture and pre-run Final Check found; no mid-run guided recovery described.",
+    "source": null
+   },
+   "simulator": {
+    "value": true,
+    "detail": "3D workflow simulation in Biomek Software.",
+    "source": {
+     "url": "https://www.beckman.com/liquid-handlers/software/biomek",
+     "quote": "Our 3D Workflow simulation allows users to evaluate and validate methods before deployment"
+    }
+   },
+   "liquidClasses": {
+    "value": true,
+    "detail": "Biomek techniques and liquid types.",
+    "source": {
+     "url": "https://www.beckman.com/liquid-handlers/software/biomek",
+     "quote": "Quickly select pipetting techniques, liquid types & deck layouts from drop-down menus"
+    }
+   },
+   "overnightUnattended": {
+    "value": true,
+    "detail": "i-Series page; optional enclosed version on i7 page.",
+    "source": {
+     "url": "https://www.beckman.com/liquid-handlers/biomek-i7/features",
+     "quote": "Enabling overnight, unattended runs"
+    }
+   },
+   "userBase": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "barcodeReading": {
+    "value": true,
+    "detail": "Fly-by barcode reader on an Automated Labware Positioner (on-deck add-on). Biomek Software page: 'Scan plates & import sample IDs based on plate barcodes'.",
+    "source": {
+     "url": "https://www.beckman.com/liquid-handlers/biomek-i7/features",
+     "quote": "Fly-by barcode reader for positive sample ID, process and tracking of microplates"
+    }
+   },
+   "limsIntegration": {
+    "value": true,
+    "detail": "Biomek Software page: 'Integrates with LIMS systems to import work orders & export data'.",
+    "source": {
+     "url": "https://www.beckman.com/liquid-handlers/biomek-i7/features",
+     "quote": "Integrating with LIMS to streamline data capture and reporting"
+    }
+   },
+   "auditTrail": {
+    "value": true,
+    "detail": "21 CFR Part 11 support (Accounts & Permissions); action logging. Term 'audit trail' not used on the page.",
+    "source": {
+     "url": "https://www.beckman.com/liquid-handlers/biomek-i7/features",
+     "quote": "Supporting 21 CFR Part 11 compliance for regulated workflows"
+    }
+   }
+  },
+  "fluent": {
+   "liquidLevelDetection": {
+    "value": true,
+    "detail": "Capacitive (Adaptive Signal Technology). pLLD on Fluent not confirmed on pages fetched.",
+    "source": {
+     "url": "https://lifesciences.tecan.com/fluent",
+     "quote": "Tecan's Adaptive Signal Technology is a new generation of capacitive liquid level sensing"
+    }
+   },
+   "clotOrAirDetection": {
+    "value": true,
+    "detail": "Aspiration and dispense monitoring; insufficient-volume detection; AST detects tip occlusions.",
+    "source": {
+     "url": "https://lifesciences.tecan.com/fluent",
+     "quote": "aspiration and dispense monitoring"
+    }
+   },
+   "tipPresence": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "camera": {
+    "value": true,
+    "detail": "DeckCheck in-instrument cameras; 1D barcode scanner on gripper; Fluent ID.",
+    "source": {
+     "url": "https://lifesciences.tecan.com/fluent_control?hsLang=en",
+     "quote": "Integrated cameras highlight loading mistakes during set-up for immediate correction"
+    }
+   },
+   "remoteMonitoring": {
+    "value": true,
+    "detail": "Tecan Connect app / Introspect; alerts when user interaction needed.",
+    "source": {
+     "url": "https://lifesciences.tecan.com/fluent",
+     "quote": "remote notifications via Tecan Connect™ when operator interaction is required"
+    }
+   },
+   "errorRecovery": {
+    "value": true,
+    "detail": "Method Recovery after interruption; run-time error handling.",
+    "source": {
+     "url": "https://lifesciences.tecan.com/fluent_control?hsLang=en",
+     "quote": "Extensive error handling during live processing, eg. insufficient sample volume detected"
+    }
+   },
+   "simulator": {
+    "value": true,
+    "detail": "FluentControl 3D simulation; Fast Simulation mode.",
+    "source": {
+     "url": "https://lifesciences.tecan.com/fluent_control?hsLang=en",
+     "quote": "3D graphics for real-time simulation and offline visualization"
+    }
+   },
+   "liquidClasses": {
+    "value": true,
+    "detail": "FluentControl liquid definitions with editable parameters.",
+    "source": {
+     "url": "https://lifesciences.tecan.com/fluent_control?hsLang=en",
+     "quote": "FluentControl™ software offers robust default liquid definitions, and makes it easy to change parameters for any fluid"
+    }
+   },
+   "overnightUnattended": {
+    "value": true,
+    "detail": "Walkaway/unattended running claims; HEPA hood option.",
+    "source": {
+     "url": "https://lifesciences.tecan.com/fluent",
+     "quote": "Protected environment with HEPA hood and UVC illumination"
+    }
+   },
+   "userBase": {
+    "value": null,
+    "detail": "Only '600 citations since 2017', not an installed base.",
+    "source": null
+   },
+   "barcodeReading": {
+    "value": true,
+    "detail": "On-the-fly 1D barcode scanner on gripper heads; sample identification module (up to 768 tubes per batch).",
+    "source": {
+     "url": "https://lifesciences.tecan.com/fluent",
+     "quote": "Barcode scanner for 1D codes mounts on the regular or Finger exchange gripper heads."
+    }
+   },
+   "limsIntegration": {
+    "value": true,
+    "detail": "FluentControl sample tracking (Fluent Gx page) uploads per-sample logs to LIMS; worklist (.csv/.gwl) import also documented.",
+    "source": {
+     "url": "https://lifesciences.tecan.com/fluent-gx",
+     "quote": "A detailed, secure and audit-ready log of all actions for each sample is generated, which can be automatically uploaded to your LIMS."
+    }
+   },
+   "auditTrail": {
+    "value": true,
+    "detail": "Fluent Gx Assurance software option: audit trails, e-signatures, 21 CFR Part 11.",
+    "source": {
+     "url": "https://lifesciences.tecan.com/fluent",
+     "quote": "Includes software features needed to comply with stringent regulatory requirements, including FDA 21 CFR Part 11"
+    }
+   }
+  },
+  "plr-tecan-evo": {
+   "liquidLevelDetection": {
+    "value": true,
+    "detail": "cLLD on all LiHa arms; pLLD on Air LiHa, or Liquid LiHa with MultiSense.",
+    "source": {
+     "url": "https://www.tecan.com/knowledge-portal/liquid-detection-modes-in-freedom-evo",
+     "quote": "Unlike cLLD, it can also detect non-conductive liquids."
+    }
+   },
+   "clotOrAirDetection": {
+    "value": true,
+    "detail": "Pressure Monitored Pipetting (PMP), requires MultiSense hardware option.",
+    "source": {
+     "url": "https://www.tecan.com/knowledge-portal/liquid-detection-modes-in-freedom-evo",
+     "quote": "PMP detects aspiration and dispense errors by comparing recorded and modelled"
+    }
+   },
+   "tipPresence": {
+    "value": true,
+    "detail": "Bonus fill (cell was null): correct disposable-tip mounting monitored.",
+    "source": {
+     "url": "https://www.testmart.com/webdata/mfr_pdfs/TECAN/EVO.pdf",
+     "quote": "Correct tip mounting is monitored by the system to ensure error-free and safe operation."
+    }
+   },
+   "camera": {
+    "value": true,
+    "detail": "PosID barcode reader on worktable (no camera found).",
+    "source": {
+     "url": "https://www.testmart.com/webdata/mfr_pdfs/TECAN/EVO.pdf",
+     "quote": "The Tecan Pos ID automatically reads barcodes on labware and carriers at any position on the worktable."
+    }
+   },
+   "remoteMonitoring": {
+    "value": true,
+    "detail": "Introspect / Tecan Connect app supports Freedom EVO.",
+    "source": {
+     "url": "https://lifesciences.tecan.com/connect",
+     "quote": "Introspect works with Fluent®, Veya™, Freedom EVO®"
+    }
+   },
+   "errorRecovery": {
+    "value": true,
+    "detail": "Bonus fill (cell was null): automatic handling or operator prompt on pipetting errors.",
+    "source": {
+     "url": "https://www.testmart.com/webdata/mfr_pdfs/TECAN/EVO.pdf",
+     "quote": "Error reports can be handled automatically or issue a prompt for user intervention."
+    }
+   },
+   "simulator": {
+    "value": true,
+    "detail": "Freedom EVOsim / EVOware 3D simulation; PyLabRobot README lists Tecan Freedom EVO.",
+    "source": {
+     "url": "https://www.tecan.com/knowledge-portal/how-to-setup-freedom-evosim-for-application-development",
+     "quote": "Freedom EVOsim™ can be used to simulate a Freedom EVO® pipetting instrument."
+    }
+   },
+   "liquidClasses": {
+    "value": true,
+    "detail": "EVOware liquid classes (pre-optimised, editable). Gravimetric calibration exists only in a third-party paper (PMC5030733), not counted.",
+    "source": {
+     "url": "https://www.testmart.com/webdata/mfr_pdfs/TECAN/EVO.pdf",
+     "quote": "Pre-optimized liquid classes assist fast pipetting implementation"
+    }
+   },
+   "overnightUnattended": {
+    "value": true,
+    "detail": "Brochure claim tied to Te-PS positioning.",
+    "source": {
+     "url": "https://www.testmart.com/webdata/mfr_pdfs/TECAN/EVO.pdf",
+     "quote": "In-process monitoring and real time correction of positional precision guarantee reliable unattended operation."
+    }
+   },
+   "userBase": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "barcodeReading": {
+    "value": true,
+    "detail": "PosID automated barcode scanner for tubes, plates, reagents and carriers.",
+    "source": {
+     "url": "https://www.testmart.com/webdata/mfr_pdfs/TECAN/EVO.pdf",
+     "quote": "The Tecan Pos ID automatically reads barcodes on labware and carriers at any position on the worktable."
+    }
+   },
+   "limsIntegration": {
+    "value": true,
+    "detail": "Freedom EVOware Sample Tracking add-on.",
+    "source": {
+     "url": "https://www.tecan.com/knowledge-portal/sample-tracking-on-freedom-evoware",
+     "quote": "provides a single interface to a Laboratory Information Management System (LIMS)"
+    }
+   },
+   "auditTrail": {
+    "value": true,
+    "detail": "EVOware user management, file protection and traceability for 21 CFR Part 11.",
+    "source": {
+     "url": "https://www.testmart.com/webdata/mfr_pdfs/TECAN/EVO.pdf",
+     "quote": "User management, file protection and traceability features permit users to comply with the FDA’s 21 CFR Part 11 Regulations."
+    }
+   }
+  },
+  "bravo": {
+   "liquidLevelDetection": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "clotOrAirDetection": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "tipPresence": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "camera": {
+    "value": null,
+    "detail": "VWorks documents barcode tracking/reader errors generally; no Bravo on-deck camera or reader confirmed.",
+    "source": {
+     "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/VWorks%20User%20Guide.html",
+     "quote": "Resolving barcode reader error messages"
+    }
+   },
+   "remoteMonitoring": {
+    "value": true,
+    "detail": "VWorks email notification (software-level, applies to Bravo-controlled runs).",
+    "source": {
+     "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/VWorks%20User%20Guide.html",
+     "quote": "Setting up email notification"
+    }
+   },
+   "errorRecovery": {
+    "value": true,
+    "detail": "VWorks error-handling options and automated error responses.",
+    "source": {
+     "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/VWorks%20User%20Guide.html",
+     "quote": "Setting up automated error responses"
+    }
+   },
+   "simulator": {
+    "value": true,
+    "detail": "VWorks simulation mode.",
+    "source": {
+     "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/VWorks%20User%20Guide.html",
+     "quote": "Simulating the protocol run"
+    }
+   },
+   "liquidClasses": {
+    "value": true,
+    "detail": "VWorks Liquid Library Editor; liquid classes saved as .xml (VWorks Plus).",
+    "source": {
+     "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/VWorks%20Setup%20Guide/03_SpecPipetteSpeed.06.2.html",
+     "quote": "The values entered into the Liquid Library Editor can be saved as a collection, known as a liquid class.",
+     "via": "search-engine snippet; page itself returned 403/timeout to fetcher, quote not re-verified on page"
+    }
+   },
+   "overnightUnattended": {
+    "value": null,
+    "detail": "Agilent Bravo product page and data sheet returned 403.",
+    "source": null
+   },
+   "userBase": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "barcodeReading": {
+    "value": true,
+    "detail": "Optional Bravo Barcode Reader accessory (platepad with sensor head and mirror).",
+    "source": {
+     "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/BCReader.10.2.html",
+     "quote": "The Barcode Reader consists of a platepad with a barcode reader sensor head (under the platepad) and a mirror."
+    }
+   },
+   "limsIntegration": {
+    "value": true,
+    "detail": "VWorks (Bravo's control software) data sheet, Japanese edition: communicates directly with LIMS for barcodes, samples, labware, liquids, users, workflows. Software-level.",
+    "source": {
+     "url": "https://www.chem-agilent.com/cimg/low_5990-3487JAJP.pdf",
+     "quote": "バーコード、サンプル、ラボウェア、リキッド、ユーザー、およびワークフローを管理するための LIMS と直接通信することができます。"
+    }
+   },
+   "auditTrail": {
+    "value": true,
+    "detail": "VWorks Plus edition only (14.1+); not in VWorks Standard.",
+    "source": {
+     "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Introduction.03.7.html",
+     "quote": "VWorks Plus is a compliance-enabled edition that supports compliance with Part 11 of Title 21 of the Code of Federal Regulations"
+    }
+   }
+  },
+  "firefly": {
+   "liquidLevelDetection": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "clotOrAirDetection": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "tipPresence": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "camera": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "remoteMonitoring": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "errorRecovery": {
+    "value": true,
+    "detail": "Help-centre topics on restart after failure and recovery; details not read.",
+    "source": {
+     "url": "https://sptlabtech.com/product-help-center/firefly",
+     "quote": "Error handling - 14.2 - Restarting after a protocol failed to complete"
+    }
+   },
+   "simulator": {
+    "value": true,
+    "detail": "Help-centre topic.",
+    "source": {
+     "url": "https://sptlabtech.com/product-help-center/firefly",
+     "quote": "Designing protocols - 9.6 - Testing your protocol in simulation"
+    }
+   },
+   "liquidClasses": {
+    "value": true,
+    "detail": "Help-centre topics on liquid classes; dispenser described as liquid class agnostic.",
+    "source": {
+     "url": "https://sptlabtech.com/product-help-center/firefly",
+     "quote": "System - 11.6 - Liquid classes"
+    }
+   },
+   "overnightUnattended": {
+    "value": true,
+    "detail": "Safety enclosure with HEPA filters; no overnight claim.",
+    "source": {
+     "url": "https://www.sptlabtech.com/products/firefly",
+     "quote": "The safety enclosure protects users from moving parts while protecting samples and reagents from airborne contaminants."
+    }
+   },
+   "userBase": {
+    "value": null,
+    "detail": "Cloud protocol-sharing community stated, but no user or protocol counts.",
+    "source": {
+     "url": "https://www.sptlabtech.com/products/firefly",
+     "quote": "Share custom protocols and swiftly access validated tools to deepen collaboration and accelerate innovation."
+    }
+   },
+   "barcodeReading": {
+    "value": true,
+    "detail": "Software prompts users to scan labware barcodes during setup; scanner type (handheld vs on-board) not stated.",
+    "source": {
+     "url": "https://www.sptlabtech.com/blog/enhancing-usability-and-compliance-firefly",
+     "quote": "firefly now supports barcode scanning and capture. During protocol setup, users are prompted to scan barcodes for labware"
+    }
+   },
+   "auditTrail": {
+    "value": true,
+    "detail": "firefly software V1.8 audit log (Oct 2024 blog).",
+    "source": {
+     "url": "https://www.sptlabtech.com/blog/enhancing-usability-and-compliance-firefly",
+     "quote": "Every user and system action is logged, including protocol version histories, user activity, and changes to permissions."
+    }
+   }
+  },
+  "firefly-plus": {
+   "liquidLevelDetection": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "clotOrAirDetection": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "tipPresence": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "camera": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "remoteMonitoring": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "errorRecovery": {
+    "value": true,
+    "detail": "Help-centre topics on restart after failure and recovery; details not read.",
+    "source": {
+     "url": "https://sptlabtech.com/product-help-center/firefly",
+     "quote": "Error handling - 14.2 - Restarting after a protocol failed to complete"
+    }
+   },
+   "simulator": {
+    "value": true,
+    "detail": "Help-centre topic.",
+    "source": {
+     "url": "https://sptlabtech.com/product-help-center/firefly",
+     "quote": "Designing protocols - 9.6 - Testing your protocol in simulation"
+    }
+   },
+   "liquidClasses": {
+    "value": true,
+    "detail": "Help-centre topics on liquid classes; dispenser described as liquid class agnostic.",
+    "source": {
+     "url": "https://sptlabtech.com/product-help-center/firefly",
+     "quote": "System - 11.6 - Liquid classes"
+    }
+   },
+   "overnightUnattended": {
+    "value": true,
+    "detail": "firefly+ adds integrated thermocycler (Inheco ODTC) for end-to-end library prep; post-run cold hold not stated.",
+    "source": {
+     "url": "https://www.sptlabtech.com/products/firefly",
+     "quote": "Maximize walkaway time with complete end-to-end automated NGS library preparation."
+    }
+   },
+   "userBase": {
+    "value": null,
+    "detail": "Cloud protocol-sharing community stated, but no user or protocol counts.",
+    "source": {
+     "url": "https://www.sptlabtech.com/products/firefly",
+     "quote": "Share custom protocols and swiftly access validated tools to deepen collaboration and accelerate innovation."
+    }
+   },
+   "barcodeReading": {
+    "value": true,
+    "detail": "Software prompts users to scan labware barcodes during setup; scanner type (handheld vs on-board) not stated. Blog names 'firefly' software; firefly+ assumed to share it (not separately confirmed).",
+    "source": {
+     "url": "https://www.sptlabtech.com/blog/enhancing-usability-and-compliance-firefly",
+     "quote": "firefly now supports barcode scanning and capture. During protocol setup, users are prompted to scan barcodes for labware"
+    }
+   },
+   "auditTrail": {
+    "value": true,
+    "detail": "firefly software V1.8 audit log (Oct 2024 blog). Blog names 'firefly' software; firefly+ assumed to share it (not separately confirmed).",
+    "source": {
+     "url": "https://www.sptlabtech.com/blog/enhancing-usability-and-compliance-firefly",
+     "quote": "Every user and system action is logged, including protocol version histories, user activity, and changes to permissions."
+    }
+   }
+  },
+  "andrew": {
+   "liquidLevelDetection": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "clotOrAirDetection": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "tipPresence": {
+    "value": true,
+    "detail": "Camera-based pipette and tip recognition in the OLM (inferred from Waters KB troubleshooting).",
+    "source": {
+     "url": "https://support.waters.com/KB_Inst/Lab_Automation/WKB269235_Andrew_plus_tip_insertion_issues",
+     "quote": "The light jeopardizes pipette and tip recognition in the OLM."
+    }
+   },
+   "camera": {
+    "value": true,
+    "detail": "High-resolution cameras on hand and OLM (spec from Waters product page via search snippet).",
+    "source": {
+     "url": "https://www.waters.com/nextgen/us/en/products/laboratory-automation-and-equipment/andrew-plus-pipetting-robot.html",
+     "quote": "Hand: High resolution camera equipped with white LED light.",
+     "via": "search-engine snippet; page itself returned 403/timeout to fetcher, quote not re-verified on page"
+    }
+   },
+   "remoteMonitoring": {
+    "value": true,
+    "detail": "Email and Microsoft Teams alerts before user actions, at completion and on errors.",
+    "source": {
+     "url": "https://intercom.help/andrew-alliance/en/articles/6499048-get-notified-for-your-automated-experiments",
+     "quote": "When an Error Occurs : Get notified immediately if an error happens during execution."
+    }
+   },
+   "errorRecovery": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "simulator": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "liquidClasses": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "overnightUnattended": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "userBase": {
+    "value": null,
+    "detail": "Not found in primary sources checked.",
+    "source": null
+   },
+   "limsIntegration": {
+    "value": true,
+    "detail": "OneLab: file-based association (CSV) or OneLab API.",
+    "source": {
+     "url": "https://intercom.help/andrew-alliance/en/articles/11069830-how-to-integrate-onelab-with-a-lims",
+     "quote": "OneLab supports integration through File-based association and the OneLab API"
+    }
+   },
+   "auditTrail": {
+    "value": true,
+    "detail": "OneLab lab and platform audit trails.",
+    "source": {
+     "url": "https://intercom.help/andrew-alliance/en/articles/5040675-access-to-lab-and-platform-audit-trails",
+     "quote": "They record every change made within the application, ensuring accountability and compliance with regulations like 21 CFR Part 11 §11.10 (e)"
+    }
+   },
+   "barcodeReading": {
+    "value": true,
+    "detail": "Handheld plug-and-play wand connected to the PC/tablet running OneLab; no on-board reader found.",
+    "source": {
+     "url": "https://intercom.help/andrew-alliance/en/articles/4693718-fill-samples-tracking-information-during-experiment-preparation",
+     "quote": "Use a standard plug-and-play wand/scanner to scan barcodes."
+    }
+   }
+  }
+ },
+ "blockedLater": [
+  {
+   "url": "https://www.hamiltoncompany.com/ (product pages, product-specs/NIMBUS 4, Microlab Vantage, Prep 21 CFR FAQ)",
+   "status": "403"
+  },
+  {
+   "url": "https://www.gmc.vu.lt/images/GMKC/Bioinzinerijos_lab/Microlab_STAR_Line_Operators_Manual_.pdf",
+   "status": "now serves a JavaScript bot challenge (not bypassed)"
+  },
+  {
+   "url": "https://www.laboratory-equipment.com/media/asset-library/m/i/microlab-vantage-automated-liquid-handling-systems-brochure-hamilton.pdf",
+   "status": "403"
+  },
+  {
+   "url": "https://manuals.plus/m/3308d0f539573cd697fafa05a1d6dc9f689ae7a091fafb60df864eff0334d08a.pdf (NIMBUS brochure)",
+   "status": "403"
+  },
+  {
+   "url": "https://www.environmental-expert.com/products/liquid-handling-system-701904 (VANTAGE)",
+   "status": "403"
+  },
+  {
+   "url": "https://zephr.selectscience.net/product/microlab-vantage-liquid-handling-system",
+   "status": "DNS failure"
+  },
+  {
+   "url": "https://agilent.com/cs/library/datasheets/Public/5990-3480EN.pdf and other agilent.com/cs/library PDFs (VWorks flyers, whitepaper)",
+   "status": "403"
+  },
+  {
+   "url": "https://swap.stanford.edu/was/20151211033644mp_/http://htbc.stanford.edu/equipment/Bravo.pdf",
+   "status": "403"
+  },
+  {
+   "url": "https://hpst.cz/sites/default/files/oldfiles/agilent-bravo-automated-liquid-handling-platform-data-sheet_0.pdf",
+   "status": "301 to unrelated site"
+  },
+  {
+   "url": "https://www.waters.com/nextgen/... (Andrew+ product pages)",
+   "status": "timeout"
+  },
+  {
+   "url": "https://media.beckman.com/-/media/pdf-assets/flyers/automation-flyer-biomek-21-cfr-part-11-compliance-2023-06.pdf",
+   "status": "403"
+  },
+  {
+   "url": "https://www.technologynetworks.com/informatics/product-news/tecan-to-launch-fluent-gx-automation-workstation-for-use-in-regulated-laboratories-296854",
+   "status": "403"
+  },
+  {
+   "url": "https://docs.opentrons.com/http/",
+   "status": "403"
+  }
+ ]
+}

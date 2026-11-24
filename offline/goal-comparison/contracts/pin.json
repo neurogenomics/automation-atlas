@@ -1,0 +1,73 @@
+{
+  "upstream_commit": "c5b057576cb5b4fd8a0557d4badb4c86239b2655",
+  "files": {
+    "contracts/versions/manifest.json": {
+      "path": "offline/goal-comparison/contracts/manifest.json",
+      "sha256": "sha256:1d70b310bee89920b7b893de5e175bb98e5501efb7c4605582c30cd3fa1fc298"
+    },
+    "contracts/reviewed-protocol.schema.json": {
+      "path": null,
+      "sha256": "sha256:903b3fce4f260cf112e347ba6f0e6552020f5ad46577ff81376aa1a60de42c9c"
+    },
+    "contracts/versions/0.2.0/reviewed-protocol.schema.json": {
+      "path": null,
+      "sha256": "sha256:784333a747d2cacb164dfecfc09f2515e16ddc556adb04084379ce90cf919435"
+    },
+    "contracts/versions/0.1.0/typed-measurement.schema.json": {
+      "path": "offline/goal-comparison/contracts/typed-measurement.schema.json",
+      "sha256": "sha256:9f43b279e11921b5d52bd0beecc12119fc9c2ecca2a8ab90dfc726be95cd1fce"
+    },
+    "contracts/versions/0.1.0/protocol-goal.schema.json": {
+      "path": "offline/goal-comparison/contracts/protocol-goal.schema.json",
+      "sha256": "sha256:d532566b6a1a57a0859002f2e8fce626d2cb905eb02b6d647f771512d22e895e"
+    },
+    "contracts/versions/0.1.0/method-alternative.schema.json": {
+      "path": "offline/goal-comparison/contracts/method-alternative.schema.json",
+      "sha256": "sha256:0d80c7deb4ada4cbc61917c711ef5f54ea56fea8a994ebc16d403c231740f85a"
+    },
+    "contracts/versions/0.1.0/goal-comparison.schema.json": {
+      "path": "offline/goal-comparison/contracts/goal-comparison.schema.json",
+      "sha256": "sha256:e04be8f401c64b699cb23f5362a5cbbf3e3f14608cc147c7207a6aa23e130eb0"
+    },
+    "contracts/versions/0.1.0/examples/goal-comparison-cases.json": {
+      "path": "tests/fixtures/goals/goal-comparison-cases.json",
+      "sha256": "sha256:cbf4f060b2b43e35d38e8d64b2e117f40d16776b8fa7e2383d408736f8d55559"
+    },
+    "contracts/versions/0.1.0/fixtures/valid/protocol-goal.synthetic.json": {
+      "path": "tests/fixtures/goals/protocol-goal.synthetic.json",
+      "sha256": "sha256:4246d4dbaea20c56232b9a4e591dc4d36a67afabda5d3cc7da70190467e583ae"
+    },
+    "contracts/versions/0.1.0/fixtures/valid/method-alternative.synthetic.json": {
+      "path": "tests/fixtures/goals/method-alternative.synthetic.json",
+      "sha256": "sha256:70fc8238908828c9917e95fea6a8c053734886c811440ade09de3a43b83a6fe3"
+    },
+    "contracts/versions/0.1.0/fixtures/valid/goal-comparison.synthetic.json": {
+      "path": "tests/fixtures/goals/goal-comparison.synthetic.json",
+      "sha256": "sha256:05602410a09481d03089c141f2764c5d4722b82c452c6e0cd4325c84aaaf0859"
+    },
+    "contracts/versions/0.1.0/fixtures/valid/typed-measurement.synthetic.json": {
+      "path": "tests/fixtures/goals/typed-measurement.synthetic.json",
+      "sha256": "sha256:adf993f3bbfd1071a7e3b2fef316a2ec0f0d8afa31900d185b7a0ebef36f0c73"
+    },
+    "contracts/versions/0.1.0/fixtures/invalid/goal-comparison.claims-execution.json": {
+      "path": "tests/fixtures/goals/goal-comparison.claims-execution.json",
+      "sha256": "sha256:c4263104ea2d00ac8aa483bf502743ae42eef82b4c20db35136c7f368c20c63b"
+    },
+    "contracts/versions/0.1.0/fixtures/invalid/method-alternative.claims-approval.json": {
+      "path": "tests/fixtures/goals/method-alternative.claims-approval.json",
+      "sha256": "sha256:f203ec45c83a2cfeae5c150e99711427b1e0235a50e086fd6f58b2223de3c746"
+    },
+    "contracts/versions/0.1.0/fixtures/invalid/protocol-goal.unbound-original.json": {
+      "path": "tests/fixtures/goals/protocol-goal.unbound-original.json",
+      "sha256": "sha256:1ae2d2ebbff962637d31f2864f8528955ab4507b84d586913081282ec3cf59ca"
+    },
+    "contracts/versions/0.1.0/fixtures/invalid/typed-measurement.unknown-is-not-zero.json": {
+      "path": "tests/fixtures/goals/typed-measurement.unknown-is-not-zero.json",
+      "sha256": "sha256:ba1344b9f4c89eee952a74406af97c68f550e98e4807c9f7ad3e57eb71be7162"
+    },
+    "contracts/versions/0.2.0/fixtures/valid/reviewed-protocol.empty-destination.json": {
+      "path": "tests/fixtures/reviewed/base.json",
+      "sha256": "sha256:dfd8d68b5de025652401e8f97b7698a03da98bcd0841bcb7cbdefa1dcd438107"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "baselineOperatorMinutes": 100,
+  "benefitFraction": 0.8,
+  "candidates": [
+    {"id":"fast","active":40,"visits":5,"walkaway":15,"cost":200,"modules":2,"tips":90,"elapsed":70,"feasible":true},
+    {"id":"steady","active":47,"visits":2,"walkaway":35,"cost":120,"modules":1,"tips":45,"elapsed":80,"feasible":true},
+    {"id":"simple","active":50,"visits":3,"walkaway":20,"cost":150,"modules":0,"tips":45,"elapsed":72,"feasible":true},
+    {"id":"long","active":61,"visits":1,"walkaway":80,"cost":20,"modules":0,"tips":50,"elapsed":120,"feasible":true},
+    {"id":"blocked","active":15,"visits":0,"walkaway":210,"cost":0,"modules":0,"tips":0,"elapsed":15,"feasible":false}
+  ],
+  "handCalculated": {
+    "labour":{"id":"fast","values":[40]},
+    "visits":{"id":"long","values":[1]},
+    "simplest":{"id":"simple","values":[0]},
+    "cost":{"id":"steady","values":[120]},
+    "walkaway":{"id":"steady","values":[35]},
+    "tips-runtime":{"id":"simple","values":[45,72]}
+  }
+}

@@ -1,0 +1,364 @@
+{
+  "schema_version": "0.2.0",
+  "protocol_id": "synthetic-protocol",
+  "revision_id": "movement-revision-1",
+  "parent_revision_id": null,
+  "created_at": "2026-01-01T00:00:00Z",
+  "source": {
+    "system": "labstep",
+    "collection_id": "900001",
+    "version_id": "900002",
+    "version_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "export_hash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "collection_hash": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "retrieved_at": "2026-01-01T00:00:00Z",
+    "native_hash_profile": "sha256/json-sort-keys-compact-utf8-ensure-ascii-false-allow-nan-false/1",
+    "export_hash_profile": "lab-mcp/protocol-export/1: ordered [guid,text] JSON; ensure_ascii=False",
+    "completeness": "unknown"
+  },
+  "digest_profile": "agentic-lab/review-json/1",
+  "interpretation_digest": "sha256:a8deb1bc059916f69a6d9264ec0e6f5effd6fc6da0221a5ef278f9219b0eed62",
+  "profile": "batch_movement/0.2",
+  "title": "Synthetic bounded movement",
+  "materials": [
+    {"id": "A", "name": "Synthetic material A"},
+    {"id": "B", "name": "Synthetic material B"},
+    {"id": "mixture-AB", "name": "A and B mixture identity"}
+  ],
+  "locations": [
+    {"id": "tube-1", "name": "Source tube", "kind": "tube"},
+    {"id": "tube-2", "name": "Destination tube", "kind": "tube"}
+  ],
+  "states": [
+    {
+      "id": "donor-before",
+      "material_id": "A",
+      "location_id": "tube-1",
+      "description": "donor-before",
+      "quantity": {
+        "value": "30",
+        "dimension": "volume",
+        "unit": "uL",
+        "basis": "total",
+        "unknown_reason": null,
+        "role": "state_total",
+        "provenance": {
+          "status": "source_asserted",
+          "source_spans": [
+            {
+              "pointer": "/state/content/0",
+              "step_guid": "synthetic-step",
+              "quote": "Synthetic additive nonreacting volume model. Move 10 uL from a donor of 30 uL to an empty destination; donor ends at 20 uL and destination at 10 uL."
+            }
+          ],
+          "rationale": "Explicit synthetic quantity assignment; human review remains required."
+        }
+      },
+      "lineage": []
+    },
+    {
+      "id": "recipient-before",
+      "material_id": null,
+      "location_id": "tube-2",
+      "description": "recipient-before",
+      "quantity": {
+        "value": "0",
+        "dimension": "volume",
+        "unit": "uL",
+        "basis": "total",
+        "unknown_reason": null,
+        "role": "state_total",
+        "provenance": {
+          "status": "source_asserted",
+          "source_spans": [
+            {
+              "pointer": "/state/content/0",
+              "step_guid": "synthetic-step",
+              "quote": "Synthetic additive nonreacting volume model. Move 10 uL from a donor of 30 uL to an empty destination; donor ends at 20 uL and destination at 10 uL."
+            }
+          ],
+          "rationale": "Explicit synthetic quantity assignment; human review remains required."
+        }
+      },
+      "lineage": []
+    },
+    {
+      "id": "donor-after",
+      "material_id": "A",
+      "location_id": "tube-1",
+      "description": "donor-after",
+      "quantity": {
+        "value": "20",
+        "dimension": "volume",
+        "unit": "uL",
+        "basis": "total",
+        "unknown_reason": null,
+        "role": "state_total",
+        "provenance": {
+          "status": "source_asserted",
+          "source_spans": [
+            {
+              "pointer": "/state/content/0",
+              "step_guid": "synthetic-step",
+              "quote": "Synthetic additive nonreacting volume model. Move 10 uL from a donor of 30 uL to an empty destination; donor ends at 20 uL and destination at 10 uL."
+            }
+          ],
+          "rationale": "Explicit synthetic quantity assignment; human review remains required."
+        }
+      },
+      "lineage": [{"state_id": "donor-before", "relationship": "split_from"}]
+    },
+    {
+      "id": "recipient-after",
+      "material_id": "A",
+      "location_id": "tube-2",
+      "description": "recipient-after",
+      "quantity": {
+        "value": "10",
+        "dimension": "volume",
+        "unit": "uL",
+        "basis": "total",
+        "unknown_reason": null,
+        "role": "state_total",
+        "provenance": {
+          "status": "source_asserted",
+          "source_spans": [
+            {
+              "pointer": "/state/content/0",
+              "step_guid": "synthetic-step",
+              "quote": "Synthetic additive nonreacting volume model. Move 10 uL from a donor of 30 uL to an empty destination; donor ends at 20 uL and destination at 10 uL."
+            }
+          ],
+          "rationale": "Explicit synthetic quantity assignment; human review remains required."
+        }
+      },
+      "lineage": [
+        {"state_id": "donor-before", "relationship": "pooled_from"},
+        {"state_id": "recipient-before", "relationship": "pooled_from"}
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "transfer-1",
+      "kind": "transfer",
+      "source_spans": [
+        {
+          "pointer": "/state/content/0",
+          "step_guid": "synthetic-step",
+          "quote": "Synthetic additive nonreacting volume model. Move 10 uL from a donor of 30 uL to an empty destination; donor ends at 20 uL and destination at 10 uL."
+        }
+      ],
+      "inputs": [
+        {
+          "state_id": "donor-before",
+          "fraction": "whole",
+          "quantity": {
+            "value": "30",
+            "dimension": "volume",
+            "unit": "uL",
+            "basis": "total",
+            "unknown_reason": null,
+            "role": "state_total",
+            "provenance": {
+              "status": "source_asserted",
+              "source_spans": [
+                {
+                  "pointer": "/state/content/0",
+                  "step_guid": "synthetic-step",
+                  "quote": "Synthetic additive nonreacting volume model. Move 10 uL from a donor of 30 uL to an empty destination; donor ends at 20 uL and destination at 10 uL."
+                }
+              ],
+              "rationale": "Explicit synthetic quantity assignment; human review remains required."
+            }
+          }
+        },
+        {
+          "state_id": "recipient-before",
+          "fraction": "whole",
+          "quantity": {
+            "value": "0",
+            "dimension": "volume",
+            "unit": "uL",
+            "basis": "total",
+            "unknown_reason": null,
+            "role": "state_total",
+            "provenance": {
+              "status": "source_asserted",
+              "source_spans": [
+                {
+                  "pointer": "/state/content/0",
+                  "step_guid": "synthetic-step",
+                  "quote": "Synthetic additive nonreacting volume model. Move 10 uL from a donor of 30 uL to an empty destination; donor ends at 20 uL and destination at 10 uL."
+                }
+              ],
+              "rationale": "Explicit synthetic quantity assignment; human review remains required."
+            }
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "state_id": "donor-after",
+          "fraction": "whole",
+          "quantity": {
+            "value": "20",
+            "dimension": "volume",
+            "unit": "uL",
+            "basis": "total",
+            "unknown_reason": null,
+            "role": "state_total",
+            "provenance": {
+              "status": "source_asserted",
+              "source_spans": [
+                {
+                  "pointer": "/state/content/0",
+                  "step_guid": "synthetic-step",
+                  "quote": "Synthetic additive nonreacting volume model. Move 10 uL from a donor of 30 uL to an empty destination; donor ends at 20 uL and destination at 10 uL."
+                }
+              ],
+              "rationale": "Explicit synthetic quantity assignment; human review remains required."
+            }
+          }
+        },
+        {
+          "state_id": "recipient-after",
+          "fraction": "whole",
+          "quantity": {
+            "value": "10",
+            "dimension": "volume",
+            "unit": "uL",
+            "basis": "total",
+            "unknown_reason": null,
+            "role": "state_total",
+            "provenance": {
+              "status": "source_asserted",
+              "source_spans": [
+                {
+                  "pointer": "/state/content/0",
+                  "step_guid": "synthetic-step",
+                  "quote": "Synthetic additive nonreacting volume model. Move 10 uL from a donor of 30 uL to an empty destination; donor ends at 20 uL and destination at 10 uL."
+                }
+              ],
+              "rationale": "Explicit synthetic quantity assignment; human review remains required."
+            }
+          }
+        }
+      ],
+      "purpose": {
+        "status": "asserted",
+        "text": "Move a specified amount while preserving donor residual and recipient totals.",
+        "evidence": [
+          {
+            "pointer": "/state/content/0",
+            "step_guid": "synthetic-step",
+            "quote": "Synthetic additive nonreacting volume model. Move 10 uL from a donor of 30 uL to an empty destination; donor ends at 20 uL and destination at 10 uL."
+          }
+        ]
+      },
+      "conditions": [],
+      "constraints": [],
+      "depends_on": [],
+      "control": {"mode": "always", "expression": null, "repeat_count": null},
+      "timing": {
+        "duration": {
+          "value": "30",
+          "dimension": "time",
+          "unit": "s",
+          "basis": "per_batch",
+          "unknown_reason": null,
+          "role": "duration",
+          "provenance": {
+            "status": "ambiguous",
+            "source_spans": [],
+            "rationale": "Timing is an illustrative assumption and requires review."
+          }
+        },
+        "hands_on": {
+          "value": "30",
+          "dimension": "time",
+          "unit": "s",
+          "basis": "per_batch",
+          "unknown_reason": null,
+          "role": "duration",
+          "provenance": {
+            "status": "ambiguous",
+            "source_spans": [],
+            "rationale": "Timing is an illustrative assumption and requires review."
+          }
+        },
+        "start_after": [],
+        "observed_elapsed": {
+          "value": null,
+          "dimension": "time",
+          "unit": "s",
+          "basis": "per_batch",
+          "unknown_reason": "No execution measurement is available.",
+          "role": "duration",
+          "provenance": {
+            "status": "ambiguous",
+            "source_spans": [],
+            "rationale": "Timing is an illustrative assumption and requires review."
+          }
+        }
+      },
+      "unsupported_reason": null,
+      "movement": {
+        "donor_before_state_id": "donor-before",
+        "donor_after_state_id": "donor-after",
+        "recipient_before_state_id": "recipient-before",
+        "recipient_after_state_id": "recipient-after",
+        "intent": "add_amount",
+        "amount": {
+          "value": "10",
+          "dimension": "volume",
+          "unit": "uL",
+          "basis": "total",
+          "unknown_reason": null,
+          "role": "added",
+          "provenance": {
+            "status": "source_asserted",
+            "source_spans": [
+              {
+                "pointer": "/state/content/0",
+                "step_guid": "synthetic-step",
+                "quote": "Synthetic additive nonreacting volume model. Move 10 uL from a donor of 30 uL to an empty destination; donor ends at 20 uL and destination at 10 uL."
+              }
+            ],
+            "rationale": "Explicit synthetic quantity assignment; human review remains required."
+          }
+        },
+        "target": null,
+        "derivation": null,
+        "model": {
+          "kind": "additive_nonreacting_volume",
+          "provenance": {
+            "status": "source_asserted",
+            "source_spans": [
+              {
+                "pointer": "/state/content/0",
+                "step_guid": "synthetic-step",
+                "quote": "Synthetic additive nonreacting volume model. Move 10 uL from a donor of 30 uL to an empty destination; donor ends at 20 uL and destination at 10 uL."
+              }
+            ],
+            "rationale": "Explicit synthetic quantity assignment; human review remains required."
+          }
+        }
+      }
+    }
+  ],
+  "coverage": [
+    {"pointer": "/state", "status": "irrelevant", "operation_ids": [], "reason": "Document wrapper only."},
+    {"pointer": "/state/content/0", "status": "mapped", "operation_ids": ["transfer-1"], "reason": null}
+  ],
+  "limitations": [
+    {
+      "kind": "attachment",
+      "pointer": "",
+      "status": "unresolved",
+      "reason": "Attachment availability not independently established."
+    }
+  ],
+  "questions": [],
+  "migration": null
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/neurogenomics/agentic-lab/contracts/versions/0.1.0/typed-measurement.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "value", "dimension", "unit", "basis", "reference", "provenance"],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "value": {"anyOf": [{"$ref": "#/$defs/ExactScalar"}, {"type": "null"}]},
+    "dimension": {"anyOf": [{"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"}, {"type": "null"}]},
+    "unit": {"anyOf": [{"type": "string", "minLength": 1}, {"type": "null"}]},
+    "basis": {"anyOf": [{"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"}, {"type": "null"}]},
+    "reference": {"anyOf": [{"$ref": "#/$defs/Reference"}, {"type": "null"}]},
+    "provenance": {"$ref": "#/$defs/Provenance"}
+  },
+  "allOf": [{"if": {"properties": {"value": {"const": null}}}, "then": {"properties": {"provenance": {"properties": {"kind": {"const": "unknown"}}}}}, "else": {"properties": {"provenance": {"properties": {"kind": {"not": {"const": "unknown"}}}}}}}],
+  "$defs": {
+    "Decimal": {"type": "string", "pattern": "^-?(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?(?![\\s\\S])", "maxLength": 128},
+    "ExactScalar": {
+      "anyOf": [{"$ref": "#/$defs/Decimal"}, {"type": "object", "additionalProperties": false, "required": ["numerator", "denominator"], "properties": {"numerator": {"type": "string", "pattern": "^(?:0|-?[1-9][0-9]*)(?![\\s\\S])", "maxLength": 513}, "denominator": {"type": "string", "pattern": "^[1-9][0-9]*(?![\\s\\S])", "maxLength": 512}}}]
+    },
+    "Reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "id", "conditions"],
+      "properties": {
+        "kind": {"enum": ["none", "declared"]},
+        "id": {"anyOf": [{"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"}, {"type": "null"}]},
+        "conditions": {"type": "array", "items": {"$ref": "#/$defs/Evidence"}, "uniqueItems": true}
+      },
+      "allOf": [{"if": {"properties": {"kind": {"const": "none"}}}, "then": {"properties": {"id": {"type": "null"}, "conditions": {"maxItems": 0}}}, "else": {"properties": {"id": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"}}}}]
+    },
+    "Evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["document_id", "document_digest", "pointer"],
+      "properties": {
+        "document_id": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"},
+        "document_digest": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Hash"},
+        "pointer": {"type": "string", "pattern": "^(?:/(?:[^~/]|~[01])*)*(?![\\s\\S])"}
+      }
+    },
+    "Provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "evidence", "explanation"],
+      "properties": {
+        "kind": {"enum": ["source_stated", "reviewer_asserted", "observed", "inferred", "unknown"]},
+        "evidence": {"type": "array", "items": {"$ref": "#/$defs/Evidence"}, "uniqueItems": true},
+        "explanation": {"anyOf": [{"type": "string", "minLength": 1}, {"type": "null"}]}
+      },
+      "allOf": [{"if": {"properties": {"kind": {"enum": ["source_stated", "observed"]}}}, "then": {"properties": {"evidence": {"minItems": 1}}}, "else": {"anyOf": [{"properties": {"evidence": {"minItems": 1}}}, {"properties": {"explanation": {"type": "string", "minLength": 1}}}]}}, {"if": {"properties": {"kind": {"const": "unknown"}}}, "then": {"properties": {"explanation": {"type": "string", "minLength": 1}}}}]
+    },
+    "Pointer": {"type": "string", "pattern": "^(?:/(?:[^~/]|~[01])*)*(?![\\s\\S])"}
+  }
+}

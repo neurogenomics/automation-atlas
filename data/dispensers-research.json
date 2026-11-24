@@ -1,0 +1,1699 @@
+{
+ "meta": {
+  "generated": "2026-11-05",
+  "scope": "non-contact / tip-free reagent dispensers for lab-automation planner",
+  "rules": "every figure from a maker page/spec sheet/user guide or peer-reviewed paper with URL+quote; null + 'not found' otherwise. Quotes <25 words; '...' marks joined adjacent cells/sentences.",
+  "caveats": [
+   "beckman.com, dispendix.com, agilent.com, fishersci.* block curl; some figures obtained via WebFetch extraction or Wayback snapshots (URLs given).",
+   "Formulatrix eStore and Thermo UK prices are geo-localised to GBP for a UK visitor on 2026-11-05.",
+   "Used-asking prices are eBay US listings seen 2026-11-05 (EBAY_US marketplace); asking, not sold."
+  ]
+ },
+ "devices": [
+  {
+   "id": "spt-dragonfly-discovery",
+   "name": "dragonfly discovery",
+   "maker": "SPT Labtech",
+   "family": "positive-displacement",
+   "minUl": 0.2,
+   "maxUl": 4000,
+   "volume": {
+    "quote": "200 nL – 4 mL dispense range",
+    "url": "https://sptlabtech.com/products/dragonfly/dragonfly-discovery"
+   },
+   "increment": {
+    "value": null,
+    "note": "not found: no stated dispense increment/resolution on product page or user-manual pages read"
+   },
+   "channels": {
+    "value": "3, 6 or 10 independent heads (one reagent per head)",
+    "quote": "Choose from 3, 6 or 10 independent positive displacement dispense heads, in either standard or deep well block format",
+    "url": "https://sptlabtech.com/products/dragonfly/dragonfly-discovery"
+   },
+   "deadVolume": [
+    {
+     "ul": [
+      75,
+      240
+     ],
+     "refersTo": "per reservoir (one reservoir per head), recoverable; depends on reservoir type",
+     "quote": "75 or 240 µL recoverable dead volume, depending on reservoir type",
+     "url": "https://sptlabtech.com/products/dragonfly/dragonfly-discovery"
+    },
+    {
+     "ul": [
+      30,
+      200
+     ],
+     "refersTo": "per reservoir: LDV reservoir 30 µL, standard 10 mL reservoir 200 µL, both recoverable",
+     "quote": "The dead volume is 200μL, which is recoverable. Low dead volume reservoirs have 1.5 mL capacity and 30μL recoverable dead volume.",
+     "url": "https://www.sptlabtech.com/product-help-center/dragonfly-discovery-user-manual-consumables",
+     "note": "CONFLICT with product page (75/240 µL). User manual consumables page vs marketing page; quote condensed with ellipsis across two adjacent sentences."
+    }
+   ],
+   "priming": {
+    "value": null,
+    "note": "not found: prime volume/time not stated; syringes aspirate from reservoir (0.3-4 mL per head)"
+   },
+   "aspirateRange": {
+    "quote": "Each dragonfly discovery head is capable of aspirating between 0.3mL and 4mL.",
+    "url": "https://www.sptlabtech.com/product-help-center/dragonfly-discovery-user-manual-dragonfly-discovery-technology"
+   },
+   "plateFormats": {
+    "value": [
+     96,
+     384,
+     1536,
+     "deep well",
+     "racked tubes",
+     "96/384 PCR plates"
+    ],
+    "quote": "Highly controlled dispensing into 96- or 384-well PCR plates for sensitive genomics applications",
+    "url": "https://sptlabtech.com/products/dragonfly/dragonfly-discovery",
+    "extra": {
+     "quote": "96, 384 and 1,536 well microplates. Deep well blocks or racked tubes up to 44 mm in height.",
+     "url": "https://sptlabtech.com/products/dragonfly/dragonfly-discovery"
+    }
+   },
+   "suspensions": {
+    "cells": true,
+    "beads": true,
+    "quote": "From aqueous buffers, DMSO and PCR master mixes through to cells and even viscous basal membrane extracts",
+    "url": "https://sptlabtech.com/products/dragonfly/dragonfly-discovery",
+    "beadsQuote": {
+     "quote": "compatible with a wide range of applications including molecular biology and genomics, biochemical assays, as well as cell- and bead-based assays.",
+     "url": "https://sptlabtech.com/products/dragonfly/dragonfly-discovery"
+    },
+    "limits": "not found: no stated particle-size, settling or stirring limits"
+   },
+   "viscous": {
+    "limit": null,
+    "quote": "accurate and repeatable nanolitre to milliliter dispensing, every time, irrespective of liquid viscosity or environmental conditions.",
+    "url": "https://sptlabtech.com/products/dragonfly/dragonfly-discovery",
+    "note": "no numeric cP/glycerol limit found"
+   },
+   "consumables": {
+    "items": [
+     "single-use positive-displacement syringes with HDPE plungers (packs of 100; standard, sterile, ultra-low-retention)",
+     "PP reservoirs (standard 10 mL, LDV 1.5 mL; disposable, washable for reuse)",
+     "auto-feed reservoirs"
+    ],
+    "singleUse": true,
+    "quotes": [
+     {
+      "quote": "Syringe and plungers are designed to be single use.",
+      "url": "https://www.sptlabtech.com/product-help-center/dragonfly-discovery-user-manual-dragonfly-discovery-technology"
+     },
+     {
+      "quote": "Reservoirs are disposable but can be washed after use to allow a number of re-uses if you wish.",
+      "url": "https://www.sptlabtech.com/product-help-center/dragonfly-discovery-user-manual-consumables"
+     }
+    ],
+    "prices": []
+   },
+   "contact": {
+    "nonContact": true,
+    "quote": "non-contact dispensing, for minimal syringe consumption",
+    "url": "https://sptlabtech.com/products/dragonfly/dragonfly-discovery",
+    "dispenseHeight": null,
+    "splashOrCellClaims": "not found on pages read (an SPT cell-plating white paper on news-medical returned 404)"
+   },
+   "speed": {
+    "quote": "Bulk dispense speed starting from 30 seconds per 96 ... 90 seconds per 1,536 well plate",
+    "url": "https://sptlabtech.com/products/dragonfly/dragonfly-discovery",
+    "note": "spec-table rows '30 seconds per 96' and '90 seconds per 1,536 well plate' joined"
+   },
+   "automation": {
+    "sbsPosition": true,
+    "robotAccess": "automation package listed; no gripper detail found",
+    "api": {
+     "quote": "The dragonfly software includes a fully documented API for 3rd party integration with a wide variety of other laboratory instrumentation",
+     "url": "https://sptlabtech.com/products/dragonfly/dragonfly-discovery"
+    },
+    "pylabrobot": "PyLabRobot main @7779f50 (2026-11-03): no backend directory for this device; checked tree for multidrop/echo/certus/multiflo/mantis/tempest/dragonfly/idot. Not in devices.json either.",
+    "opentrons": "not found: no Opentrons partner/integration listing (checked https://opentrons.com/oem-partnerships/integrated-devices)"
+   },
+   "priceEvidence": [
+    {
+     "amount": 27099,
+     "currency": "USD",
+     "kind": "used-asking",
+     "item": "dragonfly discovery liquid handler, 120V (eBay listing by reuzeit, item 227564404379)",
+     "url": "https://www.ebay.com/itm/227564404379",
+     "dateSeen": "2026-11-05"
+    },
+    {
+     "amount": 11995,
+     "currency": "USD",
+     "kind": "used-asking",
+     "item": "dragonfly discovery system with cart (eBay, labtreasures, item 237057965074)",
+     "url": "https://www.ebay.com/itm/237057965074",
+     "dateSeen": "2026-11-05"
+    }
+   ],
+   "priceNotFound": [
+    "new list price (quote only)",
+    "syringe pack price (SPT store / Fisher pages blocked or no price shown)"
+   ],
+   "sources": [
+    "https://sptlabtech.com/products/dragonfly/dragonfly-discovery",
+    "https://www.sptlabtech.com/product-help-center/dragonfly-discovery-user-manual-dragonfly-discovery-technology",
+    "https://www.sptlabtech.com/product-help-center/dragonfly-discovery-user-manual-consumables"
+   ]
+  },
+  {
+   "id": "formulatrix-mantis",
+   "name": "MANTIS",
+   "maker": "FORMULATRIX",
+   "family": "micro-diaphragm",
+   "minUl": 0.1,
+   "maxUl": null,
+   "maxNote": "chip max listed as '∞' (repeated actuations); XL chip 50 µL per actuation",
+   "volume": {
+    "quote": "Min: 0.1 µL",
+    "url": "https://www.formulatrix.com/mantis"
+   },
+   "increment": {
+    "value": "diaphragm volumes 0.1 & 0.5 µL (LV chip) or 1 & 5 µL (HV chip); dispensed volume is built from these",
+    "quote": "MANTIS® Chip – Silicone, LV (0.1uL & 0.5uL), RFID, PI. Pack of 6",
+    "url": "https://wcm.formulatrix.com/product/mantis-diaphragm-chip-silicone/"
+   },
+   "channels": {
+    "value": "1 chip dispensing at a time; up to 6 chips (reagents) on Automatic Chip Changer, up to 48 with LC3",
+    "quote": "The Automatic Chip Changers (ACC) allow the Mantis to dispense up to six reagents automatically without user intervention.",
+    "url": "https://help.formulatrix.com/mantis/5.4/Content/Hardware_Overview.htm",
+    "extra": {
+     "quote": "The LC3 is an optional upgrade that allows the Mantis to hold up to 48 chips",
+     "url": "https://help.formulatrix.com/mantis/5.4/Content/Hardware_Overview.htm"
+    }
+   },
+   "deadVolume": [
+    {
+     "ul": 6,
+     "refersTo": "per chip/reagent, LV chip (also with pipette tip as reservoir)",
+     "quote": "Dead volumes are further reduced to just 6 μL by using pipette tips as reagent reservoirs",
+     "url": "https://www.formulatrix.com/mantis"
+    },
+    {
+     "ul": {
+      "LV": 6,
+      "HV": 15,
+      "CF": 150
+     },
+     "refersTo": "per chip, from chip spec table (Dead Volume column)",
+     "quote": "Low Volume (LV) Silicone Chip ... 6 µL ... High Volume (HV) Silicone Chip ... 15 µL ... Continuous Flow ... ~150 µL",
+     "url": "https://help.formulatrix.com/mantis/5.1/Content/Chip_Specifications_Reference.htm",
+     "note": "table cells condensed; values read from 'Dead Volume' column"
+    }
+   ],
+   "priming": {
+    "value": {
+     "LV": {
+      "tube": 100.4,
+      "pipetteTip": 6
+     },
+     "HV": {
+      "tube": 264,
+      "pipetteTip": 16
+     },
+     "CF": 250
+    },
+    "unit": "µL default prime value",
+    "quote": "Low Volume (LV) Silicone Chip| 100.4 µL| 6 µL ... High Volume (HV) Silicone Chip | 264 µL| 16 µL",
+    "url": "https://help.formulatrix.com/mantis/5.1/Content/Chip_Specifications_Reference.htm",
+    "note": "columns: Default Prime Value Tube | Pipette Tip. Recovery step returns liquid to source."
+   },
+   "recovery": {
+    "quote": "Recovery : Pulls liquid from the chip and input tubing back into the source reservoir, so it can be reused later.",
+    "url": "https://help.formulatrix.com/mantis/5.4/Content/FAQs_and_Troubleshooting/FAQs.htm"
+   },
+   "plateFormats": {
+    "value": [
+     24,
+     96,
+     384,
+     1536,
+     "custom SBS; max accessory+plate height 53 mm"
+    ],
+    "quote": "Mantis comes with pre-installed plate type options, including 24, 96, 384, and 1536.",
+    "url": "https://help.formulatrix.com/mantis/5.4/Content/FAQs_and_Troubleshooting/FAQs.htm",
+    "pcr": "not stated explicitly"
+   },
+   "suspensions": {
+    "cells": true,
+    "beads": true,
+    "quote": "Yes, Mantis is gentle and maintains cell viability. A third-party shaker can be used to maintain the homogeneity of suspension in the reservoir.",
+    "url": "https://help.formulatrix.com/mantis/5.4/Content/FAQs_and_Troubleshooting/FAQs.htm",
+    "beadsQuote": {
+     "quote": "The ability of the Mantis to precisely dispense high viscosity liquids allows uniform dosing of b[eads]",
+     "url": "https://www.formulatrix.com/mantis",
+     "note": "text truncated in extraction"
+    },
+    "limits": "no built-in stirring; settling handled by third-party shaker per FAQ. LV channel 0.25 mm, HV 0.38 mm narrowest (per chip spec page summary) - particle-size limit not stated"
+   },
+   "viscous": {
+    "limitCp": 25,
+    "cfChipLimitCp": 700,
+    "quote": "Yes, Mantis can dispense liquids with viscosities up to approximately 25 cP.",
+    "url": "https://help.formulatrix.com/mantis/5.4/Content/FAQs_and_Troubleshooting/FAQs.htm",
+    "extra": {
+     "quote": "To dispense reagents with up to 700 cP, a high-viscosity CF chip is available.",
+     "url": "https://help.formulatrix.com/mantis/5.4/Content/FAQs_and_Troubleshooting/FAQs.htm"
+    }
+   },
+   "consumables": {
+    "items": [
+     "reusable diaphragm chips (LV/HV, silicone or PFE, molecular grade)",
+     "CF chips"
+    ],
+    "singleUse": false,
+    "quotes": [
+     {
+      "quote": "You can wash and reuse the chips multiple times.",
+      "url": "https://help.formulatrix.com/mantis/5.4/Content/FAQs_and_Troubleshooting/FAQs.htm"
+     },
+     {
+      "quote": "Chips should be washed after each dispense run.",
+      "url": "https://help.formulatrix.com/mantis/5.4/Content/FAQs_and_Troubleshooting/FAQs.htm"
+     }
+    ],
+    "lifetime": {
+     "quote": "Related Chip Lifetime (cycles) ... 1,000,000",
+     "url": "https://help.formulatrix.com/mantis/5.1/Content/Chip_Specifications_Reference.htm",
+     "note": "silicone 1,000,000 cycles; PFE 750,000"
+    },
+    "prices": [
+     {
+      "amount": 791,
+      "currency": "GBP",
+      "kind": "list",
+      "item": "Mantis Chip Silicone LV (0.1 & 0.5 µL), RFID, pack of 6, PN 233581",
+      "url": "https://wcm.formulatrix.com/product/mantis-diaphragm-chip-silicone/",
+      "dateSeen": "2026-11-05",
+      "note": "FORMULATRIX eStore; price is geo-localised (wcpbc) - served as GBP to UK IP"
+     },
+     {
+      "amount": 1459,
+      "currency": "GBP",
+      "kind": "list",
+      "item": "Mantis Chip Silicone LV, pack of 12, PN 233649",
+      "url": "https://wcm.formulatrix.com/product/mantis-diaphragm-chip-silicone/",
+      "dateSeen": "2026-11-05"
+     },
+     {
+      "amount": 791,
+      "currency": "GBP",
+      "kind": "list",
+      "item": "Mantis Chip Silicone HV (1 & 5 µL), pack of 6, PN 233580",
+      "url": "https://wcm.formulatrix.com/product/mantis-diaphragm-chip-silicone/",
+      "dateSeen": "2026-11-05"
+     },
+     {
+      "amount": 1613,
+      "currency": "GBP",
+      "kind": "list",
+      "item": "Mantis Chip LV Molecular Grade, pack of 6 with input tubing, PN 261120",
+      "url": "https://wcm.formulatrix.com/product/mantis-diaphragm-chip-silicone/",
+      "dateSeen": "2026-11-05"
+     }
+    ]
+   },
+   "contact": {
+    "nonContact": true,
+    "quote": "Miniaturize reactions with tipless dispensing",
+    "url": "https://www.formulatrix.com/mantis",
+    "splash": {
+     "quote": "Splashing occurs when liquid drops fall directly into the center of the well. This can be reduced by adjusting the A1 well offset",
+     "url": "https://help.formulatrix.com/mantis/5.4/Content/FAQs_and_Troubleshooting/FAQs.htm"
+    },
+    "cellFriendly": {
+     "quote": "gentle enough to dispense even the most delicate cells, such as primary neurons, while maintaining cell viabili[ty]",
+     "url": "https://www.formulatrix.com/mantis"
+    },
+    "dispenseHeight": null
+   },
+   "speed": {
+    "value": null,
+    "note": "not found: no time-per-plate figure; valve cluster fills/dispenses up to 10x per second",
+    "quote": "This valve cluster can fill and dispense as fast as 10 times per second (exact speed depends on specific product).",
+    "url": "https://www.formulatrix.com/mantis"
+   },
+   "automation": {
+    "sbsPosition": true,
+    "robotAccess": "not found (no gripper-access statement found)",
+    "api": {
+     "quote": "Automation Friendly: Integrate effortlessly with external systems, fostering connectivity and dat[a] synchronization",
+     "url": "https://www.formulatrix.com/mantis",
+     "note": "no public API documentation found"
+    },
+    "connection": {
+     "quote": "The USB Type-B port at the bottom is used for connecting the Mantis instrument to your computer.",
+     "url": "https://help.formulatrix.com/mantis/5.4/Content/Hardware_Overview.htm"
+    },
+    "pylabrobot": "Listed in PyLabRobot devices.json as status 'wip' (no code in main). https://github.com/PyLabRobot/pylabrobot/blob/main/docs/_static/devices.json",
+    "opentrons": "not found"
+   },
+   "priceEvidence": [
+    {
+     "amount": 2500,
+     "currency": "USD",
+     "kind": "used-asking",
+     "item": "Mantis V3 (eBay item 206558928547)",
+     "url": "https://www.ebay.com/itm/206558928547",
+     "dateSeen": "2026-11-05"
+    },
+    {
+     "amount": 4400,
+     "currency": "USD",
+     "kind": "used-asking",
+     "item": "Mantis V3.1 ACC with software (eBay item 298657225435)",
+     "url": "https://www.ebay.com/itm/298657225435",
+     "dateSeen": "2026-11-05"
+    },
+    {
+     "amount": 6500,
+     "currency": "USD",
+     "kind": "used-asking",
+     "item": "Mantis V3.1 ACC w/ software (eBay item 188373141688)",
+     "url": "https://www.ebay.com/itm/188373141688",
+     "dateSeen": "2026-11-05"
+    }
+   ],
+   "priceNotFound": [
+    "new instrument list price"
+   ],
+   "sources": [
+    "https://www.formulatrix.com/mantis",
+    "https://help.formulatrix.com/mantis/5.4/Content/FAQs_and_Troubleshooting/FAQs.htm",
+    "https://help.formulatrix.com/mantis/5.1/Content/Chip_Specifications_Reference.htm",
+    "https://help.formulatrix.com/mantis/5.4/Content/Hardware_Overview.htm",
+    "https://wcm.formulatrix.com/product/mantis-diaphragm-chip-silicone/"
+   ]
+  },
+  {
+   "id": "formulatrix-tempest",
+   "name": "Tempest",
+   "maker": "FORMULATRIX",
+   "family": "micro-diaphragm",
+   "minUl": 0.2,
+   "maxUl": null,
+   "maxNote": "spec 'Max: ∞'; FAQ says up to several millilitres",
+   "volume": {
+    "quote": "Min: 0.2 µL",
+    "url": "https://formulatrix.com/liquid-handling-systems/tempest-liquid-handler/"
+   },
+   "increment": {
+    "value": "diaphragm pairs 200 nL & 1 µL (LV) or 1 µL & 5 µL (HV)",
+    "quote": "This valve cluster has two microdiaphragms (select either 200 nL and 1 μL, or 1 μL and 5 μL)",
+    "url": "https://formulatrix.com/liquid-handling-systems/tempest-liquid-handler/"
+   },
+   "channels": {
+    "value": "up to 12 chips = 12 reagents, 8 nozzles each (96 nozzles)",
+    "quote": "It allows researchers to dispense up to 12 different reagents simu[ltaneously]",
+    "url": "https://formulatrix.com/liquid-handling-systems/tempest-liquid-handler/",
+    "extra": {
+     "quote": "Dispense up to 12 reagents across 96 individually controlled nozzles in just seconds.",
+     "url": "https://formulatrix.com/liquid-handling-systems/tempest-liquid-handler/"
+    }
+   },
+   "deadVolume": [
+    {
+     "ul": 48,
+     "refersTo": "per chip (8 nozzles, one reagent), non-recoverable, best case",
+     "quote": "Low Dead-Volume: Non-recoverable dead volume as low as 48 μL per chip.",
+     "url": "https://formulatrix.com/liquid-handling-systems/tempest-liquid-handler/"
+    }
+   ],
+   "priming": {
+    "value": null,
+    "note": "not found: prime volume not stated on product page"
+   },
+   "plateFormats": {
+    "value": [
+     96,
+     384,
+     1536,
+     "96 deep-well",
+     "SBS-footprint racks/vials"
+    ],
+    "quote": "The Tempest supports SBS-standard plates, including 96-, 384-, and 1536-well plates, as well as custom labware formats when required.",
+    "url": "https://formulatrix.com/liquid-handling-systems/tempest-liquid-handler/",
+    "pcr": "PCR setup listed as application; PCR plate formats not stated"
+   },
+   "suspensions": {
+    "cells": true,
+    "beads": true,
+    "quote": "ensuring high accuracy and precision across a broad range of reagent types, including cells and beads.",
+    "url": "https://formulatrix.com/liquid-handling-systems/tempest-liquid-handler/",
+    "limits": "Feature heading 'Keep Cells and Beads Suspended' present but body text not found; no particle-size or settling limit found"
+   },
+   "viscous": {
+    "value": null,
+    "note": "not found: no numeric cP/glycerol limit on Tempest page"
+   },
+   "consumables": {
+    "items": [
+     "reusable diaphragm chips (silicone or PFE, LV or HV)",
+     "CF chips"
+    ],
+    "singleUse": false,
+    "quotes": [
+     {
+      "quote": "No Consumables. All components can be easily cleaned and re-used",
+      "url": "https://formulatrix.com/liquid-handling-systems/tempest-liquid-handler/"
+     }
+    ],
+    "prices": [
+     {
+      "amount": 2705,
+      "currency": "GBP",
+      "kind": "list",
+      "item": "Tempest Chip Silicone LV (0.2 & 1 µL), pack of 2, SKU TSCL2",
+      "url": "https://wcm.formulatrix.com/product/tempest-diaphragm-chip-silicone/",
+      "dateSeen": "2026-11-05",
+      "note": "geo-localised eStore price"
+     },
+     {
+      "amount": 6721,
+      "currency": "GBP",
+      "kind": "list",
+      "item": "Tempest Chip Silicone LV, pack of 6, SKU TSCL6",
+      "url": "https://wcm.formulatrix.com/product/tempest-diaphragm-chip-silicone/",
+      "dateSeen": "2026-11-05"
+     },
+     {
+      "amount": 2705,
+      "currency": "GBP",
+      "kind": "list",
+      "item": "Tempest Chip Silicone HV (1 & 5 µL), pack of 2, SKU TSCH2",
+      "url": "https://wcm.formulatrix.com/product/tempest-diaphragm-chip-silicone/",
+      "dateSeen": "2026-11-05"
+     }
+    ]
+   },
+   "contact": {
+    "nonContact": true,
+    "quote": "Non-contact microdiaphragm dispensing across any volume, any reagent, and any well.",
+    "url": "https://formulatrix.com/liquid-handling-systems/tempest-liquid-handler/",
+    "cellFriendly": {
+     "quote": "It offers gentle non-contact dispensing, reducing contamination risks and maintaining cell viability.",
+     "url": "https://formulatrix.com/liquid-handling-systems/tempest-liquid-handler/"
+    },
+    "dispenseHeight": null
+   },
+   "speed": {
+    "values": {
+     "200nL_96": "3 s",
+     "200nL_384": "6 s",
+     "200nL_1536": "11 s",
+     "5uL_96": "4 s",
+     "1uL_384": "5 s",
+     "10uL_384": "9 s",
+     "20uL_384": "13 s",
+     "2mL_96DW": "<2 min (CF chip)"
+    },
+    "quote": "200 nL to 96-well plate = 3 seconds ... 20 μL to 384-well plate = 13 seconds",
+    "url": "https://formulatrix.com/liquid-handling-systems/tempest-liquid-handler/"
+   },
+   "footprint": {
+    "quote": "Width: 555 mm (22\") ... Depth: 309.67 mm ... Height: 266.56 mm (10.5\") (561 mm (22\") with plate stackers)",
+    "url": "https://formulatrix.com/liquid-handling-systems/tempest-liquid-handler/"
+   },
+   "automation": {
+    "sbsPosition": true,
+    "robotAccess": "stackers + barcode reader; integration with robotic arms via scheduling software stated",
+    "api": {
+     "quote": "Automation-Friendly: Integrate with external systems effortlessly with a network API.",
+     "url": "https://formulatrix.com/liquid-handling-systems/tempest-liquid-handler/"
+    },
+    "arms": {
+     "quote": "The Tempest can be integrated into larger automation workflows, including robotic arms, incubators, and plate readers, through scheduling software and APIs.",
+     "url": "https://formulatrix.com/liquid-handling-systems/tempest-liquid-handler/"
+    },
+    "pylabrobot": "PyLabRobot main @7779f50 (2026-11-03): no backend directory for this device; checked tree for multidrop/echo/certus/multiflo/mantis/tempest/dragonfly/idot. Not in devices.json.",
+    "opentrons": "not found"
+   },
+   "priceEvidence": [
+    {
+     "amount": 23800,
+     "currency": "USD",
+     "kind": "used-asking",
+     "item": "Tempest 96-channel, listed NEW/SEALED (eBay item 205647230709; seller strike-through 34,000)",
+     "url": "https://www.ebay.com/itm/205647230709",
+     "dateSeen": "2026-11-05"
+    },
+    {
+     "amount": 30000,
+     "currency": "USD",
+     "kind": "used-asking",
+     "item": "Tempest (eBay, labtain_com, item 186330365324)",
+     "url": "https://www.ebay.com/itm/186330365324",
+     "dateSeen": "2026-11-05"
+    },
+    {
+     "amount": 4298.98,
+     "currency": "USD",
+     "kind": "used-asking",
+     "item": "Tempest V2.1 (eBay item 195657530738)",
+     "url": "https://www.ebay.com/itm/195657530738",
+     "dateSeen": "2026-11-05"
+    }
+   ],
+   "priceNotFound": [
+    "new list price"
+   ],
+   "conflicts": [
+    "Product page states valve cluster rate as both 8x/s and 3x/s."
+   ],
+   "sources": [
+    "https://formulatrix.com/liquid-handling-systems/tempest-liquid-handler/",
+    "https://wcm.formulatrix.com/product/tempest-diaphragm-chip-silicone/"
+   ]
+  },
+  {
+   "id": "gyger-certus-flex",
+   "name": "CERTUS FLEX (FLEX5 / FLEX8)",
+   "maker": "Fritz Gyger AG (distributed by Trajan/LEAP, DKSH)",
+   "family": "solenoid",
+   "minUl": 0.035,
+   "maxUl": 2000,
+   "volume": {
+    "quote": "Dispensing Volume, Dynamic Range: 35 nL–2000 μL",
+    "url": "https://pr.mono.ipros.com/en/dksh/product/detail/2000203808",
+    "note": "distributor (DKSH Japan) product page; no Gyger-hosted spec sheet found"
+   },
+   "volumeAlt": {
+    "quote": "Printing volumes between 10 nL – µL",
+    "url": "https://fms.ibcs.kit.edu/deutsch/608.php",
+    "note": "KIT core-facility page, not maker; conflicts with 35 nL"
+   },
+   "increment": {
+    "value": null,
+    "note": "not found: no increment on pages read (SelectScience snippet '>0.05nl' not verified on a maker page)"
+   },
+   "channels": {
+    "value": "5 (FLEX5) or 8 (FLEX8) independent valves = up to 5 or 8 reagents",
+    "quote": "Number of Channels: FLEX5 5 channels (supports up to 5 types of solvents) / FLEX8 8 channels (supports up to 8 types of solvents)",
+    "url": "https://pr.mono.ipros.com/en/dksh/product/detail/2000203808"
+   },
+   "deadVolume": [
+    {
+     "ul": 65,
+     "refersTo": "internal volume per channel (valve + line), as listed",
+     "quote": "Internal Volume (Dead Volume): 65 μL",
+     "url": "https://pr.mono.ipros.com/en/dksh/product/detail/2000203808",
+     "note": "refers-to not specified beyond 'internal volume'; assume per channel"
+    }
+   ],
+   "reservoir": {
+    "quote": "When using low dead-volume expensive or rare reagents, it is possible to directly mount a syringe (1ml or more) to the reagent dispensing valve",
+    "url": "https://pr.mono.ipros.com/en/dksh/product/detail/2000203808"
+   },
+   "priming": {
+    "value": null,
+    "note": "not found: prime volume/time"
+   },
+   "plateFormats": {
+    "value": [
+     96,
+     384,
+     1536,
+     3456,
+     "deep well",
+     "plate height 0-50 mm"
+    ],
+    "quote": "Compatible Well Plates: SBS/ANSI standard well plates 3456, 1536, 384, 96 (deep well type also available)",
+    "url": "https://pr.mono.ipros.com/en/dksh/product/detail/2000203808",
+    "pcr": "not stated"
+   },
+   "suspensions": {
+    "cells": true,
+    "beads": null,
+    "quote": "Independently variable valve control pressure (0 to 1 bar) allows optimal dispensing of viscous liquids and cells.",
+    "url": "https://pr.mono.ipros.com/en/dksh/product/detail/2000203808",
+    "extra": {
+     "quote": "Dispensing of water, aqueous solutions and buffers, protein/cell solution as well as organic solvents",
+     "url": "https://fms.ibcs.kit.edu/deutsch/608.php"
+    },
+    "limits": "not found (beads not mentioned; no particle-size/settling statement)"
+   },
+   "viscous": {
+    "limit": null,
+    "note": "not found: no cP/glycerol limit; pressure-adjustable for viscous liquids (quote above)"
+   },
+   "consumables": {
+    "items": [
+     "reusable SMLD 300G micro valves (cleanable, autoclavable per KIT)",
+     "disposable 3 mL PP syringes as reservoirs, or bottles"
+    ],
+    "singleUse": "syringes yes, valves no",
+    "quotes": [
+     {
+      "quote": "8 x printing valves, need to be cleaned, can be autoclaved",
+      "url": "https://fms.ibcs.kit.edu/deutsch/608.php"
+     },
+     {
+      "quote": "8 x 3 mL plastic syringes, disposed after use",
+      "url": "https://fms.ibcs.kit.edu/deutsch/608.php"
+     }
+    ],
+    "prices": []
+   },
+   "contact": {
+    "nonContact": true,
+    "quote": "Dispensing Principle: Non-contact, drop-on-demand",
+    "url": "https://pr.mono.ipros.com/en/dksh/product/detail/2000203808",
+    "dispenseHeight": null,
+    "splash": "not found"
+   },
+   "speed": {
+    "quote": "96 Well Plate: 19 seconds, 384 Well Plate: 47 seconds, 1536 Well Plate: 145 seconds",
+    "url": "https://pr.mono.ipros.com/en/dksh/product/detail/2000203808",
+    "conditions": "0.3 bar, SMLD 300G per unit, 100-500 nL",
+    "alt": {
+     "quote": "Dispensing with 8 channels in parallel mode: 96 well plate in 7 sec",
+     "url": "https://fms.ibcs.kit.edu/deutsch/608.php"
+    }
+   },
+   "automation": {
+    "sbsPosition": true,
+    "robotAccess": "not found",
+    "api": {
+     "quote": "Compatible with lab automation (HTS), compliant with SiLA industrial standards, and supports easy integration.",
+     "url": "https://pr.mono.ipros.com/en/dksh/product/detail/2000203808"
+    },
+    "pylabrobot": "PyLabRobot main @7779f50 (2026-11-03): no backend directory for this device; checked tree for multidrop/echo/certus/multiflo/mantis/tempest/dragonfly/idot. Not in devices.json.",
+    "opentrons": "not found"
+   },
+   "priceEvidence": [],
+   "priceNotFound": [
+    "no list/used price found; DKSH page shows only a price band code 'P7'; no eBay listings (EBAY_US search returned 0); Trajan store pages rate-limited (HTTP 429)"
+   ],
+   "sources": [
+    "https://pr.mono.ipros.com/en/dksh/product/detail/2000203808",
+    "https://fms.ibcs.kit.edu/deutsch/608.php"
+   ],
+   "sourceQuality": "No manufacturer-hosted spec sheet retrieved; figures from distributor (DKSH) and a university facility page (KIT)."
+  },
+  {
+   "id": "dispendix-idot",
+   "name": "I.DOT (I.DOT S datasheet; also I.DOT HT / LT variants)",
+   "maker": "DISPENDIX (BICO; also sold under Cellink/Cytena)",
+   "family": "pressure-droplet",
+   "minUl": 0.008,
+   "maxUl": 30,
+   "volume": {
+    "quote": "Dispense 8 nL to 30 μL with 0.1 nL resolution into any SBS format destination labware",
+    "url": "https://web.archive.org/web/20260121130135/https://dispendix.com/idot-non-contact-liquid-handler"
+   },
+   "minDropletByLiquid": {
+    "quote": "Minimal Droplet Volumes are liquid type and source plate dependent.",
+    "url": "https://web.archive.org/web/20250911141050/https://www.cytena.com/wp-content/uploads/2025/05/I.DOT-S-Technical-Datasheet.pdf",
+    "note": "S.60 plate H2O ~3.3 nL; S.100 ~9.9 nL; S.200 tens of nL (datasheet table)"
+   },
+   "increment": {
+    "quote": "Dispensing Resolution 0.1 nL",
+    "url": "https://web.archive.org/web/20250911141050/https://www.cytena.com/wp-content/uploads/2025/05/I.DOT-S-Technical-Datasheet.pdf"
+   },
+   "channels": {
+    "value": "8 parallel dispensing channels; up to 96 source wells (S plates) or 384 (HT) = reagents per run",
+    "quote": "Dispensing Channels 8 parallel channels with independent volume control",
+    "url": "https://web.archive.org/web/20250911141050/https://www.cytena.com/wp-content/uploads/2025/05/I.DOT-S-Technical-Datasheet.pdf",
+    "extra": {
+     "quote": "Dispense up to 384 source liquids per run",
+     "url": "https://web.archive.org/web/20260121130135/https://dispendix.com/idot-non-contact-liquid-handler"
+    }
+   },
+   "deadVolume": [
+    {
+     "ul": 1,
+     "refersTo": "per source well (96-well S plate, water)",
+     "quote": "Dead Volume < 1 µL (H2O)",
+     "url": "https://web.archive.org/web/20250911141050/https://www.cytena.com/wp-content/uploads/2025/05/I.DOT-S-Technical-Datasheet.pdf"
+    },
+    {
+     "ul": 5,
+     "refersTo": "per source well, I.DOT HT 384-well source plate",
+     "quote": "Up to 384 Source Wells with 5 μL Dead Volume",
+     "url": "https://web.archive.org/web/20260121130135/https://dispendix.com/idot-non-contact-liquid-handler"
+    }
+   ],
+   "sourceWell": {
+    "quote": "Source Well Capacity 80 µL ... Recommended max. Source Well Fill Volume: 70 µL",
+    "url": "https://web.archive.org/web/20250911141050/https://www.cytena.com/wp-content/uploads/2025/05/I.DOT-S-Technical-Datasheet.pdf"
+   },
+   "priming": {
+    "value": 0,
+    "note": "no priming step: dispenses directly from disposable source well (no fluid path); no prime volume stated - treat as not applicable rather than measured"
+   },
+   "plateFormats": {
+    "value": [
+     96,
+     384,
+     1536,
+     "any SBS up to 50 mm height"
+    ],
+    "quote": "Any ANSI-SLAS (SBS) compatible well plate with a maximal height of 50 mm and a density of up to 1536 wells",
+    "url": "https://web.archive.org/web/20250911141050/https://www.cytena.com/wp-content/uploads/2025/05/I.DOT-S-Technical-Datasheet.pdf",
+    "pcr": "PCR set-up listed as target application"
+   },
+   "suspensions": {
+    "cells": "claimed on product page; not in datasheet liquid list",
+    "beads": true,
+    "quote": "Magnetic and Resin-based Beads",
+    "url": "https://web.archive.org/web/20250911141050/https://www.cytena.com/wp-content/uploads/2025/05/I.DOT-S-Technical-Datasheet.pdf",
+    "cellsQuote": {
+     "quote": "precisely delivering cells, compounds, and buffers for assay development and high-throughput screening",
+     "url": "https://web.archive.org/web/20260121130135/https://dispendix.com/idot-non-contact-liquid-handler"
+    },
+    "limits": "orifice 60/100/200 µm by plate (S.60/S.100/S.200); no settling/stirring statement found"
+   },
+   "viscous": {
+    "rangeMPas": [
+     0.55,
+     23.32
+    ],
+    "quote": "Viscosity range: 0.55 mPa*s (Methanol) - 23.32 mPa*s (65% Glycerol)",
+    "url": "https://web.archive.org/web/20250911141050/https://www.cytena.com/wp-content/uploads/2025/05/I.DOT-S-Technical-Datasheet.pdf",
+    "note": "some source plates/variants limited to 43% glycerol per product page"
+   },
+   "consumables": {
+    "items": [
+     "disposable PP source plates (96-well S.60/S.100/S.200, 384-well HT)"
+    ],
+    "singleUse": true,
+    "quotes": [
+     {
+      "quote": "Material Polypropylene",
+      "url": "https://web.archive.org/web/20250911141050/https://www.cytena.com/wp-content/uploads/2025/05/I.DOT-S-Technical-Datasheet.pdf"
+     }
+    ],
+    "prices": [],
+    "note": "VWR lists S.100 (735-0647) and HT.60 (735-0650) as packs of 100 but no price visible (search snippet; not verified on page)"
+   },
+   "contact": {
+    "nonContact": true,
+    "quote": "Non-contact Immediate Drop on Demand Technology (I.DOT)",
+    "url": "https://web.archive.org/web/20250911141050/https://www.cytena.com/wp-content/uploads/2025/05/I.DOT-S-Technical-Datasheet.pdf",
+    "dispenseHeight": null,
+    "splash": "not found",
+    "verification": {
+     "quote": "Independent optical sensor detects and reports each dispensed droplet (overall drop count accuracy per run: 99%)",
+     "url": "https://web.archive.org/web/20250911141050/https://www.cytena.com/wp-content/uploads/2025/05/I.DOT-S-Technical-Datasheet.pdf"
+    }
+   },
+   "speed": {
+    "quote": "Dispenses 10 nL H2O across a 96-well plate in 10 seconds, across a 384-well plate in 20 seconds and ... 1536-well plate in 80 seconds.",
+    "url": "https://web.archive.org/web/20250911141050/https://www.cytena.com/wp-content/uploads/2025/05/I.DOT-S-Technical-Datasheet.pdf"
+   },
+   "footprint": {
+    "quote": "Size L x W x H 471 mm x 575 mm x 433 mm",
+    "url": "https://web.archive.org/web/20250911141050/https://www.cytena.com/wp-content/uploads/2025/05/I.DOT-S-Technical-Datasheet.pdf"
+   },
+   "automation": {
+    "sbsPosition": true,
+    "robotAccess": {
+     "quote": "Source and target tray optimized for robotic arm access and advanced robustness for automation.* (e.g., Brooks Precise Flex 400, PAA KX-2)",
+     "url": "https://web.archive.org/web/20250911141050/https://www.cytena.com/wp-content/uploads/2025/05/I.DOT-S-Technical-Datasheet.pdf",
+     "note": "optional automation kit"
+    },
+    "api": {
+     "quote": "SiLA2 API enabling integration with any third-party scheduling software, automation guide available",
+     "url": "https://web.archive.org/web/20250911141050/https://www.cytena.com/wp-content/uploads/2025/05/I.DOT-S-Technical-Datasheet.pdf"
+    },
+    "requiresAir": {
+     "quote": "External Air Pressure Supply 3-10 bar / 40-145 psi",
+     "url": "https://web.archive.org/web/20250911141050/https://www.cytena.com/wp-content/uploads/2025/05/I.DOT-S-Technical-Datasheet.pdf"
+    },
+    "pylabrobot": "PyLabRobot main @7779f50 (2026-11-03): no backend directory for this device; checked tree for multidrop/echo/certus/multiflo/mantis/tempest/dragonfly/idot. Not in devices.json.",
+    "opentrons": "not found"
+   },
+   "priceEvidence": [
+    {
+     "amount": 18750,
+     "currency": "USD",
+     "kind": "used-asking",
+     "item": "Dispendix I-DOT One (eBay item 406921382885)",
+     "url": "https://www.ebay.com/itm/406921382885",
+     "dateSeen": "2026-11-05"
+    }
+   ],
+   "priceNotFound": [
+    "new list price",
+    "source plate price"
+   ],
+   "sources": [
+    "https://web.archive.org/web/20250911141050/https://www.cytena.com/wp-content/uploads/2025/05/I.DOT-S-Technical-Datasheet.pdf",
+    "https://web.archive.org/web/20260121130135/https://dispendix.com/idot-non-contact-liquid-handler"
+   ],
+   "sourceQuality": "dispendix.com and cytena.com block automated fetch (403/404); used Wayback copies of the maker's datasheet (v3.1, Dec 2024) and product page (Jan 2026 snapshot)."
+  },
+  {
+   "id": "beckman-echo-525-650",
+   "name": "Echo 525 / Echo 650 (650 Plus) series",
+   "maker": "Beckman Coulter Life Sciences (formerly Labcyte)",
+   "family": "acoustic",
+   "minUl": {
+    "echo525": 0.025,
+    "echo650": 0.0025
+   },
+   "maxUl": {
+    "echo525": 5,
+    "echo650": null
+   },
+   "volume": {
+    "quote": "25 nL – 5 µL one well to one well",
+    "url": "https://www.beckman.com/liquid-handlers/echo-525",
+    "note": "Echo 525 page; via WebFetch extraction (beckman.com blocks curl)"
+   },
+   "volume650": {
+    "quote": "Drop Transfer Resolution ... 2.5 nL",
+    "url": "https://www.beckman.com/liquid-handlers/echo-acoustic/echo-650-plus-series"
+   },
+   "increment": {
+    "value": "25 nL (525) / 2.5 nL (650 series) droplet",
+    "url": "https://www.beckman.com/liquid-handlers/echo-525"
+   },
+   "channels": {
+    "value": "any source well to any destination well; source = 384-well (or 1536LDV for 650) plate, so up to 384 reagents per source plate; one transducer",
+    "url": "https://www.beckman.com/liquid-handlers/echo-acoustic/echo-650-plus-series"
+   },
+   "deadVolume": [
+    {
+     "ul": {
+      "384PP": 15,
+      "384PP_AQ_CP": 20,
+      "384LDV_AQ_B2": 3,
+      "384LDV_DMSO": 2.5,
+      "1536LDV_DMSO": 1
+     },
+     "refersTo": "per source well = lower bound of usable working volume, by calibration",
+     "quote": "384PP_AQ_GP3 buffer / protein ... 15 – 65",
+     "url": "https://cpos.hku.hk/wp-content/uploads/2026/01/SOP_Beckman_Echo650_20260129.pdf",
+     "note": "SECONDARY: HKU core-facility SOP (Jan 2026), not a Beckman document; Beckman consumables brochure (2023-05) blocked/404. Search snippet of that brochure gave 384PP '20 — 65 μL' - unverified."
+    },
+    {
+     "value": "<10% of max working volume (>2.5 mL per well), recoverable",
+     "refersTo": "per well of 6-well Echo Qualified reservoir",
+     "quote": "dead volume (less than 10% of the maximum working volume) is recoverable",
+     "url": "https://www.beckman.com/supplies/echo-qualified-supplies/source-microplates"
+    }
+   ],
+   "deadVolumeComment": {
+    "quote": "Labcyte Echo source plates have a limited working volume which results in dead volume loss of reagents in each source well",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6328170/"
+   },
+   "priming": {
+    "value": 0,
+    "note": "no fluid path; not applicable (source plate must be centrifuged to remove bubbles per facility SOP)"
+   },
+   "plateFormats": {
+    "value": [
+     96,
+     384,
+     "1536 (650; 525 application dependent)",
+     "destination height 8-16 mm"
+    ],
+    "quote": "Most ANSI/SLAS-compliant microplates in 96-well, 384-well and 1,536-well-format that are 8–16 mm in height.",
+    "url": "https://www.beckman.com/liquid-handlers/echo-acoustic/echo-650-plus-series",
+    "pcr": "PCR/qPCR reagents listed; destination PCR plates within 8-16 mm height range"
+   },
+   "suspensions": {
+    "cells": "partial: cell culture media and single-cell prep listed; no cell-suspension transfer spec found",
+    "beads": "not found; peer-reviewed Echo workflow still pipetted beads",
+    "quote": "Although all dispensing steps utilized acoustic liquid handling in this protocol, magnetic bead-cleaning steps still required pipetting automation.",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6328170/",
+    "limits": "not found"
+   },
+   "viscous": {
+    "limitGlycerolPct": 50,
+    "quote": "reagents containing up to 50% glycerol",
+    "url": "https://www.beckman.com/liquid-handlers/echo-525",
+    "fluidClasses650": {
+     "quote": "70–100% DMSO ... up to 50% glycerol solutions",
+     "url": "https://www.beckman.com/liquid-handlers/echo-acoustic/echo-650-plus-series"
+    },
+    "calibrations": {
+     "quote": "384PP_DMSO2 ... 384PP_AQ_SP2 ... 384PP_AQ_GP3 ... 384PP_AQ_CP",
+     "url": "https://cpos.hku.hk/wp-content/uploads/2026/01/SOP_Beckman_Echo650_20260129.pdf",
+     "note": "fluid-class calibrations per facility SOP"
+    }
+   },
+   "consumables": {
+    "items": [
+     "Echo Qualified source plates (384PP, 384PP Plus, 384LDV, 1536LDV, 6-well reservoir), single-use"
+    ],
+    "singleUse": true,
+    "prices": [
+     {
+      "amount": 780.99,
+      "currency": "USD",
+      "kind": "used-asking",
+      "item": "50x Labcyte Echo Qualified 2x3-well (6RES) PP reservoir plates ER-0050, new (eBay item 327076454850)",
+      "url": "https://www.ebay.com/itm/327076454850",
+      "dateSeen": "2026-11-05"
+     }
+    ]
+   },
+   "contact": {
+    "nonContact": true,
+    "quote": "Echo Liquid Handlers rely on Acoustic Droplet [Ejection]",
+    "url": "https://annual-meeting.ls2.ch/files/2021/content/366/echo-liquid-handler-brochure-2020.pdf",
+    "dispenseHeight": "droplets ejected upward into inverted destination plate (mechanism); no splash data found"
+   },
+   "speed": {
+    "value": null,
+    "note": "not found as time-per-plate; 650 Plus: up to 700 drops/s (WebFetch extraction of https://www.beckman.com/liquid-handlers/echo-acoustic/echo-650-plus-series)"
+   },
+   "automation": {
+    "sbsPosition": true,
+    "robotAccess": {
+     "quote": "Integrates into the Labcyte Access Laboratory Workstation for increased throughput",
+     "url": "https://www.beckman.com/liquid-handlers/echo-525"
+    },
+    "api": "not found on Beckman pages (no public API mention)",
+    "pylabrobot": "Open, unmerged PR #1001 'Add Labcyte Echo Support' covering Echo 650 and 525 (last updated 2026-08-01). https://github.com/PyLabRobot/pylabrobot/pull/1001",
+    "opentrons": "not found"
+   },
+   "priceEvidence": [
+    {
+     "amount": 185000,
+     "currency": "USD",
+     "kind": "used-asking",
+     "item": "2022 Labcyte Echo 525 (eBay item 257807227572)",
+     "url": "https://www.ebay.com/itm/257807227572",
+     "dateSeen": "2026-11-05"
+    }
+   ],
+   "priceNotFound": [
+    "new list price",
+    "384PP / LDV plate price (Fisher blocked)"
+   ],
+   "sources": [
+    "https://www.beckman.com/liquid-handlers/echo-525",
+    "https://www.beckman.com/liquid-handlers/echo-acoustic/echo-650-plus-series",
+    "https://www.beckman.com/supplies/echo-qualified-supplies/source-microplates",
+    "https://cpos.hku.hk/wp-content/uploads/2026/01/SOP_Beckman_Echo650_20260129.pdf",
+    "https://pmc.ncbi.nlm.nih.gov/articles/PMC6328170/"
+   ],
+   "sourceQuality": "beckman.com blocks curl (Cloudflare); figures obtained via WebFetch extraction, quotes may be lightly normalised by the fetch tool."
+  },
+  {
+   "id": "thermo-multidrop-combi",
+   "name": "Multidrop Combi / Combi+ / Combi SMART+",
+   "maker": "Thermo Fisher Scientific",
+   "family": "peristaltic",
+   "minUl": 0.5,
+   "maxUl": 2500,
+   "volume": {
+    "quote": "Wide Volume Range : 0.5 to 2,500 µL",
+    "url": "https://www.thermofisher.com/uk/en/home/life-science/lab-equipment/multidrop-dispensers/models/multidrop-combi.html"
+   },
+   "increment": {
+    "value": {
+     "smallTube": "0.5 µL steps (0.5-50 µL)",
+     "standardTube": "5 µL steps (5-2000/2500 µL)"
+    },
+    "quote": "Small tube dispensing cassette: 0.5–50 μL, in 0.5 μL increments Standard tube dispensing cassette: 5- 2,000 µL in 5 µL increments",
+    "url": "https://www.thermofisher.com/uk/en/home/life-science/lab-equipment/multidrop-dispensers/models/multidrop-combi.html"
+   },
+   "channels": {
+    "value": "8-tube cassette, one reagent per cassette (8 different solutions possible via separate tubes)",
+    "quote": "up to 8 different solutions can be dispensed simultaneously.",
+    "url": "https://assets.thermofisher.com/TFS-Assets/LED/brochures/Thermo%20Scientific%20Multidrop%20Combi%20Brochure.pdf"
+   },
+   "deadVolume": [
+    {
+     "ml": {
+      "smallTube": "<1",
+      "standardTube": "<7"
+     },
+     "refersTo": "per cassette (8-tube set, 40 cm tubing), backflushable to source",
+     "quote": "< 1 mL volume range: 0.5 - 50 µL <7 mL volume range: >50 µL (it is possible to backflush the reagent into original reservoir",
+     "url": "https://www.thermofisher.com/uk/en/home/life-science/lab-equipment/multidrop-dispensers/models/multidrop-combi.html"
+    }
+   ],
+   "priming": {
+    "value": null,
+    "note": "not found: prime volume not separately stated (dead volume figures cover tubing fill)"
+   },
+   "plateFormats": {
+    "value": [
+     6,
+     12,
+     24,
+     48,
+     96,
+     384,
+     1536,
+     "deep well",
+     "tubes in rack",
+     "plate height 5-50 mm"
+    ],
+    "quote": "6-, 12-, 24-, 48-, 96-,384-, 1536-well plates (plate height 5-50 mm)",
+    "url": "https://assets.thermofisher.com/TFS-Assets/LED/brochures/Thermo%20Scientific%20Multidrop%20Combi%20Brochure.pdf",
+    "pcr": "not stated"
+   },
+   "suspensions": {
+    "cells": true,
+    "beads": null,
+    "quote": "dispensing up to 2500 µl is ideal for some delicate cell-based assays.",
+    "url": "https://assets.thermofisher.com/TFS-Assets/LED/brochures/Thermo%20Scientific%20Multidrop%20Combi%20Brochure.pdf",
+    "limits": "not found (no settling/stirring statement for Combi)"
+   },
+   "viscous": {
+    "value": null,
+    "note": "not found: no cP/glycerol limit on Combi page or brochure"
+   },
+   "consumables": {
+    "items": [
+     "8-channel tube dispensing cassettes (standard 5-2500 µL; small tube 0.5-50 µL, plastic or metal tips; SMART+ RFID versions)"
+    ],
+    "singleUse": false,
+    "quotes": [
+     {
+      "quote": "available in autoclavable or disposable options",
+      "url": "https://www.thermofisher.com/uk/en/home/life-science/lab-equipment/multidrop-dispensers/accessories.html"
+     },
+     {
+      "quote": "8-channel detachable and autoclavable dispensing cassettes",
+      "url": "https://assets.thermofisher.com/TFS-Assets/LED/brochures/Thermo%20Scientific%20Multidrop%20Combi%20Brochure.pdf"
+     }
+    ],
+    "prices": [
+     {
+      "amount": 712.0,
+      "currency": "GBP",
+      "kind": "list",
+      "item": "Standard tube dispensing cassette 5-2500 µL, cat 24072670 (online price 634.52)",
+      "url": "https://www.thermofisher.com/uk/en/home/life-science/lab-equipment/multidrop-dispensers/accessories.html",
+      "dateSeen": "2026-11-05"
+     },
+     {
+      "amount": 712.0,
+      "currency": "GBP",
+      "kind": "list",
+      "item": "Small tube plastic tip cassette 0.5-50 µL, cat 24073290 (online 634.52)",
+      "url": "https://www.thermofisher.com/uk/en/home/life-science/lab-equipment/multidrop-dispensers/accessories.html",
+      "dateSeen": "2026-11-05"
+     },
+     {
+      "amount": 712.0,
+      "currency": "GBP",
+      "kind": "list",
+      "item": "Small tube metal tip cassette, cat 24073295 (online 636.33)",
+      "url": "https://www.thermofisher.com/uk/en/home/life-science/lab-equipment/multidrop-dispensers/accessories.html",
+      "dateSeen": "2026-11-05"
+     },
+     {
+      "amount": 987.0,
+      "currency": "GBP",
+      "kind": "list",
+      "item": "SMART+ standard tube cassette, cat N22704",
+      "url": "https://www.thermofisher.com/uk/en/home/life-science/lab-equipment/multidrop-dispensers/accessories.html",
+      "dateSeen": "2026-11-05"
+     },
+     {
+      "amount": 267.0,
+      "currency": "GBP",
+      "kind": "list",
+      "item": "Tubing set for standard cassette (40 cm), cat 24070290",
+      "url": "https://www.thermofisher.com/uk/en/home/life-science/lab-equipment/multidrop-dispensers/accessories.html",
+      "dateSeen": "2026-11-05"
+     }
+    ]
+   },
+   "contact": {
+    "nonContact": true,
+    "quote": "customized work - such as pump speed, tip height, offset values, dispensing direction",
+    "url": "https://assets.thermofisher.com/TFS-Assets/LED/brochures/Thermo%20Scientific%20Multidrop%20Combi%20Brochure.pdf",
+    "dispenseHeight": "adjustable (tip height parameter)",
+    "splash": "not found",
+    "note": "non-contact by design (dispenses from tips above plate); no explicit 'non-contact' wording found in sources read"
+   },
+   "speed": {
+    "quote": "96-well plate: 10µl in 3 seconds, 20µl in 4 s., 100µl in 10 s.",
+    "url": "https://assets.thermofisher.com/TFS-Assets/LED/brochures/Thermo%20Scientific%20Multidrop%20Combi%20Brochure.pdf",
+    "extra": {
+     "quote": "384-well plate: 1µl in 5 s., 5µl in 5 s., 10µl in 6 s., 20µl in 9 s.",
+     "url": "https://assets.thermofisher.com/TFS-Assets/LED/brochures/Thermo%20Scientific%20Multidrop%20Combi%20Brochure.pdf"
+    }
+   },
+   "footprint": {
+    "quote": "Dimensions 35.6 x 21.8 x 32.8 cm",
+    "url": "https://www.thermofisher.com/uk/en/home/life-science/lab-equipment/multidrop-dispensers/models/multidrop-combi.html"
+   },
+   "automation": {
+    "sbsPosition": true,
+    "robotAccess": {
+     "quote": "plate carrier is optimized for easy plate access by robotic arm grippers, linked via either the RS-232 serial or USB port.",
+     "url": "https://assets.thermofisher.com/TFS-Assets/LED/brochures/Thermo%20Scientific%20Multidrop%20Combi%20Brochure.pdf"
+    },
+    "api": "RS-232/USB serial protocol; FILLit PC software",
+    "pylabrobot": "PR #964 'Add bulk dispenser module with Multidrop Combi backend support' merged 2026-03-25 into the v1b1 branch; devices.json lists Multidrop Combi status 'mostly', api_version v0; the backend code is NOT present in main @7779f50 (2026-11-03). https://github.com/PyLabRobot/pylabrobot/pull/964",
+    "opentrons": "not found"
+   },
+   "priceEvidence": [
+    {
+     "amount": 21431.0,
+     "currency": "GBP",
+     "kind": "list",
+     "item": "Multidrop Combi+ Dispenser, cat 5840330",
+     "url": "https://www.thermofisher.com/uk/en/home/life-science/lab-equipment/multidrop-dispensers/models/multidrop-combi.html",
+     "dateSeen": "2026-11-05"
+    },
+    {
+     "amount": 22959.0,
+     "currency": "GBP",
+     "kind": "list",
+     "item": "Multidrop Combi SMART+ Dispenser, cat 5840340",
+     "url": "https://www.thermofisher.com/uk/en/home/life-science/lab-equipment/multidrop-dispensers/models/multidrop-combi.html",
+     "dateSeen": "2026-11-05"
+    },
+    {
+     "amount": 1200,
+     "currency": "USD",
+     "kind": "used-asking",
+     "item": "Multidrop Combi Type 836, 5840300 (eBay item 406090697596)",
+     "url": "https://www.ebay.com/itm/406090697596",
+     "dateSeen": "2026-11-05"
+    },
+    {
+     "amount": 1350,
+     "currency": "USD",
+     "kind": "used-asking",
+     "item": "Multidrop Combi 836 (eBay item 188359320609)",
+     "url": "https://www.ebay.com/itm/188359320609",
+     "dateSeen": "2026-11-05"
+    },
+    {
+     "amount": 52857,
+     "currency": "USD",
+     "kind": "award",
+     "item": "Three Multidrop Combi reagent dispensers (US federal award; total for 3 units)",
+     "url": "https://www.usaspending.gov/award/CONT_AWD_75N95021P00322_7529_-NONE-_-NONE-",
+     "dateSeen": "2026-11-06",
+     "date": "2021-07-06"
+    },
+    {
+     "amount": 2100,
+     "currency": "USD",
+     "kind": "used-asking",
+     "item": "Multidrop Combi Type 836 (eBay item 227524943257)",
+     "url": "https://www.ebay.com/itm/227524943257",
+     "dateSeen": "2026-11-06"
+    }
+   ],
+   "sources": [
+    "https://www.thermofisher.com/uk/en/home/life-science/lab-equipment/multidrop-dispensers/models/multidrop-combi.html",
+    "https://www.thermofisher.com/uk/en/home/life-science/lab-equipment/multidrop-dispensers/accessories.html",
+    "https://assets.thermofisher.com/TFS-Assets/LED/brochures/Thermo%20Scientific%20Multidrop%20Combi%20Brochure.pdf"
+   ]
+  },
+  {
+   "id": "thermo-multidrop-combi-nl",
+   "name": "Multidrop Combi nL",
+   "maker": "Thermo Fisher Scientific",
+   "family": "solenoid",
+   "familyNote": "valve-based, pressurised; brochure says 'valve-based dispensing technology' (valve type not named)",
+   "minUl": 0.05,
+   "maxUl": 50,
+   "volume": {
+    "quote": "Dispensing volume range 50 nl - 50 µl",
+    "url": "https://assets.thermofisher.com/TFS-Assets/LCD/brochures/D12836.pdf"
+   },
+   "increment": {
+    "value": "1 nL (50-999 nL), 10 nL (1-9.99 µL), 100 nL (10-50 µL)",
+    "quote": "1 nl increments 50-999 nl 10 nl increments 1.00-9.99 µl 100 nl increments 10.0-50.0 µl",
+    "url": "https://assets.thermofisher.com/TFS-Assets/LCD/brochures/D12836.pdf"
+   },
+   "channels": {
+    "value": "8 valves; one reagent per run (single manifold) - not explicitly stated",
+    "url": "https://assets.thermofisher.com/TFS-Assets/LCD/brochures/D12836.pdf",
+    "note": "number of distinct reagents per run not found"
+   },
+   "deadVolume": [
+    {
+     "ml": 1.2,
+     "refersTo": "whole liquid path, with reagent recovery (backflush)",
+     "quote": "Dead volume <1.2 ml * ... *)Reagent recovery feature included",
+     "url": "https://assets.thermofisher.com/TFS-Assets/LCD/brochures/D12836.pdf"
+    }
+   ],
+   "priming": {
+    "value": null,
+    "note": "not found: prime volume"
+   },
+   "plateFormats": {
+    "value": [
+     96,
+     384,
+     1536
+    ],
+    "quote": "Plate types 96-, 384- and 1536-well plates",
+    "url": "https://assets.thermofisher.com/TFS-Assets/LCD/brochures/D12836.pdf"
+   },
+   "suspensions": {
+    "cells": true,
+    "beads": true,
+    "quote": "as well as viscose solutions, cells and beads, making it ideal for a broad range of assays.",
+    "url": "https://assets.thermofisher.com/TFS-Assets/LCD/brochures/D12836.pdf",
+    "limits": "not found"
+   },
+   "viscous": {
+    "limit": null,
+    "note": "'viscose solutions' supported; no numeric limit"
+   },
+   "consumables": {
+    "items": [
+     "replaceable valves (no cassette)"
+    ],
+    "singleUse": false,
+    "prices": []
+   },
+   "contact": {
+    "nonContact": true,
+    "note": "non-contact implied by valve dispensing; no explicit statement found",
+    "dispenseHeight": "variable height"
+   },
+   "speed": {
+    "quote": "384-well plate: 50 nl in 6 seconds 1 µl in 8 seconds",
+    "url": "https://assets.thermofisher.com/TFS-Assets/LCD/brochures/D12836.pdf",
+    "extra": {
+     "quote": "1536-well plate: 50 nl in 21 seconds 1 µl in 27 seconds",
+     "url": "https://assets.thermofisher.com/TFS-Assets/LCD/brochures/D12836.pdf"
+    }
+   },
+   "automation": {
+    "interface": {
+     "quote": "Interface Serial RS-232, USB",
+     "url": "https://assets.thermofisher.com/TFS-Assets/LCD/brochures/D12836.pdf"
+    },
+    "pylabrobot": "not in devices.json; no backend",
+    "opentrons": "not found"
+   },
+   "priceEvidence": [
+    {
+     "amount": 33047.0,
+     "currency": "GBP",
+     "kind": "list",
+     "item": "Multidrop Combi nL Reagent Dispenser 50 nL-50 µL, cat 5840400",
+     "url": "https://www.thermofisher.com/uk/en/home/life-science/lab-equipment/multidrop-dispensers/models/multidrop-combi.html",
+     "dateSeen": "2026-11-05"
+    },
+    {
+     "amount": 3950,
+     "currency": "USD",
+     "kind": "used-asking",
+     "item": "Multidrop Combi nL 5840400 Type 838 (eBay item 840063934756)",
+     "url": "https://www.ebay.com/itm/840063934756",
+     "dateSeen": "2026-11-05"
+    }
+   ],
+   "sources": [
+    "https://assets.thermofisher.com/TFS-Assets/LCD/brochures/D12836.pdf",
+    "https://www.thermofisher.com/uk/en/home/life-science/lab-equipment/multidrop-dispensers/models/multidrop-combi.html"
+   ]
+  },
+  {
+   "id": "agilent-biotek-multiflo-fx",
+   "name": "BioTek MultiFlo FX multimode dispenser",
+   "maker": "Agilent (BioTek)",
+   "family": "peristaltic",
+   "familyNote": "peristaltic (multi-channel, RAD) and optional syringe-pump modules",
+   "minUl": 0.5,
+   "maxUl": 30000,
+   "volume": {
+    "quote": "500 nL - 30,000 µL",
+    "url": "https://www.messe.de/apollo/labvolution_2019/obs/Binary/A921727/921727_01830740.pdf",
+    "note": "multi-channel peri cassette row of 'Volume range/well*' table; *manifold and plate type dependent. Syringe pump row: 20 µL - 30,000 µL"
+   },
+   "increment": {
+    "value": "cassette sizes 1 µL, 5 µL, 10 µL (peri)",
+    "url": "https://www.messe.de/apollo/labvolution_2019/obs/Binary/A921727/921727_01830740.pdf",
+    "note": "increment not stated as such; cassette size = nominal resolution (inferred)"
+   },
+   "channels": {
+    "value": "1-4 reagents (Parallel Dispense, up to 2 peri + syringe modules)",
+    "quote": "Up to four independent reagents can be dispensed in parallel without potential carryover.",
+    "url": "https://www.messe.de/apollo/labvolution_2019/obs/Binary/A921727/921727_01830740.pdf"
+   },
+   "deadVolume": [
+    {
+     "ml": {
+      "1uL": "0.78-1.20",
+      "5uL": "2.75-4.23",
+      "10uL": "4.79-7.36",
+      "syringe": "12 (minimum prime)"
+     },
+     "refersTo": "minimum prime volume per peri cassette / syringe module (dead volume per se not stated)",
+     "quote": "Prime volume: 12 mL minimum",
+     "url": "https://www.messe.de/apollo/labvolution_2019/obs/Binary/A921727/921727_01830740.pdf",
+     "note": "peri cassette minimum prime volumes from same spec table (0.78–1.20 mL for 1 µL, 2.75–4.23 mL for 5 µL, 4.79–7.36 mL for 10 µL cassette); dated 10/15/14"
+    }
+   ],
+   "priming": {
+    "see": "deadVolume"
+   },
+   "plateFormats": {
+    "value": [
+     6,
+     12,
+     24,
+     48,
+     96,
+     384,
+     1536,
+     "PCR plates",
+     "microtubes"
+    ],
+    "quote": "microplates (standard, low profile, deep well); PCR plates, microtubes",
+    "url": "https://www.messe.de/apollo/labvolution_2019/obs/Binary/A921727/921727_01830740.pdf"
+   },
+   "suspensions": {
+    "cells": true,
+    "beads": "biomagnetic separation option listed",
+    "quote": "Cell friendly angled dispense and wash tubes, adjustable flow rates and adjustable carrier speed",
+    "url": "https://www.messe.de/apollo/labvolution_2019/obs/Binary/A921727/921727_01830740.pdf",
+    "extra": {
+     "quote": "Washer/Dispenser Options Automated Media Exchange Biomagnetic separation",
+     "url": "https://web.archive.org/web/20240914232640/https://www.agilent.com/en/product/cell-analysis/microplate-automation-detection/microplate-washers-dispensers/biotek-multiflo-fx-multimode-dispenser-1623257"
+    },
+    "limits": "not found"
+   },
+   "viscous": {
+    "value": null,
+    "note": "not found: no cP/glycerol limit"
+   },
+   "consumables": {
+    "items": [
+     "peristaltic dispense cassettes (1/5/10 µL; plastic or steel tips; RAD single-tube and 8-to-1)",
+     "syringe manifold"
+    ],
+    "singleUse": false,
+    "quotes": [
+     {
+      "quote": "Autoclavable (model/ cassette dependent)",
+      "url": "https://www.messe.de/apollo/labvolution_2019/obs/Binary/A921727/921727_01830740.pdf"
+     }
+    ],
+    "prices": [],
+    "note": "Fisher UK snippet suggested 5 µL cassette GBP 675 (plastic, BioTek 1260016) / 837 (steel, 1260019) but page blocked (403) - not verified, so null"
+   },
+   "contact": {
+    "nonContact": true,
+    "cellFriendly": {
+     "quote": "Cell-friendly angled dispense tips on dispense manifolds and wash manifolds allow reagent to gently dispense down the well sides, keeping cell layers intact",
+     "url": "https://web.archive.org/web/20240914232640/https://www.agilent.com/en/product/cell-analysis/microplate-automation-detection/microplate-washers-dispensers/biotek-multiflo-fx-multimode-dispenser-1623257"
+    },
+    "dispenseHeight": "adjustable manifold positioning"
+   },
+   "speed": {
+    "quote": "10 μL/well, 96 wells: 3 seconds (5 µL cassette)",
+    "url": "https://www.messe.de/apollo/labvolution_2019/obs/Binary/A921727/921727_01830740.pdf",
+    "extra": {
+     "quote": "5 μL/well, 384 wells: 6.5 seconds (5 µL cassette)",
+     "url": "https://www.messe.de/apollo/labvolution_2019/obs/Binary/A921727/921727_01830740.pdf"
+    },
+    "syringe": {
+     "quote": "20 μL/well, 96 wells, 1 x 16: 5 seconds",
+     "url": "https://www.messe.de/apollo/labvolution_2019/obs/Binary/A921727/921727_01830740.pdf"
+    }
+   },
+   "footprint": {
+    "quote": "17.19” W x 11.75” D x 8” H (43.51 x 29.21 x 20.32 cm)",
+    "url": "https://www.messe.de/apollo/labvolution_2019/obs/Binary/A921727/921727_01830740.pdf"
+   },
+   "automation": {
+    "sbsPosition": true,
+    "robotAccess": {
+     "quote": "Automation Compatibility BenchCel BioSpa BioStack 3rd-party",
+     "url": "https://web.archive.org/web/20240914232640/https://www.agilent.com/en/product/cell-analysis/microplate-automation-detection/microplate-washers-dispensers/biotek-multiflo-fx-multimode-dispenser-1623257"
+    },
+    "api": "Liquid Handling Control (LHC) PC software; no public API doc found",
+    "pylabrobot": "Open, unmerged PR #1266 adds MultiFlo / MultiFlo FX / 405TS / EL406 (opened 2026-09-13). Main has EL406 backend with peristaltic_dispenser.py and syringe_dispenser.py (related family). https://github.com/PyLabRobot/pylabrobot/pull/1266",
+    "opentrons": "not found"
+   },
+   "priceEvidence": [
+    {
+     "amount": 4675,
+     "currency": "USD",
+     "kind": "used-asking",
+     "item": "MultiFlo FX MFXP2 with warranty (eBay item 168710654015)",
+     "url": "https://www.ebay.com/itm/168710654015",
+     "dateSeen": "2026-11-05"
+    },
+    {
+     "amount": 2550,
+     "currency": "USD",
+     "kind": "used-asking",
+     "item": "MultiFlo FX MFXP (eBay item 336283612786)",
+     "url": "https://www.ebay.com/itm/336283612786",
+     "dateSeen": "2026-11-05"
+    }
+   ],
+   "priceNotFound": [
+    "new list price (agilent.com blocked)",
+    "cassette price (unverified)"
+   ],
+   "sources": [
+    "https://www.messe.de/apollo/labvolution_2019/obs/Binary/A921727/921727_01830740.pdf",
+    "https://web.archive.org/web/20240914232640/https://www.agilent.com/en/product/cell-analysis/microplate-automation-detection/microplate-washers-dispensers/biotek-multiflo-fx-multimode-dispenser-1623257"
+   ],
+   "sourceQuality": "Spec sheet is BioTek's 2014 PDF hosted on messe.de; agilent.com blocks curl, used Wayback snapshot (Sep 2024)."
+  }
+ ],
+ "diy": [
+  {
+   "id": "sidekick",
+   "name": "Sidekick (3D-printed liquid dispensing robot)",
+   "maker": "Keesey, LeSuer, Schrier (HardwareX 12, e00319, 2022; doi:10.1016/j.ohx.2022.e00319)",
+   "family": "positive-displacement",
+   "familyNote": "solenoid-driven displacement micropumps (Lee Co. LPM, 10 µL per pulse) on a 2-arm armature",
+   "maturity": "used in a paper (published open hardware; demonstrated titration/colour-mixing experiments)",
+   "minUl": 10,
+   "maxUl": null,
+   "increment": {
+    "quote": "Liquid dispensing is achieved with four commercially available solenoid driven positive displacement pumps that deliver liquid in 10 µL increments.",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9168727/"
+   },
+   "channels": 4,
+   "deadVolume": {
+    "value": null,
+    "note": "not found: tubing/pump dead volume not stated in text extracted"
+   },
+   "plateFormats": {
+    "value": [
+     96
+    ],
+    "quote": "This design is well suited to dispensing into a single 96-well SBS microplate",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9168727/"
+   },
+   "suspensions": {
+    "value": null,
+    "note": "not found: cells/beads"
+   },
+   "viscous": {
+    "value": null,
+    "note": "not found: viscosity"
+   },
+   "contact": {
+    "nonContact": true,
+    "note": "dispenses from nozzles above the plate; no aspiration",
+    "quote": "the Sidekick is designed only to dispense liquids, and not perform liquid aspiration",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9168727/"
+   },
+   "cost": {
+    "amount": 710,
+    "currency": "USD",
+    "kind": "build cost (BOM) stated in paper",
+    "quote": "The Sidekick costs $710 to build and offers a balance between ease of use and affordability.",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9168727/"
+   },
+   "positioning": {
+    "quote": "the end effector would vary from the center of each well by more than 3 mm.",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9168727/",
+    "note": "describes a problem encountered during development; final accuracy relies on homing + steppers"
+   },
+   "automation": "Raspberry Pi Pico microcontroller per third-party spec listing (unverified); open firmware",
+   "sources": [
+    "https://pmc.ncbi.nlm.nih.gov/articles/PMC9168727/"
+   ]
+  },
+  {
+   "id": "poseidon",
+   "name": "Poseidon syringe pump system",
+   "maker": "Booeshaghi et al., Pachter lab (Sci Rep 9:12385, 2019)",
+   "family": "positive-displacement",
+   "maturity": "used in a paper (open-source syringe pumps + microscope; microfluidics use, not plate dispensing)",
+   "minUl": null,
+   "maxUl": null,
+   "channels": 3,
+   "cost": {
+    "amount": 400,
+    "currency": "USD",
+    "kind": "build cost upper bound stated in paper",
+    "quote": "the entire poseidon system including microscope and three syringe pumps can be assembled in less than an hour for less than $400",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6711986/",
+    "note": "quote taken from search-result snippet of the paper; full text not re-fetched"
+   },
+   "relevance": "Named in the Sidekick paper as a drop-in alternative pump; would need an XY stage to become a plate dispenser.",
+   "sources": [
+    "https://pmc.ncbi.nlm.nih.gov/articles/PMC6711986/",
+    "https://pmc.ncbi.nlm.nih.gov/articles/PMC9168727/"
+   ]
+  },
+  {
+   "id": "chris-anderson-lab",
+   "name": "Chris Anderson lab syringe dispenser designs",
+   "maker": null,
+   "maturity": null,
+   "note": "not found: could not identify a published or open syringe-dispenser design from a 'Chris Anderson' lab (searched J. Christopher Anderson / Berkeley + open-source dispenser). Need the user to supply a link or paper."
+  },
+  {
+   "id": "opensampler",
+   "name": "OpenSampler",
+   "maker": null,
+   "maturity": null,
+   "note": "not found as a microplate dispenser. Two unrelated projects share the name: OPEnSampler (Oregon State OPEnS Lab, 24-valve environmental water sampler) and an OpenBuilds vial autosampler. Neither is a plate reagent dispenser.",
+   "sources": [
+    "https://github.com/OPEnSLab-OSU/OPEnS-Lab-Home/wiki/OPEnSampler",
+    "https://openbuilds.com/builds/opensampler-opensource-autosampler-for-use-in-laboratory.1339/"
+   ]
+  },
+  {
+   "id": "hardwarex-noncontact",
+   "name": "Open-hardware non-contact plate dispenser (HardwareX)",
+   "maker": null,
+   "maturity": null,
+   "note": "not found: no HardwareX paper describing a non-contact solenoid/peristaltic bulk microplate dispenser surfaced in searches; Sidekick is the closest (solenoid displacement pumps, dispense-only)."
+  }
+ ],
+ "evidence": {
+  "splash": [
+   {
+    "claim": "Non-contact drops landing in the well centre splash; reduced by aiming/offset and dispensing close to the well",
+    "quote": "Splashing occurs when liquid drops fall directly into the center of the well. This can be reduced by adjusting the A1 well offset",
+    "url": "https://help.formulatrix.com/mantis/5.4/Content/FAQs_and_Troubleshooting/FAQs.htm",
+    "sourceType": "maker user guide (FORMULATRIX Mantis FAQ)"
+   },
+   {
+    "claim": "Angled dispense down the well wall keeps cell layers intact (bulk dispenser/washer)",
+    "quote": "Cell-friendly angled dispense tips ... allow reagent to gently dispense down the well sides, keeping cell layers intact",
+    "url": "https://web.archive.org/web/20240914232640/https://www.agilent.com/en/product/cell-analysis/microplate-automation-detection/microplate-washers-dispensers/biotek-multiflo-fx-multimode-dispenser-1623257",
+    "sourceType": "maker product page (Agilent BioTek MultiFlo FX)"
+   },
+   {
+    "claim": "Angle matters more than rate for monolayer retention; fast dispense tolerated with angled pins",
+    "quote": "The angle of the pins ensures that even with fast dispense rates, cell layers are not disturbed even after multiple aspirate-dispense cycles.",
+    "url": "https://www.moleculardevices.com/en/assets/app-note/br/maximizing-cell-wash-performance-with-aquamax-2000-4000-microplate-washers-and-cell-wash-heads",
+    "sourceType": "maker application note (Molecular Devices AquaMax washer) - washer, not a dispenser in this list"
+   },
+   {
+    "claim": "Dispense rate and aspirate height affect cell retention",
+    "quote": "Other instrument settings that had a critical effect on washed cell retention were aspirate height and dispense rate.",
+    "url": "https://www.moleculardevices.com/en/assets/app-note/br/maximizing-cell-wash-performance-with-aquamax-2000-4000-microplate-washers-and-cell-wash-heads",
+    "sourceType": "maker application note"
+   },
+   {
+    "claim": "Magnetic bead clean-ups were left to pipetting automation even in an all-acoustic NGS workflow",
+    "quote": "Although all dispensing steps utilized acoustic liquid handling in this protocol, magnetic bead-cleaning steps still required pipetting automation.",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6328170/",
+    "sourceType": "peer-reviewed (Mayday et al., PLoS ONE 2019, doi:10.1371/journal.pone.0206194)"
+   },
+   {
+    "claim": "Bead pellet disturbance by top-down non-contact dispensing (e.g. ethanol onto a pellet on a magnet)",
+    "quote": null,
+    "url": null,
+    "note": "not found: no peer-reviewed or maker source quantifying bead-pellet disturbance from non-contact dispensing. Only manual-handling guidance (NEB tech tips) and a plate-washer bead-retention note (Molecular Devices MAGPIX PDF, not text-extractable) surfaced."
+   },
+   {
+    "claim": "Cross-contamination from splash in non-contact dispensing quantified",
+    "quote": null,
+    "url": null,
+    "note": "not found: only vendor claims of 'no carryover' and patents; no quantitative study located."
+   }
+  ],
+  "miniaturisation": [
+   {
+    "workflow": "16S rRNA amplicon library prep, 5 µL reactions, Echo 550",
+    "reduction": "58% vs existing automated method; 21-fold vs commercial kits; USD 1.42/sample",
+    "quote": "a 58% reduction compared to existing automated methods and a 21-fold reduction from commercial kits",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6222042/",
+    "citation": "Minich et al., mSystems 2018, doi:10.1128/mSystems.00166-18",
+    "sourceType": "peer-reviewed"
+   },
+   {
+    "workflow": "384-well metagenomic RNA-seq (mNGS) library prep, Echo 525",
+    "reduction": ">80% materials+reagents cost; ~USD 8/sample",
+    "quote": "For 384-well mNGS library preparations, we achieved cost savings of over 80% in materials and reagents alone",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6328170/",
+    "citation": "Mayday et al., PLoS ONE 2019, doi:10.1371/journal.pone.0206194",
+    "sourceType": "peer-reviewed"
+   },
+   {
+    "workflow": "single-cell Nextera XT library prep at 2 µL, mosquito HTS (positive displacement)",
+    "reduction": ">4-fold cost saving; <USD 1.50 per cell",
+    "quote": "a cost savings of over 4-fold compared with the protocol recommended by the manufacturer",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4948133/",
+    "citation": "Mora-Castilla et al., SLAS Technology/JALA 2016, doi:10.1177/2211068216630741",
+    "sourceType": "peer-reviewed"
+   },
+   {
+    "workflow": "Nextera XT on Echo 525 (Mini-XT)",
+    "reduction": "8-fold reagent volume reduction (not a cost factor)",
+    "quote": "reduces library preparation reagent volumes 8-fold",
+    "url": "https://medrxiv.org/content/10.1101/2021.09.29.21263685v1.full.pdf+html",
+    "sourceType": "preprint (medRxiv) - quote from search snippet, full text not fetched"
+   },
+   {
+    "workflow": "Nextera XT on mosquito (vendor)",
+    "reduction": "'tenfold' / '12.5-fold' miniaturisation",
+    "quote": null,
+    "url": "https://www.news-medical.net/news/20240710/Exploring-the-benefits-of-miniaturizing-NGS-library-preparation.aspx",
+    "sourceType": "vendor interview - excluded as primary evidence; listed for completeness"
+   }
+  ],
+  "troughDeadVolume": [
+   {
+    "reservoir": "INTEGRA 10 mL PS multichannel reservoir, 8-ch pipette",
+    "deadVolumeUl": 51,
+    "pctOfFill": 1.4,
+    "quote": "10 ml reservoirs display a dead volume of 51 ±10 µl, representing 1.4 % of the initial volume.",
+    "url": "https://www.integra-biosciences.com/sites/default/files/documents/measuring-dead-volume-multichannel-reagent-reservoirs.pdf",
+    "sourceType": "maker application note (blocking buffer with Triton/Tween, 36% fill)"
+   },
+   {
+    "reservoir": "INTEGRA 25 mL PP reservoir",
+    "deadVolumeUl": 65,
+    "pctOfFill": 0.7,
+    "quote": "PP 25 ml 9000 65 ±10 0.7",
+    "url": "https://www.integra-biosciences.com/sites/default/files/documents/measuring-dead-volume-multichannel-reagent-reservoirs.pdf",
+    "sourceType": "maker application note (table row)"
+   },
+   {
+    "reservoir": "INTEGRA divided reservoir, 5 mL side",
+    "deadVolumeUl": 10,
+    "pctOfFill": 0.5,
+    "quote": "the divided reservoirs reduces dead volumes to around 10 µl, ~0.5 % of the initial volume in the reservoir.",
+    "url": "https://www.integra-biosciences.com/sites/default/files/documents/measuring-dead-volume-multichannel-reagent-reservoirs.pdf",
+    "sourceType": "maker application note"
+   },
+   {
+    "reservoir": "Robot-deck 12-channel / single-well troughs (Opentrons NEST, Agilent, Axygen, Hamilton)",
+    "deadVolumeUl": null,
+    "note": "not found: no maker-stated dead volume located for robot reservoirs; INTEGRA figures are for hand-held multichannel pipettes and are the only measured comparison found."
+   },
+   {
+    "reservoir": "dragonfly discovery reservoirs (for comparison, non-contact)",
+    "deadVolumeUl": [
+     30,
+     200
+    ],
+    "quote": "Low dead volume reservoirs have 1.5 mL capacity and 30μL recoverable dead volume.",
+    "url": "https://www.sptlabtech.com/product-help-center/dragonfly-discovery-user-manual-consumables",
+    "sourceType": "maker user manual"
+   }
+  ]
+ }
+}

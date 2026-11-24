@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/neurogenomics/agentic-lab/contracts/versions/0.1.0/method-alternative.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "digest_profile", "record_id", "revision_id", "parent", "content_digest", "original", "goal", "changes", "assumptions", "observations", "estimates"],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "digest_profile": {"const": "agentic-lab/review-json/1"},
+    "record_id": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"},
+    "revision_id": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"},
+    "parent": {"anyOf": [{"$ref": "protocol-goal.schema.json#/$defs/Revision"}, {"type": "null"}]},
+    "content_digest": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Hash"},
+    "original": {"$ref": "protocol-goal.schema.json#/$defs/Original"},
+    "goal": {"$ref": "protocol-goal.schema.json#/$defs/Revision"},
+    "changes": {"type": "array", "items": {"$ref": "#/$defs/Change"}, "minItems": 1},
+    "assumptions": {"type": "array", "items": {"$ref": "#/$defs/Assumption"}},
+    "observations": {"type": "array", "items": {"$ref": "#/$defs/Observation"}},
+    "estimates": {"type": "array", "items": {"$ref": "#/$defs/Estimate"}}
+  },
+  "$defs": {
+    "Change": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "original_operation_ids", "description", "provenance"],
+      "properties": {
+        "id": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"},
+        "kind": {"enum": ["add", "replace", "omit"]},
+        "original_operation_ids": {"type": "array", "items": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"}, "uniqueItems": true},
+        "description": {"type": "string", "minLength": 1},
+        "provenance": {"$ref": "typed-measurement.schema.json#/$defs/Provenance"}
+      },
+      "allOf": [{"if": {"properties": {"kind": {"const": "add"}}}, "then": {"properties": {"original_operation_ids": {"maxItems": 0}}}, "else": {"properties": {"original_operation_ids": {"minItems": 1}}}}]
+    },
+    "Assumption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "description", "provenance"],
+      "properties": {
+        "id": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"},
+        "description": {"type": "string", "minLength": 1},
+        "provenance": {"$ref": "typed-measurement.schema.json#/$defs/Provenance"}
+      }
+    },
+    "Observation": {
+      "oneOf": [{"type": "object", "additionalProperties": false, "required": ["kind", "observable_id", "measurement"], "properties": {"kind": {"const": "scalar"}, "observable_id": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"}, "measurement": {"$ref": "typed-measurement.schema.json"}}}, {"type": "object", "additionalProperties": false, "required": ["kind", "observable_id", "disposition", "identities", "provenance"], "properties": {"kind": {"const": "identity_set"}, "observable_id": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"}, "disposition": {"enum": ["retained", "discarded"]}, "identities": {"anyOf": [{"type": "array", "items": {"$ref": "protocol-goal.schema.json#/$defs/Identity"}, "uniqueItems": true}, {"type": "null"}]}, "provenance": {"$ref": "typed-measurement.schema.json#/$defs/Provenance"}}, "allOf": [{"if": {"properties": {"identities": {"const": null}}}, "then": {"properties": {"provenance": {"properties": {"kind": {"const": "unknown"}}}}}, "else": {"properties": {"provenance": {"properties": {"kind": {"not": {"const": "unknown"}}}}}}}]}]
+    },
+    "Estimate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "subtotal", "completeness", "provenance"],
+      "properties": {
+        "kind": {"enum": ["cost", "time"]},
+        "subtotal": {"$ref": "typed-measurement.schema.json"},
+        "completeness": {"enum": ["complete", "incomplete", "unknown"]},
+        "provenance": {"$ref": "typed-measurement.schema.json#/$defs/Provenance"}
+      },
+      "allOf": [{"if": {"properties": {"completeness": {"const": "complete"}}}, "then": {"properties": {"subtotal": {"properties": {"value": {"not": {"const": null}}}}}}}]
+    }
+  }
+}

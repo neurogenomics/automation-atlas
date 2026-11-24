@@ -1,0 +1,9 @@
+{
+  "schema_version": "0.1.0",
+  "value": "0",
+  "dimension": "time",
+  "unit": "s",
+  "basis": "total",
+  "reference": {"kind":"none","id":null,"conditions":[]},
+  "provenance": {"kind":"unknown","evidence":[],"explanation":"No measurement."}
+}

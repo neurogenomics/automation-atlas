@@ -1,0 +1,25 @@
+{
+  "name": "lab-automation-planner",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "labstep": "node scripts/labstep.mjs",
+    "dev": "npm run build && node scripts/dev.mjs",
+    "assess:reviewed": "node scripts/assess-reviewed.mjs",
+    "test:reviewed-browser": "node scripts/reviewed-browser.mjs",
+    "test:routing-browser": "node scripts/workflow-routing-browser.mjs",
+    "test:planning-browser": "node scripts/planning-browser.mjs",
+    "test:registry-browser": "node scripts/registry-browser.mjs",
+    "compare:goal": "node scripts/compare-goal.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "playwright": "1.65.0"
+  }
+}

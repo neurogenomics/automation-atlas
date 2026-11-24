@@ -1,0 +1,725 @@
+{
+ "about": "Where a plate has to be for each kind of work, and how it gets there (issue #63). 'move-on': the plate is placed onto or into the module or device, so reaching it is a move. 'in-place': the module acts on a plate that stays where it is (a magnet that rises under the plate). 'pipetting' says whether the pipettes can reach a plate in that position. Entries without a source take the default, which is marked as such. Move times are planning estimates.",
+ "default": {
+  "mode": "move-on",
+  "pipetting": true,
+  "basis": "default: the plate is placed onto the module (no source states otherwise)"
+ },
+ "devices": {
+  "mode": "move-on",
+  "pipetting": false,
+  "basis": "a connected device off the deck is its own position, reached by an arm or a person"
+ },
+ "handlers": {
+  "flex": {
+   "Magnetic Block": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://docs.opentrons.com/v2/modules/magnetic_block.html",
+     "quote": "an unpowered, 96-well plate that holds labware close to its high-strength neodymium magnets"
+    }
+   },
+   "Heater-Shaker": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://docs.opentrons.com/v2/modules/heater_shaker.html",
+     "quote": "you must use a standalone adapter definition, not an adapter–labware combination definition",
+     "context": "stated for moving labware onto or off the Heater-Shaker during a protocol"
+    }
+   },
+   "Thermocycler": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://docs.opentrons.com/v2/modules/thermocycler.html",
+     "quote": "Load or move a PCR plate onto the Thermocycler. Once the lid is open, pipettes are able to access the loaded labware."
+    }
+   },
+   "Temperature Module": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "default: the plate is placed onto the module (no source states otherwise)"
+   }
+  },
+  "ot2": {
+   "Magnetic Module": {
+    "mode": "in-place",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://docs.opentrons.com/v2/modules/magnetic_module.html",
+     "quote": "Raise and lower the module's magnets"
+    }
+   },
+   "Heater-Shaker": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://docs.opentrons.com/v2/modules/heater_shaker.html",
+     "quote": "you must use a standalone adapter definition, not an adapter–labware combination definition",
+     "context": "stated for moving labware onto or off the Heater-Shaker during a protocol"
+    }
+   },
+   "Thermocycler": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://docs.opentrons.com/v2/modules/thermocycler.html",
+     "quote": "Load or move a PCR plate onto the Thermocycler. Once the lid is open, pipettes are able to access the loaded labware."
+    }
+   },
+   "Temperature Module": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "default: the plate is placed onto the module (no source states otherwise)"
+   },
+   "QInstruments BioShake Q1 (QOT kit)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.qinstruments.com/knowledge/qinstruments-supports-opentrons-applications/",
+     "quote": "QOT adapter plate in a deck slot"
+    }
+   }
+  },
+  "plr-hamilton-star": {
+   "Hamilton Heater Shaker 2G (HHS)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Temperature control: Ambient +5° C to 105° C ... Shaking speed: 100 to 2500 RPM"
+    }
+   },
+   "Hamilton Heater Shaker 3G (HHS 3G)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Temperature control: Ambient +5° C to 105° C ... Shaking Speed: up to 2500 RPM"
+    }
+   },
+   "Hamilton Heater Cooler (HHC)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "HHC offers a controllable temperature range of 0° C-110° C"
+    }
+   },
+   "On-Deck Thermal Cycler (ODTC)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Temperature Range 4° C to 99° C (39.2° F to 210.2° F)"
+    }
+   },
+   "Inheco CPAC Ultraflat": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.inheco.com/cpac.html",
+     "quote": "standard version operates in a temperature range of +4°C to +70°C ... temperature range minimum 25K below room temperature"
+    }
+   },
+   "Inheco Thermoshake": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.inheco.com/thermoshake-classic.html",
+     "quote": "Temperature range +4 °C to +70 °C ... Maximum ∆T (=T ambient - T target) in cooling mode 25 K"
+    }
+   },
+   "Hamilton Incubator Shaker (HIS)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Controllable Temperature Range Ambient +4° C to 60° C ... Frequency 40-1200 RPM (.67-20 Hz)"
+    }
+   },
+   "Sample Cooling Carrier": {
+    "mode": "in-place",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Controllable Temperature Range Cooling down to 4° C (with Hube Minichiller)"
+    }
+   },
+   "Multiflex Seesaw Module": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Rocking speeds of 16, 34, 51, and 59 RPM"
+    }
+   },
+   "Invitrogen Ambion Magnetic Stand": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.trillium.de/fileadmin/user_upload/Hamilton_-_NGS-STAR_Flyer.pdf",
+     "quote": "iSWAP and CO-RE Gripper for plate transport steps as well as a Magnetic Stand for bead cleanups"
+    }
+   }
+  },
+  "starlet": {
+   "Hamilton Heater Shaker (HHS)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Temperature control: Ambient +5° C to 105° C ... Shaking speed: 100 to 2500 RPM"
+    }
+   },
+   "On-Deck Thermal Cycler (ODTC)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Temperature Range 4° C to 99° C (39.2° F to 210.2° F)"
+    }
+   },
+   "Inheco CPAC": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.inheco.com/cpac.html",
+     "quote": "standard version operates in a temperature range of +4°C to +70°C ... temperature range minimum 25K below room temperature"
+    }
+   },
+   "Hamilton Heater Cooler (HHC)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "HHC offers a controllable temperature range of 0° C-110° C"
+    }
+   },
+   "Inheco Thermoshake": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.inheco.com/thermoshake-classic.html",
+     "quote": "Temperature range +4 °C to +70 °C ... Maximum ∆T (=T ambient - T target) in cooling mode 25 K"
+    }
+   },
+   "Magnetic Stand": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.trillium.de/fileadmin/user_upload/Clinical_NGS_STARlet_IVD-R_Flyer.pdf",
+     "quote": "Additionally, CO-RE® Gripper for plate transport steps, a Magentic Stand for magnetic bead handling"
+    }
+   }
+  },
+  "plr-hamilton-vantage": {
+   "INHECO Thermoshake AC": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.inheco.com/thermoshake-ac.html",
+     "quote": "Temperature range +4 °C to +70 °C ... Maximum temperature difference in cooling mode ∆T (=T ambient - T target) 25 K"
+    }
+   },
+   "Inheco CPAC": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.inheco.com/cpac.html",
+     "quote": "standard version operates in a temperature range of +4°C to +70°C ... temperature range minimum 25K below room temperature"
+    }
+   },
+   "Hamilton ODTC (On-Deck Thermo Cycler)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Temperature Range 4° C to 99° C (39.2° F to 210.2° F)"
+    }
+   },
+   "Hamilton Heater Shaker 2G (HHS)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Temperature control: Ambient +5° C to 105° C ... Shaking speed: 100 to 2500 RPM"
+    }
+   },
+   "Hamilton Heater Cooler (HHC)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "HHC offers a controllable temperature range of 0° C-110° C"
+    }
+   },
+   "Hamilton Cooling Carrier Module": {
+    "mode": "in-place",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Controllable Temperature Range Cooling down to 4° C (with Hube Minichiller)"
+    }
+   },
+   "Magnetic Stand (Thermo Fisher-Ambion)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.trillium.de/fileadmin/user_upload/F-2010-03_NGS-VANTAGE-Flyer.pdf",
+     "quote": "the internal Plate Gripper and Quad CO-RE Gripper for plate transport steps, combined with a magnetic stand"
+    }
+   }
+  },
+  "plr-hamilton-nimbus": {
+   "Hamilton Heater Shaker 2G (HHS)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Temperature control: Ambient +5° C to 105° C ... Shaking speed: 100 to 2500 RPM"
+    }
+   },
+   "Hamilton Heater Cooler (HHC)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "HHC offers a controllable temperature range of 0° C-110° C"
+    }
+   },
+   "Inheco Thermoshake": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.inheco.com/thermoshake-classic.html",
+     "quote": "Temperature range +4 °C to +70 °C ... Maximum ∆T (=T ambient - T target) in cooling mode 25 K"
+    }
+   }
+  },
+  "plr-hamilton-prep": {
+   "Hamilton Heater Shaker": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "quote": "2 mm Hamilton Heater Shaker 6601885-02 Heats up to 105 °C and Shakes up to 2500 rpm"
+    }
+   },
+   "Hamilton Heater Cooler (HHC)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "HHC offers a controllable temperature range of 0° C-110° C"
+    }
+   },
+   "Invitrogen 96 Position Post Magnetic Plate": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "quote": "Invitrogen 96 Position Post Magnetic Plate 94696-01 Compatible magnetic plate for bead based extractions"
+    }
+   },
+   "Applied Biosystems Ambion 96 Ring Stand Magnet": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "quote": "Applied Biosys, Ambion, 96 Ring Stand Magnet OTP-TMOI-0051 Compatible magnetic plate for bead based extractions"
+    }
+   },
+   "Alpaqua Magnum FLX Magnetic Plate": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "quote": "Alpaqua Magnum FLX Magnetic Plate OTP-ALPQ-0008"
+    }
+   }
+  },
+  "i7": {
+   "Static Peltier ALP": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://pages.beckman.com/rs/682-XWP-826/images/Automated%20Solutions%20for%20NGS%20Library%20Prep%20Interactive%20eBook.pdf",
+     "quote": "This ALP provides temperature control between 4-100°C in 0.1°C increments."
+    }
+   },
+   "Shaking Peltier ALP": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://pages.beckman.com/rs/682-XWP-826/images/Automated%20Solutions%20for%20NGS%20Library%20Prep%20Interactive%20eBook.pdf",
+     "quote": "heating or cooling of labware for a software-controlled set point between 4°C and 70°C. Shaking speed range from 100 to 1400 rpm"
+    }
+   },
+   "Orbital Shaker ALP": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://pages.beckman.com/rs/682-XWP-826/images/Automated%20Solutions%20for%20NGS%20Library%20Prep%20Interactive%20eBook.pdf",
+     "quote": "Ramped acceleration/deceleration: shaking speed ranges from 100 rpm to 1800 rpm"
+    }
+   },
+   "Thermo Fisher Automated Thermal Cycler (ATC)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://assets.thermofisher.com/TFS-Assets/LSG/Specification-Sheets/automated-thermal-cycler-96-spec-sheet.pdf",
+     "quote": "Temperature range 4–105°C (no condensation risk with sub-ambient temperatures)"
+    }
+   },
+   "Inheco Thermoshake": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.inheco.com/thermoshake-classic.html",
+     "quote": "Temperature range +4 °C to +70 °C ... Maximum ∆T (=T ambient - T target) in cooling mode 25 K"
+    }
+   }
+  },
+  "fluent": {
+   "INHECO On Deck Thermal Cycler (ODTC)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "quote": "thermal block: +4 °C to +99 °C ... heated lid: +30 °C to +115 °C"
+    }
+   },
+   "BioShake Q1": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.qinstruments.com/automation/bioshake-q1/",
+     "quote": "Up to 24 Kelvin under room temperature, depends on thermo adapter | Typical range +4°C to 99.9°C"
+    }
+   },
+   "BioShake 3000-T ELM": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.qinstruments.com/automation/bioshake-3000-t-elm/",
+     "quote": "Temperature range | ambient to 99°C ... Mixing frequency | 200 to 3,000 rpm (microplates)"
+    }
+   },
+   "BioShake D30-T ELM": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.qinstruments.com/automation/bioshake-d30-t-elm/",
+     "quote": "Temperature range | ambient to 99°C ... Mixing frequency | 200 to 2,000 rpm (microplates)"
+    }
+   },
+   "BioShake 3000 ELM / 3000 ELM DWP": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "quote": "30127731 BioShake 3000 ELM Mixing microplates"
+    }
+   },
+   "Inheco CPAC Ultraflat HT 2-TEC": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "quote": "The Inheco CPAC Ultraflat HT 2-TEC unit is a compact all-in-one heating/cooling device ... Temperature range from +4°C to 110°C."
+    }
+   },
+   "Inheco CPLC Kit (3 positions)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "quote": "ready-to-install deck segment with three temperature-controlled ANSI/SBS/SLAS microplate positions ... Temperature range from +4°C to 70°C."
+    }
+   },
+   "Inheco Thermoshake RM": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.inheco.com/thermoshake-classic.html",
+     "quote": "Temperature range +4 °C to +70 °C ... Maximum ∆T (=T ambient - T target) in cooling mode 25 K"
+    }
+   },
+   "Monitored Incubation Option (MIO)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "quote": "temperature control from room temperature +5 C, up to 60 C. The MIO is available with or without shaking"
+    }
+   },
+   "Alpaqua Magnum FLX Enhanced Universal Magnet Plate": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "quote": "Alpaqua Magnum FLX® Enhanced Universal Magnet Plate"
+    }
+   }
+  },
+  "plr-tecan-evo": {
+   "Inheco Thermoshake RM": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.inheco.com/thermoshake-classic.html",
+     "quote": "Temperature range +4 °C to +70 °C ... Maximum ∆T (=T ambient - T target) in cooling mode 25 K"
+    }
+   },
+   "Inheco Thermoshake AC": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.inheco.com/thermoshake-ac.html",
+     "quote": "Temperature range +4 °C to +70 °C ... Maximum temperature difference in cooling mode ∆T (=T ambient - T target) 25 K"
+    }
+   },
+   "Te-Shake": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.selectscience.net/product/te-shake-tm",
+     "quote": "software-controlled shaking and heating options ... easily integrated into Freedom EVO® or Genesis-based workstations"
+    }
+   },
+   "Te-MagS": {
+    "mode": "in-place",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.selectscience.net/product/te-mags-tm-magnetic-bead-separation",
+     "quote": "moveable magnets for magnetic-bead-based separation tasks"
+    }
+   }
+  },
+  "bravo": {
+   "Heating Shaking Station (Inheco Teleshake 95)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.inheco.com/teleshake-95.html",
+     "quote": "operates in a temperature range of 5 K above ambient to 125°C ... 100 to 1800 rpm"
+    }
+   },
+   "Peltier Thermal Station (Inheco CPAC Ultraflat)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Accessories.07.02.html",
+     "quote": "Peltier Thermal Station (CPAC Ultraflat) Uses Peltier technology to provide temperature control uniformly across a microplate."
+    }
+   },
+   "Thermal Station (fluid-filled block)": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Accessories.07.02.html",
+     "quote": "Thermal Station (chiller) Uses a fluid-filled thermal block to provide temperature control uniformly across a microplate."
+    }
+   },
+   "Orbital Shaking Station": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Accessories.07.03.html",
+     "quote": "The Orbital Shaking Station is a microplate shaker that can be installed at any deck location"
+    }
+   },
+   "Magnetic Bead Accessory": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Accessories.07.02.html",
+     "quote": "Magnetic Bead Accessory Designed to separate smaller volumes (up to 350 µL)."
+    }
+   }
+  },
+  "firefly": {
+   "Microplate cooler/heater block": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.sptlabtech.com/hubfs/SPT%20Labtech%20firefly%20flyer%2026.pdf",
+     "quote": "Optional accessories Microplate cooler/heater block Microplate shaker"
+    }
+   },
+   "Microplate shaker": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.sptlabtech.com/hubfs/SPT%20Labtech%20firefly%20flyer%2026.pdf",
+     "quote": "Optional accessories Microplate cooler/heater block Microplate shaker"
+    }
+   },
+   "Magnetic plates/blocks": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.sptlabtech.com/products/firefly",
+     "quote": "moving labware on and off functional modules such as shakers and heater/cooler plates as well as magnetic blocks"
+    }
+   },
+   "Syringe dispenser": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+     "quote": "The syringe dispensing heads can dispense to plates located in deck positions 6 and 7 (1.3.2)"
+    }
+   }
+  },
+  "andrew": {
+   "Heater-Shaker+": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://icpms.cz/labrulez-bucket-strapi-h3hsga3/720007738en_6cf89ff2ca/720007738en.pdf",
+     "quote": "Vibration-free orbital shaking from 200 to 2500 rpm ... from room temperature to 99 °C"
+    }
+   },
+   "Microplate Shaker+ / Tube Shaker+": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://icpms.cz/labrulez-bucket-strapi-h3hsga3/720007738en_6cf89ff2ca/720007738en.pdf",
+     "quote": "Vibration free orbital shaking from 200-3000 rpm available for both tubes and plates"
+    }
+   },
+   "Peltier+": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.andrewalliance.com/wp-content/uploads/2021/03/518.0041-Peltier-User-Manual.pdf",
+     "quote": "Maximal heating 99°C* ... Minimal cooling 0°C* ... *Tested with 96-well PCR plate ... at room temperature of 26°C."
+    }
+   },
+   "Magnet+": {
+    "mode": "in-place",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://icpms.cz/labrulez-bucket-strapi-h3hsga3/720007738en_6cf89ff2ca/720007738en.pdf",
+     "quote": "Elevating magnetic bead-based extractions with automatic magnetic shelf movement for bead capture and resuspension"
+    }
+   }
+  },
+  "firefly-plus": {
+   "Syringe dispenser": {
+    "mode": "move-on",
+    "pipetting": true,
+    "basis": "source",
+    "source": {
+     "url": "https://www.sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+     "quote": "The syringe dispensing heads can dispense to plates located in deck positions 6 and 7 (1.3.2)"
+    }
+   }
+  }
+ },
+ "moves": {
+  "gripper": {
+   "label": "Gripper moves the plate",
+   "machine": [
+    0.5,
+    1.5
+   ]
+  },
+  "arm": {
+   "label": "Workcell arm moves the plate",
+   "machine": [
+    1,
+    3
+   ]
+  },
+  "person": {
+   "label": "Move the plate by hand",
+   "person": [
+    0.5,
+    1.5
+   ]
+  },
+  "rackSwap": {
+   "label": "Gripper swaps in a tip rack from expansion or storage",
+   "machine": [
+    1,
+    3
+   ],
+   "basis": "Planning estimate: two gripper moves (spent rack out, fresh rack in), each the gripper move estimate."
+  }
+ }
+}

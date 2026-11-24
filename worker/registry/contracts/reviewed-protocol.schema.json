@@ -1,0 +1,408 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/neurogenomics/agentic-lab/contracts/reviewed-protocol.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "protocol_id",
+    "revision_id",
+    "parent_revision_id",
+    "created_at",
+    "source",
+    "digest_profile",
+    "interpretation_digest",
+    "profile",
+    "title",
+    "materials",
+    "locations",
+    "states",
+    "operations",
+    "coverage",
+    "limitations",
+    "questions"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "protocol_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+    "revision_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+    "parent_revision_id": {"anyOf": [{"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"}, {"type": "null"}]},
+    "created_at": {"type": "string", "format": "date-time"},
+    "source": {"$ref": "reviewed-protocol.schema.json#/$defs/Source"},
+    "digest_profile": {"const": "agentic-lab/review-json/1"},
+    "interpretation_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "profile": {"enum": ["batch_review/0.1", "unsupported_flow/0.1"]},
+    "title": {"type": "string", "minLength": 1},
+    "materials": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+          "name": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "locations": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "kind"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+          "name": {"type": "string", "minLength": 1},
+          "kind": {"enum": ["well", "tube", "plate", "reservoir", "vessel", "unknown"]}
+        }
+      }
+    },
+    "states": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "material_id", "location_id", "description", "quantity", "lineage"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+          "material_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+          "location_id": {"anyOf": [{"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"}, {"type": "null"}]},
+          "description": {"type": "string", "minLength": 1},
+          "quantity": {"$ref": "reviewed-protocol.schema.json#/$defs/Quantity"},
+          "lineage": {
+            "type": "array",
+            "minItems": 0,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["state_id", "relationship"],
+              "properties": {
+                "state_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+                "relationship": {"enum": ["split_from", "pooled_from", "transformed_from", "unchanged_from", "unknown"]}
+              }
+            }
+          }
+        }
+      }
+    },
+    "operations": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "source_spans",
+          "inputs",
+          "outputs",
+          "purpose",
+          "conditions",
+          "constraints",
+          "depends_on",
+          "control",
+          "timing",
+          "unsupported_reason"
+        ],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+          "kind": {"enum": ["transfer", "mix", "incubate", "separate", "wash", "measure", "manual", "unsupported_flow"]},
+          "source_spans": {"type": "array", "minItems": 1, "items": {"$ref": "reviewed-protocol.schema.json#/$defs/Span"}},
+          "inputs": {"type": "array", "minItems": 0, "items": {"$ref": "reviewed-protocol.schema.json#/$defs/Port"}},
+          "outputs": {"type": "array", "minItems": 0, "items": {"$ref": "reviewed-protocol.schema.json#/$defs/Port"}},
+          "purpose": {"$ref": "reviewed-protocol.schema.json#/$defs/Purpose"},
+          "conditions": {"type": "array", "minItems": 0, "items": {"$ref": "reviewed-protocol.schema.json#/$defs/Condition"}},
+          "constraints": {
+            "type": "array",
+            "minItems": 0,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["kind", "description", "quantity", "after_operation_id", "status"],
+              "properties": {
+                "kind": {"enum": ["precondition", "postcondition", "resource", "max_delay", "other"]},
+                "description": {"type": "string", "minLength": 1},
+                "quantity": {"anyOf": [{"$ref": "reviewed-protocol.schema.json#/$defs/Quantity"}, {"type": "null"}]},
+                "after_operation_id": {"anyOf": [{"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"}, {"type": "null"}]},
+                "status": {"enum": ["known", "unresolved"]}
+              }
+            }
+          },
+          "depends_on": {
+            "type": "array",
+            "minItems": 0,
+            "items": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"}
+          },
+          "control": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["mode", "expression", "repeat_count"],
+            "properties": {
+              "mode": {"enum": ["always", "conditional", "repeat", "unknown"]},
+              "expression": {"type": ["string", "null"], "minLength": 1},
+              "repeat_count": {"type": ["integer", "null"], "minimum": 1, "maximum": 9007199254740991}
+            }
+          },
+          "timing": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["duration", "hands_on", "start_after", "observed_elapsed"],
+            "properties": {
+              "duration": {"$ref": "reviewed-protocol.schema.json#/$defs/Quantity"},
+              "hands_on": {"$ref": "reviewed-protocol.schema.json#/$defs/Quantity"},
+              "start_after": {
+                "type": "array",
+                "minItems": 0,
+                "items": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"}
+              },
+              "observed_elapsed": {"$ref": "reviewed-protocol.schema.json#/$defs/Quantity"}
+            }
+          },
+          "unsupported_reason": {"type": ["string", "null"], "minLength": 1}
+        },
+        "allOf": [
+          {
+            "if": {"properties": {"kind": {"const": "unsupported_flow"}}},
+            "then": {"properties": {"unsupported_reason": {"type": "string", "minLength": 1}}}
+          }
+        ]
+      }
+    },
+    "coverage": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["pointer", "status", "operation_ids", "reason"],
+        "properties": {
+          "pointer": {"type": "string", "pattern": "^(?:/(?:[^~/]|~[01])*)*$"},
+          "status": {"enum": ["mapped", "irrelevant", "unresolved"]},
+          "operation_ids": {
+            "type": "array",
+            "minItems": 0,
+            "items": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"}
+          },
+          "reason": {"type": ["string", "null"], "minLength": 1}
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "pointer", "status", "reason"],
+        "properties": {
+          "kind": {"enum": ["attachment", "external_link", "history", "execution", "native_field", "other"]},
+          "pointer": {"type": "string", "pattern": "^(?:/(?:[^~/]|~[01])*)*$"},
+          "status": {"enum": ["unresolved", "irrelevant"]},
+          "reason": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "path", "question", "status", "answer", "evidence"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+          "path": {"type": "string", "pattern": "^(?:/(?:[^~/]|~[01])*)*$"},
+          "question": {"type": "string", "minLength": 1},
+          "status": {"enum": ["open", "answered"]},
+          "answer": {"type": ["string", "null"], "minLength": 1},
+          "evidence": {"type": "array", "minItems": 0, "items": {"$ref": "reviewed-protocol.schema.json#/$defs/Span"}}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "Id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+    "Hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "Use": {"enum": ["source_review", "costing", "capability_matching", "scheduling", "method_comparison", "execution"]},
+    "Source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "system",
+        "collection_id",
+        "version_id",
+        "version_hash",
+        "export_hash",
+        "collection_hash",
+        "retrieved_at",
+        "native_hash_profile",
+        "export_hash_profile",
+        "completeness"
+      ],
+      "properties": {
+        "system": {"const": "labstep"},
+        "collection_id": {"type": "string", "pattern": "^[1-9][0-9]*$"},
+        "version_id": {"type": "string", "pattern": "^[1-9][0-9]*$"},
+        "version_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "export_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "collection_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "retrieved_at": {"type": "string", "format": "date-time"},
+        "native_hash_profile": {"const": "sha256/json-sort-keys-compact-utf8-ensure-ascii-false-allow-nan-false/1"},
+        "export_hash_profile": {"const": "lab-mcp/protocol-export/1: ordered [guid,text] JSON; ensure_ascii=False"},
+        "completeness": {"const": "unknown"}
+      }
+    },
+    "Binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "protocol_id",
+        "revision_id",
+        "interpretation_digest",
+        "collection_id",
+        "version_id",
+        "version_hash",
+        "export_hash"
+      ],
+      "properties": {
+        "protocol_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+        "revision_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+        "interpretation_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "collection_id": {"type": "string", "pattern": "^[1-9][0-9]*$"},
+        "version_id": {"type": "string", "pattern": "^[1-9][0-9]*$"},
+        "version_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "export_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+      }
+    },
+    "Span": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pointer", "step_guid", "quote"],
+      "properties": {
+        "pointer": {"type": "string", "pattern": "^(?:/(?:[^~/]|~[01])*)*$"},
+        "step_guid": {"type": ["string", "null"], "minLength": 1},
+        "quote": {"type": ["string", "null"], "minLength": 1}
+      }
+    },
+    "Quantity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "dimension", "unit", "basis", "unknown_reason", "role", "provenance"],
+      "properties": {
+        "value": {"type": ["string", "null"], "pattern": "^-?(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$"},
+        "dimension": {"enum": ["volume", "mass", "time", "temperature", "count", "concentration", "flow_rate"]},
+        "unit": {
+          "enum": [
+            "uL",
+            "mL",
+            "L",
+            "ng",
+            "ug",
+            "mg",
+            "g",
+            "s",
+            "min",
+            "h",
+            "degC",
+            "K",
+            "1",
+            "mol/L",
+            "mg/mL",
+            "uL/min",
+            "mL/min"
+          ]
+        },
+        "basis": {"enum": ["per_sample", "per_container", "per_batch", "total", "absolute", "unknown"]},
+        "unknown_reason": {"type": ["string", "null"], "minLength": 1},
+        "role": {"enum": ["added", "final_target", "remaining", "measured", "duration", "unspecified"]},
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "source_spans", "rationale"],
+          "properties": {
+            "status": {"enum": ["source_asserted", "reviewer_asserted", "ambiguous"]},
+            "source_spans": {"type": "array", "minItems": 0, "items": {"$ref": "reviewed-protocol.schema.json#/$defs/Span"}},
+            "rationale": {"type": "string", "minLength": 1}
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"value": {"type": "null"}}},
+          "then": {"properties": {"unknown_reason": {"type": "string", "minLength": 1}}},
+          "else": {"properties": {"unknown_reason": {"type": "null"}}}
+        }
+      ]
+    },
+    "Purpose": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "text", "evidence"],
+      "properties": {
+        "status": {"enum": ["asserted", "inferred", "unknown"]},
+        "text": {"type": ["string", "null"], "minLength": 1},
+        "evidence": {"type": "array", "minItems": 0, "items": {"$ref": "reviewed-protocol.schema.json#/$defs/Span"}}
+      }
+    },
+    "Port": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state_id", "fraction", "quantity"],
+      "properties": {
+        "state_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+        "fraction": {"enum": ["whole", "retained", "discarded", "unresolved"]},
+        "quantity": {"$ref": "reviewed-protocol.schema.json#/$defs/Quantity"}
+      }
+    },
+    "Condition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "description", "quantity", "known"],
+      "properties": {
+        "kind": {"enum": ["temperature", "duration", "speed", "ph", "environment", "endpoint", "other"]},
+        "description": {"type": "string", "minLength": 1},
+        "quantity": {"anyOf": [{"$ref": "reviewed-protocol.schema.json#/$defs/Quantity"}, {"type": "null"}]},
+        "known": {"type": "boolean"}
+      }
+    },
+    "Finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "path", "message"],
+      "properties": {
+        "code": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+        "path": {"type": "string", "pattern": "^(?:/(?:[^~/]|~[01])*)*$"},
+        "message": {"type": "string", "minLength": 1}
+      }
+    },
+    "Scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operation_ids", "coverage_pointers"],
+      "properties": {
+        "operation_ids": {
+          "type": "array",
+          "minItems": 0,
+          "items": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"}
+        },
+        "coverage_pointers": {"type": "array", "minItems": 0, "items": {"type": "string", "pattern": "^(?:/(?:[^~/]|~[01])*)*$"}}
+      }
+    },
+    "Principal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "assurance", "issuer"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+        "assurance": {"enum": ["local_operator", "institutional_identity", "unverified"]},
+        "issuer": {"type": "string", "minLength": 1}
+      }
+    }
+  },
+  "description": "An immutable proposed or reviewed interpretation; schema validity never implies approval. See docs/protocol-review-contracts.md for required semantic checks."
+}

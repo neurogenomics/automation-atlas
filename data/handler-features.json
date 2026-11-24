@@ -1,0 +1,18 @@
+{
+  "about": "What lab-automation users value beyond time saved (#92): monitoring, recovery, dry runs, tuning and sample tracking (#156), per liquid handler. Values come from data/handler-features-research.json (5 Nov 2026), each true or false with a URL and a quote; null means not found in a source that could be read, never 'absent'. Programming route and PyLabRobot support are #82.",
+  "features": {
+    "liquidLevelDetection": {"label": "Liquid-level detection", "why": "Finds the liquid surface (capacitive or pressure), so short volumes and empty wells are caught instead of aspirating air."},
+    "clotOrAirDetection": {"label": "Clot, air or foam detection", "why": "Pressure monitoring during aspiration flags clots, bubbles and empty aspirations: the errors that silently ruin a well."},
+    "tipPresence": {"label": "Tip presence check", "why": "Confirms a tip was picked up before it is used."},
+    "camera": {"label": "Camera or barcode reader", "why": "Lets someone see the run or check labware and samples remotely."},
+    "remoteMonitoring": {"label": "Remote monitoring and alerts", "why": "Tells someone away from the bench that the run stopped, so walk-away time is real."},
+    "errorRecovery": {"label": "Guided error recovery", "why": "Retry, skip or fix a step mid-run instead of losing the plate."},
+    "simulator": {"label": "Dry-run simulator", "why": "Runs the protocol in software before any reagent is used."},
+    "liquidClasses": {"label": "Tunable liquid classes", "why": "Per-reagent aspirate and dispense settings for viscous, volatile or bead-laden liquids."},
+    "overnightUnattended": {"label": "Stated for unattended or overnight runs", "why": "The maker says it can run unattended (enclosure, walk-away operation)."},
+    "userBase": {"label": "Stated user base or protocol library", "why": "Shared protocols and a large community shorten setup."},
+    "barcodeReading": {"label": "Barcode reading", "why": "Reads plate and tube barcodes on load, so samples are tracked without typing them in. A handheld scanner counts; the detail says which."},
+    "limsIntegration": {"label": "LIMS or ELN integration", "why": "Sends and receives sample lists and results from a LIMS or ELN instead of copying files by hand."},
+    "auditTrail": {"label": "Audit trail", "why": "Records who ran what, with which settings, and what went wrong: needed for traceable runs and regulated work."}
+  }
+}

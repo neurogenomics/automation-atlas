@@ -1,0 +1,89 @@
+{
+  "profile": "protocol-portal review_json.py at e4b01152ec038527c5e19b4801964983c5df3fc6; synthetic supervisor-generated expected values, no runtime planner pass yet",
+  "valid": [
+    {
+      "id": "unicode_values",
+      "value": {
+        "name": "AµL🧪 line end",
+        "quantity": "0.125",
+        "negative": -2,
+        "flag": true,
+        "nothing": null
+      },
+      "canonical_utf8": "{\"flag\":true,\"name\":\"AµL🧪 line end\",\"negative\":-2,\"nothing\":null,\"quantity\":\"0.125\"}",
+      "sha256": "sha256:adacecb199e781909eab8edfd59fed5f5bbac0b21828196fc52082833aac86eb"
+    },
+    {
+      "id": "numeric_key_order",
+      "value": {
+        "2": "two",
+        "10": "ten",
+        "a": {
+          "9": "nine",
+          "11": "eleven"
+        }
+      },
+      "canonical_utf8": "{\"10\":\"ten\",\"2\":\"two\",\"a\":{\"11\":\"eleven\",\"9\":\"nine\"}}",
+      "sha256": "sha256:0c120228c90f4a4392b1d89447fe2e98833f083ef8c2c9f2e2effc8a11402b55"
+    },
+    {
+      "id": "escaped_text",
+      "value": {
+        "text": "quote\" slash/ backslash\\ newline\n tab\t null\u0000"
+      },
+      "canonical_utf8": "{\"text\":\"quote\\\" slash/ backslash\\\\ newline\\n tab\\t null\\u0000\"}",
+      "sha256": "sha256:ff0f55eb71d30f6b2b31f377947144d8977d3be3ad4486856b3a2d154c41e20d"
+    },
+    {
+      "id": "safe_integer_and_decimal",
+      "value": {
+        "count": 9007199254740991,
+        "quantity": "9007199254740993.000001"
+      },
+      "canonical_utf8": "{\"count\":9007199254740991,\"quantity\":\"9007199254740993.000001\"}",
+      "sha256": "sha256:0bf124173a113f9e9db5ab38811a16cee8ddffa706240f2729c70beaec0969e0"
+    }
+  ],
+  "invalid": [
+    {
+      "id": "duplicate_key",
+      "raw_json": "{\"value\":\"1\",\"value\":\"2\"}",
+      "expected_code": "json_duplicate_key"
+    },
+    {
+      "id": "escaped_duplicate_key",
+      "raw_json": "{\"value\":1,\"\\u0076alue\":2}",
+      "expected_code": "json_duplicate_key"
+    },
+    {
+      "id": "float_token",
+      "raw_json": "{\"count\":1.0}",
+      "expected_code": "json_invalid"
+    },
+    {
+      "id": "exponent_token",
+      "raw_json": "{\"count\":1e0}",
+      "expected_code": "json_invalid"
+    },
+    {
+      "id": "unsafe_integer",
+      "raw_json": "{\"count\":9007199254740992}",
+      "expected_code": "json_invalid"
+    },
+    {
+      "id": "nonascii_key",
+      "raw_json": "{\"µ\":\"1\"}",
+      "expected_code": "json_invalid"
+    },
+    {
+      "id": "unpaired_surrogate",
+      "raw_json": "{\"text\":\"\\ud800\"}",
+      "expected_code": "json_invalid"
+    },
+    {
+      "id": "nonfinite",
+      "raw_json": "{\"count\":NaN}",
+      "expected_code": "json_invalid"
+    }
+  ]
+}

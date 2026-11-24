@@ -1,0 +1,9 @@
+{
+  "schema_version": "0.1.0",
+  "value": {"numerator": "120","denominator": "7"},
+  "dimension": "time",
+  "unit": "s",
+  "basis": "total",
+  "reference": {"kind": "none","id": null,"conditions": []},
+  "provenance": {"kind": "inferred","evidence": [],"explanation": "Exact stipulated arithmetic, 120/7; no observation claimed."}
+}

@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/neurogenomics/agentic-lab/contracts/versions/0.1.0/goal-comparison.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "digest_profile", "content_digest", "original", "goal", "alternative", "algorithm", "declared_requirements", "eligible_for_preference_rank", "method_results", "estimate_results", "configurations", "scientific_equivalence", "access", "physical_qualification", "execution_permission"],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "digest_profile": {"const": "agentic-lab/review-json/1"},
+    "content_digest": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Hash"},
+    "original": {"$ref": "protocol-goal.schema.json#/$defs/Original"},
+    "goal": {"$ref": "protocol-goal.schema.json#/$defs/Revision"},
+    "alternative": {"$ref": "protocol-goal.schema.json#/$defs/Revision"},
+    "algorithm": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "release_digest"],
+      "properties": {
+        "id": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"},
+        "version": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"},
+        "release_digest": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Hash"}
+      }
+    },
+    "declared_requirements": {"enum": ["satisfied", "not_satisfied", "unresolved"]},
+    "eligible_for_preference_rank": {"type": "boolean"},
+    "method_results": {"type": "array", "items": {"$ref": "#/$defs/Outcome"}},
+    "estimate_results": {"type": "array", "items": {"$ref": "#/$defs/EstimateResult"}},
+    "configurations": {"type": "array", "items": {"$ref": "#/$defs/ConfigurationResult"}},
+    "scientific_equivalence": {"const": "not_established"},
+    "access": {"const": "not_established"},
+    "physical_qualification": {"const": "not_established"},
+    "execution_permission": {"const": false}
+  },
+  "allOf": [{"if": {"properties": {"eligible_for_preference_rank": {"const": true}}}, "then": {"properties": {"declared_requirements": {"const": "satisfied"}}}}],
+  "$defs": {
+    "Outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["criterion_id", "criterion_pointer", "status", "reason_code", "explanation", "input_pointers", "evidence", "exact_result"],
+      "properties": {
+        "criterion_id": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"},
+        "criterion_pointer": {"$ref": "typed-measurement.schema.json#/$defs/Pointer"},
+        "status": {"enum": ["satisfied", "contradicted", "unknown", "unsupported"]},
+        "reason_code": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"},
+        "explanation": {"type": "string", "minLength": 1},
+        "input_pointers": {"type": "array", "items": {"$ref": "typed-measurement.schema.json#/$defs/Pointer"}, "uniqueItems": true},
+        "evidence": {"type": "array", "items": {"$ref": "typed-measurement.schema.json#/$defs/Evidence"}, "uniqueItems": true},
+        "exact_result": {"anyOf": [{"$ref": "typed-measurement.schema.json"}, {"type": "null"}]}
+      },
+      "allOf": [{"if": {"properties": {"status": {"enum": ["unknown", "unsupported"]}}}, "then": {"properties": {"exact_result": {"type": "null"}}}, "else": {"properties": {"input_pointers": {"minItems": 1}}}}]
+    },
+    "EstimateResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "input_pointer", "completeness", "total"],
+      "properties": {
+        "kind": {"enum": ["cost", "time"]},
+        "input_pointer": {"$ref": "typed-measurement.schema.json#/$defs/Pointer"},
+        "completeness": {"enum": ["complete", "incomplete", "unknown"]},
+        "total": {"anyOf": [{"$ref": "typed-measurement.schema.json"}, {"type": "null"}]}
+      },
+      "allOf": [{"if": {"properties": {"completeness": {"const": "complete"}}}, "then": {"properties": {"total": {"type": "object", "properties": {"value": {"not": {"const": null}}}}}}, "else": {"properties": {"total": {"type": "null"}}}}]
+    },
+    "ConfigurationInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["binding", "limits", "provenance"],
+      "properties": {
+        "binding": {"$ref": "protocol-goal.schema.json#/$defs/Revision"},
+        "limits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "observable_id", "measurement"],
+            "properties": {
+              "kind": {"const": "scalar"},
+              "observable_id": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"},
+              "measurement": {"$ref": "typed-measurement.schema.json"}
+            }
+          }
+        },
+        "provenance": {"$ref": "typed-measurement.schema.json#/$defs/Provenance"}
+      }
+    },
+    "ConfigurationResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["binding", "input_digest", "joint_limits", "criterion_results"],
+      "properties": {
+        "binding": {"$ref": "protocol-goal.schema.json#/$defs/Revision"},
+        "input_digest": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Hash"},
+        "joint_limits": {"enum": ["satisfied", "not_satisfied", "unresolved"]},
+        "criterion_results": {"type": "array", "items": {"$ref": "#/$defs/Outcome"}, "minItems": 1}
+      }
+    }
+  }
+}

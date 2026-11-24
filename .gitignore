@@ -1,0 +1,9 @@
+dist/
+node_modules/
+.env*
+*.zip
+.DS_Store
+.openai/.local/
+imports/
+.vercel
+site/

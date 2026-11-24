@@ -1,0 +1,163 @@
+{
+  "version": "2026-11-05.1",
+  "about": "How catalogue records (content/market.js, content/registry.js) map onto the operation vocabulary. Generic vocabulary only: no rule here may name a product. Deck capacities are per-model facts with a source; anything not listed is unknown and uses the stated default range, labelled as an estimate.",
+  "registryCapabilities": {
+    "liquid handling": "liquid-transfer",
+    "arm": "vessel-transfer",
+    "storage": "storage",
+    "sealing": "sealing",
+    "peeling": "sealing",
+    "centrifuging": "centrifugation",
+    "microscopy": "imaging",
+    "fluorescence": "fluorescence-reading",
+    "dispensing": "dispensing",
+    "heating": "heating-cooling",
+    "shaking": "shaking",
+    "thermocycling": "thermocycling",
+    "qPCR": "qpcr"
+  },
+  "coolingCapability": "active cooling",
+  "marketOperations": {
+    "cold-storage": "storage"
+  },
+  "measurementByDescription": [
+    {
+      "pattern": "qpcr|real-?time",
+      "operation": "qpcr"
+    },
+    {
+      "pattern": "tapestation|fragment|electrophoresis|screentape",
+      "operation": "fragment-analysis"
+    },
+    {
+      "pattern": "fluorescen",
+      "operation": "fluorescence-reading"
+    }
+  ],
+  "moduleNames": [
+    {
+      "pattern": "gripper|robotic arm|plate handling|transport",
+      "operation": "vessel-transfer"
+    },
+    {
+      "pattern": "heater-?shaker|shak",
+      "operation": "shaking"
+    },
+    {
+      "pattern": "magnet",
+      "operation": "magnetic-separation"
+    },
+    {
+      "pattern": "thermocycl|odtc",
+      "operation": "thermocycling"
+    },
+    {
+      "pattern": "temperature|peltier|heating|cooling|thermal",
+      "operation": "heating-cooling"
+    },
+    {
+      "pattern": "storage|stacker|hotel",
+      "operation": "storage"
+    }
+  ],
+  "liquidHandlerCategories": [
+    "liquid handler"
+  ],
+  "workcellCategories": [
+    "workcell"
+  ],
+  "deckPositions": {
+    "bravo": {
+      "positions": 9,
+      "basis": "manufacturer",
+      "source": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Introduction.03.6.html"
+    },
+    "i7": {
+      "positions": 45,
+      "basis": "manufacturer",
+      "source": "https://www.beckman.com/liquid-handlers/biomek-i7"
+    },
+    "flex": {
+      "positions": 12,
+      "basis": "manufacturer",
+      "source": "https://opentrons.com/products/opentrons-flex-robot"
+    },
+    "ot2": {
+      "positions": 11,
+      "basis": "manufacturer",
+      "source": "https://opentrons.com/products/ot-2-robot"
+    },
+    "plr-hamilton-star": {
+      "positions": 45,
+      "basis": "manufacturer deck of 54 tracks; positions estimated as 9 six-track carriers of 5",
+      "source": "https://www.hamiltoncompany.com/automated-liquid-handling/platforms/microlab-star"
+    },
+    "starlet": {
+      "positions": 25,
+      "basis": "manufacturer deck of 30 tracks; positions estimated as 5 six-track carriers of 5",
+      "source": "https://www.hamiltoncompany.com/automated-liquid-handling/platforms/microlab-star"
+    },
+    "beckman-biomek-i5": {
+      "positions": 25,
+      "basis": "manufacturer",
+      "source": "https://www.beckman.com/liquid-handlers/biomek-i5"
+    },
+    "dynamic-devices-lynx": {
+      "positions": 30,
+      "basis": "manufacturer",
+      "source": "https://dynamicdevices.com/technology/",
+      "note": "LM900; LM1800 has 60–66."
+    },
+    "eppendorf-epmotion-5075": {
+      "positions": 14,
+      "basis": "manufacturer",
+      "source": "https://cdn.labwrench.com/eMan/manualNo/9977/eppendorf_epmotion_5075t_ngs_solution_brochure.pdf",
+      "note": "5075t: 14 SLAS positions plus a small reservoir position (2017 brochure)."
+    },
+    "mgi-mgisp-960": {
+      "positions": 14,
+      "basis": "manufacturer",
+      "source": "https://www.richmondscientific.com/wp-content/uploads/2023/04/【Brochure】MGISP-960-Configuration.pdf",
+      "note": "Configuration 1 standard positions; 13–22 by configuration."
+    },
+    "analytik-jena-cybio-felix": {
+      "positions": 12,
+      "basis": "manufacturer",
+      "source": "https://www.analytik-jena.com/cybiofelix"
+    },
+    "integra-assist-plus": {
+      "positions": 3,
+      "basis": "manufacturer",
+      "source": "https://www.integra-biosciences.com/sites/default/files/documents/128950_oi_assist_plus_en_4.pdf",
+      "note": "3-position universal deck; 4-position portrait deck also offered."
+    },
+    "tecan-veya": {
+      "positions": 22,
+      "basis": "manufacturer",
+      "source": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Veya_Effortless_Automation_403123.pdf",
+      "note": "Smaller deck; the larger deck has 34."
+    }
+  },
+  "tipRackShareOfDeck": [
+    0.3,
+    0.5
+  ],
+  "defaultTipRacks": [
+    3,
+    8
+  ],
+  "storageAddsTipRacks": [
+    30,
+    120
+  ],
+  "storageBasis": "Estimate for a plate hotel or stacker holding tip racks; confirm the actual capacity.",
+  "pylabrobotSupport": {
+    "about": "PyLabRobot's own support level for a driver (docs/user_guide/machines.md at the pinned commit) mapped to the planner's four statuses (#82). A handler with no driver in the pinned registry is 'none'. Driver status is not hardware, assay or installation validation.",
+    "map": {
+      "full": "supported",
+      "mostly": "partial",
+      "basic": "partial",
+      "wip": "community"
+    }
+  }
+}

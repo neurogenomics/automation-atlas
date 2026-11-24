@@ -1,0 +1,1033 @@
+{
+  "version": "2026-11-05.2",
+  "about": "Open-source and DIY hardware that could take over an operation a setup leaves to a person or to a bought workcell device (#76). These are leads, never capabilities: nothing here changes a ranking, a fact or a person's equipment answers. Every entry cites its primary source (repository or paper; links checked 5 Nov 2026). 'platforms' lists the catalogue liquid handlers an entry attaches to, 'any' for a standalone device or software usable beside any setup, and 'standalone' for a complete open machine that replaces a liquid handler (shown in the catalogue only). Stated costs are the authors' own historical figures, not quotes. Maturity: 'peer-reviewed' (a paper describes the build and tests it), 'published design' (files released; no performance study found), 'prototype' (authors say incomplete or unvalidated, or archived), 'example code' (integration or driver code). An entry with a 'build' record can be modelled on its handler as a module the lab would build (#78): its capability values are the authors' reports, its labware fit is unknown unless a source settles it, and every fact it adds is a question until the builder confirms it.",
+  "maturity": {
+    "peer-reviewed": "A paper describes the build and reports tests.",
+    "published design": "Design files or code are released; no performance study found.",
+    "prototype": "Incomplete, archived, or stated by its authors as not yet validated.",
+    "example code": "Integration or driver code, not hardware."
+  },
+  "operationLabels": {
+    "vessel-transfer": "Moving plates between positions",
+    "heating-cooling": "Holding at a set temperature",
+    "storage": "Plate and tip storage"
+  },
+  "entries": [
+    {
+      "id": "superior-magnet",
+      "name": "Superior Magnet upgrade for the OT-2 Magnetic Module",
+      "url": "https://github.com/retrobiosciences/opentrons-superior-magnet",
+      "platforms": [
+        "ot2"
+      ],
+      "operations": [
+        "magnetic-separation"
+      ],
+      "kind": "module upgrade",
+      "maturity": "published design",
+      "does": "Replaces the stock magnet geometry with an Alpaqua 96S Super Magnet on a printed adapter and riser. The authors' motivation is poor bead pelleting, bead pickup and inconsistent supernatant removal with the stock side-pellet magnet in SPRI-style cleanups.",
+      "limits": "OT-2 Magnetic Modules are not Flex-compatible. Engage heights and labware definitions change with the adapter.",
+      "validate": [
+        "Bead loss and residual volume against the stock magnet",
+        "Engage height and collision check with the chosen plate"
+      ],
+      "build": {
+        "handler": "ot2",
+        "module": "Superior Magnet upgrade (open-source build)",
+        "ops": [
+          "magnetic-separation"
+        ],
+        "temperature": null,
+        "agitation": null,
+        "requires": "An OT-2 Magnetic Module to modify (GEN1 or GEN2) and an Alpaqua 96S Super Magnet.",
+        "basis": "README: replaces the stock side-pellet magnet with the spring-loaded Alpaqua 96S Super Magnet on a printed adaptor and microplate riser.",
+        "labware": {},
+        "upgrades": "Magnetic Module"
+      },
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "dormant",
+        "lastPush": "2022-08-30",
+        "archived": false,
+        "licence": null
+      }
+    },
+    {
+      "id": "ot2-centrifuge",
+      "name": "Indexed centrifuge for the OT-2",
+      "url": "https://github.com/AdReNa-lab/Centrifuge-with-OT-2",
+      "sources": [
+        {
+          "url": "https://shi-jialei.github.io/assets/pdf/Gao_JOH_2024.pdf",
+          "title": "Gao et al., Journal of Open Hardware 2024"
+        }
+      ],
+      "platforms": [
+        "ot2"
+      ],
+      "operations": [
+        "centrifugation"
+      ],
+      "kind": "add-on device",
+      "maturity": "peer-reviewed",
+      "statedCost": "US$236.50 bill of materials (authors, historical)",
+      "does": "A centrifuge the OT-2 can reach, with automatic rotor indexing so the pipette can load and unload tubes. CAD, firmware and BOM are published.",
+      "limits": "Reported tube capacity is 1 mL; runs at ambient temperature, so no cold spins. A routine lab version needs a rated rotor, containment, balancing and lid/zero-speed interlocks.",
+      "validate": [
+        "Containment and interlocks before routine use",
+        "Pellet recovery at the protocol's speed and volume",
+        "Whether ambient spins are acceptable for the step"
+      ],
+      "build": {
+        "handler": "ot2",
+        "module": "Indexed OT-2 centrifuge (open-source build)",
+        "ops": [
+          "centrifugation"
+        ],
+        "temperature": null,
+        "agitation": null,
+        "requires": "Printed rotor and structures, Arduino controller and parts from the published bill of materials.",
+        "basis": "Gao et al. 2024 and repository: an indexed tube centrifuge the OT-2 pipette loads; reported tube capacity 1 mL, ambient temperature.",
+        "labware": {
+          "plate-96-pcr": {
+            "status": "no",
+            "detail": "Tube rotor; plates are not spun (reported tube capacity 1 mL)."
+          },
+          "plate-96-deep": {
+            "status": "no",
+            "detail": "Tube rotor; plates are not spun."
+          },
+          "plate-384-pcr": {
+            "status": "no",
+            "detail": "Tube rotor; plates are not spun."
+          }
+        }
+      },
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "dormant",
+        "lastPush": "2024-10-21",
+        "archived": false,
+        "licence": "MIT"
+      }
+    },
+    {
+      "id": "claw-ot2",
+      "name": "Claw-with-OT-2 gantry gripper",
+      "url": "https://github.com/Robertbolt97/Claw-with-OT-2",
+      "platforms": [
+        "ot2"
+      ],
+      "operations": [
+        "vessel-transfer"
+      ],
+      "kind": "tool head",
+      "maturity": "published design",
+      "statedCost": "About £81 bill of materials (October 2024)",
+      "does": "An open gripper that bolts to the OT-2 gantry, so the robot can move plates between deck positions (for example on and off a magnet) without a person.",
+      "limits": "Loaded-plate grip, clearance and repeatability are not reported here.",
+      "validate": [
+        "Loaded-plate moves between the positions the protocol uses",
+        "No collision with modules or tip racks"
+      ],
+      "build": {
+        "handler": "ot2",
+        "module": "Claw gantry gripper (open-source build)",
+        "ops": [
+          "vessel-transfer"
+        ],
+        "temperature": null,
+        "agitation": null,
+        "requires": "Printed parts, two servos and the controller in the published bill of materials; the OT-2 front cover is removed to fit it.",
+        "basis": "Assembly guide: a plate handler that slides onto the OT-2 gantry rails, with servo-driven vertical and horizontal movement.",
+        "labware": {}
+      },
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "active",
+        "lastPush": "2025-05-13",
+        "archived": false,
+        "licence": "MIT"
+      }
+    },
+    {
+      "id": "opensampler",
+      "name": "OpenSampler nanolitre syringe head on a modified OT-2",
+      "url": "https://github.com/RTKlab-BYU/OpenSampler",
+      "sources": [
+        {
+          "url": "https://doi.org/10.1002/jssc.70379",
+          "title": "OpenSampler paper, Journal of Separation Science"
+        }
+      ],
+      "platforms": [
+        "ot2"
+      ],
+      "operations": [
+        "liquid-transfer",
+        "reagent-preparation"
+      ],
+      "kind": "tool head",
+      "maturity": "peer-reviewed",
+      "does": "Replaces the OT-2 pipette with a custom nanolitre syringe head, 3D-printed parts and its own control software (in place of the Opentrons Raspberry Pi stack). The closest published custom pipette on an OT-2.",
+      "limits": "Single channel. Bypasses the Opentrons software, so standard Opentrons protocols do not run unchanged.",
+      "validate": [
+        "Gravimetric accuracy at the volumes the protocol needs",
+        "Carryover between samples"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "active",
+        "lastPush": "2026-02-06",
+        "archived": false,
+        "licence": null
+      }
+    },
+    {
+      "id": "printed-ot2-labware",
+      "name": "Printed tip racks, tube racks and ice block for the OT-2",
+      "url": "https://github.com/tyhho/OT-2_3D_Designs",
+      "platforms": [
+        "ot2"
+      ],
+      "operations": [
+        "heating-cooling"
+      ],
+      "kind": "labware",
+      "maturity": "published design",
+      "does": "STL files and custom labware definitions for racks that take cheaper TipOne-compatible tips, tube racks, an ice block for passive cold holds, and plate definitions.",
+      "limits": "The ice block is passive cold with no temperature control. The authors warn that official tips and racks are more reliable; printed tip racks suit short supervised runs, not unattended high-stakes ones. Opentrons quote terms may make non-Opentrons tips void the warranty.",
+      "validate": [
+        "Block stays cold for the whole time reagents sit on deck (about 90 min reported)",
+        "No water leak through the printed PLA after repeated freeze-thaw",
+        "Tip pickup reliability over a full rack"
+      ],
+      "build": {
+        "handler": "ot2",
+        "module": "Printed ice block (open-source build)",
+        "ops": [
+          "heating-cooling"
+        ],
+        "temperature": {
+          "min": -10,
+          "max": 0,
+          "cooling": "absolute"
+        },
+        "agitation": null,
+        "holdMinutes": 90,
+        "requires": "A printed holder, a StarLab mini dry-bath metal block and a -20 °C freezer.",
+        "basis": "README: frozen overnight at -20 °C, the metal block stays around -10 °C for the first 30 min and around 0 °C for about another hour. Fits the OT-2 slot; not functionally verified.",
+        "labware": {}
+      },
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "dormant",
+        "lastPush": "2021-02-08",
+        "archived": false,
+        "licence": null
+      }
+    },
+    {
+      "id": "printed-tube-racks",
+      "name": "Printed tube racks and magnetic-module tube racks",
+      "url": "https://github.com/BaileeKu/Summer-2021-REU---Payne-Lab",
+      "platforms": [
+        "ot2"
+      ],
+      "operations": [
+        "magnetic-separation"
+      ],
+      "kind": "labware",
+      "maturity": "published design",
+      "does": "STL files for 0.5 and 1.5 mL tube racks, tube racks that sit on the Magnetic Module, an aluminium-block skirt and a syringe holder, so tube protocols can run on deck.",
+      "limits": "Magnetic pull through a printed tube rack differs from a plate on the module.",
+      "validate": [
+        "Bead pelleting time in the tube rack on the magnet"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "dormant",
+        "lastPush": "2021-07-08",
+        "archived": false,
+        "licence": null
+      }
+    },
+    {
+      "id": "ot2-microscope-platereader",
+      "name": "Microscope and plate-reader add-on for the OT-2",
+      "url": "https://github.com/beniroquai/Opentrons-Microscope-Platereader",
+      "platforms": [
+        "ot2"
+      ],
+      "operations": [
+        "imaging"
+      ],
+      "kind": "add-on device",
+      "maturity": "prototype",
+      "statedCost": "Reportedly €300–400",
+      "does": "A printed and off-the-shelf microscope / plate-reader style add-on built from Arduino, ESP32, GRBL and Raspberry Pi parts.",
+      "limits": "An engineering project, not a vendor-supported module; no quantitative reading performance found.",
+      "validate": [
+        "Read-out against a reference instrument"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "dormant",
+        "lastPush": "2021-06-26",
+        "archived": false,
+        "licence": null
+      }
+    },
+    {
+      "id": "opentrons-integration-examples",
+      "name": "Opentrons integration examples (serial devices, cameras, robot arm)",
+      "url": "https://github.com/Opentrons/opentrons-integration-tools",
+      "sources": [
+        {
+          "url": "https://github.com/Opentrons/opentrons-integration-tools/tree/main/ufactory-xarm",
+          "title": "uFactory xArm example"
+        }
+      ],
+      "platforms": [
+        "ot2"
+      ],
+      "operations": [
+        "vessel-transfer",
+        "imaging",
+        "shaking"
+      ],
+      "kind": "example code",
+      "maturity": "example code",
+      "does": "Opentrons' own examples for the HTTP API, serial devices, USB cameras, a QInstruments BioShake and a uFactory xArm moving plates to and from the robot. The pattern: describe the third-party device as labware so the robot avoids it, and control it from Python inside or beside the protocol.",
+      "limits": "Examples, not supported products; the arm and shaker are bought hardware.",
+      "validate": [
+        "Collision geometry of each added device",
+        "Hand-off timing between robot and device"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "dormant",
+        "lastPush": "2023-08-30",
+        "archived": false,
+        "licence": "Apache-2.0"
+      }
+    },
+    {
+      "id": "so101-plate-gripper",
+      "name": "Printed 96-well plate gripper for an SO-101 arm",
+      "url": "https://github.com/zlite/plate-gripper",
+      "platforms": [
+        "any"
+      ],
+      "operations": [
+        "vessel-transfer"
+      ],
+      "kind": "add-on device",
+      "maturity": "published design",
+      "does": "A replacement gripper for a low-cost SO-101 arm, using a bought linear rail and printed parts, to move plates between a liquid handler and bench stations.",
+      "limits": "Loaded-plate acceptance not assessed. Hobby servos need rigid nests, tapered guides and hard stops to place plates reliably.",
+      "validate": [
+        "Loaded-plate approach, grip and release at every station",
+        "Pipetting alignment after a hand-off"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "active",
+        "lastPush": "2026-03-16",
+        "archived": false,
+        "licence": null
+      }
+    },
+    {
+      "id": "leslider",
+      "name": "LeSlider arm rail",
+      "url": "https://github.com/pham-tuan-binh/leslider",
+      "platforms": [
+        "any"
+      ],
+      "operations": [
+        "vessel-transfer"
+      ],
+      "kind": "add-on device",
+      "maturity": "published design",
+      "does": "An open linear rail that carries a low-cost arm along a bench to reach more stations.",
+      "limits": "Extends reach only; it does not make an arm that cannot reach into the deck usable.",
+      "validate": [
+        "Positional repeatability at each station"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "active",
+        "lastPush": "2026-08-11",
+        "archived": false,
+        "licence": "Apache-2.0"
+      }
+    },
+    {
+      "id": "scripps-orbital-shaker",
+      "name": "Scripps DIYbio orbital shaker",
+      "url": "https://github.com/pierrebaillargeon/Scripps-DIYbio-orbital-shaker",
+      "platforms": [
+        "any"
+      ],
+      "operations": [
+        "shaking"
+      ],
+      "kind": "add-on device",
+      "maturity": "published design",
+      "does": "CAD and controls for an open orbital plate shaker.",
+      "limits": "No heating or cooling; adding heat makes it a new, unvalidated design.",
+      "validate": [
+        "Orbit and speed under load",
+        "Plate clamping"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "dormant",
+        "lastPush": "2021-12-08",
+        "archived": false,
+        "licence": "GPL-3.0"
+      }
+    },
+    {
+      "id": "openhw3",
+      "name": "OpenHW3 heated shaking apparatus",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11387928/",
+      "platforms": [
+        "any"
+      ],
+      "operations": [
+        "shaking",
+        "incubation"
+      ],
+      "kind": "add-on device",
+      "maturity": "peer-reviewed",
+      "statedCost": "US$169 bill of materials (authors, historical)",
+      "does": "A heated shaking apparatus reported for 25–75 °C.",
+      "limits": "Built for a different application; not a cooled block, so no 4 °C shaking.",
+      "validate": [
+        "Liquid temperature in the protocol's plate",
+        "Shaking under load"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "reachable",
+        "http": 200
+      }
+    },
+    {
+      "id": "open-temperature-block",
+      "name": "Open Temperature Block",
+      "url": "https://github.com/celleleven/Open-Temperature-Block",
+      "platforms": [
+        "any"
+      ],
+      "operations": [
+        "heating-cooling",
+        "incubation"
+      ],
+      "kind": "add-on device",
+      "maturity": "published design",
+      "does": "An open temperature-controlled block design.",
+      "limits": "Performance unproven for plate protocols.",
+      "validate": [
+        "Temperature range, uniformity and ramp in the protocol's labware"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "dormant",
+        "lastPush": "2022-02-23",
+        "archived": false,
+        "licence": null
+      }
+    },
+    {
+      "id": "ninjapcr",
+      "name": "NinjaPCR",
+      "url": "https://github.com/hisashin/NinjaPCR",
+      "platforms": [
+        "any"
+      ],
+      "operations": [
+        "thermocycling"
+      ],
+      "kind": "add-on device",
+      "maturity": "published design",
+      "does": "An open PCR thermocycler project.",
+      "limits": "Not a 96-well plate cycler a robot can load; no heated auto-lid.",
+      "validate": [
+        "Ramp rates and block uniformity against a commercial cycler"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "dormant",
+        "lastPush": "2024-02-08",
+        "archived": false,
+        "licence": "GPL-3.0"
+      }
+    },
+    {
+      "id": "ot-tempdeck-control",
+      "name": "Standalone control of the Opentrons Temperature Module",
+      "url": "https://github.com/czbiohub-sf/ot-tempdeck-control",
+      "platforms": [
+        "any"
+      ],
+      "operations": [
+        "heating-cooling"
+      ],
+      "kind": "example code",
+      "maturity": "example code",
+      "does": "Runs an Opentrons Temperature Module from an ordinary computer, without the robot. A used module can then serve as a cold or warm station beside any setup.",
+      "limits": "Needs a bought Temperature Module; plates still move by hand or by arm.",
+      "validate": [
+        "Sample temperature in the protocol's labware"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "dormant",
+        "lastPush": "2024-06-28",
+        "archived": false,
+        "licence": "BSD-3-Clause"
+      }
+    },
+    {
+      "id": "ot-thermocycler-standalone",
+      "name": "Standalone control of the Opentrons Thermocycler",
+      "url": "https://github.com/mtoutai/ot_thermocycler_standalone",
+      "sources": [
+        {
+          "url": "https://github.com/helixworks-technologies/HelixCycler",
+          "title": "HelixCycler: run the OT thermocycler independently of the robot"
+        }
+      ],
+      "platforms": [
+        "any"
+      ],
+      "operations": [
+        "thermocycling"
+      ],
+      "kind": "example code",
+      "maturity": "example code",
+      "does": "Two projects that run an Opentrons Thermocycler from a computer without the robot, so a used cycler can work beside any setup.",
+      "limits": "Needs a bought Opentrons Thermocycler of a compatible generation.",
+      "validate": [
+        "Programme timing and lid control match the protocol"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "dormant",
+        "lastPush": "2020-10-02",
+        "archived": false,
+        "licence": "Apache-2.0"
+      }
+    },
+    {
+      "id": "opentrons-open-hardware",
+      "name": "Opentrons OT-2 hardware files and module firmware",
+      "url": "https://github.com/Opentrons/ot2",
+      "sources": [
+        {
+          "url": "https://github.com/Opentrons/opentrons-modules",
+          "title": "Opentrons module firmware"
+        }
+      ],
+      "platforms": [
+        "ot2"
+      ],
+      "operations": [],
+      "kind": "reference",
+      "maturity": "published design",
+      "does": "Opentrons' own PCB files, wiring and pin-outs, deck drawings and dimensions for custom hardware, and firmware for the Temperature, Magnetic, Thermocycler and Heater-Shaker modules. The starting point for any custom add-on.",
+      "limits": "Reference material, not a device.",
+      "validate": [],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "dormant",
+        "lastPush": "2020-10-30",
+        "archived": false,
+        "licence": null
+      }
+    },
+    {
+      "id": "jubilee-ot2-pipette",
+      "name": "Science Jubilee OT-2 pipette tool",
+      "url": "https://science-jubilee.readthedocs.io/en/latest/building/pipette_tool.html",
+      "sources": [
+        {
+          "url": "https://github.com/machineagency/science-jubilee",
+          "title": "Science Jubilee repository"
+        }
+      ],
+      "platforms": [
+        "standalone"
+      ],
+      "operations": [
+        "liquid-transfer"
+      ],
+      "kind": "liquid handler",
+      "maturity": "published design",
+      "does": "Mount, flexure and wiring to drive a real OT-2 pipette on an open Jubilee tool-changing machine, with tip pickup and ejection.",
+      "limits": "Documented with the single-channel P20 (1–20 µL); needs a bought pipette.",
+      "validate": [
+        "Gravimetric accuracy at the protocol's volumes"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "reachable",
+        "http": 200
+      }
+    },
+    {
+      "id": "panda-ot2-pipette",
+      "name": "PANDA: an OT-2 pipette driven by an Arduino",
+      "url": "https://github.com/BU-KABlab/PANDA_Arduino",
+      "sources": [
+        {
+          "url": "https://www.ursalabs.ai/docs/opentrons-pipette-setup.html",
+          "title": "Ursa Labs OT-2 pipette setup"
+        }
+      ],
+      "platforms": [
+        "standalone"
+      ],
+      "operations": [
+        "liquid-transfer"
+      ],
+      "kind": "liquid handler",
+      "maturity": "prototype",
+      "statedCost": "About US$60 of electronics",
+      "does": "Drives an OT-2 pipette from an Arduino and a stepper driver on another machine.",
+      "limits": "The authors say it is not yet hardware-validated.",
+      "validate": [
+        "Gravimetric accuracy at the protocol's volumes"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "active",
+        "lastPush": "2025-08-27",
+        "archived": false,
+        "licence": "MIT"
+      }
+    },
+    {
+      "id": "findus",
+      "name": "FINDUS pipetting robot",
+      "url": "https://github.com/FBarthels/FINDUS",
+      "sources": [
+        {
+          "url": "https://journals.sagepub.com/doi/full/10.1177/2472630319877374",
+          "title": "FINDUS paper, SLAS Technology"
+        }
+      ],
+      "platforms": [
+        "standalone"
+      ],
+      "operations": [
+        "liquid-transfer"
+      ],
+      "kind": "liquid handler",
+      "maturity": "peer-reviewed",
+      "statedCost": "Under US$400 robot material (authors, historical; donor pipette extra)",
+      "does": "An open robot that motorises conventional hand pipettes, with automatic tip changing. Calibrated with P200 and P1000 over 20–1000 µL; at 20 µL the reported P200 errors are 0.610% systematic and 0.309% random.",
+      "limits": "Single channel as released; eight-channel use is discussed only as an extension.",
+      "validate": [
+        "Accuracy at volumes below 20 µL if needed"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "dormant",
+        "lastPush": "2024-06-24",
+        "archived": false,
+        "licence": "GPL-3.0"
+      }
+    },
+    {
+      "id": "otto",
+      "name": "OTTO open liquid handler",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7424513/",
+      "sources": [
+        {
+          "url": "https://openliquidhandler.com/",
+          "title": "OTTO project site"
+        }
+      ],
+      "platforms": [
+        "standalone"
+      ],
+      "operations": [
+        "liquid-transfer"
+      ],
+      "kind": "liquid handler",
+      "maturity": "peer-reviewed",
+      "statedCost": "About US$1,500 (authors, historical)",
+      "does": "A complete open Cartesian robot that pushes a manual pipette; the paper reports qPCR set-up and a 5 µL single-channel dye test with 2.5% average error.",
+      "limits": "Single channel; no eight-channel performance.",
+      "validate": [
+        "Accuracy at the protocol's volumes"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "reachable",
+        "http": 200
+      }
+    },
+    {
+      "id": "otone",
+      "name": "Opentrons OT-One open hardware",
+      "url": "https://github.com/Opentrons/otone_hardware",
+      "platforms": [
+        "standalone"
+      ],
+      "operations": [
+        "liquid-transfer"
+      ],
+      "kind": "liquid handler",
+      "maturity": "published design",
+      "does": "Opentrons' 2015 open-hardware robot (Apache-2.0): CAD and BOM for a motor that presses a standard hand pipette, with an official eight-channel API.",
+      "limits": "Legacy software; current parts and price unresolved.",
+      "validate": [
+        "Accuracy of the donor pipette on the rebuilt gantry"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "dormant",
+        "lastPush": "2018-05-23",
+        "archived": false,
+        "licence": "Apache-2.0"
+      }
+    },
+    {
+      "id": "dpette-driver",
+      "name": "USB driver for DLAB dPette electronic pipettes",
+      "url": "https://github.com/Lambda-Biolab/dpette-usb-driver",
+      "platforms": [
+        "standalone"
+      ],
+      "operations": [
+        "liquid-transfer"
+      ],
+      "kind": "example code",
+      "maturity": "example code",
+      "does": "Serial control of volume, speed and mode on a DLAB electronic pipette, including the eight-channel. Mounted on an open gantry, this avoids building a motorised plunger.",
+      "limits": "Hardware logs cover 30–300 µL; no low-volume gravimetric test found. The driver's defaults allow 1000 µL, so the donor model's range must be enforced.",
+      "validate": [
+        "Command compatibility with the exact pipette model",
+        "All-channel accuracy at the protocol's volumes"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "active",
+        "lastPush": "2026-08-19",
+        "archived": false,
+        "licence": "MIT"
+      }
+    },
+    {
+      "id": "i3mega-pipettebot",
+      "name": "3D-printer pipetting robot",
+      "url": "https://github.com/qte77/i3mega-pipettebot",
+      "platforms": [
+        "standalone"
+      ],
+      "operations": [
+        "liquid-transfer"
+      ],
+      "kind": "liquid handler",
+      "maturity": "prototype",
+      "does": "Gantry code, mounts and plate-fill examples on a converted 3D printer, with working tip-rack pickup and fixed-bar tip ejection.",
+      "limits": "Archived prototype with manual coordinate calibration and no volumetric acceptance data.",
+      "validate": [
+        "Accuracy at the protocol's volumes"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "archived",
+        "lastPush": "2026-09-17",
+        "archived": true,
+        "licence": "Apache-2.0"
+      }
+    },
+    {
+      "id": "liquid-handler-marlin",
+      "name": "Ender 3 syringe liquid handler",
+      "url": "https://github.com/zlite/liquid-handler-marlin",
+      "platforms": [
+        "standalone"
+      ],
+      "operations": [
+        "liquid-transfer",
+        "dispensing"
+      ],
+      "kind": "liquid handler",
+      "maturity": "published design",
+      "statedCost": "Under US$250 including controller (authors)",
+      "does": "Marlin firmware, a web interface and syringe, plate and reservoir fixtures that turn an Ender 3 printer into a syringe dispenser.",
+      "limits": "The README claims about ±10 µL repeatability; not independently measured.",
+      "validate": [
+        "Accuracy at the protocol's volumes"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "active",
+        "lastPush": "2026-10-01",
+        "archived": false,
+        "licence": null
+      }
+    },
+    {
+      "id": "jubilee-drive",
+      "name": "Low-cost Jubilee pipette drive",
+      "url": "https://github.com/zlite/Jubilee-drive",
+      "platforms": [
+        "standalone"
+      ],
+      "operations": [
+        "liquid-transfer"
+      ],
+      "kind": "tool head",
+      "maturity": "published design",
+      "statedCost": "Under US$40 bill of materials (authors)",
+      "does": "A cost-reduced pipette drive for the Jubilee with tip ejection, adapted from an earlier design.",
+      "limits": "No precision study found.",
+      "validate": [
+        "Gravimetric accuracy"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "active",
+        "lastPush": "2026-05-28",
+        "archived": false,
+        "licence": null
+      }
+    },
+    {
+      "id": "triggy-96",
+      "name": "96-channel syringe pipette",
+      "url": "https://github.com/Its-Triggy/multi-channel-pipette",
+      "platforms": [
+        "standalone"
+      ],
+      "operations": [
+        "liquid-transfer"
+      ],
+      "kind": "liquid handler",
+      "maturity": "prototype",
+      "statedCost": "About US$300 (author)",
+      "does": "96 syringes driven by four steppers, with CAD, firmware and build notes.",
+      "limits": "Hobby grade; no accuracy validation or robot integration.",
+      "validate": [
+        "Per-channel accuracy"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "active",
+        "lastPush": "2026-07-04",
+        "archived": false,
+        "licence": "CERN-OHL-P-2.0"
+      }
+    },
+    {
+      "id": "pearce-4-channel",
+      "name": "Printed ISO 8655 four-channel pipette",
+      "url": "https://www.appropedia.org/Open_Source_3-D_Printed_ISO_8655_Compliant_Multichannel_Pipette",
+      "sources": [
+        {
+          "url": "https://osf.io/9tn6e/",
+          "title": "CAD on OSF"
+        }
+      ],
+      "platforms": [
+        "standalone"
+      ],
+      "operations": [
+        "liquid-transfer"
+      ],
+      "kind": "pipette",
+      "maturity": "peer-reviewed",
+      "statedCost": "About US$24 (authors)",
+      "does": "A manual printed four-channel 200 µL pipette reported as ISO 8655 compliant; a starting point for a motorised multichannel head.",
+      "limits": "Manual and four-channel.",
+      "validate": [],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "reachable",
+        "http": 200
+      }
+    },
+    {
+      "id": "open-lab-automata",
+      "name": "Open Lab Automata",
+      "url": "https://docs.openlabautomata.xyz/",
+      "platforms": [
+        "standalone"
+      ],
+      "operations": [
+        "liquid-transfer"
+      ],
+      "kind": "liquid handler",
+      "maturity": "prototype",
+      "does": "A documented open robot with tool changing, adapters and a protocol interface; its micropipette takes P20, P200 and P1000 tips (2–1000 µL).",
+      "limits": "Single channel; beta maturity.",
+      "validate": [
+        "Accuracy at the protocol's volumes"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "reachable",
+        "http": 200
+      }
+    },
+    {
+      "id": "sidekick",
+      "name": "Sidekick dispenser",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9168727/",
+      "platforms": [
+        "any"
+      ],
+      "operations": [
+        "dispensing"
+      ],
+      "kind": "add-on device",
+      "maturity": "peer-reviewed",
+      "statedCost": "About US$710 (authors, historical)",
+      "does": "A printed dispenser with solenoid pumps for adding reagents to plates.",
+      "limits": "Dispenses only; cannot aspirate.",
+      "validate": [
+        "Dispense accuracy for each reagent's viscosity"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "reachable",
+        "http": 200
+      }
+    },
+    {
+      "id": "bioclonebot",
+      "name": "BioCloneBot",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10955647/",
+      "platforms": [
+        "standalone"
+      ],
+      "operations": [
+        "liquid-transfer"
+      ],
+      "kind": "liquid handler",
+      "maturity": "peer-reviewed",
+      "does": "A stepper-driven Hamilton syringe head on an Ender 3 frame, presented as a low-cost alternative to an OT-2.",
+      "limits": "Single channel.",
+      "validate": [
+        "Accuracy at the protocol's volumes"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "reachable",
+        "http": 200
+      }
+    },
+    {
+      "id": "helixcycler",
+      "name": "HelixCycler: standalone control of the Opentrons Thermocycler",
+      "url": "https://github.com/helixworks-technologies/HelixCycler",
+      "platforms": [
+        "any"
+      ],
+      "operations": [
+        "thermocycling"
+      ],
+      "kind": "example code",
+      "maturity": "example code",
+      "does": "A Python application that runs an Opentrons Thermocycler without the robot. A loose or used module can then work as a bench cycler beside any setup.",
+      "limits": "Needs a bought Opentrons Thermocycler. The README does not say which module generations it supports. Plates are loaded by hand or by an arm.",
+      "validate": [
+        "Which Thermocycler generation the lab's module is, and whether the app drives it",
+        "Block and lid temperatures in the protocol's plates"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "active",
+        "lastPush": "2025-10-22",
+        "archived": false,
+        "licence": null
+      }
+    },
+    {
+      "id": "so101-syringe-effector",
+      "name": "SO-101 autosyringe end effector and plate light table",
+      "url": "https://github.com/zlite/liquid-handler",
+      "platforms": [
+        "any"
+      ],
+      "operations": [
+        "dispensing"
+      ],
+      "kind": "add-on device",
+      "maturity": "published design",
+      "does": "A printed end effector that turns a low-cost SO-101 arm into a syringe dispenser. The arm's gripper servo drives a 10 mL syringe, and a 96-well plate sits on a USB light table. STLs cover the body, rack, gear, plunger holder, camera mount and plate holder.",
+      "limits": "A 10 mL syringe with no reported accuracy. There are no disposable tips, so carryover between wells or reagents is uncontrolled. The stock arm and servo are donor hardware.",
+      "validate": [
+        "Dispense accuracy at the protocol's volumes",
+        "Carryover between reagents"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "active",
+        "lastPush": "2026-04-15",
+        "archived": false,
+        "licence": null
+      }
+    },
+    {
+      "id": "b601-arm",
+      "name": "Seeed B601-DM arm with camera mounts, gripper fingers and bed fixtures",
+      "url": "https://github.com/zlite/B601",
+      "platforms": [
+        "any"
+      ],
+      "operations": [
+        "vessel-transfer"
+      ],
+      "kind": "add-on device",
+      "maturity": "prototype",
+      "does": "Calibration and demonstration code, OAK camera mounts, gripper fingers and pads, and printer-bed fixtures for a low-cost Seeed B601-DM arm, aimed at camera-guided plate handling.",
+      "limits": "The authors state that plate pickup is not commissioned. They also report an incident in which the arm knocked a plate out.",
+      "validate": [
+        "Loaded-plate pickup and placement at each station",
+        "Collision-free approach after any change to the bed"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "active",
+        "lastPush": "2026-10-08",
+        "archived": false,
+        "licence": null
+      }
+    },
+    {
+      "id": "biokea-xarm-shuttle",
+      "name": "BioKEA xArm 7 plate shuttle",
+      "url": "https://github.com/BioKEA/BugPicker-arm-demo",
+      "platforms": [
+        "any"
+      ],
+      "operations": [
+        "vessel-transfer"
+      ],
+      "kind": "example code",
+      "maturity": "example code",
+      "does": "Workflow code for a stock uFactory xArm 7 that moves a 96-well plate between a picking station and an imager or plate-reader station.",
+      "limits": "A hackathon artifact. The arm is bought hardware, and the payload settings are still placeholders.",
+      "validate": [
+        "Loaded-plate transfer at working speed after the payload values are set",
+        "Hand-off positions at each station"
+      ],
+      "activity": {
+        "checked": "2026-11-09",
+        "status": "active",
+        "lastPush": "2026-07-26",
+        "archived": false,
+        "licence": "GPL-3.0"
+      }
+    }
+  ]
+}

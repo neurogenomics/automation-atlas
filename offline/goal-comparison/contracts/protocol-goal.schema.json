@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/neurogenomics/agentic-lab/contracts/versions/0.1.0/protocol-goal.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "digest_profile", "record_id", "revision_id", "parent", "content_digest", "original", "targets", "criteria"],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "digest_profile": {"const": "agentic-lab/review-json/1"},
+    "record_id": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"},
+    "revision_id": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"},
+    "parent": {"anyOf": [{"$ref": "#/$defs/Revision"}, {"type": "null"}]},
+    "content_digest": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Hash"},
+    "original": {"$ref": "#/$defs/Original"},
+    "targets": {"type": "array", "items": {"$ref": "#/$defs/Target"}, "minItems": 1},
+    "criteria": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/Criterion"},
+      "minItems": 1,
+      "contains": {"properties": {"priority": {"const": "necessary"}}}
+    }
+  },
+  "$defs": {
+    "Original": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "binding", "operation_ids"],
+      "properties": {
+        "schema_version": {"const": "0.2.0"},
+        "binding": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Binding"},
+        "operation_ids": {
+          "type": "array",
+          "items": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"},
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      }
+    },
+    "Revision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "record_id", "revision_id", "content_digest"],
+      "properties": {
+        "schema_version": {"const": "0.1.0"},
+        "record_id": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"},
+        "revision_id": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"},
+        "content_digest": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Hash"}
+      }
+    },
+    "Identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["namespace", "material_id", "state_id"],
+      "properties": {
+        "namespace": {"enum": ["original", "alternative"]},
+        "material_id": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"},
+        "state_id": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"}
+      }
+    },
+    "Target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identity", "provenance"],
+      "properties": {
+        "identity": {
+          "anyOf": [{"allOf": [{"$ref": "#/$defs/Identity"}, {"properties": {"namespace": {"const": "original"}}}]}, {"type": "null"}]
+        },
+        "provenance": {"$ref": "typed-measurement.schema.json#/$defs/Provenance"}
+      },
+      "allOf": [{"if": {"properties": {"identity": {"const": null}}}, "then": {"properties": {"provenance": {"properties": {"kind": {"const": "unknown"}}}}}, "else": {"properties": {"provenance": {"properties": {"kind": {"not": {"const": "unknown"}}}}}}}]
+    },
+    "Criterion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "priority", "subject", "observable_id", "predicate", "provenance"],
+      "properties": {
+        "id": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"},
+        "priority": {"enum": ["necessary", "preferred"]},
+        "subject": {"enum": ["method", "configuration"]},
+        "observable_id": {"$ref": "../../reviewed-protocol.schema.json#/$defs/Id"},
+        "predicate": {"$ref": "#/$defs/Predicate"},
+        "provenance": {"$ref": "typed-measurement.schema.json#/$defs/Provenance"}
+      }
+    },
+    "Predicate": {
+      "oneOf": [{"type": "object", "additionalProperties": false, "required": ["kind", "operator", "threshold"], "properties": {"kind": {"const": "scalar"}, "operator": {"enum": ["lt", "lte", "eq", "gte", "gt"]}, "threshold": {"$ref": "typed-measurement.schema.json"}}}, {"type": "object", "additionalProperties": false, "required": ["kind", "disposition", "operator", "identities"], "properties": {"kind": {"const": "identity_set"}, "disposition": {"enum": ["retained", "discarded"]}, "operator": {"enum": ["contains_all", "exactly", "excludes_all"]}, "identities": {"anyOf": [{"type": "array", "items": {"allOf": [{"$ref": "#/$defs/Identity"}, {"properties": {"namespace": {"const": "original"}}}]}, "uniqueItems": true}, {"type": "null"}]}}, "allOf": [{"if": {"properties": {"operator": {"enum": ["contains_all", "excludes_all"]}}}, "then": {"properties": {"identities": {"minItems": 1}}}}]}]
+    }
+  }
+}

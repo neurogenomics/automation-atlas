@@ -1,0 +1,202 @@
+{
+  "version": "2026-11-05.1",
+  "about": "General laboratory phrasing mapped to the operation vocabulary in operations.json. Lines are read in context, as a person would: table cells and fill-in values are recognised first; short noun-only lines inside a reagent step are that reagent's components; temperature and time rows inside a thermocycler step are its programme; lines with no action are notes or section headers; only action lines that match nothing are 'not understood'. Patterns are case-insensitive regular expressions and must describe generic laboratory language; never add a protocol, product, lab or assay name. Rules marked 'device' (specific equipment or measurements) are checked first in order; otherwise the first action mentioned in the line wins.",
+  "repeat": "^repeat\\b",
+  "rules": [
+    {
+      "operation": "cell-handling",
+      "pattern": "\\bharvest\\b|trypsini[sz]|dissect|homogeni[sz]|dounce|syringe|tissue",
+      "kind": "device"
+    },
+    {
+      "operation": "cell-count",
+      "pattern": "hemocytometer|haemocytometer|count(ing)? (the )?cells|cell count|count using",
+      "kind": "device"
+    },
+    {
+      "operation": "light-exposure",
+      "pattern": "crosslink|cross-link|light exposure|\\b[0-9]{3} ?nm\\b|\\buv\\b",
+      "kind": "device"
+    },
+    {
+      "operation": "microfluidic-encapsulation",
+      "pattern": "encapsulat|emulsion|droplet|microfluidic|\\binlet\\b|outlet tubing",
+      "kind": "device"
+    },
+    {
+      "operation": "fluorescence-quantification",
+      "pattern": "qubit|picogreen|quant-?it|ribogreen|fluorometer|dsdna (hs|br) (assay|buffer)|(hs|br) dsdna (assay|buffer)|nanodrop|standard curve|insert (the )?(standard|sample)s? (tubes )?into",
+      "kind": "device"
+    },
+    {
+      "operation": "fragment-analysis",
+      "pattern": "tapestation|bioanalyzer|fragment analy[sz]er|size distribution|electrophero|screentape",
+      "kind": "device"
+    },
+    {
+      "operation": "qpcr",
+      "pattern": "qpcr|real-?time pcr|sybr ?green|ct value|1/4 max|quarter (of )?max|cycle threshold|plate setup|negative control|\\bntc\\b",
+      "kind": "device"
+    },
+    {
+      "operation": "data-entry",
+      "pattern": "^record\\b|\\bexport\\b|\\bpaste\\b|^plot\\b|^calculate\\b|^determine\\b|^enter\\b|^note (the|down)|\\br code\\b|\\bsave (the )?(results|experiment|data|file)|\\bprint\\b",
+      "kind": "device"
+    },
+    {
+      "operation": "labware-preparation",
+      "pattern": "^retrieve\\b|^label\\b|\\blabel (the )?(tubes?|lids?|plates?)|^get (a |the )?(new |fresh )?(plate|tube)",
+      "kind": "device"
+    },
+    {
+      "operation": "sealing",
+      "pattern": "\\bseal\\b|heat[- ]seal|adhesive (film|seal)|\\bunseal\\b|remove (the )?seal|\\bcaps?\\b|foil seals?",
+      "kind": "device"
+    },
+    {
+      "operation": "imaging",
+      "pattern": "microscop|under the scope|^image\\b|screenshot|visually|\\binspect\\b|^check (under|for the presence)|check for (the )?presence|check .* recovery",
+      "kind": "action"
+    },
+    {
+      "operation": "centrifugation",
+      "pattern": "centrifug|\\bpellet\\b|spin (down|briefly)|briefly spin|pulse[- ]spin|quick spin|[0-9] ?x ?g\\b|\\brcf\\b",
+      "kind": "device"
+    },
+    {
+      "operation": "rotation",
+      "pattern": "rotat|nutat|end-over-end|tube revolver",
+      "kind": "device"
+    },
+    {
+      "operation": "shaking",
+      "pattern": "\\bshak|thermomixer|orbital|[0-9]+ ?rpm",
+      "kind": "device"
+    },
+    {
+      "operation": "thermocycling",
+      "pattern": "thermocycler|thermal cycler|pcr (machine|programme|program)|cycles? of [0-9]|\\bprogramme\\b|^[0-9]+ ?°? ?c (for )?[0-9]+ ?(s|sec|min).*[0-9]+ ?°? ?c|finish pcr",
+      "kind": "device"
+    },
+    {
+      "operation": "magnetic-separation",
+      "pattern": "magnet|magnetic (stand|rack|separator)|collect (the )?(beads|cells)|separate (the )?beads|bead[s]? (to )?(clear|settle)",
+      "kind": "device"
+    },
+    {
+      "operation": "reagent-preparation",
+      "pattern": "^(?:on ice, |per sample,? |for [^,]{1,60}, )?(prepare|make|dissolve|create|fill up)\\b|\\bto (?:prepare|make up) (?:the |a |fresh )?[a-z0-9-]+(?: [a-z0-9-]+)? (?:buffer|solution|stock)\\b|^\\[?for the first time only\\b|\\bmake up\\b|working (plate|solution|stock)|set up according to the table|(the )?following (master )?mix|with this master mix",
+      "kind": "action"
+    },
+    {
+      "operation": "agitation",
+      "pattern": "vortex|\\binvert|\\bflick",
+      "kind": "action"
+    },
+    {
+      "operation": "mixing",
+      "pattern": "^mix\\b(?! by (?:[a-z-]+ ){0,3}(?:vortex|invert|flick))|pipett(e|ing) up and down|resuspend (well|gently)$|\\bswirl",
+      "kind": "action"
+    },
+    {
+      "operation": "liquid-transfer",
+      "pattern": "^add\\b|\\badd(ing|ed)?\\b|transfer|resuspend|\\bremove\\b|discard|aspirat|dilute|^adjust|aliquot|^take\\b|^elute|\\bwash(ed|es|ing)?\\b|replace (the )?(buffer|supernatant)|^load\\b|\\bpipett(e|ing)\\b|\\bpool(ed|ing)?\\b|\\bcombine\\b|\\bdecant\\b|\\bdrain\\b|cleanse tips|\\bdistribute\\b|\\bsplit(ting)? (into|across)",
+      "kind": "action"
+    },
+    {
+      "operation": "incubation",
+      "pattern": "incubat|^leave\\b|at (room temperature|rt|[0-9]+ ?°? ?c) for|on ice for|\\bwarm\\b|pre-?warm|\\bcool\\b|\\bheat\\b",
+      "kind": "action"
+    },
+    {
+      "operation": "wait",
+      "pattern": "air[- ]dry|dry the|let (it )?(sit|stand)|^wait\\b",
+      "kind": "action"
+    }
+  ],
+  "tableValues": [
+    "^[0-9.,]+ ?(µl|ul|μl|ml|x|%)?$",
+    "^(sample|reagent|component|volume|total|x|\\+ ?[0-9]+ ?%)$",
+    "^\\+ ?[0-9]+ ?%$",
+    "^(no\\.?|number) of\\b|^reaction (number|volume)|^[0-9]+ (reaction|rxn)s? ?\\(",
+    "^[0-9]+ ?\\((in )?(µl|μl|ul)\\)$",
+    "^1 pseudo",
+    "_{3,}",
+    "^[a-z0-9 ]{1,15}:$"
+  ],
+  "inputs": [
+    "\\bnumber for (the )?assay\\b|\\bto add for\\b|^specify\\b|->|=\\s*_*$|^volume of .*=|^estimated .*:|recovered.*:|^final .* recovery|^need\\b"
+  ],
+  "notes": [
+    "^(note|tip|caution|important|critical|pause point|safety|purpose|alternative|alternatively|ensure|make sure|do not|avoid|remember|hint)\\b",
+    "\\b(may|can) be stored\\b|^store (at|on|in)\\b|^optional: store|\\bstore at -?[0-9]",
+    "\\bkeep [a-z ]*on ice\\b|^place (the )?[a-z ]*on ice\\.?$|^chill on ice|freshly|on the day",
+    "^thaw\\b|^time:|^continue (immediately|with)|^during\\b|^proceed\\b|^go to\\b|^in the meantime\\b",
+    "^\\(|^see (table|step|above|below)",
+    "\\btends? to\\b",
+    "^\\d+ reactions? for every\\b",
+    "\\b(is|are) (calculated|based|determined|used|performed)\\b|^the (below|above)\\b|\\bcan be (performed|done|diluted|used)\\b"
+  ],
+  "headers": [
+    "\\((pending|in testing|used currently|optional|if applicable|draft)\\)$|\\s-\\s*pending$|^for [^:,]{1,50}:\\s*[^.]{0,60}$|:$"
+  ],
+  "programme": "^(?:[a-z]\\.\\s*)?-?[0-9]+(?:\\.[0-9]+)? ?°? ?c\\b.*([0-9]+ ?(s|sec|secs|seconds?|min|mins|minutes?|h|hrs?|hours?)\\b|hold|∞)",
+  "verbs": "add|adding|added|transfer|transferred|pipette|pipetting|remove|removing|discard|aspirate|wash|washed|washing|mix|mixing|vortex|invert|incubate|incubating|spin|centrifuge|pellet|place|put|collect|pool|pooling|combine|decant|drain|resuspend|re-suspend|dilute|dissolve|fill|prepare|make|create|warm|cool|chill|heat|seal|cap|label|retrieve|run|start|perform|load|measure|count|check|inspect|confirm|record|export|save|print|paste|clean|cleanse|attach|connect|disconnect|crosslink|expose|rotate|shake|elute|aliquot|stop|take|use|set|select|assign|choose|leave|swirl|harvest|split|distribute|split|insert|adjust|apply|image|plot|calculate|determine|finish|wipe|spin|transfer|purify|fragment|click|amplify|digest|elute",
+  "unknownInstructionAbout": "A sentence that starts with a capitalised imperative the verb list does not know (\"Sonicate the samples.\", \"Vortex briefly.\") is an instruction, not a heading. It comes back unknown so the import review lists it. A finite verb (is, are, should, may...) marks a statement instead, and words ending in -ing or -ed are not imperatives (#158).",
+  "unknownInstruction": "^(?![A-Za-z]+(?:ing|ed)\\b)[A-Z][a-z]{2,}\\s+(?:the|all|each|a|an|your|briefly|gently|thoroughly|vigorously|well|for|at|until|on|in|to|with|overnight|samples?|cells?|beads?|tubes?|plates?|wells?|it|them)\\b(?!.*\\b(?:is|are|was|were|should|may|might|can|could|will|must|tends?)\\b).*[.!]$",
+  "continuation": "^([0-9]+) ?(x|times) with\\b",
+  "alternatives": {
+    "about": "A step that offers labelled alternatives (\"For A: ...\" then \"For B: ...\", or blocks marked used currently / pending / in testing) is not run in sequence: one alternative is counted (#171). An explicit label is 'For <name>:' or '<name> (status)'; a bare '<name>:' line counts only in a step that also has an explicit one, and never when it is a table value or fill-in. The workflow's `branches` chooses by name; otherwise a block marked in use is taken, otherwise the first is counted and the step is listed as a question. An end line (an optional or if-applicable block, or one that says it applies to both) closes the alternatives; it and what follows are shared. Generic phrasing only.",
+    "explicit": [
+      "^for (?!(?:the|a|an|each|every|all|both|either|this|these|that|those|[0-9])\\b)([^:,.()]{2,40}):\\s*(.{0,60})$",
+      "^([^():]{3,60}?)\\s*\\((?:used currently|currently used|in use|pending|in testing|draft|not used|old)\\)\\.?$"
+    ],
+    "bare": "^([A-Za-z][A-Za-z0-9 -]{2,30}):$",
+    "inUse": "\\((?:used currently|currently used|in use)\\)",
+    "end": "\\((?:optional|if applicable)\\)\\s*$|\\bfor both\\b|\\bfor (?:all|either) (?:of the )?(?:samples|options|alternatives|methods)\\b"
+  },
+  "washes": {
+    "about": "A defined wash (#171): 'For the following steps all washes consist of: 1 min rotation + 1 min spin. Remove ... supernatant' (until the end of the step or of its alternative), or an inline '(Wash = ...)' on one line. Each later wash line ('Wash ... twice', '3 times with 0.5 mL ...') becomes, per wash, the addition, the defined hold (rotation, shaking, incubation) and separation (spin, magnet), and the removal of the supernatant. Holds without a duration in the definition are counted only when the wash line states one. The last removal is left out when the protocol says not to remove it, or when the next line removes the supernatant itself. Generic phrasing only.",
+    "define": "^for (?:the|all) (?:following|subsequent|remaining) steps?,? all (?:mentioned )?(?:washes|spins|incubations?)\\b",
+    "inlineStart": "\\(\\s*wash(?:es)?\\s*=\\s*",
+    "wash": "\\bwash",
+    "split": "\\s\\+\\s|(?<=[.:])\\s+(?=[A-Z0-9])|,? and (?=all\\b)",
+    "keepLast": "do not remove (?:the )?supernatant (?:at|after|on|for|in|from) the last",
+    "first": "\\(?[^()]*\\bof the first wash is ([0-9]+(?:\\.[0-9]+)? ?(?:minutes?|mins?|min|seconds?|secs?|s|hours?|h))\\)?",
+    "removes": "\\bremove\\b[^.]*\\bsupernatant\\b|\\bdiscard\\b[^.]*\\bsupernatant\\b"
+  },
+  "combinedVolumeAbout": "An 'X in Y' line (resuspend, dilute, dissolve or mix X µl of one liquid in Y µl of another) leaves X + Y in the vessel. Not when Y is a container ('in a 0.2 ml tube') or already the total ('in 20 µl total').",
+  "combinedVolume": "\\b(?:re-?suspend|suspend|dilut|dissolv|mix)\\w*\\b[^.;]*?\\b([0-9]+(?:\\.[0-9]+)?) ?([µuμ]l|ml)\\b[^.;]*?\\bin ([0-9]+(?:\\.[0-9]+)?) ?([µuμ]l|ml)\\b(?! *(?:pcr |lo-?bind |low[- ]bind )?(?:tubes?|plates?|wells?|strips?|total|final|reaction)\\b)",
+  "programmeNotes": "^(initial |final )?(activate|denatur|anneal|extend|extension|synthesis|preserve|quick denaturation|high temp|hold\\b)",
+  "transferLayouts": {
+    "about": "Transfers a fixed-pitch head cannot do as one block (#82): read from a liquid-transfer line. First match wins. Generic phrasing only.",
+    "layouts": [
+      {
+        "id": "pool",
+        "label": "Pooling many wells into one vessel",
+        "pattern": "\\b(pool|combin)\\w*\\b[^.]*\\binto (a|an|one|the|a single|a new|a fresh)?\\s*([\\w.-]+\\s+){0,4}(tubes?|eppendorfs?|falcons?|vessel|bottle|vial)\\b"
+      },
+      {
+        "id": "normalise",
+        "label": "A different volume in each well (normalisation)",
+        "pattern": "normali[sz]|equimolar|equal (amounts?|mass|concentrations?)|variable volumes?|(calculated|appropriate|required|desired) (volume|amount|number)|\\b\\d+(\\.\\d+)?\\s*[-–]\\s*\\d+(\\.\\d+)?\\s*(µl|ul|μl|ml)\\b[^.]*\\beach\\b"
+      },
+      {
+        "id": "cherry-pick",
+        "label": "Selected wells (cherry-picking)",
+        "pattern": "cherry[- ]?pick|hit[- ]?pick|re-?array|selected (wells|samples)"
+      },
+      {
+        "id": "reformat",
+        "label": "Between tubes and a plate",
+        "pattern": "\\b(tubes?|eppendorfs?|vials?)\\b[^.]*\\b(plates?|wells?)\\b|\\b(plates?|wells?)\\b[^.]*\\b(tubes?|eppendorfs?|vials?)\\b"
+      }
+    ],
+    "tubes": "Tubes, which do not sit at a plate pitch",
+    "positions": {
+      "about": "How many positions an irregular transfer serves, when its line says so (#98): a count of wells, tubes or positions, or a range of plate columns. The largest stated count is used; with none stated the transfer is counted per sample.",
+      "count": "\\b(\\d+)(?:[\\s-]+(?:remaining|other|separate|individual))?[\\s-]+(wells|tubes|positions)\\b",
+      "columns": "\\bcolumns?\\s+(\\d+)\\s*(?:-|–|to|and|through)\\s*(\\d+)\\b"
+    }
+  }
+}

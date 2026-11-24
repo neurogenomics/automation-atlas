@@ -1,0 +1,2022 @@
+{
+ "about": "What each on-deck module and connected device can hold a plate at (issue #65): temperature range, whether cooling is absolute or only relative to room temperature, agitation, and whether agitation runs during temperature control. A step uses a module only if its range covers every condition the step needs at the same time. Every figure cites the page it was read from; null means not found, and the planner then asks rather than assumes. Relative cooling is checked against an ambient of 22 °C.",
+ "ambientC": 22,
+ "handlers": {
+  "flex": {
+   "Heater-Shaker": {
+    "temperature": {
+     "min": 37,
+     "max": 95,
+     "cooling": "none"
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 200,
+     "rpmMax": 3000,
+     "duringTemperature": true
+    },
+    "source": {
+     "url": "https://docs.opentrons.com/v2/modules/heater_shaker.html",
+     "quote": "The module can heat from 37 to 95 °C, and can shake samples from 200 to 3000 rpm. ... You can also use concurrent commands to heat and shake simultaneously."
+    }
+   },
+   "Temperature Module": {
+    "temperature": {
+     "min": 4,
+     "max": 95,
+     "cooling": "absolute"
+    },
+    "agitation": null,
+    "source": {
+     "url": "https://docs.opentrons.com/v2/modules/temperature_module.html",
+     "quote": "It can control the temperature of its deck between 4 °C and 95 °C with a resolution of 1 °C."
+    }
+   },
+   "Thermocycler": {
+    "temperature": {
+     "min": 4,
+     "max": 99,
+     "cooling": "absolute"
+    },
+    "agitation": null,
+    "source": {
+     "url": "https://docs.opentrons.com/v2/modules/thermocycler.html",
+     "quote": "The module's block can reach and maintain temperatures between 4 and 99 °C."
+    }
+   },
+   "Magnetic Block": {
+    "temperature": null,
+    "agitation": null,
+    "source": {
+     "url": "https://docs.opentrons.com/v2/modules/magnetic_block.html",
+     "quote": "an unpowered, 96-well plate that holds labware close to its high-strength neodymium magnets"
+    }
+   }
+  },
+  "ot2": {
+   "Heater-Shaker": {
+    "temperature": {
+     "min": 37,
+     "max": 95,
+     "cooling": "none"
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 200,
+     "rpmMax": 3000,
+     "duringTemperature": true
+    },
+    "source": {
+     "url": "https://docs.opentrons.com/v2/modules/heater_shaker.html",
+     "quote": "The module can heat from 37 to 95 °C, and can shake samples from 200 to 3000 rpm. ... You can also use concurrent commands to heat and shake simultaneously."
+    }
+   },
+   "Temperature Module": {
+    "temperature": {
+     "min": 4,
+     "max": 95,
+     "cooling": "absolute"
+    },
+    "agitation": null,
+    "source": {
+     "url": "https://docs.opentrons.com/v2/modules/temperature_module.html",
+     "quote": "It can control the temperature of its deck between 4 °C and 95 °C with a resolution of 1 °C."
+    }
+   },
+   "Thermocycler": {
+    "temperature": {
+     "min": 4,
+     "max": 99,
+     "cooling": "absolute"
+    },
+    "agitation": null,
+    "source": {
+     "url": "https://docs.opentrons.com/v2/modules/thermocycler.html",
+     "quote": "The module's block can reach and maintain temperatures between 4 and 99 °C."
+    }
+   },
+   "Magnetic Module": {
+    "temperature": null,
+    "agitation": null,
+    "source": {
+     "url": "https://docs.opentrons.com/v2/modules/magnetic_module.html",
+     "quote": "Raise and lower the module's magnets"
+    }
+   },
+   "QInstruments BioShake Q1 (QOT kit)": {
+    "ops": [
+     "shaking",
+     "mixing"
+    ],
+    "alt": true,
+    "temperature": {
+     "min": 4,
+     "max": 99.9,
+     "cooling": "relative",
+     "belowAmbientK": 24
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 200,
+     "rpmMax": 3000,
+     "duringTemperature": true
+    },
+    "source": {
+     "url": "https://www.qinstruments.com/knowledge/qinstruments-supports-opentrons-applications/",
+     "quote": "QOT OT-2 kit supports BioShake, ColdPlate and HeatPlate; BioShake Q1 up to 24 K under room temperature, 200–3000 rpm (qinstruments.com/automation/bioshake-q1)"
+    },
+    "notes": "QInstruments gives no warranty for use on Opentrons; no Flex kit documented."
+   }
+  },
+  "plr-hamilton-star": {
+   "Hamilton Heater Shaker 2G (HHS)": {
+    "ops": [],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": null,
+     "max": 105,
+     "cooling": "none",
+     "aboveAmbientK": 5
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 100,
+     "rpmMax": 2500,
+     "duringTemperature": true
+    },
+    "partNumber": "199033 (HHS 2.0 flat bottom); 199034 (HHS 3.0 flat bottom); control box 190755",
+    "replaces": [],
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Temperature control: Ambient +5° C to 105° C ... Shaking speed: 100 to 2500 RPM",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Hamilton Heater Shaker 2G. Heats only (lower limit ambient +5 K; cannot cool). Orbits 1.5/2.0/3.0 mm, CW and CCW. Automatic plate lock. Brochure: 'Can be integrated with the Prep, NIMBUS, STAR, STAR V, and VANTAGE'. Brochure is Hamilton's 'Integrated Devices' PDF (created Jan 2024) hosted on conferenceharvester.com (exhibitor upload); hamiltoncompany.com returned 403. 'Orbital' inferred from 'orbit' wording.",
+    "altOps": [
+     "shaking"
+    ]
+   },
+   "Hamilton Heater Shaker 3G (HHS 3G)": {
+    "ops": [],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": null,
+     "max": 105,
+     "cooling": "none",
+     "aboveAmbientK": 5
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": null,
+     "rpmMax": 2500,
+     "duringTemperature": true
+    },
+    "partNumber": "Configurable (adapter/orbit/cable); control box 190755",
+    "replaces": [],
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Temperature control: Ambient +5° C to 105° C ... Shaking Speed: up to 2500 RPM",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Hamilton Heater Shaker 3G. Heats only. Orbits 1.5/2.0/3.0/4.0 mm field-adjustable; smart adapters with ID chip. Minimum rpm not stated for 3G (2G states 100). Platform list not repeated on 3G page; 2G page lists Prep, NIMBUS, STAR, STAR V, VANTAGE."
+   },
+   "Hamilton Heater Cooler (HHC)": {
+    "ops": [
+     "heating-cooling"
+    ],
+    "offers": [
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 0,
+     "max": 110,
+     "cooling": "absolute"
+    },
+    "agitation": null,
+    "partNumber": "6601900-01; control box 190755",
+    "replaces": [],
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "HHC offers a controllable temperature range of 0° C-110° C",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Hamilton Heater Cooler. No shaking. Range stated as absolute 0-110 °C (ramp 25->0 °C in 6 min, 'varies based on environmental conditions'); no ΔT-below-ambient limit stated. Search snippets report a Hamilton web page saying 0-100 °C (not opened; 403). Brochure: 'Can be integrated with Hamilton's Prep, NIMBUS, STAR, STAR V, and VANTAGE'."
+   },
+   "On-Deck Thermal Cycler (ODTC)": {
+    "ops": [
+     "thermocycling"
+    ],
+    "offers": [
+     "thermocycling",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 99,
+     "cooling": "absolute"
+    },
+    "agitation": null,
+    "partNumber": "96124-01 (Single ODTC Kit STAR); 96124-02 (Dual ODTC Kit STAR)",
+    "replaces": [],
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Temperature Range 4° C to 99° C (39.2° F to 210.2° F)",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "INHECO ODTC sold by Hamilton. Heating max 4.4 K/s, cooling max 2.2 K/s; heated lid ambient+5 K to 115 °C (default 110 °C); horizontally opening lid, pipetting access during run; 2.5 ANSI/SLAS sites. Part numbers shown are STAR kits."
+   },
+   "Inheco CPAC Ultraflat": {
+    "ops": [],
+    "offers": [
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 70,
+     "cooling": "relative",
+     "belowAmbientK": 25
+    },
+    "agitation": null,
+    "partNumber": "7000190, 7000193 (Ultraflat); 7000166, 7000165 (Ultraflat HT 2TEC, +4 to +110 °C)",
+    "replaces": [],
+    "source": {
+     "url": "https://www.inheco.com/cpac.html",
+     "quote": "standard version operates in a temperature range of +4°C to +70°C ... temperature range minimum 25K below room temperature",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Inheco CPAC Ultraflat Peltier heater/cooler, no shaking. HT 2-TEC variant reaches +110 °C. Cooling ΔT: page states 'minimum 25K below room temperature'; spec table summarised as 'Up to 30 K' (WebFetch summary). 4 °C reachable only if ambient ≤ ~29-34 °C. Also listed in PyLabRobot docs (inheco_cpac_ultraflat). On NGS STAR deck: item 11 'Inheco Cold Plate Air Cooled (CPAC) Ultraflat Module' (https://www.trillium.de/fileadmin/user_upload/Hamilton_-_NGS-STAR_Flyer.pdf)."
+   },
+   "Inheco Thermoshake": {
+    "ops": [
+     "shaking"
+    ],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 70,
+     "cooling": "relative",
+     "belowAmbientK": 25
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 100,
+     "rpmMax": 2000,
+     "duringTemperature": true
+    },
+    "partNumber": "7100146 (Thermoshake); 7100144 (Thermoshake RM, for Tecan RoMa)",
+    "replaces": [],
+    "source": {
+     "url": "https://www.inheco.com/thermoshake-classic.html",
+     "quote": "Temperature range +4 °C to +70 °C ... Maximum ∆T (=T ambient - T target) in cooling mode 25 K",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Inheco Thermoshake (Classic) heater-cooler-shaker: 100-2000 rpm, 2 mm amplitude, orbital or linear (diagonal/lengthways/sideways). Inheco brochure lists integrations: Beckman Biomek i5/i7, Hamilton Vantage/Star Line/Nimbus, Tecan Fluent/Freedom EVO (https://www.inheco.com/data/pdf/broshure-thermoshake-01-2023-0522-1343-45.pdf). Hamilton 'Star Line' integration per Inheco brochure."
+   },
+   "Hamilton Incubator Shaker (HIS)": {
+    "ops": [],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": null,
+     "max": 60,
+     "cooling": "none",
+     "aboveAmbientK": 4
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 40,
+     "rpmMax": 1200,
+     "duringTemperature": true
+    },
+    "partNumber": "96486-02 (4x lidded MTP); 96486-03; 96486-04",
+    "replaces": [],
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Controllable Temperature Range Ambient +4° C to 60° C ... Frequency 40-1200 RPM (.67-20 Hz)",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Hamilton Incubator Shaker: enclosed multi-plate incubator (2-4 lidded plates), 3 mm orbital, heats only. Plates loaded via extending fork (gripper-loaded). Brochure says HIS units 'can be integrated on Hamilton's automated liquid handling platforms' without naming which; assigned to STAR/STARlet/Vantage here as an assumption."
+   },
+   "Sample Cooling Carrier": {
+    "ops": [],
+    "offers": [
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": null,
+     "cooling": "absolute"
+    },
+    "agitation": null,
+    "partNumber": "10105589 / 10105590 / 10105594 (Cooling Carrier Module 1/2/3)",
+    "replaces": [],
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Controllable Temperature Range Cooling down to 4° C (with Hube Minichiller)",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Hamilton Sample Cooling Carrier for up to 96 TUBES (not plates), cooled in the original container by external chiller; auto-loadable carrier. 'Compatible with STAR and Vantage'. Cooling only; max temperature not stated."
+   },
+   "Multiflex Seesaw Module": {
+    "ops": [],
+    "offers": [
+     "shaking"
+    ],
+    "temperature": null,
+    "agitation": {
+     "type": "rocking",
+     "rpmMin": 16,
+     "rpmMax": 59,
+     "duringTemperature": false
+    },
+    "partNumber": "188063",
+    "replaces": [],
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Rocking speeds of 16, 34, 51, and 59 RPM",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Multiflex Seesaw Module: rocking (tilt 0-15°), four fixed speeds, no temperature control; for troughs, microplates, deep-well plates. Agitation type 'rocking' is outside orbital|linear. Platform not stated in brochure (Multiflex is a STAR-line carrier system: assumption). Candidate for 'rotate/rock' steps only at ambient."
+   },
+   "Invitrogen Ambion Magnetic Stand": {
+    "ops": [
+     "magnetic-separation"
+    ],
+    "offers": [
+     "magnetic-separation"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": null,
+    "replaces": [],
+    "source": {
+     "url": "https://www.trillium.de/fileadmin/user_upload/Hamilton_-_NGS-STAR_Flyer.pdf",
+     "quote": "iSWAP and CO-RE Gripper for plate transport steps as well as a Magnetic Stand for bead cleanups",
+     "sourceKind": "distributor"
+    },
+    "notes": "Passive magnet: deck item 8 is 'Invitrogen Ambion Magnetic Stand'. Plate is moved onto it by gripper. NGS STAR flyer (Hamilton) hosted by distributor Trillium."
+   },
+   "iSWAP": {
+    "ops": [
+     "vessel-transfer"
+    ],
+    "offers": [
+     "vessel-transfer"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": "Ordered with NGS STAR as 'ODTC 96 Kit and iSWAP' (806604 + 190220)",
+    "replaces": [],
+    "source": {
+     "url": "https://www.trillium.de/fileadmin/user_upload/Hamilton_-_NGS-STAR_Flyer.pdf",
+     "quote": "Additionally, iSWAP and CO-RE Gripper for plate transport steps",
+     "sourceKind": "distributor"
+    },
+    "notes": "Plate-handling arm (Hamilton iSWAP). mode null: this is the mover, not a destination. Reach/rotation specs not found (hamiltoncompany.com 403). PyLabRobot drives it (legacy STAR backend)."
+   },
+   "CO-RE Gripper": {
+    "ops": [],
+    "offers": [
+     "vessel-transfer"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": null,
+    "replaces": [],
+    "source": {
+     "url": "https://www.trillium.de/fileadmin/user_upload/Hamilton_-_NGS-STAR_Flyer.pdf",
+     "quote": "Additionally, iSWAP and CO-RE Gripper for plate transport steps",
+     "sourceKind": "distributor"
+    },
+    "notes": "Gripper paddles picked up by two pipetting channels. Deck item 13 on NGS STAR. mode null (mover)."
+   }
+  },
+  "starlet": {
+   "Hamilton Heater Shaker (HHS)": {
+    "ops": [],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": null,
+     "max": 105,
+     "cooling": "none",
+     "aboveAmbientK": 5
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 100,
+     "rpmMax": 2500,
+     "duringTemperature": true
+    },
+    "partNumber": "199033 (HHS 2.0 flat bottom); 199034 (HHS 3.0 flat bottom); control box 190755",
+    "replaces": [],
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Temperature control: Ambient +5° C to 105° C ... Shaking speed: 100 to 2500 RPM",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Clinical NGS STARlet ships with 2 HHS (https://www.trillium.de/fileadmin/user_upload/Clinical_NGS_STARlet_IVD-R_Flyer.pdf). Figures from Hamilton Integrated Devices brochure (2G). Hamilton Heater Shaker 2G. Heats only (lower limit ambient +5 K; cannot cool). Orbits 1.5/2.0/3.0 mm, CW and CCW. Automatic plate lock. Brochure: 'Can be integrated with the Prep, NIMBUS, STAR, STAR V, and VANTAGE'. Brochure is Hamilton's 'Integrated Devices' PDF (created Jan 2024) hosted on conferenceharvester.com (exhibitor upload); hamiltoncompany.com returned 403. 'Orbital' inferred from 'orbit' wording.",
+    "altOps": [
+     "shaking"
+    ]
+   },
+   "On-Deck Thermal Cycler (ODTC)": {
+    "ops": [
+     "thermocycling"
+    ],
+    "offers": [
+     "thermocycling",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 99,
+     "cooling": "absolute"
+    },
+    "agitation": null,
+    "partNumber": "96124-01 (Single ODTC Kit STAR); 96124-02 (Dual ODTC Kit STAR)",
+    "replaces": [],
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Temperature Range 4° C to 99° C (39.2° F to 210.2° F)",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "INHECO ODTC sold by Hamilton. Heating max 4.4 K/s, cooling max 2.2 K/s; heated lid ambient+5 K to 115 °C (default 110 °C); horizontally opening lid, pipetting access during run; 2.5 ANSI/SLAS sites. Part numbers shown are STAR kits. Clinical NGS STARlet config 806691 = 'ML STARlet IVD-R ... + ODTC + 2 HHS + 2 CPACs' (https://www.trillium.de/fileadmin/user_upload/Clinical_NGS_STARlet_IVD-R_Flyer.pdf); STAR kit part numbers may differ for STARlet."
+   },
+   "Inheco CPAC": {
+    "ops": [],
+    "offers": [
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 70,
+     "cooling": "relative",
+     "belowAmbientK": 25
+    },
+    "agitation": null,
+    "partNumber": "7000190, 7000193 (Ultraflat); 7000166, 7000165 (Ultraflat HT 2TEC, +4 to +110 °C)",
+    "replaces": [],
+    "source": {
+     "url": "https://www.inheco.com/cpac.html",
+     "quote": "standard version operates in a temperature range of +4°C to +70°C ... temperature range minimum 25K below room temperature",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Clinical NGS STARlet flyer lists 'INHECO CPAC (Cold Plate Air Cooled)' x2, variant not stated; Ultraflat figures assumed. Inheco CPAC Ultraflat Peltier heater/cooler, no shaking. HT 2-TEC variant reaches +110 °C. Cooling ΔT: page states 'minimum 25K below room temperature'; spec table summarised as 'Up to 30 K' (WebFetch summary). 4 °C reachable only if ambient ≤ ~29-34 °C. Also listed in PyLabRobot docs (inheco_cpac_ultraflat)."
+   },
+   "Hamilton Heater Cooler (HHC)": {
+    "ops": [
+     "heating-cooling"
+    ],
+    "offers": [
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 0,
+     "max": 110,
+     "cooling": "absolute"
+    },
+    "agitation": null,
+    "partNumber": "6601900-01; control box 190755",
+    "replaces": [
+     "heating-cooling"
+    ],
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "HHC offers a controllable temperature range of 0° C-110° C",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Hamilton Heater Cooler. No shaking. Range stated as absolute 0-110 °C (ramp 25->0 °C in 6 min, 'varies based on environmental conditions'); no ΔT-below-ambient limit stated. Search snippets report a Hamilton web page saying 0-100 °C (not opened; 403). Brochure: 'Can be integrated with Hamilton's Prep, NIMBUS, STAR, STAR V, and VANTAGE'. STARlet is a STAR-line model (brochure says STAR; STARlet not named separately)."
+   },
+   "Inheco Thermoshake": {
+    "ops": [
+     "shaking"
+    ],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 70,
+     "cooling": "relative",
+     "belowAmbientK": 25
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 100,
+     "rpmMax": 2000,
+     "duringTemperature": true
+    },
+    "partNumber": "7100146 (Thermoshake); 7100144 (Thermoshake RM, for Tecan RoMa)",
+    "replaces": [],
+    "source": {
+     "url": "https://www.inheco.com/thermoshake-classic.html",
+     "quote": "Temperature range +4 °C to +70 °C ... Maximum ∆T (=T ambient - T target) in cooling mode 25 K",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Inheco Thermoshake (Classic) heater-cooler-shaker: 100-2000 rpm, 2 mm amplitude, orbital or linear (diagonal/lengthways/sideways). Inheco brochure lists integrations: Beckman Biomek i5/i7, Hamilton Vantage/Star Line/Nimbus, Tecan Fluent/Freedom EVO (https://www.inheco.com/data/pdf/broshure-thermoshake-01-2023-0522-1343-45.pdf). Inheco lists 'Hamilton: ... Star Line' (STARlet is Star Line)."
+   },
+   "Magnetic Stand": {
+    "ops": [
+     "magnetic-separation"
+    ],
+    "offers": [
+     "magnetic-separation"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": null,
+    "replaces": [
+     "magnetic-separation"
+    ],
+    "source": {
+     "url": "https://www.trillium.de/fileadmin/user_upload/Clinical_NGS_STARlet_IVD-R_Flyer.pdf",
+     "quote": "Additionally, CO-RE® Gripper for plate transport steps, a Magentic Stand for magnetic bead handling",
+     "sourceKind": "distributor"
+    },
+    "notes": "Passive magnet stand, model not named (sic 'Magentic'). Plate moved on by CO-RE gripper."
+   },
+   "CO-RE Gripper": {
+    "ops": [
+     "vessel-transfer"
+    ],
+    "offers": [
+     "vessel-transfer"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": null,
+    "replaces": [
+     "vessel-transfer"
+    ],
+    "source": {
+     "url": "https://www.trillium.de/fileadmin/user_upload/Clinical_NGS_STARlet_IVD-R_Flyer.pdf",
+     "quote": "Additionally, CO-RE® Gripper for plate transport steps",
+     "sourceKind": "distributor"
+    },
+    "notes": "Only gripper named for Clinical NGS STARlet; iSWAP on STARlet not confirmed by an opened source. mode null (mover)."
+   }
+  },
+  "plr-hamilton-vantage": {
+   "INHECO Thermoshake AC": {
+    "ops": [
+     "shaking"
+    ],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 70,
+     "cooling": "relative",
+     "belowAmbientK": 25
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 300,
+     "rpmMax": 3000,
+     "duringTemperature": true
+    },
+    "partNumber": "7100160, 7100161",
+    "replaces": [],
+    "source": {
+     "url": "https://www.inheco.com/thermoshake-ac.html",
+     "quote": "Temperature range +4 °C to +70 °C ... Maximum temperature difference in cooling mode ∆T (=T ambient - T target) 25 K",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Inheco Thermoshake AC: orbital only, 2 mm amplitude, active clamping. Spec table 300-3000 rpm; overview text says 200-3000 and that <300 rpm is not guaranteed. Compatible with Tecan RoMa per Inheco brochure. On NGS VANTAGE deck (item 7): 'Perfect bead handling is provided by INHECO Thermoshake AC' (https://www.trillium.de/fileadmin/user_upload/F-2010-03_NGS-VANTAGE-Flyer.pdf)."
+   },
+   "Inheco CPAC": {
+    "ops": [],
+    "offers": [
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 70,
+     "cooling": "relative",
+     "belowAmbientK": 25
+    },
+    "agitation": null,
+    "partNumber": "7000190, 7000193 (Ultraflat); 7000166, 7000165 (Ultraflat HT 2TEC, +4 to +110 °C)",
+    "replaces": [],
+    "source": {
+     "url": "https://www.inheco.com/cpac.html",
+     "quote": "standard version operates in a temperature range of +4°C to +70°C ... temperature range minimum 25K below room temperature",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "NGS VANTAGE: 'Double INHECO CPAC capacity ensures temperature-controlled positions' (https://www.trillium.de/fileadmin/user_upload/F-2010-03_NGS-VANTAGE-Flyer.pdf); variant not stated, Ultraflat figures assumed. Inheco CPAC Ultraflat Peltier heater/cooler, no shaking. HT 2-TEC variant reaches +110 °C. Cooling ΔT: page states 'minimum 25K below room temperature'; spec table summarised as 'Up to 30 K' (WebFetch summary). 4 °C reachable only if ambient ≤ ~29-34 °C. Also listed in PyLabRobot docs (inheco_cpac_ultraflat)."
+   },
+   "Hamilton ODTC (On-Deck Thermo Cycler)": {
+    "ops": [
+     "thermocycling"
+    ],
+    "offers": [
+     "thermocycling",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 99,
+     "cooling": "absolute"
+    },
+    "agitation": null,
+    "partNumber": "96124-01 (Single ODTC Kit STAR); 96124-02 (Dual ODTC Kit STAR)",
+    "replaces": [],
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Temperature Range 4° C to 99° C (39.2° F to 210.2° F)",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "INHECO ODTC sold by Hamilton. Heating max 4.4 K/s, cooling max 2.2 K/s; heated lid ambient+5 K to 115 °C (default 110 °C); horizontally opening lid, pipetting access during run; 2.5 ANSI/SLAS sites. Part numbers shown are STAR kits. Listed on NGS VANTAGE deck (https://www.trillium.de/fileadmin/user_upload/F-2010-03_NGS-VANTAGE-Flyer.pdf); STAR kit part numbers do not apply."
+   },
+   "Hamilton Heater Shaker 2G (HHS)": {
+    "ops": [],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": null,
+     "max": 105,
+     "cooling": "none",
+     "aboveAmbientK": 5
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 100,
+     "rpmMax": 2500,
+     "duringTemperature": true
+    },
+    "partNumber": "199033 (HHS 2.0 flat bottom); 199034 (HHS 3.0 flat bottom); control box 190755",
+    "replaces": [],
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Temperature control: Ambient +5° C to 105° C ... Shaking speed: 100 to 2500 RPM",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Hamilton Heater Shaker 2G. Heats only (lower limit ambient +5 K; cannot cool). Orbits 1.5/2.0/3.0 mm, CW and CCW. Automatic plate lock. Brochure: 'Can be integrated with the Prep, NIMBUS, STAR, STAR V, and VANTAGE'. Brochure is Hamilton's 'Integrated Devices' PDF (created Jan 2024) hosted on conferenceharvester.com (exhibitor upload); hamiltoncompany.com returned 403. 'Orbital' inferred from 'orbit' wording.",
+    "altOps": [
+     "shaking"
+    ]
+   },
+   "Hamilton Heater Cooler (HHC)": {
+    "ops": [
+     "heating-cooling"
+    ],
+    "offers": [
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 0,
+     "max": 110,
+     "cooling": "absolute"
+    },
+    "agitation": null,
+    "partNumber": "6601900-01; control box 190755",
+    "replaces": [],
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "HHC offers a controllable temperature range of 0° C-110° C",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Hamilton Heater Cooler. No shaking. Range stated as absolute 0-110 °C (ramp 25->0 °C in 6 min, 'varies based on environmental conditions'); no ΔT-below-ambient limit stated. Search snippets report a Hamilton web page saying 0-100 °C (not opened; 403). Brochure: 'Can be integrated with Hamilton's Prep, NIMBUS, STAR, STAR V, and VANTAGE'."
+   },
+   "Hamilton Cooling Carrier Module": {
+    "ops": [],
+    "offers": [
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": null,
+     "cooling": "absolute"
+    },
+    "agitation": null,
+    "partNumber": "10105589 / 10105590 / 10105594 (Cooling Carrier Module 1/2/3)",
+    "replaces": [],
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Controllable Temperature Range Cooling down to 4° C (with Hube Minichiller)",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Hamilton Sample Cooling Carrier for up to 96 TUBES (not plates), cooled in the original container by external chiller; auto-loadable carrier. 'Compatible with STAR and Vantage'. Cooling only; max temperature not stated. Also on NGS VANTAGE deck."
+   },
+   "Magnetic Stand (Thermo Fisher-Ambion)": {
+    "ops": [
+     "magnetic-separation"
+    ],
+    "offers": [
+     "magnetic-separation"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": null,
+    "replaces": [],
+    "source": {
+     "url": "https://www.trillium.de/fileadmin/user_upload/F-2010-03_NGS-VANTAGE-Flyer.pdf",
+     "quote": "the internal Plate Gripper and Quad CO-RE Gripper for plate transport steps, combined with a magnetic stand",
+     "sourceKind": "distributor"
+    },
+    "notes": "Passive magnet stand (deck item 3)."
+   },
+   "Internal Plate Gripper (IPG)": {
+    "ops": [],
+    "offers": [
+     "vessel-transfer"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": null,
+    "replaces": [],
+    "source": {
+     "url": "https://www.trillium.de/fileadmin/user_upload/F-2010-03_NGS-VANTAGE-Flyer.pdf",
+     "quote": "the internal Plate Gripper and Quad CO-RE Gripper for plate transport steps",
+     "sourceKind": "distributor"
+    },
+    "notes": "PyLabRobot legacy Vantage backend has ipg_grip_plate / ipg_put_plate commands. mode null (mover)."
+   },
+   "Quad CO-RE Gripper": {
+    "ops": [
+     "vessel-transfer"
+    ],
+    "offers": [
+     "vessel-transfer"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": null,
+    "replaces": [],
+    "source": {
+     "url": "https://www.trillium.de/fileadmin/user_upload/F-2010-03_NGS-VANTAGE-Flyer.pdf",
+     "quote": "the internal Plate Gripper and Quad CO-RE Gripper for plate transport steps",
+     "sourceKind": "distributor"
+    },
+    "notes": "mode null (mover)."
+   }
+  },
+  "plr-hamilton-nimbus": {
+   "Hamilton Heater Shaker 2G (HHS)": {
+    "ops": [],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": null,
+     "max": 105,
+     "cooling": "none",
+     "aboveAmbientK": 5
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 100,
+     "rpmMax": 2500,
+     "duringTemperature": true
+    },
+    "partNumber": "199033 (HHS 2.0 flat bottom); 199034 (HHS 3.0 flat bottom); control box 190755",
+    "replaces": [],
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "Temperature control: Ambient +5° C to 105° C ... Shaking speed: 100 to 2500 RPM",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Hamilton Heater Shaker 2G. Heats only (lower limit ambient +5 K; cannot cool). Orbits 1.5/2.0/3.0 mm, CW and CCW. Automatic plate lock. Brochure: 'Can be integrated with the Prep, NIMBUS, STAR, STAR V, and VANTAGE'. Brochure is Hamilton's 'Integrated Devices' PDF (created Jan 2024) hosted on conferenceharvester.com (exhibitor upload); hamiltoncompany.com returned 403. 'Orbital' inferred from 'orbit' wording.",
+    "altOps": [
+     "shaking"
+    ]
+   },
+   "Hamilton Heater Cooler (HHC)": {
+    "ops": [
+     "heating-cooling"
+    ],
+    "offers": [
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 0,
+     "max": 110,
+     "cooling": "absolute"
+    },
+    "agitation": null,
+    "partNumber": "6601900-01; control box 190755",
+    "replaces": [],
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "HHC offers a controllable temperature range of 0° C-110° C",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Hamilton Heater Cooler. No shaking. Range stated as absolute 0-110 °C (ramp 25->0 °C in 6 min, 'varies based on environmental conditions'); no ΔT-below-ambient limit stated. Search snippets report a Hamilton web page saying 0-100 °C (not opened; 403). Brochure: 'Can be integrated with Hamilton's Prep, NIMBUS, STAR, STAR V, and VANTAGE'."
+   },
+   "Inheco Thermoshake": {
+    "ops": [
+     "shaking"
+    ],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 70,
+     "cooling": "relative",
+     "belowAmbientK": 25
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 100,
+     "rpmMax": 2000,
+     "duringTemperature": true
+    },
+    "partNumber": "7100146 (Thermoshake); 7100144 (Thermoshake RM, for Tecan RoMa)",
+    "replaces": [],
+    "source": {
+     "url": "https://www.inheco.com/thermoshake-classic.html",
+     "quote": "Temperature range +4 °C to +70 °C ... Maximum ∆T (=T ambient - T target) in cooling mode 25 K",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Inheco Thermoshake (Classic) heater-cooler-shaker: 100-2000 rpm, 2 mm amplitude, orbital or linear (diagonal/lengthways/sideways). Inheco brochure lists integrations: Beckman Biomek i5/i7, Hamilton Vantage/Star Line/Nimbus, Tecan Fluent/Freedom EVO (https://www.inheco.com/data/pdf/broshure-thermoshake-01-2023-0522-1343-45.pdf). Inheco lists 'Hamilton: Vantage, Star Line, Nimbus'."
+   }
+  },
+  "plr-hamilton-prep": {
+   "Hamilton Heater Shaker": {
+    "ops": [
+     "shaking"
+    ],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": null,
+     "max": 105,
+     "cooling": "none",
+     "aboveAmbientK": 5
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 100,
+     "rpmMax": 2500,
+     "duringTemperature": true
+    },
+    "partNumber": "6601885-02 (2 mm orbit); 6601885-01 (3 mm orbit)",
+    "replaces": [],
+    "source": {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "quote": "2 mm Hamilton Heater Shaker 6601885-02 Heats up to 105 °C and Shakes up to 2500 rpm",
+     "sourceKind": "distributor"
+    },
+    "notes": "Prep part numbers from Microlab Prep brochure (Aug 2023, Hamilton, hosted on a distributor Shopify CDN). Lower limit ambient+5 K and 100 rpm min taken from Hamilton Integrated Devices brochure HHS 2G (https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf). PyLabRobot Prep driver reads ranges from firmware (PrepHHSGetTemperatureRange / GetSpeedRange); recorded device PRPBC1317 has heater_shaker_installed = true."
+   },
+   "Hamilton Heater Cooler (HHC)": {
+    "ops": [
+     "heating-cooling"
+    ],
+    "offers": [
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 0,
+     "max": 110,
+     "cooling": "absolute"
+    },
+    "agitation": null,
+    "partNumber": "6601900-01; control box 190755",
+    "replaces": [],
+    "source": {
+     "url": "https://www.conferenceharvester.com/uploads/harvester/exhibitors/134/RAXZFZSW-PDF-613046-515219-1-PDF.pdf",
+     "quote": "HHC offers a controllable temperature range of 0° C-110° C",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Hamilton Heater Cooler. No shaking. Range stated as absolute 0-110 °C (ramp 25->0 °C in 6 min, 'varies based on environmental conditions'); no ΔT-below-ambient limit stated. Search snippets report a Hamilton web page saying 0-100 °C (not opened; 403). Brochure: 'Can be integrated with Hamilton's Prep, NIMBUS, STAR, STAR V, and VANTAGE'."
+   },
+   "Invitrogen 96 Position Post Magnetic Plate": {
+    "ops": [
+     "magnetic-separation"
+    ],
+    "offers": [
+     "magnetic-separation"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": "94696-01",
+    "replaces": [],
+    "source": {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "quote": "Invitrogen 96 Position Post Magnetic Plate 94696-01 Compatible magnetic plate for bead based extractions",
+     "sourceKind": "distributor"
+    },
+    "notes": "Passive magnet plate; Prep UI step 'Move To/From Magnet' (plate moved by CO-RE paddles). Brochure also lists Alpaqua Magnum EX and 96 S Magnet Plate."
+   },
+   "Applied Biosystems Ambion 96 Ring Stand Magnet": {
+    "ops": [],
+    "offers": [
+     "magnetic-separation"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": "OTP-TMOI-0051",
+    "replaces": [],
+    "source": {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "quote": "Applied Biosys, Ambion, 96 Ring Stand Magnet OTP-TMOI-0051 Compatible magnetic plate for bead based extractions",
+     "sourceKind": "distributor"
+    },
+    "notes": "Passive magnet plate; Prep UI step 'Move To/From Magnet' (plate moved by CO-RE paddles). Brochure also lists Alpaqua Magnum EX and 96 S Magnet Plate."
+   },
+   "Alpaqua Magnum FLX Magnetic Plate": {
+    "ops": [],
+    "offers": [
+     "magnetic-separation"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": "OTP-ALPQ-0008",
+    "replaces": [],
+    "source": {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "quote": "Alpaqua Magnum FLX Magnetic Plate OTP-ALPQ-0008",
+     "sourceKind": "distributor"
+    },
+    "notes": "Passive magnet plate; Prep UI step 'Move To/From Magnet' (plate moved by CO-RE paddles). Brochure also lists Alpaqua Magnum EX and 96 S Magnet Plate."
+   },
+   "CO-RE II Paddles": {
+    "ops": [
+     "vessel-transfer"
+    ],
+    "offers": [
+     "vessel-transfer"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": null,
+    "replaces": [],
+    "source": {
+     "url": "https://cdn.shopify.com/s/files/1/0264/9125/6890/files/MLPrep_Brochure_Updates_20230808_WEB_1.pdf",
+     "quote": "CO-RE II technology attaches disposable tips or CO-RE II Paddles to the pipetting channels",
+     "sourceKind": "distributor"
+    },
+    "notes": "Channel-mounted gripper paddles. PyLabRobot: pylabrobot/hamilton/prep/driver/features/core_grippers.py ('The Hamilton Prep's CoRe grippers'). mode null (mover)."
+   }
+  },
+  "i7": {
+   "Static Peltier ALP": {
+    "ops": [
+     "heating-cooling"
+    ],
+    "offers": [
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 100,
+     "cooling": "absolute"
+    },
+    "agitation": null,
+    "partNumber": "A93938",
+    "replaces": [],
+    "source": {
+     "url": "https://pages.beckman.com/rs/682-XWP-826/images/Automated%20Solutions%20for%20NGS%20Library%20Prep%20Interactive%20eBook.pdf",
+     "quote": "This ALP provides temperature control between 4-100°C in 0.1°C increments.",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "No shaking. 'Accessible by Biomek gripper'. Stated as an absolute range; no ΔT-below-ambient limit given. Search snippets (beckman.com, 403 to fetch) say PCR adapters reduce the available range - not verified. Part number from search result URLs (beckman.com/.../a93938), not from an opened page."
+   },
+   "Shaking Peltier ALP": {
+    "ops": [
+     "shaking"
+    ],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 70,
+     "cooling": "absolute"
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 100,
+     "rpmMax": 1400,
+     "duringTemperature": true
+    },
+    "partNumber": "A93942",
+    "replaces": [],
+    "source": {
+     "url": "https://pages.beckman.com/rs/682-XWP-826/images/Automated%20Solutions%20for%20NGS%20Library%20Prep%20Interactive%20eBook.pdf",
+     "quote": "heating or cooling of labware for a software-controlled set point between 4°C and 70°C. Shaking speed range from 100 to 1400 rpm",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Orbital type and 2 mm amplitude only in search snippets of beckman pages (403) - type unverified. Part number from search URLs, not an opened page. No ΔT limit stated."
+   },
+   "Orbital Shaker ALP": {
+    "ops": [],
+    "offers": [
+     "shaking"
+    ],
+    "temperature": null,
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 100,
+     "rpmMax": 1800,
+     "duringTemperature": false
+    },
+    "partNumber": null,
+    "replaces": [],
+    "source": {
+     "url": "https://pages.beckman.com/rs/682-XWP-826/images/Automated%20Solutions%20for%20NGS%20Library%20Prep%20Interactive%20eBook.pdf",
+     "quote": "Ramped acceleration/deceleration: shaking speed ranges from 100 rpm to 1800 rpm",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Ambient only (no temperature control stated). Timed orbital and pulse shaking."
+   },
+   "Thermo Fisher Automated Thermal Cycler (ATC)": {
+    "ops": [
+     "thermocycling"
+    ],
+    "offers": [
+     "thermocycling",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 105,
+     "cooling": "absolute"
+    },
+    "agitation": null,
+    "partNumber": "A31486/A31487 etc. (96-well SKUs; from search results)",
+    "replaces": [],
+    "source": {
+     "url": "https://assets.thermofisher.com/TFS-Assets/LSG/Specification-Sheets/automated-thermal-cycler-96-spec-sheet.pdf",
+     "quote": "Temperature range 4–105°C (no condensation risk with sub-ambient temperatures)",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Biomek integration from Beckman eBook ('Optional integration on Biomek workstations ... carrying out PCR on deck'; https://pages.beckman.com/rs/682-XWP-826/images/Automated%20Solutions%20for%20NGS%20Library%20Prep%20Interactive%20eBook.pdf). Max block ramp 3.5 °C/s. Heated cover slides forward over the plate nest."
+   },
+   "Inheco Thermoshake": {
+    "ops": [],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 70,
+     "cooling": "relative",
+     "belowAmbientK": 25
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 100,
+     "rpmMax": 2000,
+     "duringTemperature": true
+    },
+    "partNumber": "7100146 (Thermoshake); 7100144 (Thermoshake RM, for Tecan RoMa)",
+    "replaces": [],
+    "source": {
+     "url": "https://www.inheco.com/thermoshake-classic.html",
+     "quote": "Temperature range +4 °C to +70 °C ... Maximum ∆T (=T ambient - T target) in cooling mode 25 K",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Inheco Thermoshake (Classic) heater-cooler-shaker: 100-2000 rpm, 2 mm amplitude, orbital or linear (diagonal/lengthways/sideways). Inheco brochure lists integrations: Beckman Biomek i5/i7, Hamilton Vantage/Star Line/Nimbus, Tecan Fluent/Freedom EVO (https://www.inheco.com/data/pdf/broshure-thermoshake-01-2023-0522-1343-45.pdf). Inheco lists 'Beckman Coulter: Biomek i5, i7, 4000, NX, FX'."
+   },
+   "Biomek gripper (high-access rotating gripper)": {
+    "ops": [
+     "vessel-transfer"
+    ],
+    "offers": [
+     "vessel-transfer"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": null,
+    "replaces": [
+     "vessel-transfer"
+    ],
+    "source": {
+     "url": "https://pages.beckman.com/rs/682-XWP-826/images/Automated%20Solutions%20for%20NGS%20Library%20Prep%20Interactive%20eBook.pdf",
+     "quote": "\"High-access\" rotating gripper • Optimizes access to high-density decks ... • Two grippers on a dual arm Biomek i7",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "mode null (mover). No magnetic ALP found: Beckman SPRI kits use the passive SPRIPlate 96 Super Magnet Plate (A32782) per search results of beckman.com FAQ (403, not opened) - add as move-on magnet once sourced."
+   }
+  },
+  "fluent": {
+   "INHECO On Deck Thermal Cycler (ODTC)": {
+    "ops": [
+     "thermocycling"
+    ],
+    "offers": [
+     "thermocycling",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 99,
+     "cooling": "absolute"
+    },
+    "agitation": null,
+    "partNumber": "30101851/30101852 (96-well); 30112557/30112558 (384-well)",
+    "replaces": [],
+    "source": {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "quote": "thermal block: +4 °C to +99 °C ... heated lid: +30 °C to +115 °C",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Tecan Fluent product catalog."
+   },
+   "BioShake Q1": {
+    "ops": [],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 99.9,
+     "cooling": "relative",
+     "belowAmbientK": 24
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 200,
+     "rpmMax": 3000,
+     "duringTemperature": true
+    },
+    "partNumber": "Tecan 30187662; QInstruments 2016-0600",
+    "replaces": [],
+    "source": {
+     "url": "https://www.qinstruments.com/automation/bioshake-q1/",
+     "quote": "Up to 24 Kelvin under room temperature, depends on thermo adapter | Typical range +4°C to 99.9°C",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Setting range -20 to 99.9 °C but physically ≤24 K below RT (typical +4 °C at RT 21 °C). Constant 2.0 mm orbit; 200-3000 rpm; ELM plate lock. Listed in Tecan Fluent catalog (https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf).",
+    "altOps": [
+     "shaking"
+    ]
+   },
+   "BioShake 3000-T ELM": {
+    "ops": [],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": null,
+     "max": 99,
+     "cooling": "none",
+     "aboveAmbientK": 0
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 200,
+     "rpmMax": 3000,
+     "duringTemperature": true
+    },
+    "partNumber": "Tecan 30127732; QInstruments 2016-0517",
+    "replaces": [],
+    "source": {
+     "url": "https://www.qinstruments.com/automation/bioshake-3000-t-elm/",
+     "quote": "Temperature range | ambient to 99°C ... Mixing frequency | 200 to 3,000 rpm (microplates)",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Heats only (from ambient; setting field 0-99 °C but no cooling). 2.0 mm orbit. Listed in Tecan Fluent catalog."
+   },
+   "BioShake D30-T ELM": {
+    "ops": [],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": null,
+     "max": 99,
+     "cooling": "none",
+     "aboveAmbientK": 0
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 200,
+     "rpmMax": 2000,
+     "duringTemperature": true
+    },
+    "partNumber": "Tecan 30125516; QInstruments 2016-0518",
+    "replaces": [],
+    "source": {
+     "url": "https://www.qinstruments.com/automation/bioshake-d30-t-elm/",
+     "quote": "Temperature range | ambient to 99°C ... Mixing frequency | 200 to 2,000 rpm (microplates)",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Heats only. 3.0 mm orbit; for deep-well plates. Shown on Fluent DreamPrep NAP deck (https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf)."
+   },
+   "BioShake 3000 ELM / 3000 ELM DWP": {
+    "ops": [],
+    "offers": [
+     "shaking"
+    ],
+    "temperature": null,
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 200,
+     "rpmMax": 3000,
+     "duringTemperature": false
+    },
+    "partNumber": "Tecan 30127731 / 30127733",
+    "replaces": [],
+    "source": {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "quote": "30127731 BioShake 3000 ELM Mixing microplates",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Shake only. rpm 200-3000 from PyLabRobot BioShake docs table (docs/user_guide/qinstruments/bioshake/hello-world.ipynb), not from Tecan."
+   },
+   "Inheco CPAC Ultraflat HT 2-TEC": {
+    "ops": [],
+    "offers": [
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 110,
+     "cooling": "relative",
+     "belowAmbientK": 25
+    },
+    "agitation": null,
+    "partNumber": "Tecan 30053221",
+    "replaces": [],
+    "source": {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "quote": "The Inheco CPAC Ultraflat HT 2-TEC unit is a compact all-in-one heating/cooling device ... Temperature range from +4°C to 110°C.",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "ΔT limit from Inheco CPAC page ('minimum 25K below room temperature'; https://www.inheco.com/cpac.html).",
+    "altOps": [
+     "heating-cooling"
+    ]
+   },
+   "Inheco CPLC Kit (3 positions)": {
+    "ops": [
+     "heating-cooling"
+    ],
+    "offers": [
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 70,
+     "cooling": "absolute"
+    },
+    "agitation": null,
+    "partNumber": "Tecan 30187625",
+    "replaces": [],
+    "source": {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "quote": "ready-to-install deck segment with three temperature-controlled ANSI/SBS/SLAS microplate positions ... Temperature range from +4°C to 70°C.",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Liquid-cooled via external heat exchanger, so not ambient-limited in the same way as air-cooled CPAC (no ΔT stated)."
+   },
+   "Inheco Thermoshake RM": {
+    "ops": [
+     "shaking"
+    ],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 70,
+     "cooling": "relative",
+     "belowAmbientK": 25
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 100,
+     "rpmMax": 2000,
+     "duringTemperature": true
+    },
+    "partNumber": "7100144",
+    "replaces": [],
+    "source": {
+     "url": "https://www.inheco.com/thermoshake-classic.html",
+     "quote": "Temperature range +4 °C to +70 °C ... Maximum ∆T (=T ambient - T target) in cooling mode 25 K",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "RM variant 'is available for Tecan's Freedom EVO® and Fluent® platforms for use with Tecan's Robotic Manipulator Arm (RoMa)' (https://www.inheco.com/data/pdf/broshure-thermoshake-01-2023-0522-1343-45.pdf). Inheco Thermoshake (Classic) heater-cooler-shaker: 100-2000 rpm, 2 mm amplitude, orbital or linear (diagonal/lengthways/sideways). Inheco brochure lists integrations: Beckman Biomek i5/i7, Hamilton Vantage/Star Line/Nimbus, Tecan Fluent/Freedom EVO (https://www.inheco.com/data/pdf/broshure-thermoshake-01-2023-0522-1343-45.pdf)."
+   },
+   "Monitored Incubation Option (MIO)": {
+    "ops": [],
+    "offers": [
+     "heating-cooling",
+     "shaking"
+    ],
+    "temperature": {
+     "min": null,
+     "max": 60,
+     "cooling": "none",
+     "aboveAmbientK": 5
+    },
+    "agitation": {
+     "type": null,
+     "rpmMin": null,
+     "rpmMax": null,
+     "duringTemperature": null
+    },
+    "partNumber": "30027292-30027297, 30052119, 30052130",
+    "replaces": [],
+    "source": {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "quote": "temperature control from room temperature +5 C, up to 60 C. The MIO is available with or without shaking",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "On-deck 4- or 6-plate incubator, heats only. Shaking rpm/type not stated. Calibrated variants list 'Ambient +5 °C – 53 °C' or '– 63 °C'."
+   },
+   "Alpaqua Magnum FLX Enhanced Universal Magnet Plate": {
+    "ops": [
+     "magnetic-separation"
+    ],
+    "offers": [
+     "magnetic-separation"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": null,
+    "replaces": [],
+    "source": {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "quote": "Alpaqua Magnum FLX® Enhanced Universal Magnet Plate",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Passive magnet plate shown on the Fluent DreamPrep NAP deck; FCA gripper moves plates to 'Magnetic separation tool' (Magnum EX/FLX)."
+   },
+   "Robotic Gripper Arm (RGA)": {
+    "ops": [
+     "vessel-transfer"
+    ],
+    "offers": [
+     "vessel-transfer"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": "30042400 (std Z, regular head); 30042405 (long Z); 30042401/30042406 (FES head)",
+    "replaces": [
+     "vessel-transfer"
+    ],
+    "source": {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "quote": "This robotic arm can transfer a variety of labware to and from the deck, storage positions, and devices such as plate shakers",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "mode null (mover). Long-Z reaches beneath the deck."
+   },
+   "Flexible Channel Arm (FCA) gripper": {
+    "ops": [],
+    "offers": [
+     "vessel-transfer"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": "30042450 (centric fingers); 30042451 (docking station)",
+    "replaces": [],
+    "source": {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "quote": "The FCA gripper is a tool for simple plate movements ... recommended for genomic workflows such as nucleic acid extraction and clean up.",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Fingers auto-mounted on FCA between pipetting steps; reaches pipetting positions, Magnum EX/FLX, BioShake ELM. Disposable-tip systems only."
+   },
+   "MCA 96 gripper": {
+    "ops": [],
+    "offers": [
+     "vessel-transfer"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": "30042306 (gripper MCA96); 30042314 (finger set); 30042307 (upgrade)",
+    "replaces": [],
+    "source": {
+     "url": "https://www.tecan.com/hubfs/HubDB/Te-DocDB/pdf/BR_Fluent-Product-Catalog_402731.pdf",
+     "quote": "The MCA 96 can be upgraded with an optional gripper with the Finger",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "mode null (mover)."
+   }
+  },
+  "plr-tecan-evo": {
+   "Inheco Thermoshake RM": {
+    "ops": [
+     "heating-cooling",
+     "shaking"
+    ],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 70,
+     "cooling": "relative",
+     "belowAmbientK": 25
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 100,
+     "rpmMax": 2000,
+     "duringTemperature": true
+    },
+    "partNumber": "7100144",
+    "replaces": [],
+    "source": {
+     "url": "https://www.inheco.com/thermoshake-classic.html",
+     "quote": "Temperature range +4 °C to +70 °C ... Maximum ∆T (=T ambient - T target) in cooling mode 25 K",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "RM variant 'is available for Tecan's Freedom EVO® and Fluent® platforms for use with Tecan's Robotic Manipulator Arm (RoMa)' (https://www.inheco.com/data/pdf/broshure-thermoshake-01-2023-0522-1343-45.pdf). Inheco Thermoshake (Classic) heater-cooler-shaker: 100-2000 rpm, 2 mm amplitude, orbital or linear (diagonal/lengthways/sideways). Inheco brochure lists integrations: Beckman Biomek i5/i7, Hamilton Vantage/Star Line/Nimbus, Tecan Fluent/Freedom EVO (https://www.inheco.com/data/pdf/broshure-thermoshake-01-2023-0522-1343-45.pdf)."
+   },
+   "Inheco Thermoshake AC": {
+    "ops": [],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 70,
+     "cooling": "relative",
+     "belowAmbientK": 25
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 300,
+     "rpmMax": 3000,
+     "duringTemperature": true
+    },
+    "partNumber": "7100160, 7100161",
+    "replaces": [],
+    "source": {
+     "url": "https://www.inheco.com/thermoshake-ac.html",
+     "quote": "Temperature range +4 °C to +70 °C ... Maximum temperature difference in cooling mode ∆T (=T ambient - T target) 25 K",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Inheco Thermoshake AC: orbital only, 2 mm amplitude, active clamping. Spec table 300-3000 rpm; overview text says 200-3000 and that <300 rpm is not guaranteed. Compatible with Tecan RoMa per Inheco brochure. Inheco lists 'Tecan: ... Freedom EVO' integration and 'The Thermoshake AC is also compatible with the RoMa' (https://www.inheco.com/data/pdf/broshure-thermoshake-01-2023-0522-1343-45.pdf)."
+   },
+   "Te-Shake": {
+    "ops": [],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": null,
+    "replaces": [],
+    "source": {
+     "url": "https://www.selectscience.net/product/te-shake-tm",
+     "quote": "software-controlled shaking and heating options ... easily integrated into Freedom EVO® or Genesis-based workstations",
+     "sourceKind": "distributor"
+    },
+    "notes": "Tecan orbital shaker with optional heating. NO temperature or rpm figures found on an opened page. Search snippets claim 'up to 80° C' / 'ambient +5 to 80°C' (unopened Tecan/DKSH pages) - unverified. M-N app note uses Te-Shake 'for heating and mixing' on EVO (https://cdn.shopify.com/s/files/1/0377/2163/6908/files/AN-NucleoMag-Blood-200-Freedom-EVO.pdf)."
+   },
+   "Te-MagS": {
+    "ops": [
+     "magnetic-separation"
+    ],
+    "offers": [
+     "magnetic-separation",
+     "heating-cooling"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": null,
+    "replaces": [],
+    "source": {
+     "url": "https://www.selectscience.net/product/te-mags-tm-magnetic-bead-separation",
+     "quote": "moveable magnets for magnetic-bead-based separation tasks",
+     "sourceKind": "distributor"
+    },
+    "notes": "Magnets move to the plate/tubes (in-place); optional heating block for lysis/elution, temperature NOT stated. 96-well plate or up to 48 x 1.5 ml tubes. EVO only."
+   },
+   "Robotic Manipulator Arm (RoMa)": {
+    "ops": [
+     "vessel-transfer"
+    ],
+    "offers": [
+     "vessel-transfer"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": null,
+    "replaces": [],
+    "source": {
+     "url": "https://www.richmondscientific.com/wp-content/uploads/2023/06/Product-specifications-Tecan-Freedom-EVO-2-150-Base-2111000042.pdf",
+     "quote": "Choice of gripper fingers: Eccentric, eccentric-long or centric ... Gripper range: 58 to 140 mm",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Freedom EVO 2 150 spec sheet (Tecan) hosted by reseller Richmond Scientific. Long-Z RoMa reaches 350 mm below worktable. mode null (mover)."
+   }
+  },
+  "bravo": {
+   "Heating Shaking Station (Inheco Teleshake 95)": {
+    "ops": [
+     "shaking",
+     "mixing"
+    ],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": null,
+     "max": 125,
+     "cooling": "none",
+     "aboveAmbientK": 5
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 100,
+     "rpmMax": 1800,
+     "duringTemperature": true
+    },
+    "partNumber": "Inheco 7100136",
+    "replaces": [
+     "mixing",
+     "shaking"
+    ],
+    "source": {
+     "url": "https://www.inheco.com/teleshake-95.html",
+     "quote": "operates in a temperature range of 5 K above ambient to 125°C ... 100 to 1800 rpm",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Bravo accessory identity from Agilent Bravo User Guide: 'Heating Shaking Station (Teleshake 95)' via Inheco STC/MTC (https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Accessories.07.02.html). Heats only. Spec table 100-1800 rpm; marketing text says 1-2000 rpm. 2 mm amplitude (3 mm option); orbital/diagonal/linear.",
+    "altOps": [
+     "heating-cooling"
+    ]
+   },
+   "Peltier Thermal Station (Inheco CPAC Ultraflat)": {
+    "ops": [
+     "heating-cooling"
+    ],
+    "offers": [
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 4,
+     "max": 70,
+     "cooling": "relative",
+     "belowAmbientK": 25
+    },
+    "agitation": null,
+    "partNumber": null,
+    "replaces": [
+     "heating-cooling"
+    ],
+    "source": {
+     "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Accessories.07.02.html",
+     "quote": "Peltier Thermal Station (CPAC Ultraflat) Uses Peltier technology to provide temperature control uniformly across a microplate.",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Figures from Inheco CPAC page (https://www.inheco.com/cpac.html): standard +4 to +70 °C, HT 2-TEC +4 to +110 °C; which variant Agilent ships is not stated. An Agilent brochure (5990-4482EN, -20 to +100 °C per search snippet) was blocked (agilent.com returned HTML)."
+   },
+   "Thermal Station (fluid-filled block)": {
+    "ops": [],
+    "offers": [
+     "heating-cooling"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": null,
+    "replaces": [],
+    "source": {
+     "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Accessories.07.02.html",
+     "quote": "Thermal Station (chiller) Uses a fluid-filled thermal block to provide temperature control uniformly across a microplate.",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Range depends on external chiller; not stated."
+   },
+   "Orbital Shaking Station": {
+    "ops": [],
+    "offers": [
+     "shaking"
+    ],
+    "temperature": null,
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": null,
+     "rpmMax": null,
+     "duringTemperature": false
+    },
+    "partNumber": null,
+    "replaces": [],
+    "source": {
+     "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Accessories.07.03.html",
+     "quote": "The Orbital Shaking Station is a microplate shaker that can be installed at any deck location",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Agilent guide gives no rpm range or model. Ambient only.",
+    "altOps": [
+     "shaking"
+    ]
+   },
+   "Magnetic Bead Accessory": {
+    "ops": [
+     "magnetic-separation"
+    ],
+    "offers": [
+     "magnetic-separation"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": null,
+    "replaces": [
+     "magnetic-separation"
+    ],
+    "source": {
+     "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Accessories.07.02.html",
+     "quote": "Magnetic Bead Accessory Designed to separate smaller volumes (up to 350 µL).",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Spring-loaded ring magnet seated on a platepad; plate is placed onto it (by Bravo gripper or person). Setup page: https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Accessories.07.10.html."
+   },
+   "Bravo gripper": {
+    "ops": [
+     "vessel-transfer"
+    ],
+    "offers": [
+     "vessel-transfer"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": null,
+    "replaces": [
+     "vessel-transfer"
+    ],
+    "source": {
+     "url": "https://automation.help.agilent.com/AutomationSolutionsKB14/Bravo%20User%20Guide/Introduction.03.4.html",
+     "quote": "An optional gripper that extends from the head mount to below the pipette head tips. The gripper picks and places labware on the deck.",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Moves with the Bravo head; optional. mode null (mover)."
+   }
+  },
+  "firefly": {
+   "Microplate cooler/heater block": {
+    "ops": [
+     "heating-cooling"
+    ],
+    "offers": [
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": -20,
+     "max": 99,
+     "cooling": "absolute"
+    },
+    "agitation": null,
+    "partNumber": null,
+    "replaces": [
+     "heating-cooling"
+    ],
+    "source": {
+     "url": "https://sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+     "quote": "Temperatures are selectable from -20°C to 99°C in steps of 0.1°C.",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "The firefly user guide (specifications 1.3) calls it the plate thermal module: -20 to 99 °C, ramp 12 °C/min. Earlier flyer gave no figures. Gripper moves labware onto it."
+   },
+   "Microplate shaker": {
+    "ops": [
+     "shaking",
+     "mixing"
+    ],
+    "offers": [
+     "shaking"
+    ],
+    "temperature": null,
+    "agitation": {
+     "type": null,
+     "rpmMin": 200,
+     "rpmMax": 3000,
+     "duringTemperature": null
+    },
+    "partNumber": null,
+    "replaces": [
+     "mixing",
+     "shaking"
+    ],
+    "source": {
+     "url": "https://sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+     "quote": "The shaker module mixes at speeds between 200 - 3000 rpm.",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Shaking type (orbital or linear) and shaking while holding a temperature not stated."
+   },
+   "Magnetic plates/blocks": {
+    "ops": [
+     "magnetic-separation"
+    ],
+    "offers": [
+     "magnetic-separation"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": null,
+    "replaces": [
+     "magnetic-separation"
+    ],
+    "source": {
+     "url": "https://www.sptlabtech.com/products/firefly",
+     "quote": "moving labware on and off functional modules such as shakers and heater/cooler plates as well as magnetic blocks",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Page also: 'Optional application accessories ... options for magnetic plates, cooling and heating tiles, and shakers'. Model not named; passive (move-on) assumed."
+   },
+   "Gripper module": {
+    "ops": [
+     "vessel-transfer"
+    ],
+    "offers": [
+     "vessel-transfer"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": null,
+    "replaces": [],
+    "source": {
+     "url": "https://www.sptlabtech.com/hubfs/SPT%20Labtech%20firefly%20flyer%2026.pdf",
+     "quote": "Gripper module Compatible with most SBS/ANSI labware",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Moves labware between deck and sub-deck. mode null (mover)."
+   },
+   "Syringe dispenser": {
+    "ops": [
+     "dispensing"
+    ],
+    "offers": [
+     "dispensing"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "dispense": {
+     "minUl": 0.2,
+     "maxUl": 3690,
+     "reservoirs": 6,
+     "positions": [
+      6,
+      7
+     ],
+     "tips": false,
+     "suspensions": false
+    },
+    "source": {
+     "url": "https://www.sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+     "quote": "The positive displacement syringes dispense volumes from 200nL to 3690µL. (1.3.2)"
+    }
+   }
+  },
+  "andrew": {
+   "Heater-Shaker+": {
+    "ops": [
+     "shaking",
+     "mixing"
+    ],
+    "offers": [
+     "shaking",
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": null,
+     "max": 99,
+     "cooling": "none",
+     "aboveAmbientK": 0
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 200,
+     "rpmMax": 2500,
+     "duringTemperature": true
+    },
+    "partNumber": "176005079 (LP PCR); 176005080 (HP PCR); 186010426 (deepwell)",
+    "replaces": [
+     "mixing",
+     "shaking"
+    ],
+    "source": {
+     "url": "https://icpms.cz/labrulez-bucket-strapi-h3hsga3/720007738en_6cf89ff2ca/720007738en.pdf",
+     "quote": "Vibration-free orbital shaking from 200 to 2500 rpm ... from room temperature to 99 °C",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Heats only. Waters connected-devices catalogue 720007738EN (Oct 2022), copy hosted on icpms.cz (waters.com and andrewalliance.com returned 403)."
+   },
+   "Microplate Shaker+ / Tube Shaker+": {
+    "ops": [],
+    "offers": [
+     "shaking"
+    ],
+    "temperature": null,
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 200,
+     "rpmMax": 3000,
+     "duringTemperature": false
+    },
+    "partNumber": "176004577 (Microplate Shaker+); 176005077/186010422/176005078 (Tube Shaker+)",
+    "replaces": [],
+    "source": {
+     "url": "https://icpms.cz/labrulez-bucket-strapi-h3hsga3/720007738en_6cf89ff2ca/720007738en.pdf",
+     "quote": "Vibration free orbital shaking from 200-3000 rpm available for both tubes and plates",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Ambient only. Search snippets (Waters FR pages, unopened) say Tube Shaker+ max 2000 rpm - unverified."
+   },
+   "Peltier+": {
+    "ops": [
+     "heating-cooling"
+    ],
+    "offers": [
+     "heating-cooling"
+    ],
+    "temperature": {
+     "min": 0,
+     "max": 99,
+     "cooling": "relative",
+     "belowAmbientK": 26
+    },
+    "agitation": null,
+    "partNumber": "176004852 (Microplate Peltier+); 176004584 (96-PCR Peltier+)",
+    "replaces": [
+     "heating-cooling"
+    ],
+    "source": {
+     "url": "https://www.andrewalliance.com/wp-content/uploads/2021/03/518.0041-Peltier-User-Manual.pdf",
+     "quote": "Maximal heating 99°C* ... Minimal cooling 0°C* ... *Tested with 96-well PCR plate ... at room temperature of 26°C.",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "maxBelowAmbientK=26 is DERIVED (0 °C at 26 °C room), not stated. Heating 14 °C/min, cooling 9 °C/min. Part numbers from Waters catalogue (https://icpms.cz/labrulez-bucket-strapi-h3hsga3/720007738en_6cf89ff2ca/720007738en.pdf)."
+   },
+   "Magnet+": {
+    "ops": [
+     "magnetic-separation"
+    ],
+    "offers": [
+     "magnetic-separation"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": "176004850 (96-PCR Magnet+); 176004854 (Deepwell Magnet+); 176004851 (50 mL Tube Magnet+)",
+    "replaces": [],
+    "source": {
+     "url": "https://icpms.cz/labrulez-bucket-strapi-h3hsga3/720007738en_6cf89ff2ca/720007738en.pdf",
+     "quote": "Elevating magnetic bead-based extractions with automatic magnetic shelf movement for bead capture and resuspension",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Magnet shelf moves under the plate (in-place). Working volumes: PCR plates up to 230 µL, deepwell up to 2 mL, 50 mL tubes."
+   },
+   "Microplate Gripper Tool": {
+    "ops": [
+     "vessel-transfer"
+    ],
+    "offers": [
+     "vessel-transfer"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "partNumber": "186009776",
+    "replaces": [
+     "vessel-transfer"
+    ],
+    "source": {
+     "url": "https://icpms.cz/labrulez-bucket-strapi-h3hsga3/720007738en_6cf89ff2ca/720007738en.pdf",
+     "quote": "Microplate and Column Grippers: Enable seamless, automated consumable movement between Connected Devices and Dominos",
+     "sourceKind": "manufacturer"
+    },
+    "notes": "Tool picked up by the Andrew+ arm. mode null (mover)."
+   }
+  },
+  "firefly-plus": {
+   "Syringe dispenser": {
+    "ops": [
+     "dispensing"
+    ],
+    "offers": [
+     "dispensing"
+    ],
+    "temperature": null,
+    "agitation": null,
+    "dispense": {
+     "minUl": 0.2,
+     "maxUl": 3690,
+     "reservoirs": 6,
+     "positions": [
+      6,
+      7
+     ],
+     "tips": false,
+     "suspensions": false
+    },
+    "source": {
+     "url": "https://www.sptlabtech.com/product-help-center/firefly-user-guide-specifications-1.3-firefly-technology",
+     "quote": "The positive displacement syringes dispense volumes from 200nL to 3690µL. (1.3.2)"
+    }
+   }
+  }
+ },
+ "classes": {
+  "shaking": [
+   {
+    "name": "QInstruments BioShake Q1",
+    "temperature": {
+     "min": 4,
+     "max": 99.9,
+     "cooling": "relative",
+     "belowAmbientK": 24
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 200,
+     "rpmMax": 3000,
+     "duringTemperature": true
+    },
+    "source": {
+     "url": "https://www.qinstruments.com/automation/bioshake-q1/",
+     "quote": "up to 24 K under room temperature, depends on thermo adapter; typical +4 °C at 21 °C room temperature with the 96-well PCR adapter"
+    }
+   },
+   {
+    "name": "INHECO Thermoshake Classic",
+    "temperature": {
+     "min": 4,
+     "max": 70,
+     "cooling": "relative",
+     "belowAmbientK": 25
+    },
+    "agitation": {
+     "type": "orbital or linear",
+     "rpmMin": 100,
+     "rpmMax": 2000,
+     "duringTemperature": true
+    },
+    "source": {
+     "url": "https://www.inheco.com/thermoshake-classic.html",
+     "quote": "+4 to +70 °C, max. 25 K below ambient; 100–2000 rpm"
+    }
+   },
+   {
+    "name": "Hamilton Heater Shaker",
+    "temperature": {
+     "min": null,
+     "max": 105,
+     "cooling": "none",
+     "aboveAmbientK": 5
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": null,
+     "rpmMax": null,
+     "duringTemperature": true
+    },
+    "source": {
+     "url": null,
+     "unverified": true,
+     "note": "ambient +5 to 105 °C, from an exhibitor datasheet found by search; Hamilton's page refused automated access. Exact URL not retained."
+    }
+   },
+   {
+    "name": "Thermo Cytomat 2 C450-LiN with tower shaker",
+    "temperature": {
+     "min": 4,
+     "max": 50,
+     "cooling": "absolute"
+    },
+    "agitation": {
+     "type": "orbital",
+     "rpmMin": 300,
+     "rpmMax": 1200,
+     "duringTemperature": null
+    },
+    "source": {
+     "url": null,
+     "unverified": true,
+     "note": "Thermo brochure BR90468 (documents.thermofisher.com): C450 4–50 °C; tower shaker 300–1200 rpm. Shaking at 4 °C is not stated outright. Exact URL not retained."
+    }
+   }
+  ]
+ }
+}

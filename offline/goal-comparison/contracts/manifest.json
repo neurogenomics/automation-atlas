@@ -1,0 +1,7 @@
+{
+  "reviewed-protocol": {"0.1.0": "reviewed-protocol.schema.json", "0.2.0": "versions/0.2.0/reviewed-protocol.schema.json"},
+  "typed-measurement": {"0.1.0": "versions/0.1.0/typed-measurement.schema.json"},
+  "protocol-goal": {"0.1.0": "versions/0.1.0/protocol-goal.schema.json"},
+  "method-alternative": {"0.1.0": "versions/0.1.0/method-alternative.schema.json"},
+  "goal-comparison": {"0.1.0": "versions/0.1.0/goal-comparison.schema.json"}
+}

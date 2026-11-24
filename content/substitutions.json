@@ -1,0 +1,89 @@
+{
+  "version": "2026-11-04.1",
+  "about": "Ways an operation can be performed by a different kind of device. Each substitution changes how the method is carried out, so using one always adds a validation question for the protocol owner; nothing here asserts the substitute gives an equivalent result. Generic: no protocol, lab or instrument names.",
+  "substitutions": [
+    {
+      "id": "rotation-as-shaking",
+      "from": "rotation",
+      "to": "shaking",
+      "question": "Does shaking keep the beads or cells suspended as well as end-over-end rotation for this step (binding efficiency, clumping, loss)?",
+      "owner": "Protocol owner (wet-lab validation)"
+    },
+    {
+      "id": "agitation-as-shaking",
+      "from": "agitation",
+      "to": "shaking",
+      "question": "Can orbital shaking replace vortexing, inverting or flicking the tube for this step (resuspension of beads or cells, shear, splashing onto the seal)?",
+      "owner": "Protocol owner (wet-lab validation)"
+    },
+    {
+      "id": "agitation-as-pipette-mixing",
+      "from": "agitation",
+      "to": "liquid-transfer",
+      "question": "Can pipetting up and down replace vortexing, inverting or flicking the tube for this step (resuspension of beads or cells, shear, bead loss on tips)?",
+      "owner": "Protocol owner (wet-lab validation)"
+    },
+    {
+      "id": "tube-fluorometry-as-plate-reader",
+      "from": "fluorescence-quantification",
+      "to": "fluorescence-reading",
+      "question": "Can a plate-reader fluorescence assay with a standard curve replace the single-tube fluorometer reading for this quantification?",
+      "owner": "Protocol owner (wet-lab validation)"
+    },
+    {
+      "id": "addition-as-bulk-dispense",
+      "from": "liquid-transfer",
+      "to": "dispensing",
+      "when": {
+        "additionOnly": true
+      },
+      "question": "Can this reagent addition be made with a non-contact bulk dispenser (dead volume, viscosity, cross-contamination)?",
+      "owner": "Automation operator"
+    },
+    {
+      "id": "large-volume-as-passes",
+      "from": "liquid-transfer",
+      "to": "liquid-transfer",
+      "when": {
+        "aboveHeadMax": true
+      },
+      "question": "Can this transfer be split into repeated passes within the pipetting head's range without loss or carry-over?",
+      "owner": "Automation operator"
+    },
+    {
+      "id": "cold-agitation-as-chilled-hold",
+      "from": "rotation",
+      "to": "heating-cooling",
+      "when": {
+        "cold": true
+      },
+      "question": "Can this cold rotation be replaced by a static hold at the same temperature with intermittent pipette mixing? Beads or cells must stay suspended; no controlled comparison was found, so this needs a wet-lab test.",
+      "owner": "Protocol owner (wet-lab validation)",
+      "weight": 2,
+      "weightWhy": "A static hold with intermittent mixing departs further from the protocol than agitation at the same temperature."
+    },
+    {
+      "id": "cold-reagent-at-room-temperature",
+      "from": "liquid-transfer",
+      "to": "liquid-transfer",
+      "when": {
+        "coldReagent": true
+      },
+      "question": "This setup has no cold position on the deck. Can the reagents the protocol keeps cold (enzymes, antibodies, mixes made on ice) sit at room temperature on the deck for the length of the run without losing activity?",
+      "owner": "Protocol owner (wet-lab validation)"
+    },
+    {
+      "id": "spin-as-magnetic-capture",
+      "from": "centrifugation",
+      "to": "magnetic-separation",
+      "when": {
+        "scoped": true
+      },
+      "scopedAbout": "Applied only where a workflow variant names the stages (#171); never chosen by the engine as a fallback. The material must carry magnetic beads, which is a change to the method upstream as well as at this step.",
+      "question": "Can a magnet replace this spin to collect the material, with the supernatant drawn off while it is held? Only material that carries magnetic beads is captured: what share of it carries beads today (bead loading), what fraction is recovered per capture compared with the spin (capture efficiency), and how long must each capture hold? Needs a wet-lab comparison before the spin is dropped.",
+      "owner": "Protocol owner (wet-lab validation)",
+      "weight": 2,
+      "weightWhy": "Collecting by magnet needs beads in the material and changes how every wash is done, a larger departure than moving the same operation to another device."
+    }
+  ]
+}

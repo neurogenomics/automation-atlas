@@ -1,0 +1,55 @@
+{
+  "schema_version": "0.1.0",
+  "digest_profile": "agentic-lab/review-json/1",
+  "record_id": "synthetic-alternative",
+  "revision_id": "alternative-1",
+  "parent": null,
+  "original": {
+    "schema_version": "0.2.0",
+    "binding": {
+      "protocol_id": "synthetic-protocol",
+      "revision_id": "movement-revision-1",
+      "interpretation_digest": "sha256:a8deb1bc059916f69a6d9264ec0e6f5effd6fc6da0221a5ef278f9219b0eed62",
+      "collection_id": "900001",
+      "version_id": "900002",
+      "version_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "export_hash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "operation_ids": ["transfer-1"]
+  },
+  "goal": {"schema_version": "0.1.0","record_id": "synthetic-goal","revision_id": "goal-1","content_digest": "sha256:c65da64bab9831b3ba88bfdf443befabc3988372dd8fb4cb4be8409bc9688012"},
+  "changes": [
+    {
+      "id": "proposed-replacement",
+      "kind": "replace",
+      "original_operation_ids": ["transfer-1"],
+      "description": "Proposed symbolic substitution, with no executable procedure.",
+      "provenance": {"kind": "reviewer_asserted","evidence": [],"explanation": "Stipulated synthetic case."}
+    }
+  ],
+  "assumptions": [{"id": "observation-needed","description": "Outcome of substitution remains an open question.","provenance": {"kind": "unknown","evidence": [],"explanation": "No experimental observation recorded."}}],
+  "observations": [
+    {
+      "kind": "scalar",
+      "observable_id": "volume",
+      "measurement": {
+        "schema_version": "0.1.0",
+        "value": "100",
+        "dimension": "volume",
+        "unit": "uL",
+        "basis": "total",
+        "reference": {"kind": "none","id": null,"conditions": []},
+        "provenance": {"kind": "reviewer_asserted","evidence": [],"explanation": "Stipulated synthetic case."}
+      }
+    },
+    {
+      "kind": "identity_set",
+      "observable_id": "retained",
+      "disposition": "retained",
+      "identities": [{"namespace": "original","material_id": "A","state_id": "donor-after"}],
+      "provenance": {"kind": "reviewer_asserted","evidence": [],"explanation": "Stipulated synthetic case."}
+    }
+  ],
+  "estimates": [],
+  "content_digest": "sha256:323edb086612fbb8cccc98b038f098ec187a387b8a05cedb5d32288d35279cd9"
+}

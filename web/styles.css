@@ -1,0 +1,70 @@
+:root{--ink:#142d32;--muted:#5d6a6c;--paper:#f5f4ee;--white:#fffefa;--line:#dce1d9;--teal:#087c72;--mint:#e3efdf;--orange:#d16538;--sand:#f6ead7;--red:#a53f33;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:var(--paper)}
+*{box-sizing:border-box}body{margin:0;background:var(--paper)}button,input,select,textarea{font:inherit}a{color:var(--teal)}:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.skip{position:fixed;top:-60px;left:16px;background:var(--white);padding:10px;z-index:9}.skip:focus{top:10px}
+.shell{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+.sidebar{background:var(--ink);color:#dfe8e2;padding:28px 18px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:22px}
+.brand{color:#fff;text-decoration:none;font-size:19px;line-height:1.2}.brand strong{display:block;font-size:22px}
+.sidebar nav{display:grid;gap:4px}.sidebar nav a{color:#b8c8c2;text-decoration:none;padding:11px 10px;border-radius:5px;font-size:14px}.sidebar nav a:hover,.sidebar nav a.active{background:#294348;color:#fff}
+.sidebar .foot{margin-top:auto;font-size:12px;color:#9fb3ad;line-height:1.6}.sidebar .foot button{background:none;border:1px solid #476166;color:#dfe8e2;border-radius:4px;padding:6px 9px;margin:4px 4px 0 0;cursor:pointer;font-size:12px}
+main{padding:32px 40px 60px;max-width:1300px;min-width:0}
+.pg h2{font-size:26px;margin:0 0 8px}.pg h3{margin:28px 0 10px;font-size:17px}.lede{color:var(--muted);max-width:760px;line-height:1.6}
+.sub{color:var(--muted);font-size:13px;line-height:1.5}small{display:block;color:var(--muted);font-size:12px}
+.notice{background:var(--mint);border:1px solid #c8dec6;padding:10px 14px;border-radius:5px;font-size:14px}.bad{color:var(--red)}
+.empty{padding:22px;border:1px dashed #b9c5bc;border-radius:6px;color:var(--muted);background:var(--white)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}.cards.two{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.card{background:var(--white);border:1px solid var(--line);border-radius:7px;padding:18px;margin:10px 0}.card h3,.card h4{margin:0 0 8px}.card summary{cursor:pointer;line-height:1.6}
+label{display:grid;gap:5px;font-size:13px;color:var(--muted);margin:8px 0}.inline{display:inline-flex;align-items:center;gap:8px;color:var(--ink);margin:0}
+input,select,textarea{border:1px solid #cdd5cb;background:#fafbf7;border-radius:5px;padding:9px;color:var(--ink);min-width:0;width:100%}input[type=checkbox],input[type=radio]{width:auto}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:end}.row>label{flex:1 1 180px}
+.btn{display:inline-block;background:var(--teal);color:#fff;border:0;border-radius:5px;padding:10px 15px;cursor:pointer;text-decoration:none;font-size:14px}.btn.ghost{background:#e4ebe1;color:var(--ink)}.btn:disabled{opacity:.5;cursor:default}
+.link{background:none;border:0;color:var(--teal);text-decoration:underline;cursor:pointer;padding:0 4px;font-size:13px}
+.tbl-wrap{overflow-x:auto}.tbl{width:100%;border-collapse:collapse;background:var(--white);font-size:13px}.tbl th{text-align:left;font-weight:600;background:#edf0e9;padding:9px}.tbl td{padding:9px;border-top:1px solid var(--line);vertical-align:top}
+.opts{border:1px solid var(--line);border-radius:6px;padding:8px 14px;margin:12px 0}.opts legend{font-size:13px;color:var(--muted);padding:0 4px}
+.opt{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line)}.opt:first-of-type{border-top:0}
+.seg{display:inline-flex;gap:4px}.seg label{display:inline-flex;align-items:center;gap:5px;margin:0;background:#eef1ea;border-radius:4px;padding:6px 9px;color:var(--ink);font-size:13px;cursor:pointer}
+.review{font-size:13px;line-height:1.6}code{background:#eef1ea;padding:1px 4px;border-radius:3px}
+@media(max-width:760px){.shell{grid-template-columns:1fr}.sidebar{position:static;height:auto;padding:16px}.sidebar nav{grid-auto-flow:column;overflow-x:auto}main{padding:20px 16px}}
+.account p{margin:0 0 8px}.account input{background:#1e383d;border-color:#476166;color:#fff;margin:0 0 6px;padding:7px;font-size:13px}.account .bad{color:#ffb4a6}
+.drop{border:2px dashed #b9c5bc;border-radius:7px;padding:18px;text-align:center;color:var(--muted);margin:8px 0}.dropping .drop{border-color:var(--teal);background:var(--mint);color:var(--ink)}.dropping{outline:3px dashed var(--teal);outline-offset:-6px}
+.reading tr.step td{background:#edf0e9;font-weight:600}.reading tr.unknown td{background:#fae4dd}.reading tr.note td,.reading tr.header td{color:var(--muted)}
+/* Channels, programming route and PyLabRobot support (#82) */
+.small-cell{font-size:12px;min-width:220px;line-height:1.45}.tbl td small,.small-cell small{display:block;color:var(--muted,#637072);font-size:11.5px}
+.plr{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;border:1px solid #c5d1c2;background:#fff}.plr-supported{background:#e3efdf;border-color:#087c72;color:#0b5a52}.plr-partial{background:#f6efdc;border-color:#c9a648}.plr-community{background:#eef0f6;border-color:#8c97b8}.plr-none{color:#7b8584}
+/* Lab and timings reviews (#105) */
+.rv-step h4 small a{font-weight:400}.rv-lines{margin:6px 0 4px;padding-left:22px;font-size:13px;line-height:1.55}.rv-plan{font-size:14px;line-height:1.55;margin:10px 0 6px}
+.rv-assume{line-height:1.6;max-width:860px}.rv-others{border-top:1px solid var(--line);margin-top:10px;font-size:13px}.rv-others ul{margin:4px 0;padding-left:18px}
+.rv-verdict{flex-wrap:wrap}.dc-review{margin:14px 0 0}.dc-review small{display:inline;margin-left:6px}.card .notice p{margin:6px 0}
+.notice p{margin:6px 0}
+/* Login methods (#132) */
+.account details{margin:0 0 8px;font-size:13px}.account summary{cursor:pointer}.account details ul{margin:6px 0;padding-left:18px}.account details button{display:block;margin:0 0 6px}
+.review-card .flags{list-style:none;padding:0;margin:0 0 8px}.review-card .flags li{margin:2px 0}.review-card .warn,.lint .warn{color:#8a5a00}.review-card .ok{color:#2c6b2f}
+.tag{display:inline-block;padding:0 6px;border-radius:4px;background:#e3efee;color:#255a5d;font-size:12px;font-weight:600;vertical-align:middle}
+
+.repin-steps{table-layout:fixed}.repin-steps th{width:50%}
+.repin-steps pre{white-space:pre-wrap;overflow-wrap:anywhere;margin:.5em 0}
+
+/* Explicit reviewed workspace stays contained on narrow screens. */
+#reviewed-workspace{min-width:0;max-width:100%;overflow-wrap:anywhere}
+#reviewed-workspace .reviewed-table{max-width:100%;overflow-x:auto;margin:1rem 0}
+#reviewed-workspace table{border-collapse:collapse;min-width:36rem;width:100%;font-size:.9rem}
+#reviewed-workspace th,#reviewed-workspace td{text-align:left;vertical-align:top;padding:.55rem;border-bottom:1px solid #cdd5cb}
+#reviewed-workspace pre{max-width:100%;white-space:pre-wrap;overflow-wrap:anywhere;font-size:.8rem}
+#reviewed-workspace textarea{display:block;max-width:100%;font-family:monospace;font-size:.85rem}
+#reviewed-workspace .form-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,12rem),1fr));gap:.75rem}
+#reviewed-workspace button{max-width:100%;white-space:normal;margin:.25rem 0}
+.shell:has(#reviewed-workspace) .sidebar{min-width:0}
+
+/* Equipment registry (#298) */
+.shell:has(#registry-workspace) .sidebar{min-width:0}
+#registry-workspace{overflow-wrap:anywhere}
+#registry-workspace [hidden]{display:none}
+#registry-workspace .reg-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:12px 0}
+#registry-workspace dl{display:grid;grid-template-columns:minmax(8rem,auto) 1fr;gap:6px 16px;font-size:14px}
+#registry-workspace dt{color:var(--muted)}
+#registry-workspace dd{margin:0;min-width:0}
+#registry-workspace dd ul{margin:0;padding-left:1.25rem}
+#registry-workspace pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;background:var(--paper);padding:10px}
+#registry-workspace fieldset{min-width:0}
+#registry-workspace .reg-choice{display:flex;align-items:flex-start;gap:8px}
+#registry-workspace textarea[name=exact]{font-family:monospace;font-size:13px}
+@media(max-width:480px){#registry-workspace dl{grid-template-columns:1fr;gap:4px}#registry-workspace dd{margin:0 0 6px}}

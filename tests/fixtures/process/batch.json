@@ -1,0 +1,21 @@
+{
+  "schema": "lab-automation-planner/process-advisory-input/1",
+  "binding": {"case_id": "batch-sample-and-standalone-measurement", "revision": "r1", "evidence": "synthetic-declaration"},
+  "sources": [{"id": "synthetic-declaration", "kind": "declared_case", "version": "r1", "url": null}, {"id": "analysis-role", "kind": "public_role", "version": "oracle-2026-11-12", "url": "https://www.imperial.ac.uk/rapid-online-analysis-of-reactions/capabilities/advanced-analytical-suite/"}, {"id": "kinetics-role", "kind": "public_role", "version": "oracle-2026-11-12", "url": "https://www.imperial.ac.uk/rapid-online-analysis-of-reactions/capabilities/reaction-kinetics-platforms/"}],
+  "costs": {"currency": "GBP", "items": [{"id": "fixed", "value": "10", "evidence": "synthetic-declaration"}, {"id": "provider", "value": null, "evidence": "synthetic-declaration"}]},
+  "process": {
+    "kind": "batch",
+    "batch": {"state_id": "original-batch", "material_id": "inert-liquid", "volume_mL": "12", "location_id": "vessel", "evidence": "synthetic-declaration"},
+    "resources": [{"id": "operator", "kind": "operator", "configuration_id": "operator-configuration", "revision": "r1", "availability": "available", "evidence": "synthetic-declaration"}, {"id": "vessel", "kind": "vessel", "configuration_id": "vessel-configuration", "revision": "r1", "availability": "available", "evidence": "synthetic-declaration"}, {"id": "standalone-meter", "kind": "standalone_measurement", "configuration_id": "standalone-meter-configuration", "revision": "r1", "availability": "available", "evidence": "synthetic-declaration"}],
+    "operations": [
+      {"id": "load", "predecessors": [], "duration_min": "2", "resources": ["operator", "vessel"], "kind": "load", "evidence": "synthetic-declaration", "payload": {"batch_state_id": "original-batch"}},
+      {"id": "hold", "predecessors": ["load"], "duration_min": "5", "resources": ["vessel"], "kind": "hold", "evidence": "synthetic-declaration", "payload": {"batch_state_id": "original-batch"}},
+      {"id": "sample", "predecessors": ["hold"], "duration_min": "1", "resources": ["operator", "vessel"], "kind": "sample", "evidence": "synthetic-declaration", "payload": {"batch_state_id": "original-batch", "retained_state_id": "retained-batch", "aliquot_state_id": "collected-aliquot", "aliquot_mL": "2", "aliquot_location_id": "sampling-position"}},
+      {"id": "handoff", "predecessors": ["sample"], "duration_min": "2", "resources": ["operator"], "kind": "handoff", "evidence": "synthetic-declaration", "payload": {"aliquot_state_id": "collected-aliquot", "delivered_state_id": "delivered-aliquot", "destination_id": "standalone-meter"}},
+      {"id": "measure", "predecessors": ["handoff"], "duration_min": "3", "resources": ["standalone-meter"], "kind": "measure", "evidence": "synthetic-declaration", "payload": {"delivered_state_id": "delivered-aliquot", "data_id": "measurement-data"}},
+      {"id": "release-retained", "predecessors": ["handoff"], "duration_min": "2", "resources": ["operator", "vessel"], "kind": "release", "evidence": "synthetic-declaration", "payload": {"batch_state_id": "retained-batch"}}
+    ],
+    "joint_fit": {"resource_id": "vessel", "required_mL": "12", "required_positions": "4", "alternatives": [{"id": "vessel-configuration", "revision": "r1", "capacity_mL": "16", "positions": "4", "evidence": "synthetic-declaration"}], "evidence": "synthetic-declaration"},
+    "control": "declared_sequence"
+  }
+}

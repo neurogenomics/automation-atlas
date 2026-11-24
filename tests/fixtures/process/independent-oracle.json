@@ -1,0 +1,91 @@
+{
+  "scope": "Independent expectations for Planner #287 advisory software only. All materials, limits, timings, costs and access decisions in the test cases are fictional. Source links supply documented capability roles only.",
+  "public_capability_sources": [
+    {
+      "role": "separate analysis resource",
+      "url": "https://www.imperial.ac.uk/rapid-online-analysis-of-reactions/capabilities/advanced-analytical-suite/"
+    },
+    {
+      "role": "in-situ observation and distinct extracted sampling",
+      "url": "https://www.imperial.ac.uk/rapid-online-analysis-of-reactions/capabilities/reaction-kinetics-platforms/"
+    },
+    {
+      "role": "declared continuous feed, in-line observation and collection",
+      "url": "https://www.imperial.ac.uk/rapid-online-analysis-of-reactions/capabilities/continuous-flow-platforms/"
+    }
+  ],
+  "cases": [
+    {
+      "id": "batch-sample-and-standalone-measurement",
+      "fictional_inputs": {
+        "initial_mL": "12",
+        "aliquot_mL": "2",
+        "operations": [
+          {"id": "load", "predecessors": [], "duration_min": "2", "resources": ["operator", "vessel"]},
+          {"id": "hold", "predecessors": ["load"], "duration_min": "5", "resources": ["vessel"]},
+          {"id": "sample", "predecessors": ["hold"], "duration_min": "1", "resources": ["operator", "vessel"]},
+          {"id": "handoff", "predecessors": ["sample"], "duration_min": "2", "resources": ["operator"]},
+          {"id": "measure", "predecessors": ["handoff"], "duration_min": "3", "resources": ["standalone-meter"]},
+          {"id": "release-retained", "predecessors": ["handoff"], "duration_min": "2", "resources": ["operator", "vessel"]}
+        ]
+      },
+      "expected": {
+        "elapsed_min": "13",
+        "operator_min": "7",
+        "vessel_occupancy_min": "10",
+        "meter_occupancy_min": "3",
+        "retained_mL": "10",
+        "aliquot_mL": "2",
+        "measurement_consumes": "the exact distinct aliquot identity, without assuming a destructive measurement",
+        "measurement_output": "a data identity dependent on the aliquot, with no inferred scientific result",
+        "measure_overlaps_release_retained": true,
+        "liquid_handler_required": false
+      }
+    },
+    {
+      "id": "in-situ-reads-without-material-removal",
+      "fictional_inputs": "A declared observation begins inside a held interval, uses a compatible separate observer and the same declared batch identity, and produces data rather than an aliquot.",
+      "expected": "No extra extracted material or reduction in retained amount. Distinct observer occupancy. If simultaneity, supported physical observation, or data-source identity is missing, mark it unresolved."
+    },
+    {
+      "id": "single-configuration-must-fit-jointly",
+      "fictional_inputs": "Required volume capacity 12 and sample positions 4. Configuration A has volume capacity 16 and 2 positions. Configuration B has volume capacity 10 and 8 positions.",
+      "expected": "Neither configuration is eligible. No union of limits, and missing value in either stays unknown."
+    },
+    {
+      "id": "resource-conflict",
+      "fictional_inputs": "Two ready 3-minute operations require the same exclusive provider. A third unrelated 2-minute operation uses a different available resource.",
+      "expected": "Provider operations cannot overlap, exclusive provider occupancy 6, earliest elapsed 6 with the unrelated operation allowed to overlap."
+    },
+    {
+      "id": "missing-duration-or-availability",
+      "fictional_inputs": "A necessary handoff duration or provider availability is unknown.",
+      "expected": "Known subtotal, unresolved complete schedule or configuration assessment, and no preference benefit from missing inputs."
+    },
+    {
+      "id": "incomplete-cost",
+      "fictional_inputs": "Known fictional fixed charge 10, missing necessary provider charge.",
+      "expected": "Known subtotal 10, complete cost unknown. Missing component is visible, never treated as zero for comparison."
+    },
+    {
+      "id": "ideal-flow-exact-rational",
+      "fictional_inputs": {"hold_up_mL": "2", "flow_mL_per_min": "7", "declared_feed_collection": true},
+      "expected": {"ideal_residence_s_numerator": "120", "ideal_residence_s_denominator": "7", "less_than_or_equal_17_14_s": false, "less_than_or_equal_17_15_s": true, "actual_hydraulic_or_scientific_fit": "unassessed", "startup_transients": "unmodelled"}
+    },
+    {
+      "id": "flow-missing-routing-rate-or-unit",
+      "fictional_inputs": "Same nominal record with separate missing-routing, missing-rate and wrong-dimension cases.",
+      "expected": "Explicit incomplete or unsupported finding. No calculated actual throughput, scheduling credit or ranked advantage."
+    },
+    {
+      "id": "unsupported-dynamic-control",
+      "fictional_inputs": "Requested branch depends on an unobserved data result, or an unmodelled recirculation path.",
+      "expected": "Explicit unknown/unsupported behavior without a guessed branch, output or completion time."
+    },
+    {
+      "id": "compatibility",
+      "fictional_inputs": "Run unchanged legacy and reviewed-assessment/1 regression fixtures with the broader profile unselected.",
+      "expected": "Existing defaults, released report shape, historical readback and hardware refusal remain unchanged."
+    }
+  ]
+}

@@ -1,0 +1,529 @@
+{
+ "about": "Published reports that CUT&Tag, CUT&RUN or related bead-based chromatin profiling was run on a liquid handler or device (#154). Each entry: the platform as the source names it, the catalogue handler it maps to (match 'same' = that model; 'related' = same maker's earlier or unstated model, e.g. Biomek FX for the Biomek i7), the assay, the source with a verbatim quote. Collected 6 Nov 2026 from PMC/Europe PMC full text, protocols.io, a core-facility sheet and a vendor release. Evidence only: never a capability, fact or ranking input. Other tagmentation variants (ACT-seq, CUTAC, sci-CUT&Tag): no automated report found on any platform.",
+ "collected": "2026-11-06",
+ "items": [
+  {
+   "handler": "i7",
+   "match": "related",
+   "platform": "Beckman Coulter Biomek FX",
+   "model": "Biomek FX",
+   "assays": [
+    "cut-and-run"
+   ],
+   "assay": "CUT&RUN (AutoCUT&RUN)",
+   "automated": "Washes, pA-MNase tethering, MNase digestion at 0-4 C (aluminium block on a cooling unit), release; pre- and post-PCR Ampure XP cleanups on the robot. ConA bead binding, permeabilisation and primary antibody done by hand first; end-polishing, ligation and PCR on a separate thermocycler. Alpaqua 96S Super Magnet Plate.",
+   "scale": "Up to 96 libraries in 2 days per operator",
+   "kind": "paper",
+   "title": "Automated in situ chromatin profiling efficiently resolves cell types and gene regulatory programs",
+   "journal": "Epigenetics & Chromatin",
+   "year": 2018,
+   "doi": "10.1186/s13072-018-0243-8",
+   "pmcid": "PMC6302505",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6302505/",
+   "quote": "To adapt CUT&RUN to an automated format we equipped a Beckman Biomek FX liquid handling robot for magnetic separation and temperature control",
+   "note": "Janssens et al. Preprint: bioRxiv 10.1101/418681. Springer page was blocked by a local hook. Read via Europe PMC full-text XML (https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6302505/fullTextXML).",
+   "partial": false
+  },
+  {
+   "handler": "i7",
+   "match": "related",
+   "platform": "Beckman Coulter Biomek FX",
+   "model": "Biomek FX",
+   "assays": [
+    "cut-and-tag"
+   ],
+   "assay": "CUT&Tag (AutoCUT&Tag)",
+   "automated": "After hand nuclei extraction, light crosslinking, ConA binding and primary antibody: secondary antibody, pA-Tn5 binding, washes, tagmentation buffer, TAPS wash and release buffer on the robot; post-PCR SPRIselect cleanup on the robot. Tn5 release at 58 C and PCR in a thermocycler; neutralisation by multichannel pipette. ALPAQUA Magnet Plate and ALPAQUA LE Magnet Plate, thermal block.",
+   "scale": "Up to 96 samples in a 96-well PCR plate; about 4 h robot plus 1 h cleanup; sequencing-ready in 1 day",
+   "kind": "paper",
+   "title": "Automated CUT&Tag profiling of chromatin heterogeneity in mixed-lineage leukemia",
+   "journal": "Nature Genetics",
+   "year": 2021,
+   "doi": "10.1038/s41588-021-00941-9",
+   "pmcid": "PMC8571097",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8571097/",
+   "quote": "implementing AutoCUT&Tag on a Beckman Coulter Biomek liquid handling robot",
+   "note": "Janssens et al. Preprint: bioRxiv 10.1101/2020.10.06.328948. Methods name the model: 'the Beckman Coulter Biomek FX robot equipped with an ALPAQUA Magnet Plate'.",
+   "partial": false
+  },
+  {
+   "handler": "i7",
+   "match": "related",
+   "platform": "Beckman Coulter Biomek FX",
+   "model": "Biomek FX",
+   "assays": [
+    "cut-and-tag"
+   ],
+   "assay": "CUT&Tag (AutoCUT&Tag)",
+   "automated": "Robot programs and equipment specifications (cited as the program download by the Nature Genetics 2021 methods)",
+   "scale": "Up to 96 libraries per day",
+   "kind": "protocols.io",
+   "title": "AutoCUT&Tag: streamlined genome-wide profiling of chromatin proteins on a liquid handling robot",
+   "journal": "protocols.io",
+   "year": 2020,
+   "doi": "10.17504/protocols.io.bgztjx6n",
+   "pmcid": null,
+   "url": "https://www.protocols.io/view/autocut-amp-tag-streamlined-genome-wide-profiling-bgztjx6n",
+   "quote": "AutoCUT&Tag: streamlined genome-wide profiling of chromatin proteins on a liquid handling robot",
+   "note": "Janssens & Henikoff. The page returned only its title when fetched. The Biomek FX model comes from the Nature Genetics 2021 methods and a search snippet of the protocols.io PDF; I did not read it on the page itself.",
+   "partial": false
+  },
+  {
+   "handler": "i7",
+   "match": "related",
+   "platform": "Beckman Coulter Biomek FX",
+   "model": "Biomek FX",
+   "assays": [
+    "cut-and-run"
+   ],
+   "assay": "CUT&RUN (AutoCUT&RUN)",
+   "automated": "Arrayed samples processed by the robot from bead binding through library amplification and cleanup",
+   "scale": "96 samples, sample to library in two days",
+   "kind": "core-service",
+   "title": "AutoCUT&RUN service description",
+   "journal": "Fred Hutch Genomics & Bioinformatics Shared Resource",
+   "year": 2022,
+   "doi": null,
+   "pmcid": null,
+   "url": "https://fredhutch.org/content/dam/www/shared-resources/gb/AutoCUTRUN-2022.pdf",
+   "quote": "CUT&RUN has been automated (AutoCUT&RUN) using a Beckman Biomek FX liquid-handling robot",
+   "note": "PDF text extracted with pdftotext.",
+   "partial": false
+  },
+  {
+   "handler": "i7",
+   "match": "same",
+   "platform": "Beckman Coulter Biomek i7",
+   "model": "Biomek i7",
+   "assays": [
+    "cut-and-run"
+   ],
+   "assay": "CUT&RUN (AutoCUT&RUN)",
+   "automated": "Washes with magnetic separation (Alpaqua 96S Super Magnet Plate), MNase step on a QInstruments ColdPlate heater-cooler, pre- and post-PCR Ampure cleanups on the robot; end-repair, ligation and PCR on a separate thermocycler",
+   "scale": "96-well PCR plate",
+   "kind": "paper",
+   "title": "Mutant RIT1 cooperates with YAP to drive an EMT-like lung cancer state",
+   "journal": "Cell Reports",
+   "year": 2025,
+   "doi": "10.1016/j.celrep.2025.116185",
+   "pmcid": "PMC12646131",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12646131/",
+   "quote": "Samples were processed for AutoCUT&RUN by arraying in a 96 well PCR plate and processed on a Beckman Biomek i7 liquid handling instrument",
+   "note": "A user of the method, not the methods paper. Read via Europe PMC full-text XML (https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12646131/fullTextXML).",
+   "partial": false
+  },
+  {
+   "handler": "i7",
+   "match": "same",
+   "platform": "Beckman Coulter Biomek i7",
+   "model": "Biomek i7",
+   "assays": [
+    "cut-and-run"
+   ],
+   "assay": "CUT&RUN",
+   "automated": "Library preparation at Fred Hutch Genomics Shared Resource: MNase digestion at 4 C, end repair, adapter ligation, PCR (as stated); ConA beads, Alpaqua 96S Super Magnet Plate",
+   "scale": "not stated",
+   "kind": "paper",
+   "title": "Therapeutic targeting of the eIF4E cap-binding domain reveals control of lineage fate in prostate cancer",
+   "journal": "Journal of Clinical Investigation",
+   "year": 2026,
+   "doi": "10.1172/jci199838",
+   "pmcid": "PMC13262746",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13262746/",
+   "quote": "Libraries were prepared using a Beckman Biomek i7 liquid handling instrument with a 96S Super Magnet Plate (Alpaqua SKU A001322).",
+   "note": "A user of the method. Read via Europe PMC full-text XML (https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13262746/fullTextXML).",
+   "partial": true
+  },
+  {
+   "handler": "i7",
+   "match": "related",
+   "platform": "Beckman Coulter Biomek (model not stated)",
+   "model": "not stated",
+   "assays": [
+    "cut-and-tag"
+   ],
+   "assay": "CUT&Tag (AutoCUT&Tag)",
+   "automated": "Sample processing following the AutoCUT&Tag protocols.io protocol; 25K ConA-bound nuclei per reaction",
+   "scale": "96-well plate",
+   "kind": "paper",
+   "title": "Integrator complex subunit 12 knockout overcomes a transcriptional block to HIV latency reversal",
+   "journal": "eLife",
+   "year": 2025,
+   "doi": "10.7554/eLife.103064",
+   "pmcid": "PMC11984954",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11984954/",
+   "quote": "Sample processing was performed in a 96-well plate using 25K Con-A bound nuclei per reaction on a Beckman Coulter Biomek liquid handling robot",
+   "note": "A user of the method (Fred Hutch Genomics Shared Resources). Read via Europe PMC full-text XML (https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11984954/fullTextXML).",
+   "partial": false
+  },
+  {
+   "handler": "i7",
+   "match": "related",
+   "platform": "Beckman Coulter Biomek (model not stated)",
+   "model": "not stated",
+   "assays": [
+    "cut-and-tag"
+   ],
+   "assay": "CUT&Tag (AutoCUT&Tag)",
+   "automated": "Sample processing following the AutoCUT&Tag protocols.io protocol; 100K ConA-bound nuclei per reaction",
+   "scale": "96-well plate",
+   "kind": "paper",
+   "title": "A modular CRISPR screen identifies individual and combination pathways contributing to HIV-1 latency",
+   "journal": "PLoS Pathogens",
+   "year": 2023,
+   "doi": "10.1371/journal.ppat.1011101",
+   "pmcid": "PMC9907829",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9907829/",
+   "quote": "Sample processing was performed in a 96 well plate using 100K Con-A bound nuclei per reaction on a Beckman Coulter Biomek liquid handling robot",
+   "note": "A user of the method. Read via Europe PMC full-text XML (https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9907829/fullTextXML).",
+   "partial": false
+  },
+  {
+   "handler": "i7",
+   "match": "related",
+   "platform": "Beckman Coulter Biomek FX",
+   "model": "Biomek FX",
+   "assays": [
+    "cut-and-run"
+   ],
+   "assay": "CUT&RUN (AutoCUT&RUN)",
+   "automated": "pA-MNase addition, cleavage and release, target purification, adaptor ligation, Ampure cleanup, PCR; ConA beads",
+   "scale": "not stated",
+   "kind": "paper",
+   "title": "Histone marks identify novel transcription factors that parse CAR-T subset-of-origin, clinical potential and expansion",
+   "journal": "Nature Communications",
+   "year": 2024,
+   "doi": "10.1038/s41467-024-52503-2",
+   "pmcid": "PMC11436946",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11436946/",
+   "quote": "Samples were then processed on a Beckman Biomek FX liquid-handling robot as described",
+   "note": "A user of the method. Read via Europe PMC full-text XML (https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11436946/fullTextXML).",
+   "partial": false
+  },
+  {
+   "handler": "i7",
+   "match": "related",
+   "platform": "Beckman Coulter Biomek FX",
+   "model": "Biomek FX",
+   "assays": [
+    "cut-and-run"
+   ],
+   "assay": "CUT&RUN",
+   "automated": "pA-MNase digestion, adapter ligation and library preparation on the robot; ConA beads (Bangs)",
+   "scale": "96-well plate",
+   "kind": "paper",
+   "title": "MYCN amplification and ATRX mutations are incompatible in neuroblastoma",
+   "journal": "Nature Communications",
+   "year": 2020,
+   "doi": "10.1038/s41467-020-14682-6",
+   "pmcid": "PMC7021759",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7021759/",
+   "quote": "Cells were arrayed on a 96-well plate and the rest of the reaction was carried out on a Beckman Biomek FX",
+   "note": "A user of the method. Read via Europe PMC full-text XML (https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7021759/fullTextXML).",
+   "partial": false
+  },
+  {
+   "handler": "i7",
+   "match": "related",
+   "platform": "Beckman Coulter Biomek FX",
+   "model": "Biomek FX",
+   "assays": [
+    "cut-and-run"
+   ],
+   "assay": "CUT&RUN (automated)",
+   "automated": "Automated CUT&RUN by the Fred Hutch Genomics core after hand antibody incubation",
+   "scale": "not stated",
+   "kind": "paper",
+   "title": "Global and context-specific transcriptional consequences of oncogenic Fbw7 mutations",
+   "journal": "eLife",
+   "year": 2022,
+   "doi": "10.7554/eLife.74338",
+   "pmcid": "PMC8926403",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8926403/",
+   "quote": "Beckman Biomek FX liquid handling robot Genomics and Bioinformatics Center at Fred Hutch Automated CUT&RUN",
+   "note": "Quote is from the key resources table. Read via Europe PMC full-text XML (https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8926403/fullTextXML).",
+   "partial": false
+  },
+  {
+   "handler": "i7",
+   "match": "related",
+   "platform": "Beckman Coulter Biomek (model not stated)",
+   "model": "not stated",
+   "assays": [
+    "cut-and-run"
+   ],
+   "assay": "CUT&RUN (AutoCUT&RUN)",
+   "automated": "Most CUT&RUN reactions run on the automated platform",
+   "scale": "not stated",
+   "kind": "paper",
+   "title": "Pioneer Factor-Nucleosome Binding Events during Differentiation Are Motif Encoded",
+   "journal": "Molecular Cell",
+   "year": 2019,
+   "doi": "10.1016/j.molcel.2019.05.025",
+   "pmcid": "PMC6697550",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6697550/",
+   "quote": "most CUT&RUN was carried out on an automated BioMek platform ( Janssens et al., 2018 )",
+   "note": "A user of the method. Read via Europe PMC full-text XML (https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6697550/fullTextXML).",
+   "partial": false
+  },
+  {
+   "handler": "i7",
+   "match": "same",
+   "platform": "Beckman Coulter Biomek i7",
+   "model": "Biomek i7",
+   "assays": [
+    "cut-and-run"
+   ],
+   "assay": "CUT&RUN (library construction only)",
+   "automated": "Only the library prep after CUT&RUN (IDT xGen) on the Biomek i7; the CUT&RUN chromatin reaction is not stated as automated",
+   "scale": "about 1 ng DNA input per library",
+   "kind": "paper",
+   "title": "Whole-genome doubling drives immune evasion by silencing antigen presentation",
+   "journal": "Cancer Cell",
+   "year": 2026,
+   "doi": "10.1016/j.ccell.2026.04.007",
+   "pmcid": "PMC13160227",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13160227/",
+   "quote": "Cut&Run libraries were prepared using IDT xGen DNA library prep reagents on a Beckman Coulter Biomek i7 liquid handling platform",
+   "note": "Weak evidence: only library prep is automated. Similar wording (Swift S2 Acel reagents, Biomek i7) in J Innate Immun 2023, DOI 10.1159/000533732, PMC10622164. Read via Europe PMC full-text XML (https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13160227/fullTextXML).",
+   "partial": true
+  },
+  {
+   "handler": "plr-tecan-evo",
+   "match": "same",
+   "platform": "Tecan Freedom EVO",
+   "model": "Freedom EVO",
+   "assays": [
+    "cut-and-run"
+   ],
+   "assay": "CUT&RUN (CUTANA autoCUT&RUN)",
+   "automated": "All autoCUT&RUN steps: cells into 96-well plate, ConA immobilisation, overnight antibody, pAG-MNase, washes by magnetic capture with gentle rocking for incubations, Serapure DNA cleanup; libraries with CUTANA kit",
+   "scale": "96-well plate, 500,000 cells per reaction",
+   "kind": "paper",
+   "title": "Cancer-associated DNA hypermethylation of Polycomb targets requires DNMT3A dual recognition of histone H2AK119 ubiquitination and the nucleosome acidic patch",
+   "journal": "Science Advances",
+   "year": 2024,
+   "doi": "10.1126/sciadv.adp0975",
+   "pmcid": "PMC11352909",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11352909/",
+   "quote": "All autoCUT&RUN steps were optimized and performed on Tecan Freedom EVO robotics platforms",
+   "note": "Read via Europe PMC full-text XML (https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11352909/fullTextXML).",
+   "partial": false
+  },
+  {
+   "handler": "plr-tecan-evo",
+   "match": "same",
+   "platform": "Tecan Freedom EVO",
+   "model": "Freedom EVO",
+   "assays": [
+    "cut-and-run"
+   ],
+   "assay": "CUT&RUN (CUTANA)",
+   "automated": "All CUT&RUN steps (as in the Science Advances entry)",
+   "scale": "96-well plate, 500,000 cells per reaction",
+   "kind": "paper",
+   "title": "Epigenetic dysregulation from chromosomal transit in micronuclei",
+   "journal": "Nature",
+   "year": 2023,
+   "doi": "10.1038/s41586-023-06084-7",
+   "pmcid": "PMC10322720",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10322720/",
+   "quote": "All CUT&RUN steps were optimized and performed on Tecan Freedom EVO robotics platforms with gentle rocking for incubation steps",
+   "note": "Read via Europe PMC full-text XML (https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10322720/fullTextXML).",
+   "partial": false
+  },
+  {
+   "handler": "plr-tecan-evo",
+   "match": "same",
+   "platform": "Tecan Freedom EVO",
+   "model": "Freedom EVO",
+   "assays": [
+    "cut-and-run"
+   ],
+   "assay": "CUT&RUN (CUTANA autoCUT&RUN)",
+   "automated": "All steps: ConA beads, rocking incubations, magnetic capture for washes",
+   "scale": "96-well plate",
+   "kind": "paper",
+   "title": "NSD2 inhibitors rewire chromatin to treat lung and pancreatic cancers",
+   "journal": "Nature",
+   "year": 2026,
+   "doi": "10.1038/s41586-025-09299-y",
+   "pmcid": "PMC12928844",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12928844/",
+   "quote": "All steps were performed on Tecan Freedom EVO robotics platforms with gentle rocking for incubation steps",
+   "note": "Online 2025. Same Tecan Freedom EVO autoCUT&RUN wording also in Comput Struct Biotechnol J 2022 (10.1016/j.csbj.2022.10.031, PMC9636493) and J Exp Med 2023 (10.1084/jem.20222052, PMC10067526). Read via Europe PMC full-text XML (https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12928844/fullTextXML).",
+   "partial": false
+  },
+  {
+   "handler": "flex",
+   "match": "same",
+   "platform": "Opentrons Flex",
+   "model": "Flex",
+   "assays": [
+    "cut-and-tag",
+    "cut-and-run"
+   ],
+   "assay": "CUT&RUN and CUT&Tag",
+   "automated": "Both C&R (H3K23ac) and C&T assays automated; protocols built in Opentrons Protocol Designer; thermocycler module, plate heater module and magnetic block; ConA paramagnetic beads (EpiCypher). Which steps stayed manual is not detailed.",
+   "scale": "not stated",
+   "kind": "paper",
+   "title": "Identifying critical lysines in mammalian histone H3 with high-throughput CRISPR prime editing",
+   "journal": "Nature Genetics",
+   "year": 2026,
+   "doi": "10.1038/s41588-026-02675-y",
+   "pmcid": "PMC13553292",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13553292/",
+   "quote": "C&T assays were automated through the Opentrons Flex platform equipped with a thermocycler module, plate heater module and magnetic block.",
+   "note": "Price, Zemlyanskiy et al. Read via Europe PMC full-text XML (https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13553292/fullTextXML).",
+   "partial": false
+  },
+  {
+   "handler": null,
+   "match": "other",
+   "platform": "Thermo Fisher KingFisher Duo Prime (not in target list)",
+   "model": "KingFisher Duo Prime",
+   "assays": [
+    "cut-and-run"
+   ],
+   "assay": "CUT&RUN",
+   "automated": "Automated CUT&RUN protocol on a magnetic particle processor (abstract only read)",
+   "scale": "not stated",
+   "kind": "paper",
+   "title": "Automated CUT & RUN Using the KingFisher Duo Prime",
+   "journal": "Methods in Molecular Biology",
+   "year": 2022,
+   "doi": "10.1007/978-1-0716-2481-4_12",
+   "pmcid": null,
+   "url": "https://pubmed.ncbi.nlm.nih.gov/35733019/",
+   "quote": "Here we describe our automated CUT&RUN protocol using the Thermo Fisher KingFisher Duo Prime system.",
+   "note": "Book chapter, Aflaki, Margueron, Holoch; vol 2529 pp 253-265. Abstract read through NCBI efetch.",
+   "partial": false
+  },
+  {
+   "handler": null,
+   "match": "other",
+   "platform": "BlueCatBio BlueWasher (not in target list)",
+   "model": "BlueWasher",
+   "assays": [
+    "cut-and-tag"
+   ],
+   "assay": "CUT&Tag (AutoCUT&Tag-style, nanobody-Tn5)",
+   "automated": "Liquid removal and wash-buffer addition only; ConA beads; SPRI cleanup",
+   "scale": "96-well plate, 50,000 cells per reaction",
+   "kind": "paper",
+   "title": "KAT6A is essential for developmental control gene expression in neural stem and progenitor cells",
+   "journal": "PLoS Genetics",
+   "year": 2026,
+   "doi": "10.1371/journal.pgen.1012133",
+   "pmcid": "PMC13160438",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13160438/",
+   "quote": "We used a liquid handling robot (Bluewasher) for removing liquids and adding wash buffers to plates.",
+   "note": "Read via Europe PMC full-text XML (https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13160438/fullTextXML).",
+   "partial": false
+  },
+  {
+   "handler": null,
+   "match": "device",
+   "platform": "Labcyte Echo acoustic dispenser (not in target list)",
+   "model": "Echo",
+   "assays": [
+    "cut-and-tag"
+   ],
+   "assay": "Single-cell CUT&Tag (IT-scC&T-seq, plate-based)",
+   "automated": "Reagent dispensing into microwell plates (lysis buffer, PCR reagents)",
+   "scale": "hundreds to thousands of wells",
+   "kind": "paper",
+   "title": "IT-scC&T-seq streamlines scalable, parallel profiling of protein-DNA interactions in single cells",
+   "journal": "Genome Biology",
+   "year": 2025,
+   "doi": "10.1186/s13059-025-03661-z",
+   "pmcid": "PMC12235884",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12235884/",
+   "quote": "amenable to automation using benchtop liquid handling platforms (e.g., Labcyte Echo® Acoustic Dispenser used in this study)",
+   "note": "Read via Europe PMC full-text XML (https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12235884/fullTextXML).",
+   "partial": false
+  },
+  {
+   "handler": "ot2",
+   "match": "same",
+   "platform": "Opentrons OT-2",
+   "model": "OT-2",
+   "assays": [],
+   "assay": "REpi-seq (antibody DNA-probe single-cell epigenomics; not tagmentation)",
+   "automated": "Supernatant removal and reagent steps on a plate of single cells in hydrogel, using supplied OT-2 code",
+   "scale": "96-well PCR plate (96 cells)",
+   "kind": "paper",
+   "title": "Reusable Single Cell for Iterative Epigenomic Analyses",
+   "journal": "Journal of Visualized Experiments",
+   "year": 2022,
+   "doi": "10.3791/63456",
+   "pmcid": "PMC9376938",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9376938/",
+   "quote": "OT-2 lab robot Opentrons OT2 Automated liquid handling robot",
+   "note": "Marginal: antibody-targeted chromatin profiling but not CUT&Tag or CUT&RUN. Quote is from the materials table. Read via Europe PMC full-text XML (https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9376938/fullTextXML).",
+   "partial": false,
+   "related": "not tagmentation-based"
+  },
+  {
+   "handler": null,
+   "match": "other",
+   "platform": "Not stated (EpiCypher in-house)",
+   "model": "not stated",
+   "assays": [
+    "cut-and-run"
+   ],
+   "assay": "CUT&RUN (CUTANA autoCUT&RUN)",
+   "automated": "Fully automated CUT&RUN service platform; robot not named",
+   "scale": "'thousands of CUT&RUN reactions per month'",
+   "kind": "app-note",
+   "title": "EpiCypher announces automated CUT&RUN platform for high-throughput epigenomics",
+   "journal": "BioSpace (press release repost)",
+   "year": 2023,
+   "doi": null,
+   "pmcid": null,
+   "url": "https://www.biospace.com/epicypher-announces-automated-cut-and-run-platform-for-high-throughput-epigenomics",
+   "quote": "CUT&RUN is highly amenable to assay automation, as it does not require cell lysis or chromatin digestion",
+   "note": "Vendor press release dated 15 Nov 2023 (kind 'app-note' used for vendor material). The EpiCypher ASGCT autoCUT&RUN poster (https://www.epicypher.com/content/documents/posters/ASGCT_autocutandrun_poster.pdf) was also opened: 96-well liquid handling, hands-on time halved, no robot named. The Tecan Freedom EVO papers use CUTANA autoCUT&RUN, but these vendor documents do not name Tecan, so it is not attributed here.",
+   "partial": false
+  }
+ ],
+ "noEvidence": [
+  {
+   "platform": "Opentrons OT-2",
+   "note": "No CUT&Tag or CUT&RUN automation found. Only OT-2 hit is REpi-seq, which is not tagmentation. Opentrons Flex has one peer-reviewed C&R + C&T report (Nature Genetics 2026)."
+  },
+  {
+   "platform": "Hamilton STAR/STARlet/Vantage/NIMBUS/Microlab Prep",
+   "note": "No evidence. Full-text hits use Hamilton for qPCR setup, gastruloid media, metabolomics or RNA/WGS library prep (e.g. PMC13446962, PMC10782558, PMC13087030). No Hamilton CUT&Tag app note found."
+  },
+  {
+   "platform": "Beckman Biomek i5 / Biomek 4000 / NX",
+   "note": "No evidence (Europe PMC full-text query returned 0). Biomek FX and i7 are documented."
+  },
+  {
+   "platform": "Tecan Fluent",
+   "note": "No evidence. Tecan Freedom EVO is documented for CUTANA autoCUT&RUN; no CUT&Tag on any Tecan found."
+  },
+  {
+   "platform": "Agilent Bravo",
+   "note": "No CUT&Tag or CUT&RUN evidence. Closest: spa-ChIP-seq (ChIP, not tagmentation) on Bravo, Genome Research 2026, DOI 10.1101/gr.281320.125, PMC12758389. Other Bravo hits are cell screening or proteomics."
+  },
+  {
+   "platform": "SPT Labtech firefly",
+   "note": "No evidence (0 full-text hits). SPT Labtech mosquito appears in other work, not CUT&Tag."
+  },
+  {
+   "platform": "Andrew Alliance Andrew+",
+   "note": "No evidence (0 full-text hits)."
+  },
+  {
+   "platform": "Any platform, for ACT-seq, CUTAC or sci-CUT&Tag",
+   "note": "No reports of automation on a liquid handler found."
+  },
+  {
+   "platform": "Plate-CUT&Tag (Meers lab)",
+   "note": "bioRxiv 10.1101/2025.09.18.676951 and protocols.io g9u3bz6yp describe 96-well CUT&Tag-Direct with multichannel pipettes, i.e. by hand, per search snippets. Full text returned HTTP 429 and was not read."
+  }
+ ],
+ "searchedQueries": 30
+}

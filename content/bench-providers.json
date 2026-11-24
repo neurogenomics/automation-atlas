@@ -1,0 +1,20 @@
+{
+  "referenceOnly": [
+    {
+      "id": "plr-biotek-el406",
+      "name": "Agilent BioTek EL406",
+      "vendor": "Agilent",
+      "kind": "plate washer",
+      "source": "https://www.agilent.com/cs/library/specifications/public/el406-technical-details-5994-5497EN-agilent.pdf",
+      "missing": "Exact manifold, aspiration geometry and a matched wash cycle for the stated wash are required."
+    },
+    {
+      "id": "integra-viaflo-96",
+      "name": "INTEGRA VIAFLO 96",
+      "vendor": "INTEGRA",
+      "kind": "bench 96-channel pipette",
+      "source": "https://www.integra-biosciences.com/united-kingdom/en/electronic-pipettes/viaflo-96-viaflo-384",
+      "missing": "The actual head, plate and tip-use plan need an attended cycle-time estimate for this batch."
+    }
+  ]
+}

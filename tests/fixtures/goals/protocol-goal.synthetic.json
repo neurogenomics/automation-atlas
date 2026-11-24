@@ -1,0 +1,57 @@
+{
+  "schema_version": "0.1.0",
+  "digest_profile": "agentic-lab/review-json/1",
+  "record_id": "synthetic-goal",
+  "revision_id": "goal-1",
+  "parent": null,
+  "original": {
+    "schema_version": "0.2.0",
+    "binding": {
+      "protocol_id": "synthetic-protocol",
+      "revision_id": "movement-revision-1",
+      "interpretation_digest": "sha256:a8deb1bc059916f69a6d9264ec0e6f5effd6fc6da0221a5ef278f9219b0eed62",
+      "collection_id": "900001",
+      "version_id": "900002",
+      "version_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "export_hash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "operation_ids": ["transfer-1"]
+  },
+  "targets": [
+    {
+      "identity": {"namespace": "original","material_id": "A","state_id": "donor-after"},
+      "provenance": {"kind": "reviewer_asserted","evidence": [{"document_id": "synthetic-protocol","document_digest": "sha256:a8deb1bc059916f69a6d9264ec0e6f5effd6fc6da0221a5ef278f9219b0eed62","pointer": "/states/2"}],"explanation": "Symbolic target T (α)."}
+    }
+  ],
+  "criteria": [
+    {
+      "id": "volume",
+      "priority": "necessary",
+      "subject": "method",
+      "observable_id": "volume",
+      "predicate": {
+        "kind": "scalar",
+        "operator": "lte",
+        "threshold": {
+          "schema_version": "0.1.0",
+          "value": "100.0",
+          "dimension": "volume",
+          "unit": "uL",
+          "basis": "total",
+          "reference": {"kind": "none","id": null,"conditions": []},
+          "provenance": {"kind": "reviewer_asserted","evidence": [],"explanation": "Stipulated synthetic case."}
+        }
+      },
+      "provenance": {"kind": "reviewer_asserted","evidence": [],"explanation": "Stipulated synthetic case."}
+    },
+    {
+      "id": "retained",
+      "priority": "necessary",
+      "subject": "method",
+      "observable_id": "retained",
+      "predicate": {"kind": "identity_set","disposition": "retained","operator": "contains_all","identities": [{"namespace": "original","material_id": "A","state_id": "donor-after"}]},
+      "provenance": {"kind": "reviewer_asserted","evidence": [],"explanation": "Stipulated synthetic case."}
+    }
+  ],
+  "content_digest": "sha256:c65da64bab9831b3ba88bfdf443befabc3988372dd8fb4cb4be8409bc9688012"
+}

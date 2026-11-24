@@ -1,0 +1,283 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/neurogenomics/agentic-lab/contracts/versions/0.1.0/equipment-registry.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "record_id", "revision_id", "content_digest", "digest_profile", "organisation_id", "parent", "recorded_at", "visibility", "use_rights", "sources", "record"],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "record_id": {"$ref": "instrument-model.schema.json#/$defs/Id"},
+    "revision_id": {"$ref": "instrument-model.schema.json#/$defs/Id"},
+    "content_digest": {"allOf": [{"$ref": "../../common.schema.json#/$defs/ContentHash"}, {"minLength": 71, "maxLength": 71}]},
+    "digest_profile": {"const": "agentic-lab/review-json/1"},
+    "organisation_id": {"$ref": "instrument-model.schema.json#/$defs/Id"},
+    "parent": {"anyOf": [{"$ref": "#/$defs/Revision"}, {"type": "null"}]},
+    "recorded_at": {"$ref": "../../common.schema.json#/$defs/Timestamp"},
+    "visibility": {"enum": ["public", "organisation_private"]},
+    "use_rights": {"$ref": "instrument-model.schema.json#/$defs/UseRights"},
+    "sources": {"type": "array", "items": {"$ref": "instrument-model.schema.json#/$defs/SourceEvidence"}, "uniqueItems": true},
+    "record": {"oneOf": [{"$ref": "#/$defs/Installation"}, {"$ref": "#/$defs/InstallationGroup"}, {"$ref": "#/$defs/Configuration"}, {"$ref": "#/$defs/Assertion"}, {"$ref": "#/$defs/Offer"}, {"$ref": "#/$defs/AccessClaim"}, {"$ref": "#/$defs/AvailabilityClaim"}]}
+  },
+  "allOf": [{"if": {"properties": {"visibility": {"const": "public"}}}, "then": {"properties": {"sources": {"items": {"properties": {"visibility": {"const": "public"}, "use_rights": {"properties": {"discovery": {"const": "permitted"}}}}}}}}}, {"if": {"properties": {"record": {"properties": {"record_type": {"const": "access_claim"}, "subject": {"properties": {"kind": {"const": "principal"}}}}}}}, "then": {"properties": {"visibility": {"const": "organisation_private"}}}}, {"if": {"properties": {"record": {"properties": {"record_type": {"const": "assertion"}, "state": {"enum": ["reported", "disputed"]}}}}}, "then": {"properties": {"sources": {"minItems": 1}}}}],
+  "$defs": {
+    "Revision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "record_id", "revision_id", "content_digest", "organisation_id", "record_type"],
+      "properties": {
+        "schema_version": {"const": "0.1.0"},
+        "record_id": {"$ref": "instrument-model.schema.json#/$defs/Id"},
+        "revision_id": {"$ref": "instrument-model.schema.json#/$defs/Id"},
+        "content_digest": {"allOf": [{"$ref": "../../common.schema.json#/$defs/ContentHash"}, {"minLength": 71, "maxLength": 71}]},
+        "organisation_id": {"$ref": "instrument-model.schema.json#/$defs/Id"},
+        "record_type": {"enum": ["installation", "installation_group", "configuration", "assertion", "offer", "access_claim", "availability_claim"]}
+      }
+    },
+    "SourcePointer": {
+      "type": "string",
+      "pattern": "^/sources/(?:0|[1-9][0-9]*)(?![\\s\\S])"
+    },
+    "ExternalIdClaim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identifier", "source_pointer"],
+      "properties": {
+        "identifier": {"$ref": "../../common.schema.json#/$defs/SourceRef"},
+        "source_pointer": {"anyOf": [{"$ref": "#/$defs/SourcePointer"}, {"type": "null"}]}
+      }
+    },
+    "Module": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["module_id", "state", "source_pointer"],
+      "properties": {
+        "module_id": {"$ref": "instrument-model.schema.json#/$defs/Id"},
+        "state": {"enum": ["reported_fitted", "reported_absent", "unknown"]},
+        "source_pointer": {"anyOf": [{"$ref": "#/$defs/SourcePointer"}, {"type": "null"}]}
+      }
+    },
+    "ModuleInventory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["coverage", "items"],
+      "properties": {
+        "coverage": {"enum": ["partial", "complete"]},
+        "items": {"type": "array", "items": {"$ref": "#/$defs/Module"}, "uniqueItems": true}
+      }
+    },
+    "LimitPredicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observable_id", "operator", "threshold"],
+      "properties": {
+        "observable_id": {"$ref": "instrument-model.schema.json#/$defs/Id"},
+        "operator": {"enum": ["lt", "lte", "eq", "gte", "gt"]},
+        "threshold": {"$ref": "typed-measurement.schema.json"}
+      }
+    },
+    "OperatingEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["envelope_id", "all_of", "conditions", "source_pointer"],
+      "properties": {
+        "envelope_id": {"$ref": "instrument-model.schema.json#/$defs/Id"},
+        "all_of": {"type": "array", "items": {"$ref": "#/$defs/LimitPredicate"}, "uniqueItems": true, "minItems": 1},
+        "conditions": {"anyOf": [{"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}, {"type": "null"}]},
+        "source_pointer": {"anyOf": [{"$ref": "#/$defs/SourcePointer"}, {"type": "null"}]}
+      }
+    },
+    "VerifiedAuthority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["principal", "provider", "verified_by", "applies_to", "purposes", "verified_at", "valid_until", "verification_source_pointer"],
+      "properties": {
+        "principal": {"$ref": "../../common.schema.json#/$defs/Actor"},
+        "provider": {"$ref": "../../common.schema.json#/$defs/SourceRef"},
+        "verified_by": {"$ref": "../../common.schema.json#/$defs/Actor"},
+        "applies_to": {"allOf": [{"$ref": "#/$defs/Revision"}, {"properties": {"record_type": {"enum": ["installation", "installation_group", "configuration", "offer", "access_claim", "availability_claim"]}}}]},
+        "purposes": {"type": "array", "items": {"enum": ["existence", "custody", "module_fit", "operating_limits", "provider_willingness", "eligibility", "training", "availability"]}, "uniqueItems": true, "minItems": 1},
+        "verified_at": {"$ref": "../../common.schema.json#/$defs/Timestamp"},
+        "valid_until": {"anyOf": [{"$ref": "../../common.schema.json#/$defs/Timestamp"}, {"type": "null"}]},
+        "verification_source_pointer": {"$ref": "#/$defs/SourcePointer"}
+      }
+    },
+    "PolicyRevision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "content_digest"],
+      "properties": {
+        "source": {"allOf": [{"$ref": "../../common.schema.json#/$defs/SourceRef"}, {"required": ["version"]}]},
+        "content_digest": {"allOf": [{"$ref": "../../common.schema.json#/$defs/ContentHash"}, {"minLength": 71, "maxLength": 71}]}
+      }
+    },
+    "AccessPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["revision", "facility_default", "effective_from", "effective_until"],
+      "properties": {
+        "revision": {"$ref": "#/$defs/PolicyRevision"},
+        "facility_default": {"anyOf": [{"$ref": "#/$defs/PolicyRevision"}, {"type": "null"}]},
+        "effective_from": {"anyOf": [{"type": "string", "format": "date"}, {"type": "null"}]},
+        "effective_until": {"anyOf": [{"type": "string", "format": "date"}, {"type": "null"}]}
+      }
+    },
+    "Price": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["basis", "amount", "currency", "details"],
+      "properties": {
+        "basis": {"enum": ["per_sample", "per_run", "per_hour", "per_request", "quote_required", "other"]},
+        "amount": {"anyOf": [{"allOf": [{"$ref": "typed-measurement.schema.json#/$defs/Decimal"}, {"pattern": "^[0-9]"}]}, {"type": "null"}]},
+        "currency": {"anyOf": [{"type": "string", "pattern": "^[A-Z]{3}(?![\\s\\S])"}, {"type": "null"}]},
+        "details": {"anyOf": [{"type": "string", "minLength": 1}, {"type": "null"}]}
+      },
+      "allOf": [{"if": {"properties": {"basis": {"const": "quote_required"}}}, "then": {"properties": {"amount": {"type": "null"}}}}]
+    },
+    "LeadTime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bound", "duration"],
+      "properties": {
+        "bound": {"enum": ["estimate", "minimum", "maximum"]},
+        "duration": {"allOf": [{"$ref": "typed-measurement.schema.json"}, {"properties": {"dimension": {"const": "time"}}}]}
+      }
+    },
+    "OfferRoute": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "url"],
+      "properties": {
+        "kind": {"enum": ["enquiry", "quote", "booking"]},
+        "url": {"type": "string", "format": "uri", "pattern": "^https://"}
+      }
+    },
+    "OfferTerms": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["methods", "accepted_inputs", "output_deliverables", "delivery_modes", "price", "lead_times", "routes"],
+      "properties": {
+        "methods": {"anyOf": [{"type": "array", "items": {"$ref": "../../common.schema.json#/$defs/SourceRef"}, "uniqueItems": true}, {"type": "null"}]},
+        "accepted_inputs": {"anyOf": [{"type": "array", "items": {"$ref": "../../common.schema.json#/$defs/SourceRef"}, "uniqueItems": true}, {"type": "null"}]},
+        "output_deliverables": {"anyOf": [{"type": "array", "items": {"$ref": "../../common.schema.json#/$defs/SourceRef"}, "uniqueItems": true}, {"type": "null"}]},
+        "delivery_modes": {"anyOf": [{"type": "array", "items": {"enum": ["operator_assisted", "self_service", "staff_delivered"]}, "uniqueItems": true, "minItems": 1}, {"type": "null"}]},
+        "price": {"anyOf": [{"$ref": "#/$defs/Price"}, {"type": "null"}]},
+        "lead_times": {"anyOf": [{"type": "array", "items": {"$ref": "#/$defs/LeadTime"}, "uniqueItems": true, "minItems": 1}, {"type": "null"}]},
+        "routes": {"anyOf": [{"type": "array", "items": {"$ref": "#/$defs/OfferRoute"}, "uniqueItems": true}, {"type": "null"}]}
+      }
+    },
+    "AccessSubject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "id"],
+      "properties": {
+        "kind": {"enum": ["public", "organisation", "principal"]},
+        "id": {"anyOf": [{"$ref": "instrument-model.schema.json#/$defs/Id"}, {"type": "null"}]}
+      },
+      "allOf": [{"if": {"properties": {"kind": {"const": "public"}}}, "then": {"properties": {"id": {"type": "null"}}}, "else": {"properties": {"id": {"$ref": "instrument-model.schema.json#/$defs/Id"}}}}]
+    },
+    "Installation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record_type", "label", "model", "external_id_claims", "reported_location"],
+      "properties": {
+        "record_type": {"const": "installation"},
+        "label": {"type": "string", "minLength": 1},
+        "model": {"anyOf": [{"$ref": "instrument-model.schema.json#/$defs/Revision"}, {"type": "null"}]},
+        "external_id_claims": {"type": "array", "items": {"$ref": "#/$defs/ExternalIdClaim"}, "uniqueItems": true},
+        "reported_location": {"anyOf": [{"type": "string", "minLength": 1}, {"type": "null"}]}
+      }
+    },
+    "InstallationGroup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record_type", "label", "model", "external_id_claims", "reported_location", "reported_count"],
+      "properties": {
+        "record_type": {"const": "installation_group"},
+        "label": {"type": "string", "minLength": 1},
+        "model": {"anyOf": [{"$ref": "instrument-model.schema.json#/$defs/Revision"}, {"type": "null"}]},
+        "external_id_claims": {"type": "array", "items": {"$ref": "#/$defs/ExternalIdClaim"}, "uniqueItems": true},
+        "reported_location": {"anyOf": [{"type": "string", "minLength": 1}, {"type": "null"}]},
+        "reported_count": {"anyOf": [{"type": "integer", "minimum": 2, "maximum": 9007199254740991}, {"type": "null"}]}
+      }
+    },
+    "Configuration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record_type", "installation", "fitted_modules", "operating_envelopes"],
+      "properties": {
+        "record_type": {"const": "configuration"},
+        "installation": {"allOf": [{"$ref": "#/$defs/Revision"}, {"properties": {"record_type": {"enum": ["installation"]}}}]},
+        "fitted_modules": {"anyOf": [{"$ref": "#/$defs/ModuleInventory"}, {"type": "null"}]},
+        "operating_envelopes": {"anyOf": [{"type": "array", "items": {"$ref": "#/$defs/OperatingEnvelope"}, "uniqueItems": true, "minItems": 1}, {"type": "null"}]}
+      }
+    },
+    "Assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record_type", "target", "claim_kind", "outcome", "state", "reporter", "asserted_by", "claimed_provider", "claimed_custodian", "verified_authority", "statement", "observed_at", "valid_until", "related_assertions"],
+      "properties": {
+        "record_type": {"const": "assertion"},
+        "target": {"allOf": [{"$ref": "#/$defs/Revision"}, {"properties": {"record_type": {"enum": ["installation", "installation_group", "configuration", "offer", "access_claim", "availability_claim"]}}}]},
+        "claim_kind": {"enum": ["existence", "custody", "module_fit", "operating_limits", "provider_willingness", "eligibility", "training", "availability"]},
+        "outcome": {"enum": ["affirmed", "denied", "unknown"]},
+        "state": {"enum": ["reported", "disputed", "superseded", "withdrawn", "unknown"]},
+        "reporter": {"$ref": "../../common.schema.json#/$defs/Actor"},
+        "asserted_by": {"anyOf": [{"$ref": "../../common.schema.json#/$defs/Actor"}, {"type": "null"}]},
+        "claimed_provider": {"anyOf": [{"$ref": "../../common.schema.json#/$defs/SourceRef"}, {"type": "null"}]},
+        "claimed_custodian": {"anyOf": [{"$ref": "../../common.schema.json#/$defs/Actor"}, {"type": "null"}]},
+        "verified_authority": {"anyOf": [{"$ref": "#/$defs/VerifiedAuthority"}, {"type": "null"}]},
+        "statement": {"anyOf": [{"type": "string", "minLength": 1}, {"type": "null"}]},
+        "observed_at": {"type": "string", "format": "date"},
+        "valid_until": {"anyOf": [{"$ref": "../../common.schema.json#/$defs/Timestamp"}, {"type": "null"}]},
+        "related_assertions": {"type": "array", "items": {"allOf": [{"$ref": "#/$defs/Revision"}, {"properties": {"record_type": {"enum": ["assertion"]}}}]}, "uniqueItems": true}
+      },
+      "allOf": [{"if": {"properties": {"state": {"const": "unknown"}}}, "then": {"properties": {"outcome": {"const": "unknown"}, "verified_authority": {"type": "null"}}}}]
+    },
+    "Offer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record_type", "label", "state", "provider", "backing_installations", "backing_configurations", "external_id_claims", "access_policy", "material_exclusions", "terms"],
+      "properties": {
+        "record_type": {"const": "offer"},
+        "label": {"type": "string", "minLength": 1},
+        "state": {"enum": ["listed", "withdrawn", "unknown"]},
+        "provider": {"anyOf": [{"$ref": "../../common.schema.json#/$defs/SourceRef"}, {"type": "null"}]},
+        "backing_installations": {"anyOf": [{"type": "array", "items": {"allOf": [{"$ref": "#/$defs/Revision"}, {"properties": {"record_type": {"enum": ["installation", "installation_group"]}}}]}, "uniqueItems": true}, {"type": "null"}]},
+        "backing_configurations": {"anyOf": [{"type": "array", "items": {"allOf": [{"$ref": "#/$defs/Revision"}, {"properties": {"record_type": {"enum": ["configuration"]}}}]}, "uniqueItems": true}, {"type": "null"}]},
+        "external_id_claims": {"type": "array", "items": {"$ref": "#/$defs/ExternalIdClaim"}, "uniqueItems": true},
+        "access_policy": {"anyOf": [{"$ref": "#/$defs/AccessPolicy"}, {"type": "null"}]},
+        "material_exclusions": {"anyOf": [{"type": "array", "items": {"$ref": "../../common.schema.json#/$defs/SourceRef"}, "uniqueItems": true}, {"type": "null"}]},
+        "terms": {"$ref": "#/$defs/OfferTerms"}
+      }
+    },
+    "AccessClaim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record_type", "target", "subject", "dimension", "outcome", "observed_at", "valid_until", "supporting_assertions"],
+      "properties": {
+        "record_type": {"const": "access_claim"},
+        "target": {"allOf": [{"$ref": "#/$defs/Revision"}, {"properties": {"record_type": {"enum": ["offer", "installation", "configuration"]}}}]},
+        "subject": {"$ref": "#/$defs/AccessSubject"},
+        "dimension": {"enum": ["provider_willingness", "eligibility", "training"]},
+        "outcome": {"enum": ["affirmed", "denied", "unknown"]},
+        "observed_at": {"type": "string", "format": "date"},
+        "valid_until": {"anyOf": [{"$ref": "../../common.schema.json#/$defs/Timestamp"}, {"type": "null"}]},
+        "supporting_assertions": {"type": "array", "items": {"allOf": [{"$ref": "#/$defs/Revision"}, {"properties": {"record_type": {"enum": ["assertion"]}}}]}, "uniqueItems": true}
+      }
+    },
+    "AvailabilityClaim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record_type", "target", "state", "observed_at", "valid_until", "window", "supporting_assertions"],
+      "properties": {
+        "record_type": {"const": "availability_claim"},
+        "target": {"allOf": [{"$ref": "#/$defs/Revision"}, {"properties": {"record_type": {"enum": ["offer", "installation", "configuration"]}}}]},
+        "state": {"enum": ["available", "unavailable", "unknown"]},
+        "observed_at": {"type": "string", "format": "date"},
+        "valid_until": {"anyOf": [{"$ref": "../../common.schema.json#/$defs/Timestamp"}, {"type": "null"}]},
+        "window": {"anyOf": [{"type": "object", "additionalProperties": false, "required": ["starts_at", "ends_at"], "properties": {"starts_at": {"$ref": "../../common.schema.json#/$defs/Timestamp"}, "ends_at": {"$ref": "../../common.schema.json#/$defs/Timestamp"}}}, {"type": "null"}]},
+        "supporting_assertions": {"type": "array", "items": {"allOf": [{"$ref": "#/$defs/Revision"}, {"properties": {"record_type": {"enum": ["assertion"]}}}]}, "uniqueItems": true}
+      }
+    }
+  }
+}

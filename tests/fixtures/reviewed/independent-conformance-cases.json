@@ -1,0 +1,304 @@
+{
+  "purpose": "Independent expected software outcomes authored before adapters; all materials, quantities and capabilities synthetic, not experimental recommendations.",
+  "status": "Acceptance specifications, not executed tests or scientific validation.",
+  "cases": [
+    {
+      "id": "transfer_conservation",
+      "description": "Move an explicitly added amount between two containers of one synthetic material.",
+      "initial": {
+        "source": {
+          "material": "A",
+          "volume_uL": "30"
+        },
+        "destination": {
+          "material": null,
+          "volume_uL": "0"
+        }
+      },
+      "actions": [
+        {
+          "kind": "transfer",
+          "from": "source",
+          "to": "destination",
+          "added_uL": "10"
+        }
+      ],
+      "expected": {
+        "source_uL": "20",
+        "destination_uL": "10",
+        "destination_lineage": [
+          "A"
+        ]
+      },
+      "negative": "Replacing added_uL with final_target_uL must not silently perform the same operation."
+    },
+    {
+      "id": "split_identity",
+      "description": "Partition one synthetic sample into two outputs without losing common lineage.",
+      "initial": {
+        "source": {
+          "material": "sample-A",
+          "volume_uL": "30"
+        }
+      },
+      "actions": [
+        {
+          "kind": "split",
+          "from": "source",
+          "outputs": {
+            "left": "10",
+            "right": "20"
+          }
+        }
+      ],
+      "expected": {
+        "source_uL": "0",
+        "left_uL": "10",
+        "right_uL": "20",
+        "left_lineage": [
+          "sample-A"
+        ],
+        "right_lineage": [
+          "sample-A"
+        ]
+      },
+      "negative": "Removing either lineage relation must block an export claiming identity preservation."
+    },
+    {
+      "id": "pool_composition",
+      "description": "Pool two explicitly nonreacting synthetic materials; preserve both identities rather than rename both as a generic liquid.",
+      "initial": {
+        "left": {
+          "material": "A",
+          "volume_uL": "10"
+        },
+        "right": {
+          "material": "B",
+          "volume_uL": "20"
+        }
+      },
+      "actions": [
+        {
+          "kind": "pool",
+          "from": [
+            "left",
+            "right"
+          ],
+          "to": "pool"
+        }
+      ],
+      "expected": {
+        "pool_uL": "30",
+        "components_uL": {
+          "A": "10",
+          "B": "20"
+        },
+        "source_remaining_uL": {
+          "left": "0",
+          "right": "0"
+        }
+      },
+      "negative": "Treating both components as one shared reagent must fail identity preservation; no reaction yield may be inferred."
+    },
+    {
+      "id": "fraction_retention",
+      "description": "A synthetic separation explicitly assigns target-T to a retained fraction and an unrelated marker to waste. This is stipulated fixture meaning, not a claim about a laboratory separation.",
+      "initial": {
+        "mixture_uL": "100",
+        "target": "target-T"
+      },
+      "actions": [
+        {
+          "kind": "separate",
+          "retained": {
+            "volume_uL": "10",
+            "contains": [
+              "target-T"
+            ]
+          },
+          "discarded": {
+            "volume_uL": "90",
+            "contains": [
+              "marker-W"
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "retained_target": "target-T",
+        "waste_uL": "90",
+        "retained_uL": "10"
+      },
+      "negative": "Swapping retained/discarded labels must not be a successful equivalent method or export."
+    },
+    {
+      "id": "repeated_exchange",
+      "description": "Three symbolic liquid exchanges with explicit retention, addition and withdrawal amounts.",
+      "initial": {
+        "sample_container_uL": "10",
+        "wash_supply_uL": "100",
+        "waste_uL": "0"
+      },
+      "actions": [
+        {
+          "repeat": "3",
+          "body": [
+            {
+              "add_uL": "20"
+            },
+            {
+              "withdraw_to_waste_uL": "20",
+              "retain_target": true
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "sample_container_uL": "10",
+        "wash_supply_uL": "40",
+        "waste_uL": "60",
+        "repeats": "3"
+      },
+      "negative": "Unknown repeat count must block quantitative consumption; this fixture makes no chemical washing-efficiency claim."
+    },
+    {
+      "id": "qc_branch",
+      "description": "A measured numeric signal selects one explicit branch; an unavailable measurement does not choose a default.",
+      "predicate": {
+        "observable": "signal",
+        "operator": ">=",
+        "threshold": "2"
+      },
+      "branches": {
+        "true": "continue",
+        "false": "repeat_measurement"
+      },
+      "expected_cases": [
+        {
+          "measurement": null,
+          "outcome": "unresolved_branch"
+        },
+        {
+          "measurement": "2",
+          "outcome": "continue"
+        },
+        {
+          "measurement": "1.9",
+          "outcome": "repeat_measurement"
+        }
+      ],
+      "negative": "A syntactically valid activity graph that drops the guard must produce a semantic loss and cannot claim executable equivalence."
+    },
+    {
+      "id": "maximum_delay",
+      "description": "Maximum delay between operations is separate from the duration of the second operation.",
+      "first_finishes_s": "600",
+      "maximum_start_delay_s": "300",
+      "second_duration_s": "1800",
+      "expected_cases": [
+        {
+          "second_starts_s": "900",
+          "constraint_satisfied": true
+        },
+        {
+          "second_starts_s": "901",
+          "constraint_satisfied": false
+        }
+      ],
+      "negative": "Replacing maximum delay with a 300-second incubation changes meaning."
+    },
+    {
+      "id": "concurrency_resource",
+      "description": "Two independent operations can overlap only if their equipment assignments do not conflict.",
+      "operations": [
+        {
+          "id": "A",
+          "duration_s": "1800"
+        },
+        {
+          "id": "B",
+          "duration_s": "1200"
+        }
+      ],
+      "expected_cases": [
+        {
+          "resources": [
+            "heater-1",
+            "heater-2"
+          ],
+          "both_start_s": "0",
+          "finish_s": "1800",
+          "valid": true
+        },
+        {
+          "resources": [
+            "heater-1",
+            "heater-1"
+          ],
+          "both_start_s": "0",
+          "valid": false,
+          "reason": "exclusive_resource_overlap"
+        }
+      ],
+      "negative": "A missing resource assignment must remain unresolved rather than imply two available heaters."
+    },
+    {
+      "id": "joint_configuration_limits",
+      "description": "A synthetic transformation requires temperature and pressure simultaneously; separate maxima cannot be combined across incompatible modules.",
+      "requirements": {
+        "temperature_degC": "50",
+        "pressure_bar": "5"
+      },
+      "configurations": [
+        {
+          "id": "config-A",
+          "maximum_temperature_degC": "80",
+          "maximum_pressure_bar": "2"
+        },
+        {
+          "id": "config-B",
+          "maximum_temperature_degC": "30",
+          "maximum_pressure_bar": "8"
+        }
+      ],
+      "expected": {
+        "matching_configurations": []
+      },
+      "negative": "Unioning the temperature maximum of A and pressure maximum of B must not create a feasible configuration. Numbers are synthetic software limits."
+    },
+    {
+      "id": "flow_requires_declared_model",
+      "description": "Two inlet streams enter a connected volume; residence time has a value only under an explicitly selected ideal model and stated steady-state assumptions.",
+      "network": {
+        "inlets_mL_per_min": {
+          "A": "1",
+          "B": "1"
+        },
+        "connected_volume_mL": "2",
+        "outlet": "collection"
+      },
+      "expected_cases": [
+        {
+          "model": "ideal_plug_flow",
+          "steady_state": true,
+          "assumptions": [
+            "incompressible",
+            "no accumulation",
+            "no reaction volume change"
+          ],
+          "mean_residence_min": "1"
+        },
+        {
+          "model": null,
+          "outcome": "unresolved_model"
+        },
+        {
+          "model": "ideal_plug_flow",
+          "steady_state": false,
+          "outcome": "unsupported_transient"
+        }
+      ],
+      "negative": "A UML/dataflow edge does not establish tubing, pressure compatibility, mixing quality or physical execution readiness."
+    }
+  ]
+}
